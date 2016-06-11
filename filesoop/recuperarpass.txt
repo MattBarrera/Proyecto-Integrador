@@ -1,0 +1,15 @@
+Opcion 1: Cruda
+
+Cuando clickea ahi, le regenera la contraseña de ESE mail con algo random. Y le manda a ese mail su nueva contraseña random.
+
+Opcion 2: Limpia
+
+Cuando clickea sucede lo siguiente:
+
+1) Se autogenera un codigo random. Llamemoslo hash.
+2) Ese hash se guarda en un json (llamelo hashes.json) ASOCIADO al id del usuario que tiene ese mail y a la fecha de creacion de dicho hash.
+3) Se le manda al usuario un mail con un link a www.dominio.com/recuperarcontrasena.php?hash=[INSERTE SU HASH AQUI]
+4) Cuando alguien ingresa en recuperarcontrasena.php suceden las siguientes cosas:
+    A) Se hace una pasada por "todo" hashes.json y las cosas "viejas" se eliminan.
+    B) Si el hash que viene por GET NO EXISTE, se le pone un 404 (pagina no encontrada)
+    C) Si el hash SI existe, se le pone un form que diga "nueva contraseña" y "confirmar contraseña" y se le cambia la password al usuario asociado al hash. Luego se lo puede autologuear y SE BORRA ESA LINEA DE hashes.json.
