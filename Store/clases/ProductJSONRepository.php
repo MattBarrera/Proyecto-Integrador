@@ -47,6 +47,15 @@
 
 			return $this->muchosArraysAMuchosProductos($productosArray);
 		}
+		public function getAllProductsIndex(){
+			$productos = file_get_contents("Store/productos.json");
+
+			$productosArray = explode(PHP_EOL, $productos);
+
+			array_pop($productosArray);
+
+			return $this->muchosArraysAMuchosProductos($productosArray);
+		}
 		private function muchosArraysAMuchosProductos(Array $productoArray){
 			$productos = [];
 
@@ -227,6 +236,15 @@
 		}
 		public function getProductoById($productoId){
 			$productos = $this->getAllProducts();
+			foreach ($productos as $key => $producto) {
+				if ($productoId == $producto->getProductoId()) {
+					return $producto;
+				}
+			}
+			return null;
+		}
+		public function getProductoByIdIndex($productoId){
+			$productos = $this->getAllProductsIndex();
 			foreach ($productos as $key => $producto) {
 				if ($productoId == $producto->getProductoId()) {
 					return $producto;

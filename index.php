@@ -1,3 +1,12 @@
+<?php 
+	require_once("Store/config.php");
+
+	$productos = $repositorio->getProductRepository()->getAllProductsIndex();
+	$productosOK = $repositorio->getProductRepository()->getProductoByEstado($productos,1);
+	// var_dump($productosOK);exit;
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +35,7 @@
 		<nav>
 			<ul>
 				<li><a href="register.php">Register</a></li>
-				<li><a href="#">Store</a></li>
+				<li><a href="Store/index.php">Store</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -49,8 +58,8 @@
 						<h2>CLOTHING</h2>
 						<img class= "fotoCategoria" src="img/jeans.jpg" alt="">
 						<div class="botonFoto">
-							<button class="buttonCategorias">Hombre</button>
-							<button class="buttonCategorias">Mujer</button>
+							<button class="buttonCategorias"><a href="Store/index.php">Hombre</a>Hombre</button>
+							<button class="buttonCategorias"><a href="Store/index.php">Mujer</a>Mujer</button>
 						</div>
 					</div>
 				</div>
@@ -59,8 +68,8 @@
 						<h2>SHOES</h2>
 						<img class= "fotoCategoria" src="img/shoesmen.jpg" alt="">
 						<div class="botonFoto">
-							<button class="buttonCategorias">Hombre</button>
-							<button class="buttonCategorias">Mujer</button>
+							<button class="buttonCategorias"><a href="Store/index.php">Hombre</a>Hombre</button>
+							<button class="buttonCategorias"><a href="Store/index.php">Mujer</a>Mujer</button>
 						</div>
 					</div>
 				</div>
@@ -69,8 +78,8 @@
 						<h2>ACCESSORIES</h2>
 						<img class="fotoCategoria" src="img/hola3.jpg" alt="">
 						<div class="botonFoto">
-							<button class="buttonCategorias">Hombre</button>
-							<button class="buttonCategorias">Mujer</button>
+							<button class="buttonCategorias"><a href="Store/index.php">Hombre</a>Hombre</button>
+							<button class="buttonCategorias"><a href="Store/index.php">Mujer</a>Mujer</button>
 						</div>
 					</div>
 				</div>
@@ -79,49 +88,32 @@
 		</section>
 		<section id="store">
 		      	<div>
-		      		<button class="storeHombre">Hombre</button>
-		      		<button class="storeMujer">Mujer</button>
+		      		<button class="storeHombre"><a href="Store/index.php">Hombre</a></button>
+		      		<button class="storeMujer"><a href="Store/index.php">Mujer</a></button>
 		      	</div>
 		</section>
 		<section id="productos">
 			<div class="productosDestacados">
 					<h2>PRODUCTOS DESTACADOS</h2>
 
-						<div class="productoDestacado">
-							<img src="img/sweter.jpg" alt="">
-							<h3>Sweter Rojo María</h3>
-							<p>Descripcion producto</p>
-							<p>Precio: $1900</p>
-							<button>Comprar</button>
+						<?php foreach ($productosOK as $key => $value) { ?>
+
+							
+							<?php if ($repositorio->getProductRepository()->getProductoByIdIndex($value->getProductoByIdIndex())->getProductoFoto() == "artsinfoto.gif") {
+									$productoFoto = '<img src="assets/'.$repositorio->getProductRepository()->getProductoByIdIndex($value->getProductoByIdIndex())->getProductoFoto().'" alt="">';
+								}else{
+									$productoFoto = 
+										'<img src="assets/'.$_SESSION['usuarioLogueado'].'/products/'.$repositorio->getProductRepository()->getProductoByIdIndex($value->getProductoByIdIndex())->getProductoFoto().'" alt="">';
+								}?>
+
+							<?php echo $productoFoto; ?>
+							<h3><?php echo $value->getProductoNombre();?></h3>
+							<p><?php echo $value->getProductoDescripcion();?></p>
+							<p>Precio: $ <?php echo $value->getProductoPrecio();?></p> 
+							<p>Categoria: <?php echo $value->getProductoCategoria();?></p> 
+							<button><a href="#" title="">Detalle Producto</a></button>
 						</div>
-						<div class="productoDestacado">
-							<img src="img/zapas.jpg" alt="">
-							<h3>Zapatilla Gamuza Nicolás </h3>
-							<p>Descripcion producto</p>
-							<p>Precio: $4500</p>
-							<button>Comprar</button>
-						</div>
-						<div class="productoDestacado">
-							<img src="img/tapado.jpg" alt="">
-							<h3>Tapado MultiColor Clara</h3>
-							<p>Descripcion producto</p>
-							<p>Precio: $5000</p>
-							<button>Comprar</button>
-						</div>
-						<div class="productoDestacado">
-							<img src="img/dolfina.jpg" alt="">
-							<h3>Camisa Cuadros Martín </h3>
-							<p>Descripcion producto</p>
-							<p>Precio: $1300</p>
-							<button>Comprar</button>
-						</div>
-						<div class="productoDestacado">
-							<img src="img/zapato2.jpg" alt="">
-							<h3>Abotinado Negro Coni </h3>
-							<p>Descripcion producto</p>
-							<p>Precio: $4500</p>
-							<button>Comprar</button>
-						</div>
+						<?php } ?>
 
 			</div>
 			<div class="clear"></div>
