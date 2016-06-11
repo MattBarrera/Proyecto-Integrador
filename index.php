@@ -98,14 +98,13 @@
 
 						<?php foreach ($productosOK as $key => $value) { ?>
 
-							
-							<?php if ($repositorio->getProductRepository()->getProductoByIdIndex($value->getProductoByIdIndex())->getProductoFoto() == "artsinfoto.gif") {
-									$productoFoto = '<img src="assets/'.$repositorio->getProductRepository()->getProductoByIdIndex($value->getProductoByIdIndex())->getProductoFoto().'" alt="">';
-								}else{
-									$productoFoto = 
-										'<img src="assets/'.$_SESSION['usuarioLogueado'].'/products/'.$repositorio->getProductRepository()->getProductoByIdIndex($value->getProductoByIdIndex())->getProductoFoto().'" alt="">';
-								}?>
-
+							<div class="productoDestacado">
+								<?php if ($repositorio->getProductRepository()->getProductoByIdIndex($value->getProductoId())->getProductoFoto() == "artsinfoto.gif") {
+										$productoFoto = '<img src="Store/assets/'.$repositorio->getProductRepository()->getProductoByIdIndex($value->getProductoId())->getProductoFoto().'" alt="">';
+									}else{
+										$productoFoto = 
+											'<img src="Store/assets/'.$repositorio->getProductRepository()->getProductoByIdIndex($value->getProductoId())->getProductoUsuarioId().'/products/'.$repositorio->getProductRepository()->getProductoByIdIndex($value->getProductoId())->getProductoFoto().'" alt="">';
+									}?>
 							<?php echo $productoFoto; ?>
 							<h3><?php echo $value->getProductoNombre();?></h3>
 							<p><?php echo $value->getProductoDescripcion();?></p>
