@@ -68,7 +68,6 @@
 				<textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea><br>
 				<label for="precio">Precio:</label>
 				<input type="number" name="precio" id="precio"><br>
-
 				<label for="genero">Genero:</label>
 				<select name="genero" id="genero">
 					<?php 

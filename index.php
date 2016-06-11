@@ -21,20 +21,24 @@
 	<!-- Scrips -->
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<script type="text/javascript" src="js/backToTop.js"></script>
-	<!-- <script type="text/javascript" src="js/validate.js"></script> -->
-	<!-- <script type="text/javascript" src="js/scroll.js"></script> -->
-	<!-- <script type="text/javascript" src="js/activeMenu.js"></script> -->
 	<script type="text/javascript" src="js/slider.js"></script>
+	<script type="text/javascript" src="js/navbar.js"></script>
 	<script type="text/javascript" src="js/botonesHyM.js"></script>
 
 </head>
 <body>
 	<header>
 		<a href="#"><img src="img/final4.png" alt="Logo" id="logo"></a>
-		<a href="#" onclick="Nav" class="btn-nav"><span>Menu</span></a>
 		<nav>
 			<ul>
-				<li><a href="register.php">Register</a></li>
+				<li class="acount">
+					<a href="#">Acount</a>
+					<ul class="dropDown">
+						      <li><a href="Store/register.php">Register</a></li>
+						      <li class="separator"></li>
+						      <li><a href="Store/login.php">Login</a></li>
+						    </ul>
+				</li>
 				<li><a href="Store/index.php">Store</a></li>
 			</ul>
 		</nav>
@@ -102,6 +106,7 @@
 								<?php if ($repositorio->getProductRepository()->getProductoByIdIndex($value->getProductoId())->getProductoFoto() == "artsinfoto.gif") {
 										$productoFoto = '<img src="Store/assets/'.$repositorio->getProductRepository()->getProductoByIdIndex($value->getProductoId())->getProductoFoto().'" alt="">';
 									}else{
+
 										$productoFoto = 
 											'<img src="Store/assets/'.$repositorio->getProductRepository()->getProductoByIdIndex($value->getProductoId())->getProductoUsuarioId().'/products/'.$repositorio->getProductRepository()->getProductoByIdIndex($value->getProductoId())->getProductoFoto().'" alt="">';
 									}?>
@@ -117,6 +122,12 @@
 			</div>
 			<div class="clear"></div>
 		</section>
+		<section id="empresas" class="fondoAzul textoCentrado">
+			<a href="http://www.twitter.com"> <img src="img/twitter.png"/></a>
+      		<a href="http://www.facebook.com"> <img src="img/facebook.png" /></a>
+			<a href="http://www.instagram.com"> <img src="img/instagram.png" /></a>
+			<a href="mailto:biancapallaro@gmail.com"><img src="img/gmail.png"/></a>
+    	</section>
 
 	</main>
 	<footer>

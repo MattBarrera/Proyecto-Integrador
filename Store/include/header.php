@@ -1,7 +1,7 @@
 <?php require_once("config.php"); ?>
 <header>
-	<nav>
 		<a href="index.php"><img src="img/final4.png" alt="Logo" id="logo"></a>
+	<nav>
 		<ul>
 			<?php 
 				// var_dump($_SESSION);exit;
@@ -20,7 +20,7 @@
 							// echo "2";
 						// var_dump($comunAvatar);exit;
 					}
-					echo('<li class="user nav img"><a href="#"><span>'.$repositorio->getUserRepository()->getUsuarioById($_SESSION['usuarioLogueado'])->getNombre(). $comunAvatar.'</a>
+					echo('<li class="acount nav img"><a href="#"><span>'.$repositorio->getUserRepository()->getUsuarioById($_SESSION['usuarioLogueado'])->getNombre(). $comunAvatar.'</a>
 						    <ul class="dropDown">
 						      <li><a href="myproducts.php">My Products</a></li>
 						      <li class="separator"></li>
@@ -33,7 +33,7 @@
 						  </li>');
 				}else{
 					//redirigir a index publico
-					echo('<li class="user acount nav"><a href="#"><span>Acount</span></a>
+					echo('<li class="acount nav"><a href="#"><span>Acount</span></a>
 						    <ul class="dropDown">
 						      <li><a href="register.php">Register</a></li>
 						      <li class="separator"></li>

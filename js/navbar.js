@@ -1,6 +1,6 @@
 window.addEventListener("load", function () {
 	
-	var liDropDown = document.querySelector(".user");
+	var liDropDown = document.querySelector(".acount");
 
 	var dropDown = document.querySelector(".dropDown");
 

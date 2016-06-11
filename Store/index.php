@@ -15,7 +15,8 @@
 	<?php require_once("include/head.php"); ?>
 <body>
 	<?php  require_once("include/header.php");?>
-<br>
+<section id="productosStore">
+	<div class="productosDestacados">
 	<?php 
 		if ($auth->estaLogueado() ) {
 			//redirigir al index de un usuario logeado
@@ -48,7 +49,7 @@
 									$productoFoto = '<img src="assets/'.$repositorio->getProductRepository()->getProductoById($value->getProductoId())->getProductoFoto().'" alt="">';
 								}else{
 									$productoFoto = 
-										'<img src="assets/'.$_SESSION['usuarioLogueado'].'/products/'.$repositorio->getProductRepository()->getProductoById($value->getProductoId())->getProductoFoto().'" alt="">';
+										'<img src="assets/'.$repositorio->getProductRepository()->getProductoById($value->getProductoId())->getProductoUsuarioId().'/products/'.$repositorio->getProductRepository()->getProductoById($value->getProductoId())->getProductoFoto().'" alt="">';
 								}?>
 
 							<?php echo $productoFoto; ?>
@@ -62,7 +63,8 @@
 		}
 
 	 ?>
-
+		</div>
+	</section>
 
 </body>
 </html>

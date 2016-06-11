@@ -11,9 +11,6 @@ header{
 nav {
 	height: 4em;	
 }
-.nav{
-	height: 4em;
-}
 a{
 	list-style: none;
 	text-decoration: none;
@@ -49,7 +46,6 @@ nav ul a{
 	line-height:32px;
 	padding:0 15px;
 	font-family:"HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
-
 }
 nav ul li{
 	position:relative;
@@ -65,7 +61,7 @@ nav ul li{
 nav ul li:hover{
 	/*background:darkgrey;*/
 }
-nav ul ul{
+/*nav ul ul{
 	display:none;
 	position:absolute;
 	top:100%;
@@ -91,7 +87,7 @@ nav ul ul a{
 nav ul li ul li:hover{
 	background:darkgrey;
 	border-radius: 4px;
-}
+}*/
 .acount a{
 	line-height: 5em;
 }
