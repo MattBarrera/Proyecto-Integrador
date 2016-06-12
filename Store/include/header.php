@@ -1,6 +1,6 @@
 <?php require_once("config.php"); ?>
 <header>
-		<a href="index.php"><img src="img/final4.png" alt="Logo" id="logo"></a>
+		<a href="../index.php"><img src="img/final4.png" alt="Logo" id="logo"></a>
 	<nav>
 		<ul>
 			<?php 
