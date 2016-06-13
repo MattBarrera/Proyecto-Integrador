@@ -208,11 +208,12 @@
 				}
 				return false;
 		}
-		private function hashToArray(Usuario $miUsuario) {
+		private function hashToArray($hash) {
+
 			$hashToArray = [];
-			$hashToArray["id"] = $miUsuario->getId();
-			$hashToArray["hash"] = $miUsuario->getNombre();
-			$hashToArray["fechaAlta"] = $miUsuario->getApellido();
+			$hashToArray["userId"] = $hash->getHashUserId();
+			$hashToArray["hash"] = $hash->getHashHash();
+			$hashToArray["fechaAlta"] = $hash->getHashFechaAlta();
 			return $hashToArray;
 		}
 		public function getAllHashes(){
@@ -230,8 +231,7 @@
 
 			return $hashes;
 		}
-		private function arrayToHash(Array $miHash) {
-			
+		private function arrayToHash(Array $miHash) {	
 			$hashArray = new Hash();
 			$hashArray->verHash($miHash);
 			return $hashArray;
@@ -242,23 +242,36 @@
 		}
 		public function eliminarHashesViejos(){
 			$hashesArray = $this->getAllHashes();
-			$date = strtotime(date("d-m-Y H:i:s"));
+			// var_dump($hashesArray);
+			$now = strtotime(date("d-m-Y H:i:s"));
 			
-			$intervalo = 10;
+			$intervaloHoras = 12;
 			$todosLosHashes = "";
 			foreach ($hashesArray as $key => $hash) {
-				// var_dump($date);exit;
-				$fechaHash = $hash->getHashFechaAlta();
-				$fechaHash = strtotime($fechaHash);
-				var_dump(floor($fechaHash/3600));exit;
-				echo date('d M Y H:i:s',$horas);
-				exit;
-				if ($intervalo < date_diff($hash->getHashFechaAlta(),$date) ){
+				$fechaHash = strtotime($hash->getHashFechaAlta());
+				$diferencia = ($now - $fechaHash)/3600;
+				// echo $diferencia; echo "horas";
+				if ($intervaloHoras > $diferencia  ){
+					// echo "string";
 					// si la diferencia es menor a lo estipulado lo agrego a la variable, sino no
-					$todosLosHashes .= json_encode($hash) . PHP_EOL;
+					$hashToArray = $this->hashToArray($hash);
+						
+					$todosLosHashes .= json_encode($hashToArray) . PHP_EOL;
 				}
 			}
-			exit;
+			
+			file_put_contents("hashes.json", $todosLosHashes);
+		}
+		public function eliminarHash($hash){
+			$hashesArray = $this->getAllHashes();
+			$todosLosHashes = "";
+			foreach ($hashesArray as $key => $hash) {
+				if (!$hash == $hash->getHashHash()){
+					// si la diferencia es menor a lo estipulado lo agrego a la variable, sino no
+					$hashToArray = $this->hashToArray($hash);
+					$todosLosHashes .= json_encode($hashToArray) . PHP_EOL;
+				}
+			}
 			file_put_contents("hashes.json", $todosLosHashes);
 		}
 		public function usuarioPasswordAModificarEnJSON($userId, $password){//

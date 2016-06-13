@@ -1,26 +1,19 @@
 <?php 
 	require_once("config.php");
-	
 	$titulo = "Forgot Password";
 	if ($auth->estaLogueado()) {
 		$redirect->redirigirAIndex();
 	}
 	if($_POST){
-		// var_dump($_POST);exit;
 		//validar si existe el mail
 		$errores = $validar->validarForgotPassword($_POST)['errores'];
 		$id = $repositorio->getUserRepository()->getUsuarioByMail('manuelvilche@gmail.com')->getId();
-		// var_dump($id);exit;
-
 		if (empty($errores)) {
 			//llamo a funcion que crea Hash
 			$hash = $repositorio->getUserRepository()->crearHash(30);
-			// var_dump($hash);
 			//guardo el hash en un JSON, con el id del usuario y la fecha
 			$hashAGuardar = $repositorio->getUserRepository()->hashAGuardar($hash,$id);
-
 			$repositorio->getUserRepository()->guardarHashEnJSON($hashAGuardar);
-
 			//si esta ok el mail, mando mail con el Hash
 				$mail = $_POST['email'];
 				// var_dump($_POST);exit;
@@ -38,17 +31,15 @@
 				$message = "<div style=\"background-color:#ace2fa; width:550px; padding:15px; margin:auto; border:1px solid #008\">";   // esta línea genera un div para dar formato.
 
 				$message .= '<h2>Restablece tu Contraseña</h2>
-		      		<p>Podes restablecer tu contraseña haciendo click <a href="http://dh:8888/PHP/filesoop/changePassword.php?hash='.$hash.'">Aqui</a> o en este link:</p>
-		      		<a href="http://dh:8888/PHP/filesoop/changePassword.php?hash='.$hash.'">http://dh:8888/PHP/filesoop/changePassword.php?hash='.$hash.'</a>';  // <--- modificar este contenido con el contenido de tu email
+		      		<p>Podes restablecer tu contraseña haciendo click <a href="http://dh:8888/Proyecto-Integrador/changePassword.php?hash='.$hash.'">Aqui</a> o en este link:</p>
+		      		<a href="http://dh:8888/Proyecto-Integrador/Store/changePassword.php?hash='.$hash.'">http://dh:8888/Proyecto-Integrador/changePassword.php?hash='.$hash.'</a>';  // <--- modificar este contenido con el contenido de tu email
 
 				$message .= "</div>";  // está línea cierra el div
 
 				mail($mail, $subjet, $message, $headers);
 				$redirect->redirigirAIndex();
-
 		}
 	}
-	
  ?>
  <?php require_once("include/head.php"); ?>
 <body>
@@ -77,7 +68,6 @@
 	        </form>
 	    </section>
     </section>
-    <script>
-    </script>
+<?php require_once("include/footer.php") ?>
 </body>
 </html>

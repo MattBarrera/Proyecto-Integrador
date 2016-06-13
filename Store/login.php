@@ -54,5 +54,6 @@
 	        </form>
 	    </section>
     </section>
+    <?php require_once("include/footer.php") ?>
 </body>
 </html>

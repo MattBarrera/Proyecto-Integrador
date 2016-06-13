@@ -148,6 +148,7 @@
 			// var_dump($productoAModificar);
 		}
 		public function productoAReactivarEnJSON($producto, $productoFoto){
+			var_dump($producto);exit;
 			//consulto si se envio la foto
 			if ($productoFoto['name'] !== "") {
 					//si se envio la capturo
@@ -165,7 +166,7 @@
 				"genero" => $producto['genero'],
 				"categoria" => $producto['categoria'],
 				"subCategoria" => $producto['subCategoria'],
-				"productoFoto" => 'avatar_2x.png',
+				"productoFoto" => $producto['productoFoto'],
 				"estado" => 1,
 				"fechaAlta" => $this->getProductoById($producto['id'])->getProductoFechaAlta(),
 				"fechaDeModificacion" => date("d-m-Y - H:i:s"),

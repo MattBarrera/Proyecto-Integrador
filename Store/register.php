@@ -101,6 +101,7 @@
 					<input type="submit" value="Enviar" id="btnRegistrar"class="special"><br><br>
 				</div>
 			</form>
-	</section>		
+	</section>
+	<?php require_once("include/footer.php") ?>		
 </body>
 </html>

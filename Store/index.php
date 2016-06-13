@@ -27,15 +27,15 @@
 									$productoFoto = '<img src="assets/'.$repositorio->getProductRepository()->getProductoById($value->getProductoId())->getProductoFoto().'" alt="">';
 								}else{
 									$productoFoto = 
-										'<img src="assets/'.$_SESSION['usuarioLogueado'].'/products/'.$repositorio->getProductRepository()->getProductoById($value->getProductoId())->getProductoFoto().'" alt="">';
+										'<img src="assets/'.$repositorio->getProductRepository()->getProductoById($value->getProductoId())->getProductoUsuarioId().'/products/'.$repositorio->getProductRepository()->getProductoById($value->getProductoId())->getProductoFoto().'" alt="">';
 								}?>
 
 							<?php echo $productoFoto; ?>
-							<h3><?php echo $value->getProductoNombre();?></h3>
+							<h3><a href="#" title=""><?php echo $value->getProductoNombre();?></a></h3>
 							<p><?php echo $value->getProductoDescripcion();?></p>
 							<p>Precio: $ <?php echo $value->getProductoPrecio();?></p> 
 							<p>Categoria: <?php echo $value->getProductoCategoria();?></p> 
-							<button><a href="#" title="">Detalle Producto</a></button>
+							<button><a href="#" title="">Comprar</a></button>
 						</div>
 						<?php } 
 			
@@ -53,11 +53,11 @@
 								}?>
 
 							<?php echo $productoFoto; ?>
-							<h3><?php echo $value->getProductoNombre();?></h3>
+							<h3><a href="#" title=""><?php echo $value->getProductoNombre();?></a></h3>
 							<p><?php echo $value->getProductoDescripcion();?></p>
 							<p>Precio: $ <?php echo $value->getProductoPrecio();?></p> 
 							<p>Categoria:<?php echo $value->getProductoCategoria();?></p> 
-							<button><a href="#" title="">Detalle Producto</a></button>
+							<button><a href="#" title="">Comprar</a></button>
 						</div>
 						<?php } 
 		}
@@ -65,6 +65,6 @@
 	 ?>
 		</div>
 	</section>
-
+	<?php require_once("include/footer.php") ?>
 </body>
 </html>

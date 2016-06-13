@@ -111,11 +111,11 @@
 											'<img src="Store/assets/'.$repositorio->getProductRepository()->getProductoByIdIndex($value->getProductoId())->getProductoUsuarioId().'/products/'.$repositorio->getProductRepository()->getProductoByIdIndex($value->getProductoId())->getProductoFoto().'" alt="">';
 									}?>
 							<?php echo $productoFoto; ?>
-							<h3><?php echo $value->getProductoNombre();?></h3>
+							<h3><a href="#" title=""><?php echo $value->getProductoNombre();?></a></h3>
 							<p><?php echo $value->getProductoDescripcion();?></p>
 							<p>Precio: $ <?php echo $value->getProductoPrecio();?></p> 
 							<p>Categoria: <?php echo $value->getProductoCategoria();?></p> 
-							<button><a href="#" title="">Detalle Producto</a></button>
+							<button><a href="#" title="">Comprar</a></button>
 						</div>
 						<?php } ?>
 

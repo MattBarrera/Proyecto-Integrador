@@ -38,6 +38,7 @@
 			<div class="clear"></div>
 		</section>
 			
-	</section>		
+	</section>
+	<?php require_once("include/footer.php") ?>
 </body>
 </html>

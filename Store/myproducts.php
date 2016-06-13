@@ -12,14 +12,14 @@
 <?php require_once("include/head.php"); ?>
  <body>
 	<?php require_once("include/header.php"); ?>
-	<section id="register">
+	<section id="productosStore">
 			<div class="title"><h2>Tus Productos!!</h2></div>
 
 			<div class="halfInput">
 				<button><a href="newProduct.php">Nuevo Producto</a></button>
 			</div>
 			<div class="clear">	</div>
-			<section id="productos">
+
 			<div class="productosDestacados">
 
 							<!-- <?php var_dump($productos);?> -->
@@ -34,7 +34,7 @@
 								}?>
 
 							<?php echo $productoFoto; ?>
-							<h3><?php echo $value->getProductoNombre();?></h3>
+							<h3><a href="#" title=""><?php echo $value->getProductoNombre();?></a></h3>
 							<p><?php echo $value->getProductoDescripcion();?></p>
 							<p>Precio: $ <?php echo $value->getProductoPrecio();?></p> 
 							<p>Categoria: <?php echo $value->getProductoCategoria();?></p> 
@@ -46,8 +46,8 @@
 
 			</div>
 			<div class="clear"></div>
-		</section>
-			
-	</section>		
+
+	</section>
+	<?php require_once("include/footer.php") ?>	
 </body>
 </html>

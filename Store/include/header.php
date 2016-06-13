@@ -1,6 +1,6 @@
 <?php require_once("config.php"); ?>
 <header>
-		<a href="../index.php"><img src="../img/final4.png" alt="Logo" id="logo"></a>
+		<a href="index.php"><img src="../img/final4.png" alt="Logo" id="logo"></a>
 	<nav>
 		<ul>
 			<?php 
@@ -24,7 +24,7 @@
 						    <ul class="dropDown">
 						      <li><a href="myproducts.php">My Products</a></li>
 						      <li class="separator"></li>
-						      <li><a href="myHistoryPproducts.php">My Historyc Products</a></li>
+						      <li><a href="myHistoryPproducts.php">My Historics Products</a></li>
 						      <li class="separator"></li>
 						      <li><a href="myacount.php">My Acount</a></li>
 						      <li class="separator"></li>

@@ -108,6 +108,7 @@
 				<input type="hidden" name="id" id="id" hidden value="<?php echo $producto->getProductoId(); ?>">
 				<input type="submit" value="Reactivar Producto">
 			</form>	
-	</section>		
+	</section>
+	<?php require_once("include/footer.php") ?>		
 </body>
 </html>

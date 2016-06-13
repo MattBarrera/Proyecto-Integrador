@@ -99,9 +99,9 @@
 				<div class="halfInput">
 					<label for="fotoPerfil">Foto de perfil</label><br>
 					<?php if ($repositorio->getUserRepository()->getUsuarioById($_SESSION['usuarioLogueado'])->getFotoPerfil() == "avatar_2x.png") {
-						 	echo '<img class="fotoPerfil" src="assets/'.$repositorio->getUserRepository()->getUsuarioById($_SESSION['usuarioLogueado'])->getFotoPerfil().'" alt="">';
+						 	echo '<img class="fotoProducto" src="assets/'.$repositorio->getUserRepository()->getUsuarioById($_SESSION['usuarioLogueado'])->getFotoPerfil().'" alt="">';
 						}else{
-							echo '<img class="fotoPerfil" src="assets/'.$_SESSION['usuarioLogueado'].'/profile/'.$repositorio->getUserRepository()->getUsuarioById($_SESSION['usuarioLogueado'])->getFotoPerfil().'" alt="">';
+							echo '<img class="fotoProducto" src="assets/'.$_SESSION['usuarioLogueado'].'/profile/'.$repositorio->getUserRepository()->getUsuarioById($_SESSION['usuarioLogueado'])->getFotoPerfil().'" alt="">';
 						}?><br>
 					<input type="file" name="fotoPerfil" id="fotoPerfil">
 					<br>
@@ -111,6 +111,7 @@
 				</div>
 			</form>
 			<button><a href="deleteProfile.php?">Eliminar Perfil</a></button>
-	</section>		
+	</section>
+	<?php require_once("include/footer.php") ?>		
 </body>
 </html>

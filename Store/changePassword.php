@@ -8,11 +8,8 @@
 		// A) Se hace una pasada por "todo" hashes.json y las cosas "viejas" se eliminan.
 		$repositorio->getUserRepository()->eliminarHashesViejos();
    		// B) Si el hash que viene por GET NO EXISTE, se le pone un 404 (pagina no encontrada)
-		
 			//esta echo en el body este paso!
-
     	// C) Si el hash SI existe, se le pone un form que diga "nueva contraseña" y "confirmar contraseña" y se le cambia la password al usuario asociado al hash. Luego se lo puede autologuear y SE BORRA ESA LINEA DE hashes.json.
-
 	if($_POST){
 		//validar formato Password
 		$errores = $validar->validarChangePassword($_POST)['errores'];
@@ -21,9 +18,9 @@
 			$userId = $repositorio->getUserRepository()->getUserIdByHash($_GET['hash']);
 			// Preparo el usuario a modificar
 			$usuarioAModificar = $repositorio->getUserRepository()->usuarioPasswordAModificarEnJSON($userId, $_POST['password']);
-			// var_dump($usuarioAModificar);exit;
 			// Cambiar la password en JSON
 			$repositorio->getUserRepository()->modificarUsuario($usuarioAModificar);
+			$repositorio->getUserRepository()->eliminarHash($_GET['hash']);
 			// traigo el usuario a loguear a travez del id
 			$usuarioALogear = $repositorio->getUserRepository()->getUsuarioById($userId);
 			// logueo al usuario
@@ -67,11 +64,10 @@
 			      		<input type="submit" id="btnLogin" value="Actualizar Contraseña"></input>
 			        </form>';
 		}else{
-			echo 'El tiempo de Cambio de contraseña expiro, vuelve a restablecerla haicendo Click <button ><a href="forgotPassword.php">Aqui</a></button> , o ingresa al <button ><a href="login.php">Login</a></button>';
+			echo 'El tiempo para restablecer su contraseña expiro, vuelve a enviar el mail haicendo Click <button ><a href="forgotPassword.php">Aqui</a></button> , o ingresa al <button ><a href="login.php">Login</a></button>';
 		}?>   	
 	    </section>
     </section>
-    <script>
-    </script>
+<?php require_once("include/footer.php") ?>
 </body>
 </html>

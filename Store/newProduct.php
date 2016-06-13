@@ -62,47 +62,61 @@
 					</div>
 				<?php 
 					} ?>
-				<label for="nombre">Nombre:</label>
-				<input type="text" name="nombre" id="nombre"><br>
-				<label for="descripcion">Descripcion:</label>
-				<textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea><br>
-				<label for="precio">Precio:</label>
-				<input type="number" name="precio" id="precio"><br>
-				<label for="genero">Genero:</label>
-				<select name="genero" id="genero">
-					<?php 
-					foreach ($genero as $key => $value) {
-						?>
-						<option value="<?php echo $key;?>"> <?php echo $value;?> </option> 
-						<?php
-					}
-					 ?>
-				</select><br>
-				<label for="categoria">Categorias:</label>
-				<select name="categoria" id="categoria">
-					<?php 
-					foreach ($categoria as $key => $value) {
-						?>
-						<option value="<?php echo $key;?>"> <?php echo $value;?> </option> 
-						<?php
-					}
-					 ?>
-				</select><br>
-				<label for="subCategoria">SubCategorias:</label>
-				<select name="subCategoria" id="subCategoria">
-					<?php 
-					foreach ($subCategoria as $key => $value) {
-						?>
-						<option value="<?php echo $key;?>"> <?php echo $value;?> </option> 
-						<?php
-					}
-					 ?>
-				</select><br>
-				<label for="productoFoto">Fotos</label>
-				<input type="file" name="productoFoto" id="productoFoto" multiple><br>
+				<div class="halfInput">
+					<label for="nombre">Nombre:</label>
+					<input type="text" name="nombre" id="nombre"><br>
+				</div>
+				<div class="halfInput">
+					<label for="descripcion">Descripcion:</label>
+					<textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea><br>
+				</div>
+				<div class="halfInput">
+					<label for="precio">Precio:</label>
+					<input type="number" name="precio" id="precio"><br>
+				</div>
+				<div class="halfInput">
+					<label for="genero">Genero:</label>
+					<select name="genero" id="genero">
+						<?php 
+						foreach ($genero as $key => $value) {
+							?>
+							<option value="<?php echo $key;?>"> <?php echo $value;?> </option> 
+							<?php
+						}
+						 ?>
+					</select><br>
+				</div>
+				<div class="halfInput">	
+					<label for="categoria">Categorias:</label>
+					<select name="categoria" id="categoria">
+						<?php 
+						foreach ($categoria as $key => $value) {
+							?>
+							<option value="<?php echo $key;?>"> <?php echo $value;?> </option> 
+							<?php
+						}
+						 ?>
+					</select><br>
+				</div>
+				<div class="halfInput">		
+					<label for="subCategoria">SubCategorias:</label>
+					<select name="subCategoria" id="subCategoria">
+						<?php 
+						foreach ($subCategoria as $key => $value) {
+							?>
+							<option value="<?php echo $key;?>"> <?php echo $value;?> </option> 
+							<?php
+						}
+						 ?>
+					</select><br>
+				</div>
+				<div class="halfInput">	
+					<label for="productoFoto">Fotos</label>
+					<input type="file" name="productoFoto" id="productoFoto" multiple><br>
+				</div>
 				<input type="submit" value="Enviar">
 			</form>
-			
-	</section>		
+	</section>
+	<?php require_once("include/footer.php") ?>
 </body>
 </html>

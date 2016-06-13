@@ -113,6 +113,7 @@
 				<input type="submit" value="Eliminar Producto">
 			</form>
 			
-	</section>		
+	</section>
+	<?php require_once("include/footer.php") ?>		
 </body>
 </html>
