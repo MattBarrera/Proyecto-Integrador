@@ -32,6 +32,11 @@ a {
     text-decoration: none;
     cursor: pointer;
 }
+button a{
+	display: block;
+	border-bottom: none;
+	text-align: center;
+}
 a:hover{
 	border-bottom-color:transparent;
 	color: #FFF;
@@ -415,7 +420,7 @@ nav{
 	line-height: 4em;
 	/*background-color: #312450;*/
 }
-nav img{
+.fotoPerfil{
 	border-radius: 50px;
 	line-height: 4em;
     vertical-align: middle;
@@ -483,7 +488,7 @@ nav ul ul{
 	
 }
 nav ul ul li{
-	float:none;
+
 	width:150px;
 	padding: 0.3em;
 	text-align: center;
@@ -498,12 +503,7 @@ nav ul li ul li:hover{
 	background:darkgrey;
 	border-radius: 4px;
 }
-/*.acount a{
-	line-height: 5em;
-}
-.acount ul li a{
-	line-height: normal
-}*/
+
 
 
 .separator{
@@ -917,11 +917,11 @@ button.closeModal{
 /*  LOGIN */
 
 .background-color{
-	background-color: #312450 !important;
+	background-color: #5e42a6 !important;
 }
 #containerLogin{
-	background-color: #312450;
-	padding: 2em;
+	background-color: #5e42a6;
+	padding: 6em;
 	position: relative;
 	height: 100% -2em;
 	text-align: center;
@@ -936,7 +936,7 @@ button.closeModal{
 	width: 100%;
 	max-width: 460px;
 	margin: auto;
-	background-color: #5e42a6;
+	background-color: #5052B5;
 	padding: 2em;
 	border-radius: 20px;
 	text-align: left;
@@ -964,6 +964,29 @@ button.closeModal{
 	bottom: 0;
 	width: 100%;
 }
+
+.error{
+	/*background-color: rgba(255, 0, 0, 0.2);*/
+	/*color: rgba(255, 0, 0, 1);*/
+	padding: 0.5em;
+	margin-bottom: 2em;
+	/*border: red solid 1px;*/
+	display: block !important;
+	color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    width: 100%;
+}
+.error h3{
+	color: #a94442;
+}
+.error ul{
+	margin-left: 2em
+}
 /* SOCIAL  */
 
 #empresas p {
@@ -975,7 +998,12 @@ button.closeModal{
 	 align-items: center;
  margin: 30px;
 }
-
+#empresas a{
+	border-bottom: none;
+}
+#empresas{
+	text-align: center;
+}
 .fondoAzul {
 	background-color: #0079bf;
 	color:#FFF;

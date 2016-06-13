@@ -15,9 +15,10 @@
 	<section id="register">
 			<div class="title"><h2>Tus Productos!!</h2></div>
 
-			<div>
+			<div class="halfInput">
 				<button><a href="newProduct.php">Nuevo Producto</a></button>
 			</div>
+			<div class="clear">	</div>
 			<section id="productos">
 			<div class="productosDestacados">
 

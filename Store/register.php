@@ -39,7 +39,8 @@
 					<div class="error" id="errorRegister">
 						<h3>Los siguientes Campos tuvieron errores</h3>
 						<ul class="listadoErrores">
-							<?php foreach ($errores as $error) {
+							<?php foreach ($errores as $key => $error) {
+
 								?> <li><?php echo $error; ?></li><?php
 							} ?>
 						</ul>

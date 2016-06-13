@@ -31,14 +31,14 @@
 		<a href="#"><img src="img/final4.png" alt="Logo" id="logo"></a>
 		<nav>
 			<ul>
-				<li class="acount">
+				<!-- <li class="acount">
 					<a href="#">Acount</a>
 					<ul class="dropDown">
 						      <li><a href="Store/register.php">Register</a></li>
 						      <li class="separator"></li>
 						      <li><a href="Store/login.php">Login</a></li>
 						    </ul>
-				</li>
+				</li> -->
 				<li><a href="Store/index.php">Store</a></li>
 			</ul>
 		</nav>

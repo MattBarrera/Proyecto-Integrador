@@ -1,6 +1,6 @@
 <?php require_once("config.php"); ?>
 <header>
-		<a href="../index.php"><img src="img/final4.png" alt="Logo" id="logo"></a>
+		<a href="../index.php"><img src="../img/final4.png" alt="Logo" id="logo"></a>
 	<nav>
 		<ul>
 			<?php 
@@ -11,12 +11,12 @@
 					if ($repositorio->getUserRepository()->getUsuarioById($_SESSION['usuarioLogueado'])->getFotoPerfil() == "avatar_2x.png") {
 						// var_dump($_SESSION);
 						// var_dump($repositorio->getUserRepository()->getUsuarioById($_SESSION['usuarioLogueado'])->getFotoPerfil());exit;
-						$comunAvatar = '<img src="assets/'.$repositorio->getUserRepository()->getUsuarioById($_SESSION['usuarioLogueado'])->getFotoPerfil().'" alt="">';
+						$comunAvatar = '<img class="fotoPerfil" src="assets/'.$repositorio->getUserRepository()->getUsuarioById($_SESSION['usuarioLogueado'])->getFotoPerfil().'" alt="">';
 						// echo "1";
 						// var_dump($comunAvatar);
 					}else{
 						$comunAvatar = 
-							'<img src="assets/'.$_SESSION['usuarioLogueado'].'/profile/'.$repositorio->getUserRepository()->getUsuarioById($_SESSION['usuarioLogueado'])->getFotoPerfil().'" alt="">';
+							'<img class="fotoPerfil" src="assets/'.$_SESSION['usuarioLogueado'].'/profile/'.$repositorio->getUserRepository()->getUsuarioById($_SESSION['usuarioLogueado'])->getFotoPerfil().'" alt="">';
 							// echo "2";
 						// var_dump($comunAvatar);exit;
 					}
