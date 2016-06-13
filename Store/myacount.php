@@ -12,6 +12,7 @@
 			];
 	$datosUsuario = $repositorio->getUserRepository()->getUsuarioById($_SESSION['usuarioLogueado']);
 	if ($_POST) {
+		// var_dump($_POST);exit;
 		//valido los datos, si hay errores los muestro
 		$errores =  $validar->validarUsuarioAModificar($_POST)['errores'];
 		$datosUsuario = $validar->validarUsuarioAModificar($_POST)['datosUsuario'];

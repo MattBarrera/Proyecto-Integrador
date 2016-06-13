@@ -93,7 +93,7 @@
 			// modificar la linea que sea igual a mi ID
 			file_put_contents("usuarios.json", $todosLosUsuarios);
 		}
-		public function usuarioAModificarEnJSON($usuario, $usuarioAvatar){//
+		public function usuarioAModificarEnJSON($usuario, $usuarioAvatar){
 			//consulto si se envio la foto
 			if ($usuarioAvatar['name'] !== "") {
 					//si se envio la capturo
@@ -117,10 +117,11 @@
 				"genero" => $usuario['genero'],
 				"password" => $password,
 				"fotoPerfil" => $fotoPerfil,
-				"estado" => $usuario['estado'],
+				"estado" => $this->getUsuarioByMail($usuario['email'])->getEstado(),
 				"fechaAlta" => $this->getUsuarioByMail($usuario['email'])->getFechaAlta(),
 				"fechaDeModificacion" => date("d-m-Y H:i:s")
 			];
+			// var_dump($usuarioAModificar);exit;
 			return $usuarioAModificar;
 		}
 		private function usuarioToArray(Usuario $miUsuario) {

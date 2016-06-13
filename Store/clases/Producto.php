@@ -117,7 +117,7 @@
 				$directory = dirname(__FILE__);
 				$directory = $directory . "/../assets/".$userId."/products/";
 				if (!is_dir($directory)) {
-					mkdir($directory);
+					mkdir($directory, 0777,true);
 				}
 				$destino = $directory . $_FILES['fotoProducto']['name'];
 				move_uploaded_file($_FILES["fotoProducto"]["tmp_name"], $destino);

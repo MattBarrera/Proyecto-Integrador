@@ -79,7 +79,7 @@
 			$this->usuarioFotoPerfil = $FotoPerfil;
 		}
 		public function getEstado() {
-			return $this->usuarioFechaAlta;
+			return $this->usuarioEstado;
 		}
 		public function setEstado($estado){
 			$this->usuarioEstado = $estado;
@@ -123,12 +123,16 @@
 
 				//No hubo errores :)
 				$directory = dirname(__FILE__);
-				$directory = $directory . "/../assets/".$id."/profile";
+				$directory = $directory . "/../assets/".$id."/profile/";
 				// var_dump($directory);exit;
 				// echo getcwd();exit;
-				if (!is_dir($directory)) {
-					mkdir($directory);
+				umask(0);
+				
+				if (!is_dir($directory) ) {
+					mkdir($directory,0777,true);
 				}
+
+				// chmod($directory, 0777);
 				// var_dump($directory);exit;
 				// echo $directory;exit;
 				$destino = $directory . $_FILES['fotoPerfil']['name'];
