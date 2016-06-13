@@ -1,4 +1,4 @@
-<?php 
+<?php
 	require_once("Store/config.php");
 
 	$productos = $repositorio->getProductRepository()->getAllProductsIndex();
@@ -107,14 +107,14 @@
 										$productoFoto = '<img src="Store/assets/'.$repositorio->getProductRepository()->getProductoByIdIndex($value->getProductoId())->getProductoFoto().'" alt="">';
 									}else{
 
-										$productoFoto = 
+										$productoFoto =
 											'<img src="Store/assets/'.$repositorio->getProductRepository()->getProductoByIdIndex($value->getProductoId())->getProductoUsuarioId().'/products/'.$repositorio->getProductRepository()->getProductoByIdIndex($value->getProductoId())->getProductoFoto().'" alt="">';
 									}?>
 							<?php echo $productoFoto; ?>
 							<h3><a href="#" title=""><?php echo $value->getProductoNombre();?></a></h3>
 							<p><?php echo $value->getProductoDescripcion();?></p>
-							<p>Precio: $ <?php echo $value->getProductoPrecio();?></p> 
-							<p>Categoria: <?php echo $value->getProductoCategoria();?></p> 
+							<p>Precio: $ <?php echo $value->getProductoPrecio();?></p>
+							<p>Categoria: <?php echo $value->getProductoCategoria();?></p>
 							<button><a href="#" title="">Comprar</a></button>
 						</div>
 						<?php } ?>
