@@ -17,9 +17,7 @@
 	<title>Clothes Shop</title>
 	<!-- Styles -->
 	<link rel="stylesheet" href="css/stylesFinal.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<!-- Scrips -->
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<script type="text/javascript" src="js/backToTop.js"></script>
 	<script type="text/javascript" src="js/slider.js"></script>
 	<script type="text/javascript" src="js/navbar.js"></script>
