@@ -53,7 +53,7 @@
 								}?>
 
 							<?php echo $productoFoto; ?>
-							<h3><a href="#" title=""><?php echo $value->getProductoNombre();?></a></h3>
+							<h3><a href="detalleProducto.php?id=<?php echo $value->getProductoId();?>" title=""><?php echo $value->getProductoNombre();?></a></h3>
 							<p><?php echo $value->getProductoDescripcion();?></p>
 							<p>Precio: $ <?php echo $value->getProductoPrecio();?></p> 
 							<p>Categoria:<?php echo $value->getProductoCategoria();?></p> 

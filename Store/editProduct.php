@@ -23,8 +23,11 @@
 				'Accesories'=>'Accesories',
 				'Shoes'=>'Shoes'
 	];
+
 	$id = $_GET['id'];
+
 	$producto = $repositorio->getProductRepository()->getProductoById($id);
+
 	if ($_POST) {
 		$errores = $validar->validarProducto($_POST)['errores'];
 		$datosProducto = $validar->validarProducto($_POST)['datosProducto'];

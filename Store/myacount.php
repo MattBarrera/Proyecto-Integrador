@@ -110,7 +110,7 @@
 					<input type="submit" value="Modificar" id="btnRegistrar special"><br><br>
 				</div>
 			</form>
-			<button><a href="deleteProfile.php?">Eliminar Perfil</a></button>
+			<button><a href="deleteProfile.php">Eliminar Perfil</a></button>
 	</section>
 	<?php require_once("include/footer.php") ?>		
 </body>
