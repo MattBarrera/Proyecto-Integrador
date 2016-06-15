@@ -19,7 +19,9 @@ $producto = $repositorio->getProductRepository()->getProductoById($id);?>
       </h2>
       <section class="imagenProducto">
         <!--imagen del producto-->
+        <div class="fotoProducto">
         <?php echo $productoFoto ?>
+        </div>
       </section>
       <section class="precioProducto">
         <!--precio del producto con el titulo-->

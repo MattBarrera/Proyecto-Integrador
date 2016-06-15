@@ -2,7 +2,10 @@
   float: right;
   margin-right: 25%
 }
-
+.fotoProducto img{
+  width: 300px;
+  height: 300px;
+}
 .precioProducto {
   float: right;
   margin-right: 37%;
