@@ -38,7 +38,7 @@
 				$productoFoto = $_FILES['fotoProducto'];
 			}
 			//rutina subir fotos
-			Producto::uploadProductoFoto($_SESSION['usuarioLogueado'],$productoFoto);//
+			Producto::uploadProductoFoto($_SESSION['usuarioLogueado'],$productoFoto);
 			$productoAModificar = $repositorio->getProductRepository()->productoAModificarEnJSON($_POST, $productoFoto);
 			$repositorio->getProductRepository()->modificarProducto($productoAModificar);
 			$redirect->redirigirAPanel();
