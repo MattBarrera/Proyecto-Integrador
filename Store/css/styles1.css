@@ -9,7 +9,7 @@ header{
 	height: 4em;
 }
 nav {
-	height: 4em;	
+	height: 4em;
 }
 a{
 	list-style: none;
@@ -52,7 +52,7 @@ nav ul li{
 	float:left;
 	margin:0;
 	padding:0;
-	
+
 }
 /*nav ul li span{
 	line-height: 4em;
@@ -70,7 +70,7 @@ nav ul li:hover{
 	padding:0;
 	margin-top: 2px;
 	border-radius: 4px;
-	
+
 }
 nav ul ul li{
 	float:none;

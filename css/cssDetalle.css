@@ -1,0 +1,29 @@
+.tituloProducto {
+  float: right;
+  margin-right: 25%
+}
+
+.precioProducto {
+  float: right;
+  margin-right: 37%;
+}
+
+.descripcionProducto {
+  text-align: center;
+}
+
+.imagenProducto {
+  margin-left: 25%;
+}
+
+#descripcion {
+  margin-left: 20%;
+  margin-right: 20%;
+  background-color: #312450;
+  border-radius: 8px;
+}
+
+.botonComprar {
+  float: right;
+  margin-right: 31%;
+}
