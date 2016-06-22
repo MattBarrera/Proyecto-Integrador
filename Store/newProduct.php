@@ -1,5 +1,6 @@
 <?php 
-	require_once("config.php"); 
+	require_once("config.php");
+	
 	if (!$auth->estaLogueado()) {
 		$redirect->redirigirALoginBackDoor();
 	}
@@ -31,7 +32,6 @@
 			//capturo el avatar
 			if (isset($_FILES['productoFoto'])) {
 				$productoFoto = $_FILES['productoFoto'];
-				// var_dump($productoFoto);exit;
 			}
 			//rutina subir fotos
 			Producto::uploadProductoFoto($_SESSION['usuarioLogueado'],$productoFoto);//

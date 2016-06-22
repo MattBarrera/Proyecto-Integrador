@@ -7,7 +7,7 @@
 		private $usarioApellido;
 		private $usuarioEmail;
 		private $usuarioTelefono;
-		private $usuarioNacimiento;
+		private $usuarioFechaDeNacimiento;
 		private $usuarioGenero;
 		private $usuarioPassword;
 		private $usuarioFotoPerfil;
@@ -52,10 +52,10 @@
 		}
 
 		public function getFechaNacimiento() {
-			return $this->usuarioNacimiento;
+			return $this->usuarioFechaDeNacimiento;
 		}
 		public function setFechaNacimiento($nacimiento){
-			$this->usuarioNacimiento = $nacimiento;
+			$this->usuarioFechaDeNacimiento = $nacimiento;
 		}
 
 		public function getGenero() {
@@ -105,7 +105,7 @@
 			$this->usarioApellido = $miUsuario["lastName"];
 			$this->usuarioEmail = $miUsuario["email"];
 			$this->usuarioTelefono = $miUsuario["telefono"];
-			$this->usuarioNacimiento = $miUsuario["fechaNacimiento"];
+			$this->usuarioFechaDeNacimiento = $miUsuario["fechaNacimiento"];
 			$this->usuarioGenero = $miUsuario["genero"];
 			$this->usuarioPassword = $miUsuario["password"];
 			$this->usuarioFotoPerfil = $miUsuario['fotoPerfil'];
