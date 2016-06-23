@@ -34,12 +34,27 @@
 
         <!--precio del producto con el titulo-->
           <h3>Color:</h3>
-          <p>Ejemplo de Color 1</p>
-          <p>Ejemplo de Color 2</p>
+          <div class="inline">
+              <input type="radio" id="color1" name="color" value="color1">
+              <label for="color1">Color 1</label>
+          </div>
+          <div class="inline">
+              <input type="radio" id="color2" name="color" value="color2">
+              <label for="color2">Color 2</label>
+          </div>
+
           
         <!--precio del producto con el titulo-->
           <h3>Talle:</h3>
           <p>Ejemplo de Talle</p>
+          <div class="inline">
+              <input type="radio" id="talle1" name="talle" value="talle1">
+              <label for="talle1">Talle 1</label>
+          </div>
+          <div class="inline">
+              <input type="radio" id="talle2" name="talle" value="talle2">
+              <label for="talle2">Talle 2</label>
+          </div>
           <p>Ejemplo de Talle</p>
 
           <input type="submit" class="botonComprarDetalle" value="Comprar"></input>
@@ -68,5 +83,6 @@
         </div>
       </section>
     </section>
+      <?php require_once("include/footer.php") ?> 
   </body>
 </html>

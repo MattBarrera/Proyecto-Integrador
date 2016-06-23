@@ -15,7 +15,9 @@
   width: 50%;
   float: right;
 }
-
+.inline{
+  display: inline-block;
+}
 #descripcion {
   margin-left: 20%;
   margin-right: 20%;

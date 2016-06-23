@@ -9,4 +9,5 @@
 	<link rel="stylesheet" href="../css/stylesFinal.css">
 	<!-- Scrips -->
 	<script src="../js/navbar.js" type="text/javascript"></script>
+	<script src="https://use.fontawesome.com/9c5913c847.js"></script>
 </head>

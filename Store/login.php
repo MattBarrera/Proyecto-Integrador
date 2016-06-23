@@ -47,8 +47,9 @@
 	      		  <input type="text" name="email" id="email"><br>
 	      		<label for="password">Password</label>
 	      		  <input type="password" name="password" id="password"><br>
-	      		<label for="recordarme">Recordarme</label>
-	      		<input type="checkbox" name="recordarme" id="recordarme"><br>
+	      		
+	      		<input type="checkbox" name="recordarme" id="recordarme" >
+	      		<label for="recordarme">Recordarme</label><br>
 	      		<button><a href="forgotPassword.php">Olvide mi Password</a></button><br>
 	      		<input type="submit" id="btnLogin" value="Login"></input>
 	        </form>
