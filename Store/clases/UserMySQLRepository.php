@@ -11,10 +11,10 @@
 			$this->miConexion = $miConexion;
 		}
 
-		public function existeElMail($mail){
-			$stmt = $this->miConexion->prepare("SELECT * from usuario where mail = :mail");
+		public function existeElMail($usuarioEmail){
+			$stmt = $this->miConexion->prepare("SELECT * from usuario where usuarioEmail = :usuarioEmail");
 
-			$stmt->bindValue(":mail", $mail);
+			$stmt->bindValue(":usuarioEmail", $usuarioEmail);
 
 			$stmt->execute();
 
@@ -34,7 +34,7 @@
 				}
 				$stmt->bindValue(":usuarioId", $miUsuario->getId());
 			}else{
-				$stmt = $this->miConexion->prepare("INSERT INTO usuario (usuarioNombre, usuarioApellido, usuarioEmail, usuarioTelefono, usuarioFechaDeNacimiento, usuarioGenero, usuarioPassword, usuarioFotoPerfil, usuarioEstado, usuarioFechaAlta, usuarioFechaDeModificacion) values (:usuarioNombre, :usuarioApellido, :usuarioEmail, :usuarioTelefono, :usuarioFechaDeNacimiento, :usuarioGenero, :usuarioPassword, :usuarioEstado, :usuarioFechaAlta, :usuarioFotoPerfil, :usuarioFechaDeModificacion)");
+				$stmt = $this->miConexion->prepare("INSERT INTO usuario (usuarioNombre, usuarioApellido, usuarioEmail, usuarioTelefono, usuarioFechaDeNacimiento, usuarioGenero, usuarioPassword, usuarioFotoPerfil, usuarioEstado, usuarioFechaAlta, usuarioFechaDeModificacion) values (:usuarioNombre, :usuarioApellido, :usuarioEmail, :usuarioTelefono, :usuarioFechaDeNacimiento, :usuarioGenero, :usuarioPassword, :usuarioFotoPerfil, :usuarioEstado, :usuarioFechaAlta, :usuarioFechaDeModificacion)");
 			}
 
 			$stmt->bindValue(":usuarioNombre", $miUsuario->getNombre());
@@ -54,24 +54,23 @@
 			// var_dump($stmt->debugDumpParams());
 
 			if ($miUsuario->getId() == null){
-				$miUsuario->setId($miConexion->lastInsertId());
+				$miUsuario->setId($this->miConexion->lastInsertId());
 			}
 		}
 		public function crearUsuario(Array $miUsuario){
 			$usuarioAGuardar = [
-				"usuarioId" => $this->getNewID(),
-				"usuarioNombre" => $usuario['name'],
-				"usuarioApellido" => $usuario['lastName'],
-				"usuarioEmail" => $usuario['email'],
-				"usuarioTelefono" => $usuario['telefono'],
-				"usuarioFechaDeNacimiento" => $usuario['fechaNacimiento'],
-				"usuarioGenero" => $usuario['genero'],
+				"usuarioNombre" => $miUsuario['name'],
+				"usuarioApellido" => $miUsuario['lastName'],
+				"usuarioEmail" => $miUsuario['email'],
+				"usuarioTelefono" => $miUsuario['telefono'],
+				"usuarioFechaDeNacimiento" => $miUsuario['fechaNacimiento'],
+				"usuarioGenero" => $miUsuario['genero'],
 				"usuarioPassword" => password_hash($miUsuario["password"], PASSWORD_DEFAULT),
+				"usuarioFotoPerfil" => 'avatar_2x.png',
 				"usuarioEstado" => 1,
-				"usuarioFechaAlta" => date("Y-d-m H:i:s"),
-				"usuarioFotoPerfil" => 'avatar_2x.png'
+				"usuarioFechaAlta" => date("Y-m-d H:i:s")
 			];
-			return $usuarioAGuardar;
+			return $this->arrayToUsuario($usuarioAGuardar);
 		}
 		public function deleteProfile(){
 			$usuarioAModificar = [
@@ -86,7 +85,7 @@
 				"usuarioFotoPerfil" => $fotoPerfil,
 				"usuarioEstado" => 2,
 				"usuarioFechaAlta" => $this->getUsuarioByMail($usuario['email'])->getFechaAlta(),
-				"usuarioFechaDeModificacion" => date("Y-d-m H:i:s")
+				"usuarioFechaDeModificacion" => date("Y-m-d H:i:s")
 			];
 		}
 		public function getAllUsers(){
@@ -129,7 +128,7 @@
 				"usuarioFotoPerfil" => $fotoPerfil,
 				"usuarioEstado" => $this->getUsuarioByMail($usuario['email'])->getEstado(),
 				"usuarioFechaAlta" => $this->getUsuarioByMail($usuario['email'])->getFechaAlta(),
-				"usuarioFechaDeModificacion" => date("Y-d-m H:i:s")
+				"usuarioFechaDeModificacion" => date("Y-m-d H:i:s")
 			];
 			// var_dump($usuarioAModificar);exit;
 			return $usuarioAModificar;
@@ -203,7 +202,7 @@
 			$hashAGuardar = [
 				'userId' => $userId,
 				'hash'=> $hash,
-				'fechaAlta' => date("Y-d-m H:i:s")
+				'fechaAlta' => date("Y-m-d H:i:s")
 			];
 			if ($this->checkHash($hashAGuardar) == true) {
 				$hashAGuardar['hash'] = $this->crearHash(30);
@@ -255,7 +254,7 @@
 		public function eliminarHashesViejos(){
 			$hashesArray = $this->getAllHashes();
 			// var_dump($hashesArray);
-			$now = strtotime(date("Y-d-m H:i:s"));
+			$now = strtotime(date("Y-m-d H:i:s"));
 			
 			$intervaloHoras = 12;
 			$todosLosHashes = "";
@@ -300,7 +299,7 @@
 				"usuarioFotoPerfil" => $usuarioParaModificar->getFotoPerfil(),
 				"usuarioEstado" => $usuarioParaModificar->getEstado(),
 				"usuarioFechaAlta" => $usuarioParaModificar->getFechaAlta(),
-				"usuarioFechaDeModificacion" => date("Y-d-m H:i:s")
+				"usuarioFechaDeModificacion" => date("Y-m-d H:i:s")
 			];
 			return $usuarioAModificar;
 		}

@@ -3,7 +3,7 @@
 	require_once("clases/Auth.php");
 	require_once("clases/Validar.php");
 	require_once("clases/JSONRepository.php");
-	require_once("clases/mySQLRepository.php");
+	require_once("clases/MySQLRepository.php");
 	require_once("clases/Usuario.php");
 	require_once("clases/Redirect.php");
 	require_once("clases/Hash.php");

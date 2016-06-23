@@ -18,10 +18,9 @@
 		//si no hay errores....
 		if (empty($errores)) {
 			//crear el usuario = preaparar el usuario en una variable
-			// $usuario = new Usuario;
 			$usuarioAGuardar = $repositorio->getUserRepository()->crearUsuario($_POST);
 			//la variable creada, la meto en un JSON
-			var_dump($usuarioAGuardar);exit;
+			// var_dump($usuarioAGuardar);exit;
 			$repositorio->getUserRepository()->guardarUsuario($usuarioAGuardar);
 			//si esta todo ok, lo logeo
 			$redirect->redirigirALogin();

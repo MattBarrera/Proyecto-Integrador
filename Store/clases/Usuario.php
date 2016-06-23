@@ -101,7 +101,9 @@
 		}
 		
 		public function verUsuario(Array $miUsuario){
-			$this->usuarioID = $miUsuario["usuarioId"];
+			if (isset($miUsuario["usuarioId"])) {
+				$this->usuarioID = $miUsuario["usuarioId"];
+			}
 			$this->usuarioNombre = $miUsuario["usuarioNombre"];
 			$this->usarioApellido = $miUsuario["usuarioApellido"];
 			$this->usuarioEmail = $miUsuario["usuarioEmail"];
