@@ -220,7 +220,7 @@ CREATE TABLE `usuario` (
   PRIMARY KEY (`usuarioId`),
   UNIQUE KEY `usuarioEmail_UNIQUE` (`usuarioEmail`),
   UNIQUE KEY `usuarioId_UNIQUE` (`usuarioId`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -229,6 +229,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (1,'Manuel','Vilche','manuelvilche@gmail.com',47440109,'2016-12-31','Masculino','$2y$10$Fdt5SAi1FBFB0VDybEyCquqFjNBWjW1rjHwaivC8aNaZIahvb6Obu','fotoPerfil.jpg',1,'0000-00-00 00:00:00',NULL),(2,'Agustina','Rabanal','agusrabanal@gmail.com',47440109,'2016-12-30','Femenino','$2y$10$9QPjVi/JEOuBl9sjYoGJTu2BUIcCXkxMQlsxeAZgTHwEM.p63ipR6','facebook.png',1,'0000-00-00 00:00:00',NULL),(3,'Matt','Barrera','mb_herfarth@hotmail.com',47440109,'1911-12-19','Femenino','$2y$10$iWs6nRZoihdsiROR18u2lu/P2W2Z4tpi9oMbwX0z6A7o.nZGVORB2','dolfina.jpg',1,'0000-00-00 00:00:00',NULL),(4,'Bianca','Pallaro','biancapallaro@gmail.com',47440109,'9119-12-19','Masculino','$2y$10$QZ05n6hKjDtzp0ErQK/9suc.VSLJw3inHqPKiFL/iscJViEKIQpE2','facebook.png',1,'0000-00-00 00:00:00',NULL),(5,'Manuel','Vilche','soporte@manuelvilche.com',47440109,'1991-10-19','Masculino','$2y$10$.ahFosHkTbKsCMbEoHbpuOtXk22SyaQyhV/z9MjaJpdbfmfvB./5W','avatar_2x.png',1,'0000-00-00 00:00:00',NULL),(12,'Oscar','Vilche','vilcheoscar@gmail.com',47440109,'1956-03-01','Masculino','$2y$10$s0Gs4zfzqvuMZfwum8FKD.2qEuPLi5qAWEtAT6QekoXwSrm03OC16','avatar_2x.png',1,'2016-06-23 11:47:57',NULL),(13,'Oscar','Vilche','vilcheoscar@gmail.com1',47440109,'1956-03-01','Masculino','$2y$10$QXKivGVPn9ztupnNUU2.zu8rB/i6SunZcYd5ttXxpJZD6CmSWNyFu','avatar_2x.png',1,'2016-06-23 11:53:24',NULL);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -241,4 +242,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-06-23 10:30:12
+-- Dump completed on 2016-06-23 11:55:58
