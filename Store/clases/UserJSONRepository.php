@@ -14,40 +14,40 @@
 				}
 				return false;
 		}
-		public function guardarUsuario($usuarioAGuardar){
+		public function guardarUsuario(Usuario $usuarioAGuardar){
 			$usuarioJSON = json_encode($usuarioAGuardar);
 			file_put_contents("usuarios.json", $usuarioJSON . PHP_EOL, FILE_APPEND);
 		}
 		public function crearUsuario(Array $miUsuario){
 			$usuarioAGuardar = [
-				"id" => $this->getNewID(),
-				"name" => $miUsuario['name'],
-				"lastName" => $miUsuario['lastName'],
-				"email" => $miUsuario['email'],
-				"telefono" => $miUsuario['telefono'],
-				"fechaNacimiento" => $miUsuario['fechaNacimiento'],
-				"genero" => $miUsuario['genero'],
-				"password" => password_hash($miUsuario["password"], PASSWORD_DEFAULT),
-				"estado" => 1,
-				"fechaAlta" => date("d-m-Y H:i:s"),
-				"fotoPerfil" => 'avatar_2x.png'
+				"usuarioId" => $this->getNewID(),
+				"usuarioNombre" => $usuario['name'],
+				"usuarioApellido" => $usuario['lastName'],
+				"usuarioEmail" => $usuario['email'],
+				"usuarioTelefono" => $usuario['telefono'],
+				"usuarioFechaDeNacimiento" => $usuario['fechaNacimiento'],
+				"usuarioGenero" => $usuario['genero'],
+				"usuarioPassword" => password_hash($miUsuario["password"], PASSWORD_DEFAULT),
+				"usuarioEstado" => 1,
+				"usuarioFechaAlta" => date("Y-d-m H:i:s"),
+				"usuarioFotoPerfil" => 'avatar_2x.png'
 			];
 			return $usuarioAGuardar;
 		}
 		public function deleteProfile(){
 			$usuarioAModificar = [
-				"id" => $_SESSION["usuarioLogueado"],
-				"name" => $usuario['name'],
-				"lastName" => $usuario['lastName'],
-				"email" => $usuario['email'],
-				"telefono" => $usuario['telefono'],
-				"fechaNacimiento" => $usuario['fechaNacimiento'],
-				"genero" => $usuario['genero'],
-				"password" => $password,
-				"fotoPerfil" => $fotoPerfil,
-				"estado" => 2,
-				"fechaAlta" => $this->getUsuarioByMail($usuario['email'])->getFechaAlta(),
-				"fechaDeModificacion" => date("d-m-Y H:i:s")
+				"usuarioId" => $_SESSION["usuarioLogueado"],
+				"usuarioNombre" => $usuario['name'],
+				"usuarioApellido" => $usuario['lastName'],
+				"usuarioEmail" => $usuario['email'],
+				"usuarioTelefono" => $usuario['telefono'],
+				"usuarioFechaDeNacimiento" => $usuario['fechaNacimiento'],
+				"usuarioGenero" => $usuario['genero'],
+				"usuarioPassword" => $password,
+				"usuarioFotoPerfil" => $fotoPerfil,
+				"usuarioEstado" => 2,
+				"usuarioFechaAlta" => $this->getUsuarioByMail($usuario['email'])->getFechaAlta(),
+				"usuarioFechaDeModificacion" => date("Y-d-m H:i:s")
 			];
 		}
 		public function getAllUsers(){
@@ -108,36 +108,36 @@
 				$password = password_hash($usuario['newPassword'],PASSWORD_DEFAULT);
 			}
 			$usuarioAModificar = [
-				"id" => $_SESSION["usuarioLogueado"],
-				"name" => $usuario['name'],
-				"lastName" => $usuario['lastName'],
-				"email" => $usuario['email'],
-				"telefono" => $usuario['telefono'],
-				"fechaNacimiento" => $usuario['fechaNacimiento'],
-				"genero" => $usuario['genero'],
-				"password" => $password,
-				"fotoPerfil" => $fotoPerfil,
-				"estado" => $this->getUsuarioByMail($usuario['email'])->getEstado(),
-				"fechaAlta" => $this->getUsuarioByMail($usuario['email'])->getFechaAlta(),
-				"fechaDeModificacion" => date("d-m-Y H:i:s")
+				"usuarioId" => $_SESSION["usuarioLogueado"],
+				"usuarioNombre" => $usuario['name'],
+				"usuarioApellido" => $usuario['lastName'],
+				"usuarioEmail" => $usuario['email'],
+				"usuarioTelefono" => $usuario['telefono'],
+				"usuarioFechaDeNacimiento" => $usuario['fechaNacimiento'],
+				"usuarioGenero" => $usuario['genero'],
+				"usuarioPassword" => $password,
+				"usuarioFotoPerfil" => $fotoPerfil,
+				"usuarioEstado" => $this->getUsuarioByMail($usuario['email'])->getEstado(),
+				"usuarioFechaAlta" => $this->getUsuarioByMail($usuario['email'])->getFechaAlta(),
+				"usuarioFechaDeModificacion" => date("Y-d-m H:i:s")
 			];
 			// var_dump($usuarioAModificar);exit;
 			return $usuarioAModificar;
 		}
 		private function usuarioToArray(Usuario $miUsuario) {
 			$usuarioToArray = [];
-			$usuarioToArray["id"] = $miUsuario->getId();
-			$usuarioToArray["name"] = $miUsuario->getNombre();
-			$usuarioToArray["lastName"] = $miUsuario->getApellido();
-			$usuarioToArray["email"] = $miUsuario->getMail();
-			$usuarioToArray["telefono"] = $miUsuario->getTelefono();
-			$usuarioToArray["fechaNacimiento"] = $miUsuario->getFechaNacimiento();
-			$usuarioToArray["genero"] = $miUsuario->getGenero();
-			$usuarioToArray["password"] = $miUsuario->getPassword();
-			$usuarioToArray["fotoPerfil"] = $miUsuario->getFotoPerfil();
-			$usuarioToArray["estado"] = $miUsuario->getEstado();
-			$usuarioToArray["fechaAlta"] = $miUsuario->getFechaAlta();
-			$usuarioToArray["fechaDeModificacion"] = $miUsuario->getFechaDeModificacion();
+			$usuarioToArray["usuarioId"] = $miUsuario->getId();
+			$usuarioToArray["usuarioNombre"] = $miUsuario->getNombre();
+			$usuarioToArray["usuarioApellido"] = $miUsuario->getApellido();
+			$usuarioToArray["usuarioEmail"] = $miUsuario->getMail();
+			$usuarioToArray["usuarioTelefono"] = $miUsuario->getTelefono();
+			$usuarioToArray["usuarioFechaDeNacimiento"] = $miUsuario->getFechaNacimiento();
+			$usuarioToArray["usuarioGenero"] = $miUsuario->getGenero();
+			$usuarioToArray["usuarioPassword"] = $miUsuario->getPassword();
+			$usuarioToArray["usuarioFotoPerfil"] = $miUsuario->getFotoPerfil();
+			$usuarioToArray["usuarioEstado"] = $miUsuario->getEstado();
+			$usuarioToArray["usuarioFechaAlta"] = $miUsuario->getFechaAlta();
+			$usuarioToArray["usuarioFechaDeModificacion"] = $miUsuario->getFechaDeModificacion();
 			return $usuarioToArray;
 		}
 		public function getNewID(){
@@ -191,7 +191,7 @@
 			$hashAGuardar = [
 				'userId' => $userId,
 				'hash'=> $hash,
-				'fechaAlta' => date("d-m-Y H:i:s")
+				'fechaAlta' => date("Y-d-m H:i:s")
 			];
 			if ($this->checkHash($hashAGuardar) == true) {
 				$hashAGuardar['hash'] = $this->crearHash(30);
@@ -243,7 +243,7 @@
 		public function eliminarHashesViejos(){
 			$hashesArray = $this->getAllHashes();
 			// var_dump($hashesArray);
-			$now = strtotime(date("d-m-Y H:i:s"));
+			$now = strtotime(date("Y-d-m H:i:s"));
 			
 			$intervaloHoras = 12;
 			$todosLosHashes = "";
@@ -277,18 +277,18 @@
 		public function usuarioPasswordAModificarEnJSON($userId, $password){//
 			$usuarioParaModificar = $this->getUsuarioById($userId);
 			$usuarioAModificar = [
-				"id" => $usuarioParaModificar->getId(),
-				"name" => $usuarioParaModificar->getNombre(),
-				"lastName" => $usuarioParaModificar->getApellido(),
-				"email" => $usuarioParaModificar->getMail(),
-				"telefono" => $usuarioParaModificar->getTelefono(),
-				"fechaNacimiento" => $usuarioParaModificar->getFechaNacimiento(),
-				"genero" => $usuarioParaModificar->getGenero(),
-				"password" => password_hash($password, PASSWORD_DEFAULT),
-				"fotoPerfil" => $usuarioParaModificar->getFotoPerfil(),
-				"estado" => $usuarioParaModificar->getEstado(),
-				"fechaAlta" => $usuarioParaModificar->getFechaAlta(),
-				"fechaDeModificacion" => date("d-m-Y H:i:s")
+				"usuarioId" => $usuarioParaModificar->getId(),
+				"usuarioNombre" => $usuarioParaModificar->getNombre(),
+				"usuarioApellido" => $usuarioParaModificar->getApellido(),
+				"usuarioEmail" => $usuarioParaModificar->getMail(),
+				"usuarioTelefono" => $usuarioParaModificar->getTelefono(),
+				"usuarioFechaDeNacimiento" => $usuarioParaModificar->getFechaNacimiento(),
+				"usuarioGenero" => $usuarioParaModificar->getGenero(),
+				"usuarioPassword" => password_hash($password, PASSWORD_DEFAULT),
+				"usuarioFotoPerfil" => $usuarioParaModificar->getFotoPerfil(),
+				"usuarioEstado" => $usuarioParaModificar->getEstado(),
+				"usuarioFechaAlta" => $usuarioParaModificar->getFechaAlta(),
+				"usuarioFechaDeModificacion" => date("Y-d-m H:i:s")
 			];
 			return $usuarioAModificar;
 		}

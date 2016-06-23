@@ -7,7 +7,6 @@
 
 	$productos = $repositorio->getProductRepository()->getProductoByUserId($_SESSION['usuarioLogueado']);
 	$productosOK = $repositorio->getProductRepository()->getProductoByEstado($productos,1);
-	// var_dump($productosOK);exit;
 ?>
 <?php require_once("include/head.php"); ?>
  <body>

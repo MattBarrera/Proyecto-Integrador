@@ -78,18 +78,21 @@
 		public function setFotoPerfil($FotoPerfil){
 			$this->usuarioFotoPerfil = $FotoPerfil;
 		}
+
 		public function getEstado() {
 			return $this->usuarioEstado;
 		}
 		public function setEstado($estado){
 			$this->usuarioEstado = $estado;
 		}
+
 		public function getFechaAlta() {
 			return $this->usuarioFechaAlta;
 		}
 		public function setFechaAlta($FechaAlta){
 			$this->usuarioFechaAlta = $FechaAlta;
 		}
+
 		public function getFechaDeModificacion() {
 			return $this->usuarioFechaDeModificacion;
 		}
@@ -97,51 +100,38 @@
 			$this->usuarioFechaDeModificacion = $fechaDeModificacion;
 		}
 		
-
 		public function verUsuario(Array $miUsuario){
-			// var_dump($miUsuario);exit;
-			$this->usuarioID = $miUsuario["id"];
-			$this->usuarioNombre = $miUsuario["name"];
-			$this->usarioApellido = $miUsuario["lastName"];
-			$this->usuarioEmail = $miUsuario["email"];
-			$this->usuarioTelefono = $miUsuario["telefono"];
-			$this->usuarioFechaDeNacimiento = $miUsuario["fechaNacimiento"];
-			$this->usuarioGenero = $miUsuario["genero"];
-			$this->usuarioPassword = $miUsuario["password"];
-			$this->usuarioFotoPerfil = $miUsuario['fotoPerfil'];
-			$this->usuarioEstado = $miUsuario['estado'];
-			$this->usuarioFechaAlta = $miUsuario['fechaAlta'];
-			// $this->usuarioFechaDeModificacion = $miUsuario['fechaDeModificacion'];
-						
+			$this->usuarioID = $miUsuario["usuarioId"];
+			$this->usuarioNombre = $miUsuario["usuarioNombre"];
+			$this->usarioApellido = $miUsuario["usuarioApellido"];
+			$this->usuarioEmail = $miUsuario["usuarioEmail"];
+			$this->usuarioTelefono = $miUsuario["usuarioTelefono"];
+			$this->usuarioFechaDeNacimiento = $miUsuario["usuarioFechaDeNacimiento"];
+			$this->usuarioGenero = $miUsuario["usuarioGenero"];
+			$this->usuarioPassword = $miUsuario["usuarioPassword"];
+			$this->usuarioFotoPerfil = $miUsuario['usuarioFotoPerfil'];
+			$this->usuarioEstado = $miUsuario['usuarioEstado'];
+			$this->usuarioFechaAlta = $miUsuario['usuarioFechaAlta'];
+			// $this->usuarioFechaDeModificacion = $miUsuario['usuarioFechaDeModificacion'];		
 		}
 
 		public static function uploadAvatar($usuario,$usuarioAvatar){
-			// var_dump($usuario);exit;
 			if ($_FILES["fotoPerfil"]["error"] == UPLOAD_ERR_OK){
-				// var_dump($usuario);exit;
 				$id = $usuario;
 
 				//No hubo errores :)
 				$directory = dirname(__FILE__);
 				$directory = $directory . "/../assets/".$id."/profile/";
-				// var_dump($directory);exit;
-				// echo getcwd();exit;
 				umask(0);
 				
 				if (!is_dir($directory) ) {
 					mkdir($directory,0777,true);
 				}
 
-				// chmod($directory, 0777);
-				// var_dump($directory);exit;
-				// echo $directory;exit;
 				$destino = $directory . $_FILES['fotoPerfil']['name'];
 
 				move_uploaded_file($_FILES["fotoPerfil"]["tmp_name"], $destino);
-				}
+			}
 		}
-
-		
-
 	}
  ?>

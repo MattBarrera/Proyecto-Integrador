@@ -3,7 +3,7 @@
 		
 		abstract public function existeElMail($mail);
 
-		abstract public function guardarUsuario($usuarioAGuardar);
+		abstract public function guardarUsuario(Usuario $usuarioAGuardar);
 	}
 
  ?>

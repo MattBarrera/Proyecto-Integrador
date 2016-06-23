@@ -26,7 +26,7 @@
 			//preparo al usuario = lo meto en una variable del JSON
 			$usuarioAModificar = $repositorio->getUserRepository()->usuarioAModificarEnJSON($datosUsuario,$datosUsuarioAvatar);//
 			//modifico el usuario en el archivo
-			$repositorio->getUserRepository()->modificarUsuario($usuarioAModificar);	
+			$repositorio->getUserRepository()->guardarUsuario($usuarioAModificar);	
 		}
 	}
 ?>

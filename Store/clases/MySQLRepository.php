@@ -27,7 +27,7 @@ class MySQLRepository extends Repository {
 		return $this->productRepository;
 	}
 	public function __construct() {
-		$this->connection = new PDO::('mysql:host=localhost;dbname=miSistema', "root", "");
+		$this->connection = new PDO('mysql:host=localhost;dbname=ecommerce', "root", "alfabeta");
 	}
 	public function startTransaction(){
 		$this->connection->beginTransaction();
