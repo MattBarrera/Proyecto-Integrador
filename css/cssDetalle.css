@@ -1,22 +1,19 @@
-.tituloProducto {
-  float: right;
-  margin-right: 25%
-}
-.fotoProducto img{
-  width: 300px;
-  height: 300px;
-}
-.precioProducto {
-  float: right;
-  margin-right: 37%;
+.imagenProducto{
+  width: 50%;
+  float: left;
+  text-align: right;
+  padding-right: 5%;
 }
 
-.descripcionProducto {
+/*.descripcionProducto {
   text-align: center;
-}
+}*/
 
 .imagenProducto {
-  margin-left: 25%;
+}
+.detalleProducto{
+  width: 50%;
+  float: right;
 }
 
 #descripcion {
@@ -25,8 +22,12 @@
   background-color: #312450;
   border-radius: 8px;
 }
-
-.botonComprar {
-  float: right;
-  margin-right: 31%;
+.botonComprarDetalle {
+  clear:both;
+  width: 60%;
+  margin:3em auto 0;
+}
+.relatedProducts{
+  clear: both;
+  padding-top: 2em;
 }

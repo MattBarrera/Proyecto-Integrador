@@ -97,27 +97,23 @@
 		<section id="productos">
 			<div class="productosDestacados">
 					<h2>PRODUCTOS DESTACADOS</h2>
-
-						<?php foreach ($productosOK as $key => $value) { ?>
-
-							<div class="productoDestacado">
-								<?php if ($repositorio->getProductRepository()->getProductoByIdIndex($value->getProductoId())->getProductoFoto() == "artsinfoto.gif") {
-										$productoFoto = '<img src="Store/assets/'.$repositorio->getProductRepository()->getProductoByIdIndex($value->getProductoId())->getProductoFoto().'" alt="">';
-									}else{
-
-										$productoFoto =
-											'<img src="Store/assets/'.$repositorio->getProductRepository()->getProductoByIdIndex($value->getProductoId())->getProductoUsuarioId().'/products/'.$repositorio->getProductRepository()->getProductoByIdIndex($value->getProductoId())->getProductoFoto().'" alt="">';
-									}?>
-							<?php echo $productoFoto; ?>
-							<h3><a href="Store/detalleProducto.php?id=<?php echo $value->getProductoId();?>" title=""><?php echo $value->getProductoNombre();?></a></h3>
-							<p><?php echo $value->getProductoDescripcion();?></p>
-							<p>Precio: $ <?php echo $value->getProductoPrecio();?></p>
-							<p>Categoria: <?php echo $value->getProductoCategoria();?></p>
-							<button><a href="#" title="">Comprar</a></button>
-						</div>
-						<?php } ?>
-						
-
+						<?php for ($i = 0; $i < 10; $i++) {
+				                  if ($repositorio->getProductRepository()->getProductoByIdIndex($productosOK[$i]->getProductoId())->getProductoFoto() == "artsinfoto.gif") {
+				                      $productoFoto = '<img src="Store/assets/'.$repositorio->getProductRepository()->getProductoByIdIndex($productosOK[$i]->getProductoId())->getProductoFoto().'" alt="">';
+				                    }else{
+				                      $productoFoto =
+				                        '<img src="Store/assets/'.$repositorio->getProductRepository()->getProductoByIdIndex($productosOK[$i]->getProductoId())->getProductoUsuarioId().'/products/'.$repositorio->getProductRepository()->getProductoByIdIndex($productosOK[$i]->getProductoId())->getProductoFoto().'" alt="">';
+						?>
+				                   	<div class="productoDestacado">
+				                          <?php echo $productoFoto; ?>
+				                          <h3><a href="Store/detalleProducto.php?id=<?php echo $productosOK[$i]->getProductoId();?>" title=""><?php echo $productosOK[$i]->getProductoNombre();?></a></h3>
+				                          <p><?php echo $productosOK[$i]->getProductoDescripcion();?></p>
+				                          <p>Precio: $ <?php echo $productosOK[$i]->getProductoPrecio();?></p>
+				                          <p>Categoria:<?php echo $productosOK[$i]->getProductoCategoria();?></p>
+				                          <button><a href="#" title="">Comprar</a></button>
+				                    </div>
+			              	<?php } ?>
+			          	<?php } ?>
 			</div>
 			<div class="clear"></div>
 		</section>
