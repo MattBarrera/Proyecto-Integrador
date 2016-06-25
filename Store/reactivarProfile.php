@@ -1,6 +1,6 @@
 <?php 
 	require_once("config.php");
-	$titulo = "Forgot Password";
+	$titulo = "Reactivar Usuario";
 	if ($auth->estaLogueado()) {
 		$redirect->redirigirAIndex();
 	}
@@ -35,8 +35,8 @@
 				$message = "<div style=\"background-color:#ace2fa; width:550px; padding:15px; margin:auto; border:1px solid #008\">";   // esta línea genera un div para dar formato.
 
 				$message .= '<h2>Restablece tu Contraseña</h2>
-		      		<p>Podes restablecer tu contraseña haciendo click <a href="http://dh:8888/Proyecto-Integrador/changePassword.php?hash='.$hashAGuardar['hashHash'].'">Aqui</a> o en este link:</p>
-		      		<a href="http://dh/Proyecto-Integrador/Store/changePassword.php?hash='.$hashAGuardar['hashHash'].'">http://dh/Proyecto-Integrador/changePassword.php?hash='.$hashAGuardar['hashHash'].'</a>';  // <--- modificar este contenido con el contenido de tu email
+		      		<p>Podes restablecer tu contraseña haciendo click <a href="http://dh/Proyecto-Integrador/Store/changePassword.php?hash='.$hashAGuardar['hashHash'].'&e=1">Aqui</a> o en este link:</p>
+		      		<a href="http://dh/Proyecto-Integrador/Store/changePassword.php?hash='.$hashAGuardar['hashHash'].'&e=1">http://dh/Proyecto-Integrador/changePassword.php?hash='.$hashAGuardar['hashHash'].'&e=1</a>';  // <--- modificar este contenido con el contenido de tu email
 
 				$message .= "</div>";  // está línea cierra el div
 
@@ -50,7 +50,8 @@
 	
 	<?php require_once("include/header.php"); ?>
 	<section id="containerLogin">
-        <h2>Restablecer contraseña</h2>
+        <h2>Usuario Dado de Baja</h2>
+        <p>Para reactivar tu cuenta tenes que cambiar tu Password.</p>
 	    <section class="login">
 	      	<form action="" method="POST" id="formLogin">
 	      		 <?php if (!empty($errores) ) { ?>

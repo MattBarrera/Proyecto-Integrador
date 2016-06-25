@@ -1,5 +1,4 @@
 <?php require_once("config.php"); 
-
 	if (!$auth->estaLogueado()) {
 		$redirect->redirigirALoginBackDoor();
 	}

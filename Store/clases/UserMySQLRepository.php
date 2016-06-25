@@ -12,17 +12,13 @@
 		}
 
 		public function existeElMail($usuarioEmail){
-			$stmt = $this->miConexion->prepare("SELECT * from usuario where usuarioEmail = :usuarioEmail");
+			$stmt = $this->miConexion->prepare("SELECT usuarioEstado from usuario where usuarioEmail = :usuarioEmail");
 
 			$stmt->bindValue(":usuarioEmail", $usuarioEmail);
 
 			$stmt->execute();
-
-			if ($stmt->rowCount() == 0){
-				return false;
-			}else{
-				return true;
-			}
+			$usuarioEstado = $stmt->fetch();
+			return $usuarioEstado;
 		}
 		public function guardarUsuario(Usuario $miUsuario){
 			if ($miUsuario->getId()){
@@ -72,21 +68,15 @@
 			];
 			return $this->arrayToUsuario($usuarioAGuardar);
 		}
-		public function deleteProfile(){
-			$usuarioAModificar = [
-				"usuarioId" => $_SESSION["usuarioLogueado"],
-				"usuarioNombre" => $usuario['name'],
-				"usuarioApellido" => $usuario['lastName'],
-				"usuarioEmail" => $usuario['email'],
-				"usuarioTelefono" => $usuario['telefono'],
-				"usuarioFechaDeNacimiento" => $usuario['fechaNacimiento'],
-				"usuarioGenero" => $usuario['genero'],
-				"usuarioPassword" => $password,
-				"usuarioFotoPerfil" => $fotoPerfil,
-				"usuarioEstado" => 2,
-				"usuarioFechaAlta" => $this->getUsuarioByMail($usuario['email'])->getFechaAlta(),
-				"usuarioFechaDeModificacion" => date("Y-m-d H:i:s")
-			];
+		public function deleteProfile(Usuario $miUsuario, $opcion){
+			if ($opcion == 2) {
+				$miUsuario->setEstado(2);
+			}else{
+				$miUsuario->setEstado(3);
+			}
+			$miUsuario->setFechaDeModificacion(date("Y-m-d H:i:s"));
+
+			return $miUsuario;
 		}
 		public function getAllUsers(){
 			$stmt = $this->miConexion->prepare("SELECT * from usuario");
@@ -97,12 +87,21 @@
 
 			return $this->muchosArraysAMuchosUsuarios($usuariosArray);
 		}
+		private function muchosArraysAMuchosUsuarios(Array $usuariosArray){
+			$usuarios = [];
+
+			foreach ($usuariosArray as $usuarioArray) {
+				$usuarios[] = $this->arrayToUsuario($usuarioArray);
+			}
+
+			return $usuarios;
+		}
 		private function arrayToUsuario(Array $miUsuario) {
 			$usuario = new Usuario($miUsuario);
 			$usuario->verUsuario($miUsuario);
 			return $usuario;
 		}
-		public function usuarioAModificarEnJSON($usuario, $usuarioAvatar){
+		public function usuarioAModificar($usuario, $usuarioAvatar){
 			//consulto si se envio la foto
 			if ($usuarioAvatar['name'] !== "") {
 					//si se envio la capturo
@@ -130,24 +129,7 @@
 				"usuarioFechaAlta" => $this->getUsuarioByMail($usuario['email'])->getFechaAlta(),
 				"usuarioFechaDeModificacion" => date("Y-m-d H:i:s")
 			];
-			// var_dump($usuarioAModificar);exit;
-			return $usuarioAModificar;
-		}
-		private function usuarioToArray(Usuario $miUsuario) {
-			$usuarioToArray = [];
-			$usuarioToArray["usuarioId"] = $miUsuario->getId();
-			$usuarioToArray["usuarioNombre"] = $miUsuario->getNombre();
-			$usuarioToArray["usuarioApellido"] = $miUsuario->getApellido();
-			$usuarioToArray["usuarioEmail"] = $miUsuario->getMail();
-			$usuarioToArray["usuarioTelefono"] = $miUsuario->getTelefono();
-			$usuarioToArray["usuarioFechaDeNacimiento"] = $miUsuario->getFechaNacimiento();
-			$usuarioToArray["usuarioGenero"] = $miUsuario->getGenero();
-			$usuarioToArray["usuarioPassword"] = $miUsuario->getPassword();
-			$usuarioToArray["usuarioFotoPerfil"] = $miUsuario->getFotoPerfil();
-			$usuarioToArray["usuarioEstado"] = $miUsuario->getEstado();
-			$usuarioToArray["usuarioFechaAlta"] = $miUsuario->getFechaAlta();
-			$usuarioToArray["usuarioFechaDeModificacion"] = $miUsuario->getFechaDeModificacion();
-			return $usuarioToArray;// me parece q no
+			return $this->arrayToUsuario($usuarioAModificar);
 		}
 		public function getUsuarioByMail($usuarioEmail){
 			$stmt = $this->miConexion->prepare("SELECT * from usuario where usuarioEmail = :usuarioEmail");
@@ -162,7 +144,7 @@
 			{
 				return null;
 			}
-
+			// var_dump($this->arrayToUsuario($usuarioArray));exit;
 			return $this->arrayToUsuario($usuarioArray);//esta ok
 		}
 		public function getUsuarioById($usuarioId){
@@ -199,45 +181,48 @@
 			return $hash; 
 		}
 		public function hashAGuardar($hash,$userId){
+			// var_dump(intval($userId));exit;
 			$hashAGuardar = [
-				'userId' => $userId,
-				'hash'=> $hash,
-				'fechaAlta' => date("Y-m-d H:i:s")
+				'hashUserId' => intval($userId),
+				'hashHash'=> $hash,
+				'hashFechaDeAlta' => date("Y-m-d H:i:s")
 			];
-			if ($this->checkHash($hashAGuardar) == true) {
-				$hashAGuardar['hash'] = $this->crearHash(30);
+
+			if (!$this->checkHash($hashAGuardar['hashHash'])) {
+				$hashAGuardar['hashHash'] = $this->crearHash(30);
 				return $hashAGuardar;
 			}
 			return $hashAGuardar;
 		}
-		public function checkHash($hashAGuardar){
-			$hashesArray = $this->getAllHashes();
-				foreach ($hashesArray as $key => $hash) {
-					if ($hashAGuardar == $hash->getHashHash()){
-						return true;
-					}
-				}
-				return false;
-		}
-		private function hashToArray($hash) {
+		public function checkHash($hashHash){
+			// var_dump("check if exist ".$hashHash);
+			$stmt = $this->miConexion->prepare("SELECT hashHash from hash WHERE hashHash = :hashHash");
 
-			$hashToArray = [];
-			$hashToArray["userId"] = $hash->getHashUserId();
-			$hashToArray["hash"] = $hash->getHashHash();
-			$hashToArray["fechaAlta"] = $hash->getHashFechaAlta();
-			return $hashToArray;
+			$stmt->bindValue(":hashHash", $hashHash);
+			$stmt->execute();
+
+			$stmt->fetchAll();
+
+			if ($stmt->rowCount() == 0){
+				return false;
+			}else{
+				return true;
+			}
 		}
 		public function getAllHashes(){
-			$hashes = file_get_contents("hashes.json");
-			$hashesArray = explode(PHP_EOL, $hashes);
-			array_pop($hashesArray);
+			$stmt = $this->miConexion->prepare("SELECT * from hash");
+
+			$stmt->execute();
+
+			$hashesArray = $stmt->fetchAll();
+
 			return $this->muchosArraysAMuchosHases($hashesArray);
 		}
 		private function muchosArraysAMuchosHases(Array $hashesArray){
 			$hashes = [];
 
 			foreach ($hashesArray as $hashArray) {
-				$hashes[] = $this->arrayToHash(json_decode($hashArray,1));
+				$hashes[] = $this->arrayToHash($hashArray);
 			}
 
 			return $hashes;
@@ -247,46 +232,36 @@
 			$hashArray->verHash($miHash);
 			return $hashArray;
 		}
-		public function guardarHashEnJSON($hashAGuardar){
-			$hashJSON = json_encode($hashAGuardar);
-			file_put_contents("hashes.json", $hashJSON . PHP_EOL, FILE_APPEND);
+		public function guardarHash($hashAGuardar){
+			$stmt = $this->miConexion->prepare("INSERT INTO hash ( hashHash, hashUserId, hashFechaDeAlta) VALUES (:hashHash, :hashUserId, :hashFechaDeAlta) ");
+			// var_dump($hashAGuardar['hashFechaDeAlta']);exit;
+			$stmt->bindValue(":hashHash", $hashAGuardar['hashHash']);
+			$stmt->bindValue(":hashUserId", $hashAGuardar['hashUserId']);
+			$stmt->bindValue(":hashFechaDeAlta", $hashAGuardar['hashFechaDeAlta']);
+			// var_dump($stmt);exit;
+			$stmt->execute();
 		}
 		public function eliminarHashesViejos(){
-			$hashesArray = $this->getAllHashes();
-			// var_dump($hashesArray);
-			$now = strtotime(date("Y-m-d H:i:s"));
-			
-			$intervaloHoras = 12;
-			$todosLosHashes = "";
-			foreach ($hashesArray as $key => $hash) {
-				$fechaHash = strtotime($hash->getHashFechaAlta());
-				$diferencia = ($now - $fechaHash)/3600;
-				// echo $diferencia; echo "horas";
-				if ($intervaloHoras > $diferencia  ){
-					// echo "string";
-					// si la diferencia es menor a lo estipulado lo agrego a la variable, sino no
-					$hashToArray = $this->hashToArray($hash);
-						
-					$todosLosHashes .= json_encode($hashToArray) . PHP_EOL;
-				}
-			}
-			
-			file_put_contents("hashes.json", $todosLosHashes);
+			$stmt = $this->miConexion->prepare("DELETE FROM hash 
+												WHERE TIMESTAMPDIFF(hour, hashFechaDeAlta, NOW())>12;");
+			$stmt->execute();
 		}
 		public function eliminarHash($hash){
-			$hashesArray = $this->getAllHashes();
-			$todosLosHashes = "";
-			foreach ($hashesArray as $key => $hash) {
-				if (!$hash == $hash->getHashHash()){
-					// si la diferencia es menor a lo estipulado lo agrego a la variable, sino no
-					$hashToArray = $this->hashToArray($hash);
-					$todosLosHashes .= json_encode($hashToArray) . PHP_EOL;
-				}
-			}
-			file_put_contents("hashes.json", $todosLosHashes);
+			$stmt = $this->miConexion->prepare("DELETE FROM hash
+												WHERE hashHash = :hashHash");
+
+			$stmt->bindValue(":hashHash", $hash);
+			$stmt->execute();
 		}
-		public function usuarioPasswordAModificarEnJSON($userId, $password){//
+		public function usuarioPasswordAModificar($userId, $password, $estado){
 			$usuarioParaModificar = $this->getUsuarioById($userId);
+			// var_dump($estado);exit;
+			if ($estado !== NULL) {
+				$estado = 1;
+			}else {
+				$estado = $usuarioParaModificar->getEstado();
+			}
+
 			$usuarioAModificar = [
 				"usuarioId" => $usuarioParaModificar->getId(),
 				"usuarioNombre" => $usuarioParaModificar->getNombre(),
@@ -297,21 +272,22 @@
 				"usuarioGenero" => $usuarioParaModificar->getGenero(),
 				"usuarioPassword" => password_hash($password, PASSWORD_DEFAULT),
 				"usuarioFotoPerfil" => $usuarioParaModificar->getFotoPerfil(),
-				"usuarioEstado" => $usuarioParaModificar->getEstado(),
+				"usuarioEstado" => $estado,
 				"usuarioFechaAlta" => $usuarioParaModificar->getFechaAlta(),
 				"usuarioFechaDeModificacion" => date("Y-m-d H:i:s")
 			];
-			return $usuarioAModificar;
+			return $this->arrayToUsuario($usuarioAModificar);
 		}
 		public function getUserIdByHash($miHash){
-			$hashesArray = $this->getAllHashes();
-				foreach ($hashesArray as $key => $hash) {
-					if ($miHash == $hash->getHashHash() ){
-						$userId = $hash->getHashUserId();
-						return $userId;
-					}
-				}
-			return false;
+			// var_dump($miHash);exit;
+			$stmt = $this->miConexion->prepare("SELECT hashUserId from hash WHERE hashHash = :hashHash");
+
+			$stmt->bindValue(":hashHash", $miHash);
+			$stmt->execute();
+
+			$hashUserId = $stmt->fetch();
+			return $hashUserId;
+				
 		}
 	}
  ?>

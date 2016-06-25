@@ -93,7 +93,7 @@
 			// modificar la linea que sea igual a mi ID
 			file_put_contents("usuarios.json", $todosLosUsuarios);
 		}
-		public function usuarioAModificarEnJSON($usuario, $usuarioAvatar){
+		public function usuarioAModificar($usuario, $usuarioAvatar){
 			//consulto si se envio la foto
 			if ($usuarioAvatar['name'] !== "") {
 					//si se envio la capturo
@@ -274,7 +274,7 @@
 			}
 			file_put_contents("hashes.json", $todosLosHashes);
 		}
-		public function usuarioPasswordAModificarEnJSON($userId, $password){//
+		public function usuarioPasswordAModificar($userId, $password){//
 			$usuarioParaModificar = $this->getUsuarioById($userId);
 			$usuarioAModificar = [
 				"usuarioId" => $usuarioParaModificar->getId(),

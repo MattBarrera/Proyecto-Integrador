@@ -79,9 +79,15 @@
 			$errores = [];
 
 			if (trim($_POST['email'] == "" || $_POST["password"] == "") ){
-				$errores[] = "Tenes que completar todos los campos";
+				$errores[] = "Tenes que completar todos los campos";	
 			}else if (!$this->userRepository->existeElMail($_POST["email"], FILTER_VALIDATE_EMAIL)){
 				$errores[] = "El Mail no existe";
+			}else if ($estado = $this->userRepository->existeElMail($_POST["email"], FILTER_VALIDATE_EMAIL)){
+				if ($estado['usuarioEstado']==2) {
+					header("location:reactivarProfile.php");exit;
+				}elseif ($estado['usuarioEstado']==3) {
+					$errores[] = "El Mail esta dado de baja de forma permanente registrate con otro mail";
+				}
 			} else if (!$this->usuarioValido($_POST["email"], $_POST["password"])) {
 				$errores [] = "El usuario o la contraseña no son validos";
 			}

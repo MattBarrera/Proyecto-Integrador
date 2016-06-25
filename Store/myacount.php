@@ -23,10 +23,11 @@
 		if (empty($errores)) {
 			//rutina para subir el avatar fisico
 			Usuario::uploadAvatar($_SESSION['usuarioLogueado'],$datosUsuarioAvatar);//
-			//preparo al usuario = lo meto en una variable del JSON
-			$usuarioAModificar = $repositorio->getUserRepository()->usuarioAModificarEnJSON($datosUsuario,$datosUsuarioAvatar);//
+			//preparo al usuario
+			$usuarioAModificar = $repositorio->getUserRepository()->usuarioAModificar($datosUsuario,$datosUsuarioAvatar);//
 			//modifico el usuario en el archivo
-			$repositorio->getUserRepository()->guardarUsuario($usuarioAModificar);	
+			$repositorio->getUserRepository()->guardarUsuario($usuarioAModificar);
+			$redirect->redirigirAIndex();			
 		}
 	}
 ?>

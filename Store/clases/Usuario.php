@@ -114,7 +114,9 @@
 			$this->usuarioFotoPerfil = $miUsuario['usuarioFotoPerfil'];
 			$this->usuarioEstado = $miUsuario['usuarioEstado'];
 			$this->usuarioFechaAlta = $miUsuario['usuarioFechaAlta'];
-			// $this->usuarioFechaDeModificacion = $miUsuario['usuarioFechaDeModificacion'];		
+			if (isset($miUsuario["usuarioFechaDeModificacion"])) {
+				$this->usuarioFechaDeModificacion = $miUsuario["usuarioFechaDeModificacion"];
+			}		
 		}
 
 		public static function uploadAvatar($usuario,$usuarioAvatar){

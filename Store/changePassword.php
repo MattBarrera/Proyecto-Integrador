@@ -7,6 +7,7 @@
 	}
 		// A) Se hace una pasada por "todo" hashes.json y las cosas "viejas" se eliminan.
 		$repositorio->getUserRepository()->eliminarHashesViejos();
+		// echo 'string';
    		// B) Si el hash que viene por GET NO EXISTE, se le pone un 404 (pagina no encontrada)
 			//esta echo en el body este paso!
     	// C) Si el hash SI existe, se le pone un form que diga "nueva contraseña" y "confirmar contraseña" y se le cambia la password al usuario asociado al hash. Luego se lo puede autologuear y SE BORRA ESA LINEA DE hashes.json.
@@ -15,11 +16,18 @@
 		$errores = $validar->validarChangePassword($_POST)['errores'];
 		if (empty($errores)) {
 			//traigo el usuario mediante el id dentro de hashes.json
-			$userId = $repositorio->getUserRepository()->getUserIdByHash($_GET['hash']);
+			// var_dump($_GET['hash']);exit;
+			$userId = $repositorio->getUserRepository()->getUserIdByHash($_GET['hash'])['hashUserId'];
 			// Preparo el usuario a modificar
-			$usuarioAModificar = $repositorio->getUserRepository()->usuarioPasswordAModificarEnJSON($userId, $_POST['password']);
+				if (isset($_GET['e'])) {
+					$estado = $_GET['e'];
+				}else{
+					$estado = NULL;
+				}
+			$usuarioAModificar = $repositorio->getUserRepository()->usuarioPasswordAModificar($userId, $_POST['password'], $estado);
+			// var_dump($usuarioAModificar);exit;
 			// Cambiar la password en JSON
-			$repositorio->getUserRepository()->modificarUsuario($usuarioAModificar);
+			$repositorio->getUserRepository()->guardarUsuario($usuarioAModificar);
 			$repositorio->getUserRepository()->eliminarHash($_GET['hash']);
 			// traigo el usuario a loguear a travez del id
 			$usuarioALogear = $repositorio->getUserRepository()->getUsuarioById($userId);
@@ -27,6 +35,8 @@
 			$auth->loguearUsuario($usuarioALogear);
 			// Redireccionamiento Directo al INDEX YA LOGUEADO
 			$redirect->redirigirAIndex();
+
+
 		}
 	}
  ?>
