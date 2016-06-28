@@ -105,12 +105,14 @@
 				                        '<img src="Store/assets/'.$repositorio->getProductRepository()->getProductoByIdIndex($productosOK[$i]->getProductoId())->getProductoUsuarioId().'/products/'.$repositorio->getProductRepository()->getProductoByIdIndex($productosOK[$i]->getProductoId())->getProductoFoto().'" alt="">';
 						?>
 				                   	<div class="productoDestacado">
-				                          <?php echo $productoFoto; ?>
-				                          <h3><a href="Store/detalleProducto.php?id=<?php echo $productosOK[$i]->getProductoId();?>" title=""><?php echo $productosOK[$i]->getProductoNombre();?></a></h3>
-				                          <p><?php echo $productosOK[$i]->getProductoDescripcion();?></p>
-				                          <p>Precio: $ <?php echo $productosOK[$i]->getProductoPrecio();?></p>
-				                          <p>Categoria:<?php echo $productosOK[$i]->getProductoCategoria();?></p>
-				                          <button><a href="#" title="">Comprar</a></button>
+				                        <?php echo $productoFoto; ?>
+				                        <h3><a href="Store/detalleProducto.php?id=<?php echo $productosOK[$i]->getProductoId();?>" title=""><?php echo $productosOK[$i]->getProductoNombre();?></a></h3>
+			                          	<p><?php echo $productosOK[$i]->getProductoDescripcion();?></p>
+			                          	<p>Precio: $ <?php echo $productosOK[$i]->getProductoPrecio();?></p>
+			                          	<p>Categoria:<?php echo $productosOK[$i]->getProductoCategoria();?></p>
+										<?php $datosUsuario = $repositorio->getUserRepository()->getUsuarioById($productosOK[$i]->getProductoUsuarioId()); ?>
+										<p>Usuario: <a href="Store/profileDetalle.php?userId=<?php echo $productosOK[$i]->getProductoUsuarioId() ?>"><?php echo $datosUsuario->getNombre()." ".$datosUsuario->getApellido(); ?></a></p>
+				                        <button><a href="#" title="">Agregar al Carrito</a></button>
 				                    </div>
 			              	<?php } ?>
 			          	<?php } ?>

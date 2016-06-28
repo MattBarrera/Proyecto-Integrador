@@ -2,6 +2,11 @@
 	require_once("config.php");
 	
 	$titulo = "Login";
+	$redirectTo = "";
+	if (array_key_exists("redirectTo", $_GET)) {
+		$redirectTo = $_GET["redirectTo"];
+	} 
+
 	if ($auth->estaLogueado()) {
 		$redirect->redirigirAIndex();
 	}
@@ -10,11 +15,18 @@
 		// si no hay errores....
 		if (empty($errores)) {
 			$usuarioALogear = $repositorio->getUserRepository()->getUsuarioByMail($_POST['email']);
-			// var_dump($usuarioALogear);exit;
+
 			//validar login
 			$auth->loguearUsuario($usuarioALogear);
-			//si login esta ok, redirigir al index
-			$redirect->redirigirAIndex();
+			//si login esta ok, redirigir
+			if (array_key_exists("redirectTo", $_GET)) {
+				// echo 'redirectTo';
+				header("location:" . $_POST["redirectTo"]);
+				exit;
+			}else {
+				// echo 'index';
+				$redirect->redirigirAIndex();		
+			}	
 		}
 	}
  ?>
@@ -51,6 +63,7 @@
 	      		<input type="checkbox" name="recordarme" id="recordarme" >
 	      		<label for="recordarme">Recordarme</label><br>
 	      		<button><a href="forgotPassword.php">Olvide mi Password</a></button><br>
+	      		<input type="hidden" name="redirectTo" id="redirectTo" value="<?php echo $redirectTo; ?>">
 	      		<input type="submit" id="btnLogin" value="Login"></input>
 	        </form>
 	    </section>

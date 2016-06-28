@@ -1,9 +1,9 @@
 <?php 
 	
-	require_once("UserRepository.php");
-	require_once("Usuario.php");
+	require_once("EmpresaRepository.php");
+	// require_once("Empresa.php");
 
-	class UserMySQLRepository extends UserRepository {
+	class EmpresaMySQLRepository extends EmpresaRepository {
 
 		private $miConexion;
 		
@@ -11,10 +11,10 @@
 			$this->miConexion = $miConexion;
 		}
 
-		public function existeElMail($usuarioEmail){
-			$stmt = $this->miConexion->prepare("SELECT usuarioEstado from usuario where usuarioEmail = :usuarioEmail");
+		public function existeElMail($empresaMail){
+			$stmt = $this->miConexion->prepare("SELECT usuarioEstado from empresa where empresaMail = :empresaMail");
 
-			$stmt->bindValue(":usuarioEmail", $usuarioEmail, PDO::PARAM_STR);
+			$stmt->bindValue(":empresaMail", $empresaMail, PDO::PARAM_STR);
 
 			$stmt->execute();
 			$usuarioEstado = $stmt->fetch();
@@ -22,46 +22,32 @@
 		}
 		public function guardarUsuario(Usuario $miUsuario){
 			if ($miUsuario->getId()){
-				//si el usuario tiene id...
 				if ($this->getUsuarioById($miUsuario->getId())){
-					//si el usuario tiene id y existe ese id en la base lo modifico
 					$stmt = $this->miConexion->prepare("UPDATE usuario set usuarioNombre = :usuarioNombre, usuarioApellido = :usuarioApellido, usuarioEmail = :usuarioEmail, usuarioTelefono = :usuarioTelefono, usuarioFechaDeNacimiento = :usuarioFechaDeNacimiento, usuarioGenero = :usuarioGenero, usuarioPassword = :usuarioPassword, usuarioFotoPerfil = :usuarioFotoPerfil, usuarioEstado = :usuarioEstado, usuarioFechaAlta = :usuarioFechaAlta, usuarioFechaDeModificacion = :usuarioFechaDeModificacion WHERE usuarioId = :usuarioId");
 				}else{
-					//sino lo agrego con ese id (solo para migracion de datos)
-
 					// $query = ("INSERT INTO usuario (usuarioId, usuarioNombre, usuarioApellido, usuarioEmail, usuarioTelefono, usuarioFechaDeNacimiento, usuarioGenero, usuarioPassword, usuarioFotoPerfil, usuarioEstado, usuarioFechaAlta, usuarioFechaDeModificacion ) values (".$miUsuario->getId().",".$miUsuario->getNombre().", ".$miUsuario->getApellido().", ".$miUsuario->getMail().", ".$miUsuario->getTelefono().", ".$miUsuario->getFechaNacimiento().", ".$miUsuario->getGenero().", ".$miUsuario->getPassword().", ".$miUsuario->getFotoPerfil().", ".$miUsuario->getEstado().",".$miUsuario->getFechaAlta().",".$miUsuario->getFechaDeModificacion().")");
-
 					$stmt = $this->miConexion->prepare("INSERT INTO usuario (usuarioId, usuarioNombre, usuarioApellido, usuarioEmail, usuarioTelefono, usuarioFechaDeNacimiento, usuarioGenero, usuarioPassword, usuarioFotoPerfil, usuarioEstado, usuarioFechaAlta, usuarioFechaDeModificacion) values (:usuarioId, :usuarioNombre, :usuarioApellido, :usuarioEmail, :usuarioTelefono, :usuarioFechaDeNacimiento, :usuarioGenero, :usuarioPassword, :usuarioFotoPerfil, :usuarioEstado, :usuarioFechaAlta, :usuarioFechaDeModificacion)");
 				}
 				$stmt->bindValue(":usuarioId", $miUsuario->getId(), PDO::PARAM_INT);
-			}elseif ($miUsuario->getMail()) {
-					//si el usuario no tiene tiene id peor tiene mail mail
-					$usuarioId = $this->getUsuarioByMail($miUsuario->getMail())->getId();
-					// $query = ("UPDATE usuario set usuarioId = ".$usuarioId.", usuarioNombre = ".$miUsuario->getNombre().", usuarioApellido = ".$miUsuario->getApellido().", usuarioTelefono = ".$miUsuario->getTelefono().", usuarioFechaDeNacimiento = ".$miUsuario->getFechaNacimiento().", usuarioGenero = ".$miUsuario->getGenero().", usuarioPassword = ".$miUsuario->getPassword().", usuarioFotoPerfil = ".$miUsuario->getFotoPerfil().", usuarioEstado = ".$miUsuario->getEstado().", usuarioFechaAlta = ".$miUsuario->getFechaAlta().", usuarioFechaDeModificacion = ".$miUsuario->getFechaDeModificacion()." WHERE usuarioEmail = ".$miUsuario->getMail()." ");
-					$stmt = $this->miConexion->prepare("UPDATE usuario set usuarioId = :usuarioId, usuarioNombre = :usuarioNombre, usuarioApellido = :usuarioApellido, usuarioTelefono = :usuarioTelefono, usuarioFechaDeNacimiento = :usuarioFechaDeNacimiento, usuarioGenero = :usuarioGenero, usuarioPassword = :usuarioPassword, usuarioFotoPerfil = :usuarioFotoPerfil, usuarioEstado = :usuarioEstado, usuarioFechaAlta = :usuarioFechaAlta, usuarioFechaDeModificacion = :usuarioFechaDeModificacion WHERE usuarioEmail = :usuarioEmail");
-					$stmt->bindValue(":usuarioId", $usuarioId);
-				}else{
-					//sino lo agrego y se crea un id autoincremental generado por la base
-					$stmt = $this->miConexion->prepare("INSERT INTO usuario (usuarioNombre, usuarioApellido, usuarioEmail, usuarioTelefono, usuarioFechaDeNacimiento, usuarioGenero, usuarioPassword, usuarioFotoPerfil, usuarioEstado, usuarioFechaAlta, usuarioFechaDeModificacion) values (:usuarioNombre, :usuarioApellido, :usuarioEmail, :usuarioTelefono, :usuarioFechaDeNacimiento, :usuarioGenero, :usuarioPassword, :usuarioFotoPerfil, :usuarioEstado, :usuarioFechaAlta, :usuarioFechaDeModificacion)");
-				}
+			}else{
+				$stmt = $this->miConexion->prepare("INSERT INTO usuario (usuarioNombre, usuarioApellido, usuarioEmail, usuarioTelefono, usuarioFechaDeNacimiento, usuarioGenero, usuarioPassword, usuarioFotoPerfil, usuarioEstado, usuarioFechaAlta, usuarioFechaDeModificacion) values (:usuarioNombre, :usuarioApellido, :usuarioEmail, :usuarioTelefono, :usuarioFechaDeNacimiento, :usuarioGenero, :usuarioPassword, :usuarioFotoPerfil, :usuarioEstado, :usuarioFechaAlta, :usuarioFechaDeModificacion)");
+			}
 
-
-			$stmt->bindValue(":usuarioNombre", $miUsuario->getNombre(), PDO::PARAM_SRT);
-			$stmt->bindValue(":usuarioApellido", $miUsuario->getApellido(), PDO::PARAM_SRT);
-			$stmt->bindValue(":usuarioEmail", $miUsuario->getMail(), PDO::PARAM_SRT);
+			$stmt->bindValue(":usuarioNombre", $miUsuario->getNombre(), PDO::PARAM_STR);
+			$stmt->bindValue(":usuarioApellido", $miUsuario->getApellido(), PDO::PARAM_STR);
+			$stmt->bindValue(":usuarioEmail", $miUsuario->getMail(), PDO::PARAM_STR);
 			$stmt->bindValue(":usuarioTelefono", $miUsuario->getTelefono(), PDO::PARAM_INT);
-			$stmt->bindValue(":usuarioFechaDeNacimiento", $miUsuario->getFechaNacimiento(), PDO::PARAM_SRT);
-			$stmt->bindValue(":usuarioGenero", $miUsuario->getGenero(), PDO::PARAM_SRT);
-			$stmt->bindValue(":usuarioPassword", $miUsuario->getPassword(), PDO::PARAM_SRT);
-			$stmt->bindValue(":usuarioFotoPerfil", $miUsuario->getFotoPerfil(), PDO::PARAM_SRT);
+			$stmt->bindValue(":usuarioFechaDeNacimiento", $miUsuario->getFechaNacimiento());
+			$stmt->bindValue(":usuarioGenero", $miUsuario->getGenero(), PDO::PARAM_STR);
+			$stmt->bindValue(":usuarioPassword", $miUsuario->getPassword(), PDO::PARAM_STR);
+			$stmt->bindValue(":usuarioFotoPerfil", $miUsuario->getFotoPerfil(), PDO::PARAM_STR);
 			$stmt->bindValue(":usuarioEstado", $miUsuario->getEstado(), PDO::PARAM_INT);
-			$stmt->bindValue(":usuarioFechaAlta", $miUsuario->getFechaAlta(), PDO::PARAM_SRT);
-			$stmt->bindValue(":usuarioFechaDeModificacion", $miUsuario->getFechaDeModificacion(), PDO::PARAM_SRT);
+			$stmt->bindValue(":usuarioFechaAlta", $miUsuario->getFechaAlta());
+			$stmt->bindValue(":usuarioFechaDeModificacion", $miUsuario->getFechaDeModificacion());
 
 			$stmt->execute();
-			// var_dump($query);
-			// echo $stmt->debugDumpParams();
-			// echo var_export($stmt->errorInfo());
+			// var_dump($query);exit;
+			// var_dump($stmt->debugDumpParams());
 
 			if ($miUsuario->getId() == null){
 				$miUsuario->setId($this->miConexion->lastInsertId());

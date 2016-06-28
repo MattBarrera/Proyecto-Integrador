@@ -38,9 +38,14 @@
 			}elseif (!filter_var($usuario["email"], FILTER_VALIDATE_EMAIL)){
 					$errores[] = "Ingrese un Mail valido";
 					$datosUsuario [] = $usuario["email"];
-				}elseif ($this->userRepository->existeElMail($usuario["email"])){
-					$errores[] = "El Usuario ya  esta registrado";
-					$datosUsuario [] = $usuario["email"];
+				}elseif ($estado = $this->userRepository->existeElMail($usuario["email"])){
+					// var_dump($estado);exit;
+					if ($estado['usuarioEstado'] == 1) {
+						$errores[] = "El Usuario ya  esta registrado";
+						$datosUsuario [] = $usuario["email"];
+					}elseif ($estado['usuarioEstado'] == 2) {
+						header("location:reactivarProfile.php");exit;
+					}
 				}
 			//fin validacion mail
 			if (trim($usuario["telefono"]) == ""){
@@ -66,7 +71,7 @@
 			}
 			if ( !isset($usuario["terminos"])){
 				$errores[] = "Falta aceptar los terminos y condiciones";
-			}
+			}	
 				// return $errores;
 
 				// return $datosUsuario;
@@ -85,8 +90,8 @@
 			}else if ($estado = $this->userRepository->existeElMail($_POST["email"], FILTER_VALIDATE_EMAIL)){
 				if ($estado['usuarioEstado']==2) {
 					header("location:reactivarProfile.php");exit;
-				}elseif ($estado['usuarioEstado']==3) {
-					$errores[] = "El Mail esta dado de baja de forma permanente registrate con otro mail";
+				}elseif ($estado['usuarioEstado']== 3) {
+					$errores[] = "El Mail no existe ";
 				}
 			} else if (!$this->usuarioValido($_POST["email"], $_POST["password"])) {
 				$errores [] = "El usuario o la contraseña no son validos";

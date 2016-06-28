@@ -23,6 +23,7 @@
 				'Accesories'=>'Accesories',
 				'Shoes'=>'Shoes'
 	];
+	$datosUsuario = $repositorio->getUserRepository()->getUsuarioById($_SESSION['usuarioLogueado']);
 	if ($_POST) {
 		//validacion de datos
 		$errores = $validar->validarProducto($_POST)['errores'];
@@ -60,6 +61,7 @@
 							} ?>
 						</ul>
 					</div>
+					<div ></div>
 				<?php 
 					} ?>
 				<div class="halfInput">
@@ -110,11 +112,22 @@
 						 ?>
 					</select><br>
 				</div>
+				<div class="halfInput">		
+					<label for="subCategoria">Subir producto como:</label>
+
+					<select name="subCategoria" id="subCategoria">
+						<option value="<?php echo $datosUsuario->getNombre()." ".$datosUsuario->getApellido(); ?>"><?php echo $datosUsuario->getNombre()." ".$datosUsuario->getApellido(); ?></option>
+						<option value="">empresa 1</option>
+						<option value="">empresa 2</option>
+					</select><br>
+				</div>
+
 				<div class="halfInput">	
 					<label for="productoFoto">Fotos</label>
 					<input type="file" name="productoFoto" id="productoFoto" multiple><br>
 				</div>
-				<input type="submit" value="Enviar">
+				<div class="clear"></div>
+				<button type="submit">Agregar Nuevo Producto</button>
 			</form>
 	</section>
 	<?php require_once("include/footer.php") ?>

@@ -12,9 +12,9 @@
 <?php require_once("include/head.php"); ?>
  <body>
 	<?php require_once("include/header.php"); ?>
-	<section id="register">
+	<section id="productosStore">
 			<div class="title"><h2>Todos tus Productos Historicos!!</h2></div>
-			<section id="productos">
+
 			<div class="productosDestacados">			
 				<?php foreach ($productosOK as $key => $value) { ?>
 							
@@ -37,8 +37,6 @@
 			</div>
 			<div class="clear"></div>
 		</section>
-			
-	</section>
 	<?php require_once("include/footer.php") ?>
 </body>
 </html>

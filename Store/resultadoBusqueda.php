@@ -8,14 +8,19 @@
 			//redirigir a index publico
 			$titulo = "Index";
 		}
-
+		$busqueda = $_GET['busqueda'];
+		// var_dump($busqueda);exit;
 		$productos = $repositorio->getProductRepository()->getAllProducts();
 		$productosOK = $repositorio->getProductRepository()->getProductoByEstado($productos,1);
+
  ?>
 	<?php require_once("include/head.php"); ?>
 <body>
 	<?php  require_once("include/header.php");?>
 <section id="productosStore">
+	<div class="title">
+		<h2>Resultado de busqueda</h2>
+	</div>
 	<div class="productosDestacados">
 	<?php foreach ($productosOK as $key => $value) { ?>
 			<div class="productoDestacado">
@@ -33,7 +38,7 @@
 						<?php $datosUsuario = $repositorio->getUserRepository()->getUsuarioById($value->getProductoUsuarioId()); ?>
 						<p>Usuario: <a href="profileDetalle.php?userId=<?php echo $value->getProductoUsuarioId() ?>"><?php echo $datosUsuario->getNombre()." ".$datosUsuario->getApellido(); ?></a></p>
 
-						<button><a href="#" title="">Agregar al Carrito</a></button>
+						<button><a href="#" title="">Comprar</a></button>
 			</div>
 		<?php } ?>
 	</div>

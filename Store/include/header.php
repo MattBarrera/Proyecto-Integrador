@@ -3,6 +3,11 @@
 		<a href="index.php"><img src="../img/final4.png" alt="Logo" id="logo"></a>
 	<nav>
 		<ul>
+			<li>
+				<form action="resultadoBusqueda.php" method="GET" >
+					<input type="text" placeholder="busqueda" name="busqueda">
+				</form>
+			</li>
 			<?php 
 				if ($auth->estaLogueado() ) {
 					//consulto, si la foto es la Default
@@ -18,6 +23,10 @@
 						      <li><a href="myproducts.php">My Products</a></li>
 						      <li class="separator"></li>
 						      <li><a href="myHistoryPproducts.php">My Historics Products</a></li>
+						      <li class="separator"></li>
+						      <li><a href="UsuariosSeguidos.php">Usuarios Seguidos</a></li>
+						      <li class="separator"></li>
+						      <li><a href="empresas.php">Mis Empresas</a></li>
 						      <li class="separator"></li>
 						      <li><a href="myacount.php">My Acount</a></li>
 						      <li class="separator"></li>
@@ -35,6 +44,7 @@
 						  </li>');
 				}
 			?>
+			<li><a href="carrito.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Shop (0)</a></li>
 		</ul>
 	</nav>
 </header>

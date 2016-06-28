@@ -2,9 +2,14 @@
 
 	Class Redirect{
 
-		public function redirigirALogin(){
-			header("location:login.php");
-			exit;	
+		public function redirigirALogin($redirectTo = ""){
+			if ($redirectTo == "") {
+				header("location:login.php");
+				exit;
+			}
+			header("location:login.php?redirectTo=" . $redirectTo);
+			exit;
+				
 		}
 		public function redirigirAIndex(){
 			header("location:index.php");

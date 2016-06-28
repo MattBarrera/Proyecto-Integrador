@@ -46,6 +46,7 @@
 								<?php } ?>
 							</ul>
 						</div>
+						<div></div>
 				<?php } ?>
 				<div class="halfInput">
 					<label for="name">Nombre:</label>

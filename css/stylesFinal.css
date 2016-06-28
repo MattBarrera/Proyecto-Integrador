@@ -166,7 +166,6 @@ button,
 	position: relative;
 	text-align: center;
 	text-decoration: none;
-	/*text-transform: uppercase;*/
 	white-space: nowrap;
 }
 
@@ -398,7 +397,6 @@ header{
 	background-color: #312450;
 	width: 100%;
 	height: 4em;
-	/*height: initial;*/
 	position: fixed;
 	top: 0;
 	z-index: 999;
@@ -433,9 +431,7 @@ nav ul li{
     margin-left: 0.3em;
 }
 nav ul{
-	/*background-color: #493382;*/
 	display: inline-block;
-	/*background-color: #312450;*/
 	list-style:none;
 	position:relative;
 	float:right;
@@ -448,6 +444,11 @@ nav ul li{
 	margin:-0.4em 0 0 0;
 	padding:0;	
 }
+nav ul li input{
+	float: right;
+	display: inline-block;
+}
+
 nav ul a{
 	display:block;
 	text-decoration:none;
@@ -460,11 +461,9 @@ nav ul a{
 nav li{
 	text-align: center;
 	margin: auto;
-	/*background-color: #493382;*/
 	display: inline-block;
 	display: inline-block;
 	padding-left: 1em;
-	/*background-color: #312450;*/
 }
 nav li a{
 	width: auto;
@@ -474,7 +473,6 @@ nav li a{
 }
 nav li a:hover{
 	color: #b74e91 !important;
-	/*font-weight: bold;*/
 }
 
 /*dropdown*/
@@ -517,8 +515,6 @@ nav ul li ul li:hover{
 	display: none;
 	width: 30px;
 	margin:0 auto 20px;
-	/*background-color: #2F2F2F;
-	border: solid 1px #000;*/
 	padding: 5px;
 	float: right;
 	margin-right: 2em;
@@ -581,32 +577,23 @@ nav ul li ul li:hover{
 }
 /** galeria **/
 #galeria {
-     display: block;
-     /*margin: 0 0 0 15em;*/
-     padding: 0;
-     position: relative;
-     width: 100%;
-     /*height: auto;*/
-     height: 500px;
-     max-height: 500px;
-     list-style: none;
-     /*border: 10px solid #1a1a1a;*/
-     /*border-radius: 10px;*/
-     /*box-shadow: 0 0 10px #000;*/
-     overflow: hidden;
+	display: block;
+	padding: 0;
+	position: relative;
+	width: 100%;
+	height: 500px;
+	max-height: 500px;
+	list-style: none;
+	overflow: hidden;
  }
  #galeria li {
      position: absolute;
      top: 0;
      left: 0;
      width: 100%;
-    /* border-radius: 10px;*/
-     /*background-color: #1a1a1a;*/
-     /*padding: .4em;*/
  }
  #galeria li img {
      width: 100%;
-     /*border-radius: 10px;*/
      background: #1a1a1a;
  }
  #galeria .selected {
@@ -758,8 +745,9 @@ nav ul li ul li:hover{
 	display: none;
 }
 
-.modal-body {padding: 2px 16px;}
-
+.modal-body {
+	padding: 2px 16px;
+}
 
 .modal-footer {
     padding: 6px 16px;
@@ -779,7 +767,6 @@ button.closeModal{
 #store{
 	background-color: #b74e91;
 	background-image: url(../img/hombreMujer.jpg);
-	/*background-image: no-repeat;*/
 	background-size: cover;
 	background-position: center;
 	height: 600px;
@@ -787,8 +774,6 @@ button.closeModal{
 
 }
 #store button{
-	/*background-color: red;*/
-	/*line-height: 600px;*/
 	top: 300px;
 }
 .storeHombre{
@@ -799,6 +784,7 @@ button.closeModal{
 	width: 17%;
 	float: right;
 }
+
 
 /*    Productos   */
 
@@ -858,8 +844,6 @@ button.closeModal{
 	}
 }
 
-
-
 /* REGISTER */
 
 #register{
@@ -871,11 +855,8 @@ button.closeModal{
 	margin-bottom: 2em;
 }
 .error{
-	/*background-color: rgba(255, 0, 0, 0.2);*/
-	/*color: rgba(255, 0, 0, 1);*/
 	padding: 0.5em;
 	margin-bottom: 2em;
-	/*border: red solid 1px;*/
 	display: none;
 	color: #a94442;
     background-color: #f2dede;
@@ -884,6 +865,8 @@ button.closeModal{
     margin-bottom: 20px;
     border: 1px solid transparent;
     border-radius: 4px;
+	display: block !important;
+    width: 100%;
 }
 .error h3{
 	color: #a94442;
@@ -915,6 +898,32 @@ button.closeModal{
 	}
 }
 
+/*    Carrito   */
+.tituloCarrito{
+	display: inline-block;
+}
+.tableFull{
+	width: 100%;
+}
+.productoCarrito{
+	border: 1px solid black;
+}
+.productoFotoCarrito{
+	float: left;
+	display: inline-block;
+}
+.productoFotoCarrito img{
+	max-width: 100px;
+	max-height: 100px;
+}
+.productoInfoCarrito{
+	float: left;
+	display: inline-block;
+}
+.infoProducto{
+	display: inline-block;
+}
+
 /*  LOGIN */
 
 .background-color{
@@ -931,7 +940,6 @@ button.closeModal{
 	margin-bottom: 2em;
 }
 .login{
-	/*height: 100%;*/
 	width: 100%;
 	display: block;
 	width: 100%;
@@ -957,7 +965,6 @@ button.closeModal{
 		width:50%;
 	}
 	.formLogin input{
-/*		width: 50%;*/
 	}
 }
 .footerLogin {
@@ -966,28 +973,6 @@ button.closeModal{
 	width: 100%;
 }
 
-.error{
-	/*background-color: rgba(255, 0, 0, 0.2);*/
-	/*color: rgba(255, 0, 0, 1);*/
-	padding: 0.5em;
-	margin-bottom: 2em;
-	/*border: red solid 1px;*/
-	display: block !important;
-	color: #a94442;
-    background-color: #f2dede;
-    border-color: #ebccd1;
-    padding: 15px;
-    margin-bottom: 20px;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    width: 100%;
-}
-.error h3{
-	color: #a94442;
-}
-.error ul{
-	margin-left: 2em
-}
 /* SOCIAL  */
 
 #empresas p {
@@ -1010,14 +995,12 @@ button.closeModal{
 	color:#FFF;
 }
 
-
 /* FOOTER  */
 
 footer{
 	background-color: #493382;
 	padding: 2em;
 	text-align: center;
-	/*background-color: red;*/
 }
 
 #oculto1{

@@ -23,7 +23,7 @@
 			// var_dump($usuarioAGuardar);exit;
 			$repositorio->getUserRepository()->guardarUsuario($usuarioAGuardar);
 			//si esta todo ok, lo logeo
-			$redirect->redirigirALogin();
+			// $redirect->redirigirALogin();
 		}
 	}
  ?>
@@ -39,11 +39,11 @@
 						<h3>Los siguientes Campos tuvieron errores</h3>
 						<ul class="listadoErrores">
 							<?php foreach ($errores as $key => $error) {
-
 								?> <li><?php echo $error; ?></li><?php
 							} ?>
 						</ul>
 					</div>
+					<div></div>
 				<?php 
 					} ?>
 				<div class="halfInput">
