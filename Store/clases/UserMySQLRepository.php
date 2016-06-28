@@ -183,7 +183,6 @@
 			$stmt->bindValue(":usuarioId", $usuarioId, PDO::PARAM_INT);
 			$stmt->bindValue(":usuarioSeguidorId", $usuarioSeguidorId, PDO::PARAM_INT);
 			$stmt->execute();
-			
 		}
 		public function dejarDeSeguirUsuario($usuarioId, $usuarioSeguidorId){
 			$stmt = $this->miConexion->prepare("DELETE FROM seguidores WHERE usuarioId = :usuarioId and usuarioSeguidorId = :usuarioSeguidorId");
@@ -208,6 +207,9 @@
 			$stmt->execute();
 			$seguidores = $stmt->fetchAll(PDO::FETCH_ASSOC);
 			return $seguidores;
+		}
+		public function conusltaMismoSeguidor($usuarioId, $usuarioSeguidorId){
+			
 		}
 		/********************************
 			    Hash

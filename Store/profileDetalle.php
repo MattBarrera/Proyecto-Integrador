@@ -74,15 +74,18 @@
 						}?><br>
 					<br>
 				</div>
-				<div class="finalButton">
-					<?php if ($resultado == false){?>
-						<input type="hidden" name="seguir">
-						<input type="submit" value="Seguir usuario" id="btnRegistrar special">
-					<?php }else{ ?>
-						<input type="hidden" name="dejarDeSeguir">
-						<input type="submit" value="Dejar de Seguir usuario" id="btnRegistrar special">
-						<?php } ?>
-				</div>
+				<?php if ($_SESSION['usuarioLogueado'] !== $_GET["userId"]) {?>
+					<div class="finalButton">
+						<?php if ($resultado == false){?>
+							<input type="hidden" name="seguir">
+							<input type="submit" value="Seguir usuario" id="btnRegistrar special">
+						<?php }else{ ?>
+							<input type="hidden" name="dejarDeSeguir">
+							<input type="submit" value="Dejar de Seguir usuario" id="btnRegistrar special">
+							<?php } ?>
+					</div>
+				<?php } ?>
+				<div class="clear"></div>
 			</form>
 	</section>
 	<?php require_once("include/footer.php") ?>		
