@@ -13,7 +13,7 @@
 		Private $productoEstado;
 		Private $productoFechaAlta;
 		Private $productoFechaDeModificacion;
-		Private $UsuarioId;
+		Private $usuarioId;
 
 		public function getProductoId(){
 			return $this->productoId;
@@ -93,10 +93,10 @@
 		}
 
 		public function getProductoUsuarioId(){
-			return $this->UsuarioId;
+			return $this->usuarioId;
 		}
 		public function setProductoUsuarioId($usuarioId){
-			$this->UsuarioId = $UsuarioId;
+			$this->usuarioId = $usuarioId;
 		}
 		public function verProducto(Array $producto){
 			$this->productoId = $producto["id"];
@@ -109,7 +109,7 @@
 			$this->productoFoto = $producto["productoFoto"];
 			$this->productoEstado = $producto['estado'];
 			$this->productoFechaAlta = $producto['fechaAlta'];
-			$this->UsuarioId = $producto['usuarioId'];
+			$this->usuarioId = $producto['usuarioId'];
 		}
 		public static function uploadProductoFoto($userId,$productoFoto){
 			if ($_FILES["fotoProducto"]["error"] == UPLOAD_ERR_OK){

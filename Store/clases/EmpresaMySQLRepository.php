@@ -1,7 +1,7 @@
 <?php 
 	
 	require_once("EmpresaRepository.php");
-	// require_once("Empresa.php");
+	require_once("Empresa.php");
 
 	class EmpresaMySQLRepository extends EmpresaRepository {
 
@@ -11,176 +11,164 @@
 			$this->miConexion = $miConexion;
 		}
 
-		public function existeElMail($empresaMail){
-			$stmt = $this->miConexion->prepare("SELECT usuarioEstado from empresa where empresaMail = :empresaMail");
+		public function existeElMail($empresaEmail){
+			$stmt = $this->miConexion->prepare("SELECT empresaEstado from empresa where empresaEmail = :empresaEmail");
 
-			$stmt->bindValue(":empresaMail", $empresaMail, PDO::PARAM_STR);
+			$stmt->bindValue(":empresaEmail", $empresaEmail, PDO::PARAM_STR);
 
 			$stmt->execute();
-			$usuarioEstado = $stmt->fetch();
-			return $usuarioEstado;
+			$empresaEstado = $stmt->fetch();
+			return $empresaEstado;
 		}
-		public function guardarUsuario(Usuario $miUsuario){
-			if ($miUsuario->getId()){
-				if ($this->getUsuarioById($miUsuario->getId())){
-					$stmt = $this->miConexion->prepare("UPDATE usuario set usuarioNombre = :usuarioNombre, usuarioApellido = :usuarioApellido, usuarioEmail = :usuarioEmail, usuarioTelefono = :usuarioTelefono, usuarioFechaDeNacimiento = :usuarioFechaDeNacimiento, usuarioGenero = :usuarioGenero, usuarioPassword = :usuarioPassword, usuarioFotoPerfil = :usuarioFotoPerfil, usuarioEstado = :usuarioEstado, usuarioFechaAlta = :usuarioFechaAlta, usuarioFechaDeModificacion = :usuarioFechaDeModificacion WHERE usuarioId = :usuarioId");
+		public function guardarUsuario(Usuario $miEmpresa){
+			if ($miEmpresa->getEmpresaId()){
+				if ($this->getEmpresaById($miEmpresa->getEmpresaId())){
+					//si la empresa tiene id y existe ese id en la base lo modifico
+					$stmt = $this->miConexion->prepare("UPDATE empresa set empresaNombre = :empresaNombre, empresaEmail = :empresaEmail, empresaEmail = :empresaEmail, empresaCUIT = :empresaCUIT, empresaTelefono = :empresaTelefono, empresaDireccion = :empresaDireccion, empresaEstado = :empresaEstado, empresaFechaAlta = :empresaFechaAlta, empresaFechaDeModificacion = :empresaFechaDeModificacion, empresaId = :empresaId WHERE empresaId = :empresaId");
 				}else{
-					// $query = ("INSERT INTO usuario (usuarioId, usuarioNombre, usuarioApellido, usuarioEmail, usuarioTelefono, usuarioFechaDeNacimiento, usuarioGenero, usuarioPassword, usuarioFotoPerfil, usuarioEstado, usuarioFechaAlta, usuarioFechaDeModificacion ) values (".$miUsuario->getId().",".$miUsuario->getNombre().", ".$miUsuario->getApellido().", ".$miUsuario->getMail().", ".$miUsuario->getTelefono().", ".$miUsuario->getFechaNacimiento().", ".$miUsuario->getGenero().", ".$miUsuario->getPassword().", ".$miUsuario->getFotoPerfil().", ".$miUsuario->getEstado().",".$miUsuario->getFechaAlta().",".$miUsuario->getFechaDeModificacion().")");
-					$stmt = $this->miConexion->prepare("INSERT INTO usuario (usuarioId, usuarioNombre, usuarioApellido, usuarioEmail, usuarioTelefono, usuarioFechaDeNacimiento, usuarioGenero, usuarioPassword, usuarioFotoPerfil, usuarioEstado, usuarioFechaAlta, usuarioFechaDeModificacion) values (:usuarioId, :usuarioNombre, :usuarioApellido, :usuarioEmail, :usuarioTelefono, :usuarioFechaDeNacimiento, :usuarioGenero, :usuarioPassword, :usuarioFotoPerfil, :usuarioEstado, :usuarioFechaAlta, :usuarioFechaDeModificacion)");
+					//sino lo agrego con ese id (solo para migracion de datos)
+					// $query = ("INSERT INTO usuario (empresaId, empresaNombre, usuarioApellido, empresaEmail, usuarioTelefono, usuarioFechaDeNacimiento, usuarioGenero, usuarioPassword, usuarioFotoPerfil, usuarioEstado, usuarioFechaAlta, usuarioFechaDeModificacion ) values (".$miEmpresa->getEmpresaId().",".$miEmpresa->getNombre().", ".$miEmpresa->getApellido().", ".$miEmpresa->getMail().", ".$miEmpresa->getTelefono().", ".$miEmpresa->getFechaNacimiento().", ".$miEmpresa->getGenero().", ".$miEmpresa->getPassword().", ".$miEmpresa->getFotoPerfil().", ".$miEmpresa->getEstado().",".$miEmpresa->getFechaAlta().",".$miEmpresa->getFechaDeModificacion().")");
+					$stmt = $this->miConexion->prepare("INSERT INTO usuario (empresaId, empresaNombre, empresaEmail, empresaCUIT, empresaTelefono, empresaDireccion, empresaEstado, empresaFechaAlta, empresaFechaDeModificacion, usuarioId) values (:empresaId, :empresaNombre, :empresaEmail, :empresaCUIT, :empresaTelefono, :empresaDireccion, :empresaEstado, :empresaFechaAlta, :empresaFechaDeModificacion, :usuarioId)");
 				}
-				$stmt->bindValue(":usuarioId", $miUsuario->getId(), PDO::PARAM_INT);
+				$stmt->bindValue(":empresaID", $miEmpresa->getEmpresaId(), PDO::PARAM_INT);
 			}else{
-				$stmt = $this->miConexion->prepare("INSERT INTO usuario (usuarioNombre, usuarioApellido, usuarioEmail, usuarioTelefono, usuarioFechaDeNacimiento, usuarioGenero, usuarioPassword, usuarioFotoPerfil, usuarioEstado, usuarioFechaAlta, usuarioFechaDeModificacion) values (:usuarioNombre, :usuarioApellido, :usuarioEmail, :usuarioTelefono, :usuarioFechaDeNacimiento, :usuarioGenero, :usuarioPassword, :usuarioFotoPerfil, :usuarioEstado, :usuarioFechaAlta, :usuarioFechaDeModificacion)");
+				//si la empresa no tiene tiene id peor tiene mail mail
+				$stmt = $this->miConexion->prepare("INSERT INTO empresa (empresaNombre, empresaEmail, empresaCUIT, empresaTelefono, empresaDireccion, empresaEstado, empresaFechaAlta, empresaFechaDeModificacion, usuarioId) values (:empresaNombre, :empresaEmail, :empresaCUIT, :empresaTelefono, :empresaDireccion, :empresaEstado, :empresaFechaAlta, :empresaFechaDeModificacion, :usuarioId)");
 			}
 
-			$stmt->bindValue(":usuarioNombre", $miUsuario->getNombre(), PDO::PARAM_STR);
-			$stmt->bindValue(":usuarioApellido", $miUsuario->getApellido(), PDO::PARAM_STR);
-			$stmt->bindValue(":usuarioEmail", $miUsuario->getMail(), PDO::PARAM_STR);
-			$stmt->bindValue(":usuarioTelefono", $miUsuario->getTelefono(), PDO::PARAM_INT);
-			$stmt->bindValue(":usuarioFechaDeNacimiento", $miUsuario->getFechaNacimiento());
-			$stmt->bindValue(":usuarioGenero", $miUsuario->getGenero(), PDO::PARAM_STR);
-			$stmt->bindValue(":usuarioPassword", $miUsuario->getPassword(), PDO::PARAM_STR);
-			$stmt->bindValue(":usuarioFotoPerfil", $miUsuario->getFotoPerfil(), PDO::PARAM_STR);
-			$stmt->bindValue(":usuarioEstado", $miUsuario->getEstado(), PDO::PARAM_INT);
-			$stmt->bindValue(":usuarioFechaAlta", $miUsuario->getFechaAlta());
-			$stmt->bindValue(":usuarioFechaDeModificacion", $miUsuario->getFechaDeModificacion());
+			$stmt->bindValue(":empresaNombre", $miEmpresa->getEmpresaNombre(), PDO::PARAM_STR);
+			$stmt->bindValue(":empresaEmail", $miEmpresa->getEmpresaEmail(), PDO::PARAM_STR);
+			$stmt->bindValue(":empresaCUIT", $miEmpresa->getEmpresaCUIT(), PDO::PARAM_INT);
+			$stmt->bindValue(":empresaTelefono", $miEmpresa->setEmpresaTelefono(), PDO::PARAM_INT);
+			$stmt->bindValue(":empresaDireccion", $miEmpresa->getEmpresaDireccion(), PDO::PARAM_STR);
+			$stmt->bindValue(":empresaEstado", $miEmpresa->getEmpresaEstado(), PDO::PARAM_INT);
+			$stmt->bindValue(":empresaFechaAlta", $miEmpresa->getEmpresaFechaAlta(), PDO::PARAM_STR);
+			$stmt->bindValue(":empresaFechaDeModificacion", $miEmpresa->getEmpresaFechaDeModificacion(), PDO::PARAM_STR);
+			$stmt->bindValue(":usuarioId", $miEmpresa->getEmpresaempresaId(), PDO::PARAM_INT);
 
 			$stmt->execute();
 			// var_dump($query);exit;
 			// var_dump($stmt->debugDumpParams());
 
-			if ($miUsuario->getId() == null){
-				$miUsuario->setId($this->miConexion->lastInsertId());
+			if ($miEmpresa->getEmpresaId() == null){
+				$miEmpresa->setId($this->miConexion->lastInsertId());
 			}
 		}
-		public function crearUsuario(Array $miUsuario){
-			$usuarioAGuardar = [
-				"usuarioNombre" => $miUsuario['name'],
-				"usuarioApellido" => $miUsuario['lastName'],
-				"usuarioEmail" => $miUsuario['email'],
-				"usuarioTelefono" => $miUsuario['telefono'],
-				"usuarioFechaDeNacimiento" => $miUsuario['fechaNacimiento'],
-				"usuarioGenero" => $miUsuario['genero'],
-				"usuarioPassword" => password_hash($miUsuario["password"], PASSWORD_DEFAULT),
-				"usuarioFotoPerfil" => 'avatar_2x.png',
-				"usuarioEstado" => 1,
-				"usuarioFechaAlta" => date("Y-m-d H:i:s")
+		public function crearEmpresa(Array $miEmpresa){
+			$empresaAGuardar = [
+				'empresaNombre' => $miEmpresa["empresaNombre"];
+				'empresaEmail' => $miEmpresa["empresaEmail"];
+				'empresaCUIT' => $miEmpresa["empresaCUIT"];
+				'empresaTelefono' => $miEmpresa["empresaTelefono"];
+				'empresaDireccion' => $miEmpresa["empresaDireccion"];
+				'empresaEstado' => $miEmpresa['empresaEstado'];
+				'empresaFechaAlta' => $miEmpresa['empresaFechaAlta'];
 			];
-			return $this->arrayToUsuario($usuarioAGuardar);
+			return $this->arrayToEmpresa($empresaArray));
 		}
-		public function deleteProfile(Usuario $miUsuario, $opcion){
+		public function deleteEmpresa(Usuario $miEmpresa, $opcion){
 			if ($opcion == 2) {
-				$miUsuario->setEstado(2);
+				$miEmpresa->setEstado(2);
 			}else{
-				$miUsuario->setEstado(3);
+				$miEmpresa->setEstado(3);
 			}
-			$miUsuario->setFechaDeModificacion(date("Y-m-d H:i:s"));
+			$miEmpresa->setFechaDeModificacion(date("Y-m-d H:i:s"));
 
-			return $miUsuario;
+			return $miEmpresa;
 		}
-		public function getAllUsers(){
-			$stmt = $this->miConexion->prepare("SELECT * from usuario");
+		public function getAllEmpresas(){
+			$stmt = $this->miConexion->prepare("SELECT * from empresa");
 
 			$stmt->execute();
 
-			$usuariosArray = $stmt->fetchAll();
+			$empresasArray = $stmt->fetchAll();
 
-			return $this->muchosArraysAMuchosUsuarios($usuariosArray);
+			return $this->muchosArraysAMuchosUsuarios($empresasArray);
 		}
-		private function muchosArraysAMuchosUsuarios(Array $usuariosArray){
-			$usuarios = [];
+		private function muchosArraysAMuchosUsuarios(Array $empresasArray){
+			$empresas = [];
 
-			foreach ($usuariosArray as $usuarioArray) {
-				$usuarios[] = $this->arrayToUsuario($usuarioArray);
+			foreach ($empresasArray as $empresaArray) {
+				$empresas[] = $this->arrayToEmpresa($empresaArray));exit($empresaArray);
 			}
 
-			return $usuarios;
+			return $empresas;
 		}
-		private function arrayToUsuario(Array $miUsuario) {
-			$usuario = new Usuario($miUsuario);
-			$usuario->verUsuario($miUsuario);
-			return $usuario;
+		private function arrayToEmpresa($empresaArray));exit(Array $miEmpresa) {
+			$empresa = new Empresa($miEmpresa);
+			$empresa->verEmpresa($miEmpresa);
+			return $empresa;
 		}
-		public function usuarioAModificar($usuario, $usuarioAvatar){
+		public function empresaAModificar($empresa, $empresaAvatar){
 			//consulto si se envio la foto
-			if ($usuarioAvatar['name'] !== "") {
+			if ($empresaAvatar['name'] !== "") {
 					//si se envio la capturo
-					$fotoPerfil = $usuarioAvatar['name'];
+					$fotoPerfil = $empresaAvatar['name'];
 			}else{
 				//si no se envio, uso el nombre ya guardado
-				$fotoPerfil = $this->getUsuarioByMail($usuario['email'])->getFotoPerfil();
+				$fotoPerfil = $this->getEmpresaById($empresa['email'])->getFotoPerfil();
 			}
-			if ($usuario['password'] == "") {
-				$password = $this->getUsuarioByMail($usuario['email'])->getPassword();		
-			}else{
-				$password = password_hash($usuario['newPassword'],PASSWORD_DEFAULT);
-			}
-			$usuarioAModificar = [
-				"usuarioId" => $_SESSION["usuarioLogueado"],
-				"usuarioNombre" => $usuario['name'],
-				"usuarioApellido" => $usuario['lastName'],
-				"usuarioEmail" => $usuario['email'],
-				"usuarioTelefono" => $usuario['telefono'],
-				"usuarioFechaDeNacimiento" => $usuario['fechaNacimiento'],
-				"usuarioGenero" => $usuario['genero'],
-				"usuarioPassword" => $password,
-				"usuarioFotoPerfil" => $fotoPerfil,
-				"usuarioEstado" => $this->getUsuarioByMail($usuario['email'])->getEstado(),
-				"usuarioFechaAlta" => $this->getUsuarioByMail($usuario['email'])->getFechaAlta(),
-				"usuarioFechaDeModificacion" => date("Y-m-d H:i:s")
+			$empresaAModificar = [
+				"empresaId" => $_SESSION["usuarioLogueado"],
+				'empresaNombre' => $miEmpresa["empresaNombre"];
+				'empresaEmail' => $miEmpresa["empresaEmail"];
+				'empresaCUIT' => $miEmpresa["empresaCUIT"];
+				'empresaTelefono' => $miEmpresa["empresaTelefono"];
+				'empresaDireccion' => $miEmpresa["empresaDireccion"];
+				"empresaEstado" => $this->getEmpresaById($empresa['empresaEmail'])->getEmpresaEstado(),
+				"empresaFechaAlta" => $this->getEmpresaById($empresa['empresaEmail'])->getEmpresaFechaAlta(),
+				"empresaFechaDeModificacion" => date("Y-m-d H:i:s")
 			];
-			return $this->arrayToUsuario($usuarioAModificar);
+			return $this->arrayToEmpresa($empresaArray));exit($empresaAModificar);
 		}
-		public function getUsuarioByMail($usuarioEmail){
-			$stmt = $this->miConexion->prepare("SELECT * from usuario where usuarioEmail = :usuarioEmail");
+		public function getEmpresaById($empresaEmail){
+			$stmt = $this->miConexion->prepare("SELECT * from empresa where empresaEmail = :empresaEmail");
 
-			$stmt->bindValue(":usuarioEmail", $usuarioEmail);
+			$stmt->bindValue(":empresaEmail", $empresaEmail);
 
 			$stmt->execute();
 
-			$usuarioArray = $stmt->fetch();
+			$empresaArray = $stmt->fetch();
 
-			if ($usuarioArray == false)
+			if ($empresaArray == false)
 			{
 				return null;
 			}
-			// var_dump($this->arrayToUsuario($usuarioArray));exit;
-			return $this->arrayToUsuario($usuarioArray);//esta ok
+			// var_dump($this->arrayToEmpresa($empresaArray));exit($empresaArray));exit;
+			return $this->arrayToEmpresa($empresaArray));//esta ok
 		}
-		public function getUsuarioById($usuarioId){
-			// echo "hola desde getUsuarioByMail";exit;
-			$stmt = $this->miConexion->prepare("SELECT * from usuario where usuarioId = :usuarioId");
+		public function getEmpresaById($empresaId){
+			// echo "hola desde getEmpresaById";exit;
+			$stmt = $this->miConexion->prepare("SELECT * from empresa where empresaId = :empresaId");
 
-			$stmt->bindValue(":usuarioId", $usuarioId);
-
+			$stmt->bindValue(":empresaId", $empresaId);
 			$stmt->execute();
+			$empresaArray = $stmt->fetch();
 
-			$usuarioArray = $stmt->fetch();
-
-			if ($usuarioArray == false)
+			if ($empresaArray == false)
 			{
 				return null;
 			}
 
-			return $this->arrayToUsuario($usuarioArray);//esta ok
+			return $this->arrayToEmpresa($empresaArray));exit($empresaArray);//esta ok
 		}
-		public function seguirUsuario($usuarioId, $usuarioSeguidorId){
-			$stmt = $this->miConexion->prepare("INSERT INTO seguidores (usuarioId, usuarioSeguidorId) VALUES (:usuarioId, :usuarioSeguidorId)");
-			$stmt->bindValue(":usuarioId", $usuarioId, PDO::PARAM_INT);
-			$stmt->bindValue(":usuarioSeguidorId", $usuarioSeguidorId, PDO::PARAM_INT);
+		public function seguirUsuario($empresaId, $empresaSeguidorId){
+			$stmt = $this->miConexion->prepare("INSERT INTO seguidores (empresaId, usuarioSeguidorId) VALUES (:empresaId, :usuarioSeguidorId)");
+			$stmt->bindValue(":empresaId", $empresaId, PDO::PARAM_INT);
+			$stmt->bindValue(":usuarioSeguidorId", $empresaSeguidorId, PDO::PARAM_INT);
 			$stmt->execute();
 			
 		}
-		public function dejarDeSeguirUsuario($usuarioId, $usuarioSeguidorId){
-			$stmt = $this->miConexion->prepare("DELETE FROM seguidores WHERE usuarioId = :usuarioId and usuarioSeguidorId = :usuarioSeguidorId");
-			$stmt->bindValue(":usuarioId", $usuarioId, PDO::PARAM_INT);
-			$stmt->bindValue(":usuarioSeguidorId", $usuarioSeguidorId, PDO::PARAM_INT);
+		public function dejarDeSeguirUsuario($empresaId, $empresaSeguidorId){
+			$stmt = $this->miConexion->prepare("DELETE FROM seguidores WHERE empresaId = :empresaId and usuarioSeguidorId = :usuarioSeguidorId");
+			$stmt->bindValue(":empresaId", $empresaId, PDO::PARAM_INT);
+			$stmt->bindValue(":usuarioSeguidorId", $empresaSeguidorId, PDO::PARAM_INT);
 			$stmt->execute();
 		}
-		public function conusltaSeguidores($usuarioId, $usuarioSeguidorId){
-			$stmt = $this->miConexion->prepare("SELECT usuarioId FROM seguidores WHERE usuarioId = :usuarioId and usuarioSeguidorId = :usuarioSeguidorId");
-			$stmt->bindValue(":usuarioId", $usuarioId, PDO::PARAM_INT);
-			$stmt->bindValue(":usuarioSeguidorId", $usuarioSeguidorId, PDO::PARAM_INT);
+		public function conusltaSeguidores($empresaId, $empresaSeguidorId){
+			$stmt = $this->miConexion->prepare("SELECT empresaId FROM seguidores WHERE empresaId = :empresaId and usuarioSeguidorId = :usuarioSeguidorId");
+			$stmt->bindValue(":empresaId", $empresaId, PDO::PARAM_INT);
+			$stmt->bindValue(":usuarioSeguidorId", $empresaSeguidorId, PDO::PARAM_INT);
 			$stmt->execute();
 			if ($stmt->rowCount() == 0){
 				return false;
@@ -188,137 +176,12 @@
 				return true;
 			}
 		}
-		public function getAllSeguidores($usuarioId){
-			$stmt = $this->miConexion->prepare("SELECT usuarioSeguidorId FROM seguidores WHERE usuarioId = :usuarioId");
-			$stmt->bindValue(":usuarioId", $usuarioId, PDO::PARAM_INT);
+		public function getAllSeguidores($empresaId){
+			$stmt = $this->miConexion->prepare("SELECT usuarioSeguidorId FROM seguidores WHERE empresaId = :empresaId");
+			$stmt->bindValue(":empresaId", $empresaId, PDO::PARAM_INT);
 			$stmt->execute();
 			$seguidores = $stmt->fetchAll(PDO::FETCH_ASSOC);
 			return $seguidores;
-		}
-		/********************************
-			    Hash
-		*********************************/
-		public function crearHash($qtd){
-			//Under the string $Caracteres you write all the characters you want to be used to randomly generate the code. 
-			$Caracteres = 'ABCDEFGHIJKLMOPQRSTUVXWYZ0123456789'; 
-			$QuantidadeCaracteres = strlen($Caracteres); 
-			$QuantidadeCaracteres--; 
-
-			$hash=NULL; 
-			    for($x=1;$x<=$qtd;$x++){ 
-			        $Posicao = rand(0,$QuantidadeCaracteres); 
-			        $hash .= substr($Caracteres,$Posicao,1); 
-			    } 
-			return $hash; 
-		}
-		public function hashAGuardar($hash,$userId){
-			// var_dump(intval($userId));exit;
-			$hashAGuardar = [
-				'hashUserId' => intval($userId),
-				'hashHash'=> $hash,
-				'hashFechaDeAlta' => date("Y-m-d H:i:s")
-			];
-
-			if (!$this->checkHash($hashAGuardar['hashHash'])) {
-				$hashAGuardar['hashHash'] = $this->crearHash(30);
-				return $hashAGuardar;
-			}
-			return $hashAGuardar;
-		}
-		public function checkHash($hashHash){
-			// var_dump("check if exist ".$hashHash);
-			$stmt = $this->miConexion->prepare("SELECT hashHash from hash WHERE hashHash = :hashHash");
-
-			$stmt->bindValue(":hashHash", $hashHash);
-			$stmt->execute();
-
-			$stmt->fetchAll();
-
-			if ($stmt->rowCount() == 0){
-				return false;
-			}else{
-				return true;
-			}
-		}
-		public function getAllHashes(){
-			$stmt = $this->miConexion->prepare("SELECT * from hash");
-
-			$stmt->execute();
-
-			$hashesArray = $stmt->fetchAll();
-
-			return $this->muchosArraysAMuchosHases($hashesArray);
-		}
-		private function muchosArraysAMuchosHases(Array $hashesArray){
-			$hashes = [];
-
-			foreach ($hashesArray as $hashArray) {
-				$hashes[] = $this->arrayToHash($hashArray);
-			}
-
-			return $hashes;
-		}
-		private function arrayToHash(Array $miHash) {	
-			$hashArray = new Hash();
-			$hashArray->verHash($miHash);
-			return $hashArray;
-		}
-		public function guardarHash($hashAGuardar){
-			$stmt = $this->miConexion->prepare("INSERT INTO hash ( hashHash, hashUserId, hashFechaDeAlta) VALUES (:hashHash, :hashUserId, :hashFechaDeAlta) ");
-			// var_dump($hashAGuardar['hashFechaDeAlta']);exit;
-			$stmt->bindValue(":hashHash", $hashAGuardar['hashHash']);
-			$stmt->bindValue(":hashUserId", $hashAGuardar['hashUserId']);
-			$stmt->bindValue(":hashFechaDeAlta", $hashAGuardar['hashFechaDeAlta']);
-			// var_dump($stmt);exit;
-			$stmt->execute();
-		}
-		public function eliminarHashesViejos(){
-			$stmt = $this->miConexion->prepare("DELETE FROM hash 
-												WHERE TIMESTAMPDIFF(hour, hashFechaDeAlta, NOW())>12;");
-			$stmt->execute();
-		}
-		public function eliminarHash($hash){
-			$stmt = $this->miConexion->prepare("DELETE FROM hash
-												WHERE hashHash = :hashHash");
-
-			$stmt->bindValue(":hashHash", $hash);
-			$stmt->execute();
-		}
-		public function usuarioPasswordAModificar($userId, $password, $estado){
-			$usuarioParaModificar = $this->getUsuarioById($userId);
-			// var_dump($estado);exit;
-			if ($estado !== NULL) {
-				$estado = 1;
-			}else {
-				$estado = $usuarioParaModificar->getEstado();
-			}
-
-			$usuarioAModificar = [
-				"usuarioId" => $usuarioParaModificar->getId(),
-				"usuarioNombre" => $usuarioParaModificar->getNombre(),
-				"usuarioApellido" => $usuarioParaModificar->getApellido(),
-				"usuarioEmail" => $usuarioParaModificar->getMail(),
-				"usuarioTelefono" => $usuarioParaModificar->getTelefono(),
-				"usuarioFechaDeNacimiento" => $usuarioParaModificar->getFechaNacimiento(),
-				"usuarioGenero" => $usuarioParaModificar->getGenero(),
-				"usuarioPassword" => password_hash($password, PASSWORD_DEFAULT),
-				"usuarioFotoPerfil" => $usuarioParaModificar->getFotoPerfil(),
-				"usuarioEstado" => $estado,
-				"usuarioFechaAlta" => $usuarioParaModificar->getFechaAlta(),
-				"usuarioFechaDeModificacion" => date("Y-m-d H:i:s")
-			];
-			return $this->arrayToUsuario($usuarioAModificar);
-		}
-		public function getUserIdByHash($miHash){
-			// var_dump($miHash);exit;
-			$stmt = $this->miConexion->prepare("SELECT hashUserId from hash WHERE hashHash = :hashHash");
-
-			$stmt->bindValue(":hashHash", $miHash);
-			$stmt->execute();
-
-			$hashUserId = $stmt->fetch();
-			return $hashUserId;
-				
 		}
 	}
  ?>

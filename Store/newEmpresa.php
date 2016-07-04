@@ -56,15 +56,15 @@
 				</div>
 				<div class="halfInput">
 					<label for="empresaCUIT">CUIT:</label>
-					<input type="text" id="empresaCUIT" name="empresaCUIT" placeholder="Ingrese su Apellido" value="<?php if ($_POST) { echo $datosUsuario['lastName']; } ?>"><br>
+					<input type="text" id="empresaCUIT" name="empresaCUIT" placeholder="Ingrese su CUIT" value="<?php if ($_POST) { echo $datosUsuario['lastName']; } ?>"><br>
 				</div>
 				<div class="halfInput">
 					<label for="empresaTelefono">Telefono:</label>
 					<input type="tel" id="empresaTelefono" name="empresaTelefono" placeholder="Ingrese su Telefono" value="<?php if ($_POST) { echo $datosUsuario['telefono']; } ?>"><br>
 				</div>
-								<div class="halfInput">
+				<div class="halfInput">
 					<label for="empresaDireccion">Direccion:</label>
-					<input type="text" id="empresaDireccion" name="empresaDireccion" placeholder="Ingrese su Telefono" value="<?php if ($_POST) { echo $datosUsuario['telefono']; } ?>"><br>
+					<input type="text" id="empresaDireccion" name="empresaDireccion" placeholder="Ingrese su Direccion" value="<?php if ($_POST) { echo $datosUsuario['telefono']; } ?>"><br>
 				</div>
 				<div class="finalButton">
 					<input type="reset" value="Reset">
