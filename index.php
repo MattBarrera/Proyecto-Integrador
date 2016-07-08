@@ -1,7 +1,7 @@
 <?php
 	require_once("Store/config.php");
 
-	$productos = $repositorio->getProductRepository()->getAllProductsIndex();
+	$productos = $repositorio->getProductRepository()->getAllProducts();
 	$productosOK = $repositorio->getProductRepository()->getProductoByEstado($productos,1);
 	// var_dump($productosOK);exit;
 

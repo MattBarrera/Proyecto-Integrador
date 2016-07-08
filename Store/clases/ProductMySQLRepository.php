@@ -4,7 +4,11 @@
 	require_once("Producto.php");
 
 	class ProductMySQLRepository extends ProductRepository {
-
+		private $miConexion;
+		
+		public function __construct($miConexion){
+			$this->miConexion = $miConexion;
+		}
 		public function guardarProducto($productoAGuardar){
 			//ACA SE GUARDAN O ACUTIALIZAN LOS PRODUCOS IDEM A USUARIO MYSQL	
 			
