@@ -56,15 +56,15 @@
 		}
 		public function crearEmpresa(Array $miEmpresa){
 			$empresaAGuardar = [
-				'empresaNombre' => $miEmpresa["empresaNombre"];
-				'empresaEmail' => $miEmpresa["empresaEmail"];
-				'empresaCUIT' => $miEmpresa["empresaCUIT"];
-				'empresaTelefono' => $miEmpresa["empresaTelefono"];
-				'empresaDireccion' => $miEmpresa["empresaDireccion"];
-				'empresaEstado' => $miEmpresa['empresaEstado'];
-				'empresaFechaAlta' => $miEmpresa['empresaFechaAlta'];
+				'empresaNombre' => $miEmpresa["empresaNombre"],
+				'empresaEmail' => $miEmpresa["empresaEmail"],
+				'empresaCUIT' => $miEmpresa["empresaCUIT"],
+				'empresaTelefono' => $miEmpresa["empresaTelefono"],
+				'empresaDireccion' => $miEmpresa["empresaDireccion"],
+				'empresaEstado' => $miEmpresa['empresaEstado'],
+				'empresaFechaAlta' => $miEmpresa['empresaFechaAlta']
 			];
-			return $this->arrayToEmpresa($empresaArray));
+			return $this->arrayToEmpresa($empresaArray);
 		}
 		public function deleteEmpresa(Usuario $miEmpresa, $opcion){
 			if ($opcion == 2) {
@@ -89,12 +89,12 @@
 			$empresas = [];
 
 			foreach ($empresasArray as $empresaArray) {
-				$empresas[] = $this->arrayToEmpresa($empresaArray));exit($empresaArray);
+				$empresas[] = $this->arrayToEmpresa($empresaArray);
 			}
 
 			return $empresas;
 		}
-		private function arrayToEmpresa($empresaArray));exit(Array $miEmpresa) {
+		private function arrayToEmpresa($empresaArray) {
 			$empresa = new Empresa($miEmpresa);
 			$empresa->verEmpresa($miEmpresa);
 			return $empresa;
@@ -110,16 +110,16 @@
 			}
 			$empresaAModificar = [
 				"empresaId" => $_SESSION["usuarioLogueado"],
-				'empresaNombre' => $miEmpresa["empresaNombre"];
-				'empresaEmail' => $miEmpresa["empresaEmail"];
-				'empresaCUIT' => $miEmpresa["empresaCUIT"];
-				'empresaTelefono' => $miEmpresa["empresaTelefono"];
-				'empresaDireccion' => $miEmpresa["empresaDireccion"];
+				'empresaNombre' => $miEmpresa["empresaNombre"],
+				'empresaEmail' => $miEmpresa["empresaEmail"],
+				'empresaCUIT' => $miEmpresa["empresaCUIT"],
+				'empresaTelefono' => $miEmpresa["empresaTelefono"],
+				'empresaDireccion' => $miEmpresa["empresaDireccion"],
 				"empresaEstado" => $this->getEmpresaById($empresa['empresaEmail'])->getEmpresaEstado(),
 				"empresaFechaAlta" => $this->getEmpresaById($empresa['empresaEmail'])->getEmpresaFechaAlta(),
 				"empresaFechaDeModificacion" => date("Y-m-d H:i:s")
 			];
-			return $this->arrayToEmpresa($empresaArray));exit($empresaAModificar);
+			return $this->arrayToEmpresa($empresaArray);
 		}
 		public function getEmpresaById($empresaEmail){
 			$stmt = $this->miConexion->prepare("SELECT * from empresa where empresaEmail = :empresaEmail");
@@ -135,7 +135,7 @@
 				return null;
 			}
 			// var_dump($this->arrayToEmpresa($empresaArray));exit($empresaArray));exit;
-			return $this->arrayToEmpresa($empresaArray));//esta ok
+			return $this->arrayToEmpresa($empresaArray);//esta ok
 		}
 		public function getEmpresaById($empresaId){
 			// echo "hola desde getEmpresaById";exit;
@@ -150,7 +150,7 @@
 				return null;
 			}
 
-			return $this->arrayToEmpresa($empresaArray));exit($empresaArray);//esta ok
+			return $this->arrayToEmpresa($empresaArray);//esta ok
 		}
 		public function seguirUsuario($empresaId, $empresaSeguidorId){
 			$stmt = $this->miConexion->prepare("INSERT INTO seguidores (empresaId, usuarioSeguidorId) VALUES (:empresaId, :usuarioSeguidorId)");
