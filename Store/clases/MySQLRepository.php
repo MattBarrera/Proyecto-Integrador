@@ -3,7 +3,7 @@
 require_once("Repository.php");
 require_once("UserMySQLRepository.php");
 require_once("ProductMySQLRepository.php");
-require_once("EmpresaMySQLRepository.php");
+// require_once("EmpresaMySQLRepository.php");
 
 class MySQLRepository extends Repository {
 	

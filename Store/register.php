@@ -23,7 +23,7 @@
 			// var_dump($usuarioAGuardar);exit;
 			$repositorio->getUserRepository()->guardarUsuario($usuarioAGuardar);
 			//si esta todo ok, lo logeo
-			// $redirect->redirigirALogin();
+			$redirect->redirigirALogin();
 		}
 	}
  ?>
