@@ -5,6 +5,12 @@
 
 	class ProductMySQLRepository extends ProductRepository {
 
+		private $miConexion;
+		
+		public function __construct($miConexion){
+			$this->miConexion = $miConexion;
+		}
+
 		public function guardarProducto($productoAGuardar){
 			
 		}
