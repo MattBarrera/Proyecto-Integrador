@@ -47,12 +47,21 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
+                    <li><a href="{{ url('/Store') }}">Store</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
+                    {{-- <div class="input-group col-md-3">
+                        <input type="text" class="form-control" placeholder="Buscar" name="srch-term" id="srch-term">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div> --}}
+                    {{-- <form class="form-inline">
+                          <input type="text" class="form-control" placeholder="Search...">
+                    </form> --}}
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
@@ -63,8 +72,11 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="">My Acount</a></li>
+                                <li role="separator" class="divider"></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
+                            <li><a href="">Shop</a></li>
                         </li>
                     @endif
                 </ul>

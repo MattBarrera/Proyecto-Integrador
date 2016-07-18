@@ -14,7 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::auth();
-
-Route::get('/home', 'HomeController@index');
+Route::get('/Store', 'StoreController@index');
+Route::group(['middleware'=>'auth'], function(){
+	Route::auth();
+	Route::resource('Producto','ProductoController');
+	Route::resource('Empresa','EmpresaController');
+});
