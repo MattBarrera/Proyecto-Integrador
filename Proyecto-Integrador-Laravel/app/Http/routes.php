@@ -15,8 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/Store', 'StoreController@index');
+Route::auth();
+
 Route::group(['middleware'=>'auth'], function(){
-	Route::auth();
+
 	Route::resource('Producto','ProductoController');
 	Route::resource('Empresa','EmpresaController');
+	
 });
