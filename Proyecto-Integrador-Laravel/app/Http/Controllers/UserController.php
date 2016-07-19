@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Producto;
+use Hash;
+use App\User;
 use App\Genero;
-use App\Categoria;
-use App\talleHasProducto;
-use App\colorHasProducto;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
-class ProductoController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +17,7 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        $productos = Producto::all();
-
-        return view('Store.Productos', ['productos'=>$productos]);
+        //
     }
 
     /**
@@ -31,12 +27,7 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        $generos = Genero::all();
-        $categorias = Categoria::all();
-        $subCategorias = Categoria::where('categoriaIdParent','!=',"")->get();
-        dd($subCategorias);
-
-        // return view('Productos.CrearProducto',['generos'= $generos,'categorias'=> $categorias,'subCategorias'=> $subCategorias ]);
+        //
     }
 
     /**
@@ -58,13 +49,7 @@ class ProductoController extends Controller
      */
     public function show($id)
     {
-        $colores = ColorHasProducto::select('colorId')->where('productoId',$id)->get();
-        $talles = TalleHasProducto::select('talleId')->where('productoId',$id)->get();
-        $producto = Producto::find($id)->with('genero','categoria','subCategoria')->first();
-        // dd($producto);
-
-
-        return view('Productos.ShowProducto',['producto'=>$producto,'colores'=>$colores,'talles'=>$talles]);
+        //
     }
 
     /**
@@ -75,7 +60,11 @@ class ProductoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        $generos = Genero::all();
+        // dd($user);
+
+        return view('Users.MyAcount',['user'=>$user,'generos'=>$generos]);
     }
 
     /**
@@ -87,7 +76,18 @@ class ProductoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request);
+
+        $user = User::findOrFail($id);
+        
+        $user->fill($request->only('name','lastname','phone','email','gender','birthdate'));
+        $user->fill([
+            'password' => Hash::make($request->password)
+        ]);
+        $user->save();
+
+        return redirect('/Store');
+
     }
 
     /**

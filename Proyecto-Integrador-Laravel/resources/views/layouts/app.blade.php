@@ -72,7 +72,11 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="">My Acount</a></li>
+                                <li><a href="">Mis Productos</a></li>
+                                <li><a href="">Mis Productos historicos</a></li>
+                                <li><a href="">Mis Empresas</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/User/{{Auth::user()->id}}/edit">Mi Cuenta</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>

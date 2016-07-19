@@ -19,7 +19,8 @@ Route::auth();
 
 Route::group(['middleware'=>'auth'], function(){
 
-	Route::resource('Producto','ProductoController');
+	Route::resource('User','UserController');
+	Route::resource('Productos','ProductoController');
 	Route::resource('Empresa','EmpresaController');
 	
 });
