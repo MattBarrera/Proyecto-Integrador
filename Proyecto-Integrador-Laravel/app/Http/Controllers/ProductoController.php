@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Producto;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 
 class ProductoController extends Controller
@@ -15,7 +15,9 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        //
+        $productos = Producto::all();
+
+        return view('Store.Productos', $productos);
     }
 
     /**
@@ -25,7 +27,11 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        //
+        $generos = Genero::all();
+        $categorias = Categorias::all();
+        $subCategorias = Categorias::where('categoriaIdParent','!=',NULL)->get();
+
+        return view('Productos.CrearProducto',['generos'=$generos,'categorias'=>$categorias,'subCategorias'=>$subCategorias]);
     }
 
     /**

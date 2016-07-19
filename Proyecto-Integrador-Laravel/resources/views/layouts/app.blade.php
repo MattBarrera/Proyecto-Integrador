@@ -76,9 +76,9 @@
                                 <li role="separator" class="divider"></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
-                            <li><a href="">Shop</a></li>
                         </li>
                     @endif
+                            <li><a href=""><i class="fa fa-shopping-cart" aria-hidden="true"></i> Shop</a></li>
                 </ul>
             </div>
         </div>
