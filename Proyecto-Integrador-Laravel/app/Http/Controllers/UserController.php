@@ -84,6 +84,7 @@ class UserController extends Controller
         $user->fill([
             'password' => Hash::make($request->password)
         ]);
+        // dd($user);
         $user->save();
 
         return redirect('/Store');
