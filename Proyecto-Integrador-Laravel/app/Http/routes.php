@@ -16,7 +16,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/Store', 'StoreController@index');
-
 Route::auth();
 
 Route::group(['middleware'=>'auth'], function(){

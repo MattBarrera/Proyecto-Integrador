@@ -14,11 +14,7 @@ class StoreController extends Controller
      */
     public function __construct()
     {
-<<<<<<< HEAD:Proyecto-Integrador-Laravel/app/Http/Controllers/HomeController.php
-        //$this->middleware('auth');
-=======
         // $this->middleware('auth');
->>>>>>> origin/dev:Proyecto-Integrador-Laravel/app/Http/Controllers/StoreController.php
     }
 
     /**
@@ -29,9 +25,5 @@ class StoreController extends Controller
     public function index()
     {
         return view('Store.Store');
-    }
-    public function home()
-    {
-        return view('welcome');
     }
 }
