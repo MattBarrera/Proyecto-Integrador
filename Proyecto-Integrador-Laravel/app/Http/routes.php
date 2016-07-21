@@ -11,10 +11,18 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/Store', 'StoreController@index');
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+Route::group(['middleware'=>'auth'], function(){
+
+	Route::resource('User','UserController');
+	Route::resource('Productos','ProductoController');
+	Route::resource('Empresa','EmpresaController');
+
+});

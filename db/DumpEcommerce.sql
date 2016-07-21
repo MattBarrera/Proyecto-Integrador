@@ -30,7 +30,7 @@ CREATE TABLE `categoria` (
   `categoriaIdParent` varchar(45) NOT NULL DEFAULT '',
   PRIMARY KEY (`categoriaId`,`categoriaIdParent`),
   UNIQUE KEY `categoriaId_UNIQUE` (`categoriaId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +39,7 @@ CREATE TABLE `categoria` (
 
 LOCK TABLES `categoria` WRITE;
 /*!40000 ALTER TABLE `categoria` DISABLE KEYS */;
+INSERT INTO `categoria` VALUES (1,'Clothes',''),(2,'Shoes',''),(3,'Accesories',''),(4,'Pantalones','1'),(5,'Remeras','1'),(6,'Abrigos','1'),(7,'Camisa','1'),(8,'Ropa Interior','1'),(9,'Carteras','3'),(10,'Cinturones','3'),(11,'Bijouterie','3');
 /*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -52,10 +53,7 @@ DROP TABLE IF EXISTS `color`;
 CREATE TABLE `color` (
   `colorId` int(11) NOT NULL,
   `colorNombre` varchar(45) DEFAULT NULL,
-  `producto_productoId` int(11) NOT NULL,
-  PRIMARY KEY (`colorId`),
-  KEY `fk_color_producto1_idx` (`producto_productoId`),
-  CONSTRAINT `fk_color_producto1` FOREIGN KEY (`producto_productoId`) REFERENCES `producto` (`productoId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  PRIMARY KEY (`colorId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -65,7 +63,36 @@ CREATE TABLE `color` (
 
 LOCK TABLES `color` WRITE;
 /*!40000 ALTER TABLE `color` DISABLE KEYS */;
+INSERT INTO `color` VALUES (1,'Rojo'),(2,'Amarillo'),(3,'Azul'),(4,'Marron'),(5,'Violeta');
 /*!40000 ALTER TABLE `color` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `colorHasProducto`
+--
+
+DROP TABLE IF EXISTS `colorHasProducto`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `colorHasProducto` (
+  `colorId` int(11) NOT NULL,
+  `productoId` int(11) NOT NULL,
+  PRIMARY KEY (`colorId`,`productoId`),
+  KEY `fk_color_has_producto_producto1_idx` (`productoId`),
+  KEY `fk_color_has_producto_color1_idx` (`colorId`),
+  CONSTRAINT `fk_color_has_producto_color1` FOREIGN KEY (`colorId`) REFERENCES `color` (`colorId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_color_has_producto_producto1` FOREIGN KEY (`productoId`) REFERENCES `producto` (`productoId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `colorHasProducto`
+--
+
+LOCK TABLES `colorHasProducto` WRITE;
+/*!40000 ALTER TABLE `colorHasProducto` DISABLE KEYS */;
+INSERT INTO `colorHasProducto` VALUES (1,1),(2,1),(3,1);
+/*!40000 ALTER TABLE `colorHasProducto` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -85,12 +112,12 @@ CREATE TABLE `empresa` (
   `empresaFechaAlta` varchar(45) NOT NULL,
   `empresaFechaDeModificacion` varchar(45) DEFAULT NULL,
   `empresaEstado` varchar(45) NOT NULL,
-  `usuarioId` int(11) NOT NULL,
-  PRIMARY KEY (`empresaId`,`usuarioId`),
+  `users_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`empresaId`,`users_id`),
   UNIQUE KEY `empresaId_UNIQUE` (`empresaId`),
   UNIQUE KEY `empresaNombre_UNIQUE` (`empresaNombre`),
-  KEY `fk_empresa_usuario1_idx` (`usuarioId`),
-  CONSTRAINT `fk_empresa_usuario1` FOREIGN KEY (`usuarioId`) REFERENCES `usuario` (`usuarioId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_empresa_users1_idx` (`users_id`),
+  CONSTRAINT `fk_empresa_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -114,7 +141,7 @@ CREATE TABLE `genero` (
   `generoId` int(11) NOT NULL AUTO_INCREMENT,
   `generoNombre` varchar(50) NOT NULL,
   PRIMARY KEY (`generoId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,36 +150,56 @@ CREATE TABLE `genero` (
 
 LOCK TABLES `genero` WRITE;
 /*!40000 ALTER TABLE `genero` DISABLE KEYS */;
+INSERT INTO `genero` VALUES (1,'Masculino'),(2,'Femenino');
 /*!40000 ALTER TABLE `genero` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `hash`
+-- Table structure for table `migrations`
 --
 
-DROP TABLE IF EXISTS `hash`;
+DROP TABLE IF EXISTS `migrations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `hash` (
-  `hashId` int(11) NOT NULL AUTO_INCREMENT,
-  `hashHash` varchar(45) NOT NULL,
-  `hashUserId` int(11) NOT NULL,
-  `hashFechaDeAlta` datetime NOT NULL,
-  PRIMARY KEY (`hashId`),
-  UNIQUE KEY `hashHash_UNIQUE` (`hashHash`),
-  KEY `fk_hash_usuario1_idx` (`hashUserId`),
-  CONSTRAINT `fk_hash_usuario1` FOREIGN KEY (`hashUserId`) REFERENCES `usuario` (`usuarioId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+CREATE TABLE `migrations` (
+  `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `hash`
+-- Dumping data for table `migrations`
 --
 
-LOCK TABLES `hash` WRITE;
-/*!40000 ALTER TABLE `hash` DISABLE KEYS */;
-INSERT INTO `hash` VALUES (5,'185WSYBYX3HOK7G49HBECCKBLVV1T8',1,'2016-06-25 16:31:16'),(6,'OX1WDUJJF0VCZRIGFBSG6HU9ZHI3AM',1,'2016-06-25 16:32:03'),(7,'H7VZ8D7AVKWVDM2EQG0C53TGE0WYC6',1,'2016-06-25 16:32:19'),(12,'C9PBSD4QR7ADEIZRV4MF9LUS3AY91O',1,'2016-06-25 20:23:15'),(14,'MOXF78V7OOPD9KHVGT3R9BKBUWYK95',1,'2016-06-25 20:29:51'),(15,'7MAGJ2K1T3XWC6THI8QLQ27TYMZGWL',1,'2016-06-25 20:32:51');
-/*!40000 ALTER TABLE `hash` ENABLE KEYS */;
+LOCK TABLES `migrations` WRITE;
+/*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
+INSERT INTO `migrations` VALUES ('2014_10_12_000000_create_users_table',1),('2014_10_12_100000_create_password_resets_table',1);
+/*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `password_resets`
+--
+
+DROP TABLE IF EXISTS `password_resets`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `password_resets` (
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  KEY `password_resets_email_index` (`email`),
+  KEY `password_resets_token_index` (`token`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `password_resets`
+--
+
+LOCK TABLES `password_resets` WRITE;
+/*!40000 ALTER TABLE `password_resets` DISABLE KEYS */;
+/*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -169,23 +216,24 @@ CREATE TABLE `producto` (
   `productoPrecio` int(11) NOT NULL,
   `productoFoto` varchar(45) NOT NULL,
   `productoEstado` varchar(45) NOT NULL,
-  `productoFechaAlta` varchar(45) NOT NULL,
-  `productoFechaModificacion` varchar(45) DEFAULT NULL,
-  `usuario_usuarioId` int(11) NOT NULL,
-  `categoria_categoriaId` int(11) NOT NULL,
-  `empresa_empresaId` int(11) NOT NULL,
-  `genero_generoId` int(11) NOT NULL,
-  PRIMARY KEY (`productoId`),
+  `empresaId` int(11) DEFAULT NULL,
+  `generoId` int(11) NOT NULL,
+  `users_id` int(10) unsigned NOT NULL,
+  `categoriaId` int(11) NOT NULL,
+  `categoriaIdParent` varchar(45) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`productoId`,`generoId`,`users_id`,`categoriaId`,`categoriaIdParent`),
   UNIQUE KEY `productoId_UNIQUE` (`productoId`),
-  KEY `fk_producto_categoria1_idx` (`categoria_categoriaId`),
-  KEY `fk_producto_empresa_idx` (`empresa_empresaId`),
-  KEY `fk_producto_usuario1_idx` (`usuario_usuarioId`),
-  KEY `fk_producto_genero1_idx` (`genero_generoId`),
-  CONSTRAINT `fk_producto_categoria` FOREIGN KEY (`categoria_categoriaId`) REFERENCES `categoria` (`categoriaId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_producto_empresa` FOREIGN KEY (`empresa_empresaId`) REFERENCES `empresa` (`empresaId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_producto_genero1` FOREIGN KEY (`genero_generoId`) REFERENCES `genero` (`generoId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_producto_usuario1` FOREIGN KEY (`usuario_usuarioId`) REFERENCES `usuario` (`usuarioId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `fk_producto_empresa_idx` (`empresaId`),
+  KEY `fk_producto_genero1_idx` (`generoId`),
+  KEY `fk_producto_users1_idx` (`users_id`),
+  KEY `fk_producto_categoria1_idx` (`categoriaId`,`categoriaIdParent`),
+  CONSTRAINT `fk_producto_categoria1` FOREIGN KEY (`categoriaId`, `categoriaIdParent`) REFERENCES `categoria` (`categoriaId`, `categoriaIdParent`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_producto_empresa` FOREIGN KEY (`empresaId`) REFERENCES `empresa` (`empresaId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_producto_genero1` FOREIGN KEY (`generoId`) REFERENCES `genero` (`generoId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_producto_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -194,34 +242,8 @@ CREATE TABLE `producto` (
 
 LOCK TABLES `producto` WRITE;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
+INSERT INTO `producto` VALUES (1,'Remera','Remera de verano',100,'foto.jpg','1',NULL,1,1,4,'1',NULL,NULL);
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `producto_has_transaccion`
---
-
-DROP TABLE IF EXISTS `producto_has_transaccion`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `producto_has_transaccion` (
-  `transaccion_transaccionId` int(11) NOT NULL,
-  `producto_productoId` int(11) NOT NULL,
-  PRIMARY KEY (`transaccion_transaccionId`,`producto_productoId`),
-  KEY `fk_producto_has_transaccion_transaccion1_idx` (`transaccion_transaccionId`),
-  KEY `fk_producto_has_transaccion_producto1_idx` (`producto_productoId`),
-  CONSTRAINT `fk_producto_has_transaccion_producto1` FOREIGN KEY (`producto_productoId`) REFERENCES `producto` (`productoId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_producto_has_transaccion_transaccion1` FOREIGN KEY (`transaccion_transaccionId`) REFERENCES `transaccion` (`transaccionId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `producto_has_transaccion`
---
-
-LOCK TABLES `producto_has_transaccion` WRITE;
-/*!40000 ALTER TABLE `producto_has_transaccion` DISABLE KEYS */;
-/*!40000 ALTER TABLE `producto_has_transaccion` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -232,13 +254,14 @@ DROP TABLE IF EXISTS `seguidores`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `seguidores` (
-  `usuarioId` int(11) NOT NULL,
-  `usuarioSeguidorId` int(11) NOT NULL,
-  KEY `fk_usuarioId_idx` (`usuarioId`),
-  KEY `fk_usuarioSeguidoId_idx` (`usuarioSeguidorId`),
-  CONSTRAINT `fk_usuarioId` FOREIGN KEY (`usuarioId`) REFERENCES `usuario` (`usuarioId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_usuarioSeguidoId` FOREIGN KEY (`usuarioSeguidorId`) REFERENCES `usuario` (`usuarioId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `users_id` int(10) unsigned NOT NULL,
+  `users_id1` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`users_id`,`users_id1`),
+  KEY `fk_users_has_users_users2_idx` (`users_id1`),
+  KEY `fk_users_has_users_users1_idx` (`users_id`),
+  CONSTRAINT `fk_users_has_users_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_users_has_users_users2` FOREIGN KEY (`users_id1`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -247,7 +270,6 @@ CREATE TABLE `seguidores` (
 
 LOCK TABLES `seguidores` WRITE;
 /*!40000 ALTER TABLE `seguidores` DISABLE KEYS */;
-INSERT INTO `seguidores` VALUES (2,4),(1,2);
 /*!40000 ALTER TABLE `seguidores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -261,10 +283,7 @@ DROP TABLE IF EXISTS `talle`;
 CREATE TABLE `talle` (
   `talleId` int(11) NOT NULL,
   `talleNombre` varchar(45) DEFAULT NULL,
-  `producto_productoId` int(11) NOT NULL,
-  PRIMARY KEY (`talleId`),
-  KEY `fk_talle_producto1_idx` (`producto_productoId`),
-  CONSTRAINT `fk_talle_producto1` FOREIGN KEY (`producto_productoId`) REFERENCES `producto` (`productoId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  PRIMARY KEY (`talleId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -274,72 +293,74 @@ CREATE TABLE `talle` (
 
 LOCK TABLES `talle` WRITE;
 /*!40000 ALTER TABLE `talle` DISABLE KEYS */;
+INSERT INTO `talle` VALUES (1,'XS'),(2,'S'),(3,'M'),(4,'L'),(5,'XL'),(6,'XXL');
 /*!40000 ALTER TABLE `talle` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `transaccion`
+-- Table structure for table `talleHasProducto`
 --
 
-DROP TABLE IF EXISTS `transaccion`;
+DROP TABLE IF EXISTS `talleHasProducto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `transaccion` (
-  `transaccionId` int(11) NOT NULL AUTO_INCREMENT,
-  `transaccionFecha` datetime DEFAULT NULL,
-  `usuario_usuarioId` int(11) NOT NULL,
-  PRIMARY KEY (`transaccionId`,`usuario_usuarioId`),
-  KEY `fk_transaccion_usuario1_idx` (`usuario_usuarioId`),
-  CONSTRAINT `fk_transaccion_usuario1` FOREIGN KEY (`usuario_usuarioId`) REFERENCES `usuario` (`usuarioId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+CREATE TABLE `talleHasProducto` (
+  `talleId` int(11) NOT NULL,
+  `productoId` int(11) NOT NULL,
+  PRIMARY KEY (`talleId`,`productoId`),
+  KEY `fk_talle_has_producto_producto1_idx` (`productoId`),
+  KEY `fk_talle_has_producto_talle1_idx` (`talleId`),
+  CONSTRAINT `fk_talle_has_producto_talle1` FOREIGN KEY (`talleId`) REFERENCES `talle` (`talleId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_talle_has_producto_producto1` FOREIGN KEY (`productoId`) REFERENCES `producto` (`productoId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `transaccion`
+-- Dumping data for table `talleHasProducto`
 --
 
-LOCK TABLES `transaccion` WRITE;
-/*!40000 ALTER TABLE `transaccion` DISABLE KEYS */;
-/*!40000 ALTER TABLE `transaccion` ENABLE KEYS */;
+LOCK TABLES `talleHasProducto` WRITE;
+/*!40000 ALTER TABLE `talleHasProducto` DISABLE KEYS */;
+INSERT INTO `talleHasProducto` VALUES (1,1),(3,1);
+/*!40000 ALTER TABLE `talleHasProducto` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `usuario`
+-- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `usuario`;
+DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `usuario` (
-  `usuarioId` int(11) NOT NULL AUTO_INCREMENT,
-  `usuarioNombre` varchar(100) NOT NULL,
-  `usuarioApellido` varchar(100) NOT NULL,
-  `usuarioEmail` varchar(100) NOT NULL,
-  `usuarioTelefono` int(9) NOT NULL,
-  `usuarioFechaDeNacimiento` date NOT NULL,
-  `usuarioGenero` varchar(45) NOT NULL,
-  `usuarioPassword` varchar(70) NOT NULL,
-  `usuarioFotoPerfil` varchar(100) NOT NULL,
-  `usuarioEstado` int(11) NOT NULL,
-  `usuarioFechaAlta` datetime NOT NULL,
-  `usuarioFechaDeModificacion` datetime DEFAULT NULL,
-  `genero_generoId` int(11) NOT NULL,
-  PRIMARY KEY (`usuarioId`,`genero_generoId`),
-  UNIQUE KEY `usuarioEmail_UNIQUE` (`usuarioEmail`),
-  UNIQUE KEY `usuarioId_UNIQUE` (`usuarioId`),
-  KEY `fk_usuario_genero1_idx` (`genero_generoId`),
-  CONSTRAINT `fk_usuario_genero1` FOREIGN KEY (`genero_generoId`) REFERENCES `genero` (`generoId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+CREATE TABLE `users` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `lastname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `phone` int(11) NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `gender` int(11) NOT NULL,
+  `avatar` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `birthdate` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`,`gender`),
+  UNIQUE KEY `users_email_unique` (`email`),
+  KEY `fk_users_genero1_idx` (`gender`),
+  CONSTRAINT `fk_users_genero1` FOREIGN KEY (`gender`) REFERENCES `genero` (`generoId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `usuario`
+-- Dumping data for table `users`
 --
 
-LOCK TABLES `usuario` WRITE;
-/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'Manuel','Vilche','manuelvilche@gmail.com',47440109,'1991-10-19','Masculino','$2y$10$tAEfMc4RBpU.B6LK8Scv4e5h3qNeCIFt1QGHqBRVB320faB1l828S','avatar_2x.png',1,'2016-06-28 10:41:56',NULL,0),(2,'Agustina','Rabanal','agusrabanal@gmail.com',47440109,'2016-12-30','Femenino','$2y$10$9QPjVi/JEOuBl9sjYoGJTu2BUIcCXkxMQlsxeAZgTHwEM.p63ipR6','avatar_2x.png',1,'2016-05-17 16:32:28',NULL,0),(3,'Matt','Barrera','mb_herfarth@hotmail.com',47440109,'1911-12-19','Femenino','$2y$10$iWs6nRZoihdsiROR18u2lu/P2W2Z4tpi9oMbwX0z6A7o.nZGVORB2','dolfina.jpg',1,'2016-05-25 21:26:33',NULL,0),(4,'Bianca','Pallaro','biancapallaro@gmail.com',47440109,'9119-12-19','Masculino','$2y$10$QZ05n6hKjDtzp0ErQK/9suc.VSLJw3inHqPKiFL/iscJViEKIQpE2','facebook.png',1,'2016-06-04 20:21:47',NULL,0),(5,'Soporte','Vilche','soporte@manuelvilche.com',47440109,'1991-10-19','Masculino','$2y$10$.ahFosHkTbKsCMbEoHbpuOtXk22SyaQyhV/z9MjaJpdbfmfvB./5W','avatar_2x.png',1,'2016-06-09 20:54:34',NULL,0),(12,'Oscar','Vilche','vilcheoscar@gmail.com',47440109,'1956-03-01','Masculino','$2y$10$s0Gs4zfzqvuMZfwum8FKD.2qEuPLi5qAWEtAT6QekoXwSrm03OC16','avatar_2x.png',1,'2016-06-23 11:47:57',NULL,0),(13,'Oscar','Vilche','vilcheoscar@gmail.com1',47440109,'1956-03-01','Masculino','$2y$10$QXKivGVPn9ztupnNUU2.zu8rB/i6SunZcYd5ttXxpJZD6CmSWNyFu','avatar_2x.png',1,'2016-06-23 11:53:24',NULL,0);
-/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'Manuel','Vilche',47440109,'manuelvilche@gmail.com',1,'avatar_2x.png','1991-10-19','$2y$10$mBZahmKfzbV.WbECXVrqCO57xkWOGKFpFeQmME11JjKmmVG7XWW1.','1','QxWH5bkMSTdrNlTdv3EveUlstIa1XPFe617HBHRtmnvhjs5lv5E7czRPsuPe','2016-07-19 21:18:28','2016-07-19 22:08:00');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -351,4 +372,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-06-28 20:36:51
+-- Dump completed on 2016-07-19 17:26:32

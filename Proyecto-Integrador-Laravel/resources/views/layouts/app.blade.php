@@ -14,6 +14,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
+    
 
     <style>
         body {
@@ -47,12 +48,21 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
+                    <li><a href="{{ url('/Store') }}">Store</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
+                    {{-- <div class="input-group col-md-3">
+                        <input type="text" class="form-control" placeholder="Buscar" name="srch-term" id="srch-term">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div> --}}
+                    {{-- <form class="form-inline">
+                          <input type="text" class="form-control" placeholder="Search...">
+                    </form> --}}
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
@@ -63,10 +73,17 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="">Mis Productos</a></li>
+                                <li><a href="">Mis Productos historicos</a></li>
+                                <li><a href="">Mis Empresas</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/User/{{Auth::user()->id}}/edit">Mi Cuenta</a></li>
+                                <li role="separator" class="divider"></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>
                     @endif
+                            <li><a href=""><i class="fa fa-shopping-cart" aria-hidden="true"></i> Shop</a></li>
                 </ul>
             </div>
         </div>
