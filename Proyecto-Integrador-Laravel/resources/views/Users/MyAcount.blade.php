@@ -147,6 +147,20 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('password_anterior') ? ' has-error' : '' }}">
+                            <label for="avatar" class="col-md-4 control-label">Avatar</label>
+
+                            <div class="col-md-6">
+                                <input id="avatar" type="file" class="form-control" name="avatar">
+
+                                @if ($errors->has('avatar'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('avatar') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('password_anterior') ? ' has-error' : '' }}">
                             <label for="password_anterior" class="col-md-4 control-label">Password Anterior</label>
 
                             <div class="col-md-6">
@@ -164,7 +178,7 @@
                             <label for="password" class="col-md-4 control-label">Password</label>
 
                             <div class="col-md-6">
-                                <input id="password" required type="password" class="form-control" name="password">
+                                <input id="password" type="password" class="form-control" name="password">
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Hash;
+use Storage;
 use App\User;
 use App\Genero;
 use Illuminate\Http\Request;
@@ -49,7 +50,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+        
+        return view('Users.ShowUser',['user'=>$user]);
     }
 
     /**
@@ -77,15 +80,37 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         // dd($request);
-
         $user = User::findOrFail($id);
+        // dd($user->password);
+        $this->validate($request, [
+        'name' => 'required',
+        'lastname' => 'required',
+        'password_anterior'=>'required|password:' . $user->password,
+        // 'password'=>'confirmed',
         
-        $user->fill($request->only('name','lastname','phone','email','gender','birthdate'));
-        $user->fill([
-            'password' => Hash::make($request->password)
-        ]);
+    ]);
+
+        
+        $user->fill($request->only('name','lastname','phone','email','gender','birthdate','avatar'));
+        if ($request->input('password_anterior' !== "")) {
+            $user->fill([
+                'password' => Hash::make($request->password)
+            ]);   
+        }
         // dd($user);
         $user->save();
+        // Storage::put(
+        //     'avatars/'.$user->id.'/profile',
+        //     file_get_contents($request->file('avatar')->getRealPath())
+        // );
+        $path = 'assets/'.$user->id.'/profile';
+        // echo $path;
+        $file = $request->input('avatar');
+        // $name = $file->getClientOriginalName();
+        // dd($name);
+        // echo $name;
+
+        // $request->file('avatar')->move($path,$name);
 
         return redirect('/Store');
 

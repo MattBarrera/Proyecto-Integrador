@@ -1,0 +1,9 @@
+.productoFoto{
+	max-height: 200px;
+    max-width: 200px;
+}
+a.aAvatar{
+	padding-top: 6px !important;
+	padding-bottom: 6px !important;
+	/*color:red !important;*/
+}

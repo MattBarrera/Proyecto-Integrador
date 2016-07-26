@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Validator;
+use File;
+use Storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -64,7 +66,7 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $usuarioNuevo = User::create([
             'name' => $data['name'],
             'lastname' => $data['lastname'],
             'phone' => $data['phone'],
@@ -75,5 +77,14 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
             'status' => 1,
         ]);
+        //crear directorio de usuario
+        $directory = "/assets/$usuarioNuevo->id";
+        // dd($directory);
+        umask(0);
+            Storage::makeDirectory($directory);
+
+        
+        // dd($usuarioNuevo->id);
+        return $usuarioNuevo;
     }
 }

@@ -29,4 +29,9 @@ class Producto extends Model
     {
         return $this->hasOne('App\Categoria', 'categoriaId');
     }
+    public function usuario()
+    {
+        return $this->belongsTo('App\User', 'users_id');
+    }
+    
 }

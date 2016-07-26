@@ -11,10 +11,10 @@
 |
 */
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'StoreController@indexHome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 Route::get('/Store', 'StoreController@index');
 Route::auth();
 
@@ -22,6 +22,7 @@ Route::group(['middleware'=>'auth'], function(){
 
 	Route::resource('User','UserController');
 	Route::resource('Productos','ProductoController');
+	Route::get('/MyProducts','ProductoController@indexOwn');
 	Route::resource('Empresa','EmpresaController');
 
 });

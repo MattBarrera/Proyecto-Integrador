@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Producto;
 use App\Genero;
+use Auth;
 use App\Categoria;
 use App\talleHasProducto;
 use App\colorHasProducto;
@@ -34,9 +35,9 @@ class ProductoController extends Controller
         $generos = Genero::all();
         $categorias = Categoria::all();
         $subCategorias = Categoria::where('categoriaIdParent','!=',"")->get();
-        dd($subCategorias);
+        // dd($subCategorias);
 
-        // return view('Productos.CrearProducto',['generos'= $generos,'categorias'=> $categorias,'subCategorias'=> $subCategorias ]);
+        return view('Productos.CreateProducto',['generos'=> $generos,'categorias'=> $categorias,'subCategorias'=> $subCategorias]);
     }
 
     /**
@@ -58,11 +59,11 @@ class ProductoController extends Controller
      */
     public function show($id)
     {
+        // dd($id);
+        $producto = Producto::findOrFail($id);
         $colores = ColorHasProducto::select('colorId')->where('productoId',$id)->get();
         $talles = TalleHasProducto::select('talleId')->where('productoId',$id)->get();
-        $producto = Producto::find($id)->with('genero','categoria','subCategoria')->first();
         // dd($producto);
-
 
         return view('Productos.ShowProducto',['producto'=>$producto,'colores'=>$colores,'talles'=>$talles]);
     }
@@ -100,4 +101,17 @@ class ProductoController extends Controller
     {
         //
     }
+
+    /**
+     * Display a listing of the resource for user Id.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexOwn()
+    {
+        $productos = Producto::where('users_id', Auth::user()->id)->get();
+
+        return view('Productos.MyProducts', ['productos'=>$productos]);
+    }
+
 }

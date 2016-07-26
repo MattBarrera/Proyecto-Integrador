@@ -13,6 +13,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
     
 
@@ -67,17 +68,22 @@
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
                     @else
+                    <form class="navbar-form navbar-left">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search...">
+                          </div>
+                    </form>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <a href="#" class="dropdown-toggle aAvatar" data-toggle="dropdown" role="button" aria-expanded="false"><img src="/img/avatar_2x.png" class="img-circle" width="40" alt="user_avatar">
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="">Mis Productos</a></li>
-                                <li><a href="">Mis Productos historicos</a></li>
-                                <li><a href="">Mis Empresas</a></li>
+                                <li><a href="/MyProducts">My Products</a></li>
+                                <li><a href="/MyHistoricProducts">My Historic Products</a></li>
+                                <li><a href="">My Pages</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="/User/{{Auth::user()->id}}/edit">Mi Cuenta</a></li>
+                                <li><a href="/User/{{Auth::user()->id}}/edit">My Acount</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
@@ -88,8 +94,9 @@
             </div>
         </div>
     </nav>
-
     @yield('content')
+
+    {{-- @include('Includes.footer') --}}
 
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>

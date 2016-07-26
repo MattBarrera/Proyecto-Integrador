@@ -65,102 +65,31 @@
                 </div>
               </div>
             </section>
-
-
-
             <section id="productos">
               <div class="productos">
                 <center> <h2>PRODUCTOS DESTACADOS</h2> </center>
                 <div class="row">
+                @foreach($productos as $producto)
                   <div class="col-xs-6 col-sm-3" >
                     <div class="thumbnail">
-                      <img src="{{ asset('img/sweter.jpg') }}" alt="..." style="width:50%">
+                      <img src="/img/{{$producto->productoFoto}}" alt="..." class="productoFoto">
                       <div class="caption">
-                        <h3>Coni's sweter</h3>
-                        <p>$2000</p>
-                        <p><a href="#" class="btn btn-primary" role="button">Buy</a> <a href="#" class="btn btn-default" role="button">View</a></p>
+                        <h3><a href="Productos/{{$producto->productoId}}" title="Details">{{$producto->productoNombre}}</a></h3>
+                        <p>$ {{$producto->productoPrecio}}</p>
+                        @if($producto->users_id == Auth::user()->id)
+                            <p>Usuario: <a href="User/{{$producto->users_id}}/edit" title="">{{$producto->usuario->full_name}}</a></p>
+                        @else
+                            <p>Usuario: <a href="User/{{$producto->users_id}}" title="">{{$producto->usuario->full_name}}</a></p>
+                        @endif
+                        <p><a href="" class="btn btn-primary" role="button">Buy</a> {{-- <a href="#" class="btn btn-default" role="button">View</a> --}}</p>
                       </div>
                     </div>
                   </div>
-                  <div class="col-xs-6 col-sm-3">
-                    <div class="thumbnail">
-                      <img src="{{ asset('img/zapato2.jpg') }}" alt="..." style="width:50%">
-                      <div class="caption">
-                        <h3>Camila's shoes</h3>
-                        <p>$2000</p>
-                        <p><a href="#" class="btn btn-primary" role="button">Buy</a> <a href="#" class="btn btn-default" role="button">View</a></p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-xs-6 col-sm-3" style="" >
-                    <div class="thumbnail">
-                      <img src="{{ asset('img/tapado.jpg') }}" alt="..." style="width:50%">
-                      <div class="caption">
-                        <h3>Bianca's Trench</h3>
-                        <p>$2000</p>
-                        <p><a href="#" class="btn btn-primary" role="button">Buy</a> <a href="#" class="btn btn-default" role="button">View</a></p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-xs-6 col-sm-3" style="" >
-                    <div class="thumbnail">
-                      <img src="{{ asset('img/zapas.jpg') }}" alt="..." style="width:50%">
-                      <div class="caption">
-                        <h3>Daro's Shoes</h3>
-                        <p>$1800</p>
-                        <p><a href="#" class="btn btn-primary" role="button">Buy</a> <a href="#" class="btn btn-default" role="button">View</a></p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-xs-6 col-sm-3" style="" >
-                    <div class="thumbnail">
-                      <img src="{{ asset('img/zapas.jpg') }}" alt="..." style="width:50%">
-                      <div class="caption">
-                        <h3>Daro's Shoes</h3>
-                        <p>$1800</p>
-                        <p><a href="#" class="btn btn-primary" role="button">Buy</a> <a href="#" class="btn btn-default" role="button">View</a></p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-xs-6 col-sm-3" style="" >
-                    <div class="thumbnail">
-                      <img src="{{ asset('img/tapado.jpg') }}" alt="..." style="width:50%">
-                      <div class="caption">
-                        <h3>Bianca's Trench</h3>
-                        <p>$1800</p>
-                        <p><a href="#" class="btn btn-primary" role="button">Buy</a> <a href="#" class="btn btn-default" role="button">View</a></p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-xs-6 col-sm-3">
-                    <div class="thumbnail">
-                      <img src="{{ asset('img/zapato2.jpg') }}" alt="..." style="width:50%">
-                      <div class="caption">
-                        <h3>Camila's Shoes</h3>
-                        <p>$1800</p>
-                        <p><a href="#" class="btn btn-primary" role="button">Buy</a> <a href="#" class="btn btn-default" role="button">View</a></p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-xs-6 col-sm-3" style="" >
-                    <div class="thumbnail">
-                      <img src="{{ asset('img/tapado.jpg') }}" alt="..." style="width:50%">
-                      <div class="caption">
-                        <h3>Bianca's Trench</h3>
-                        <p>$1800</p>
-                        <p><a href="#" class="btn btn-primary" role="button">Buy</a> <a href="#" class="btn btn-default" role="button">View</a></p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                  @endforeach
               </div>
-
             </section>
           </main>
-          <footer>
-            <center><p> © Clothes Shop - All rights reserved </p></center>
-          </footer>
-          @endsection
+          
+@endsection
+
+

@@ -14,12 +14,11 @@
       </section>
     <div class="row">
     <div class="container">
-        <div class="aside col-md-2" style="background: #f5f5f5">
+        {{-- <div class="aside col-md-2" style="background: #f5f5f5">
             <p>Generos</p>
             <ul>
                 @foreach($generos as $genero)
                 <li><a href="">{{$genero->generoNombre}}</a></li>
-                {{-- <li><a href="">Mujer</a></li> --}}
                 @endforeach
             </ul>
             @foreach($categorias as $categoria)
@@ -32,14 +31,14 @@
                     @endif
                 @endforeach
             @endforeach
-        </div>
+        </div> --}}
         <div class="col-md-10 container">
             <section id="productos">
               <div class="productos">
                 {{-- <center> <h2>PRODUCTOS DESTACADOS</h2> </center> --}}
                 <div class="row">
                 @foreach($productos as $producto)
-                  <div class="col-xs-6 col-sm-3" >
+                  <div class="col-md-4 col-sm-3" >
                     <div class="thumbnail">
                       <img src="/img/{{$producto->productoFoto}}" alt="..." class="productoFoto">
                       <div class="caption">
