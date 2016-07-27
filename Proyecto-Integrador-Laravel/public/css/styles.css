@@ -7,3 +7,6 @@ a.aAvatar{
 	padding-bottom: 6px !important;
 	/*color:red !important;*/
 }
+.form-delete{
+  display: inline-block;
+}

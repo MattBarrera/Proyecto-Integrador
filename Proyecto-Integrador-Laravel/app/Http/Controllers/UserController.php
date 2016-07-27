@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Hash;
+use Auth;
 use Storage;
 use App\User;
 use App\Genero;
@@ -50,6 +51,11 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        if(Auth::check()){
+            if($id == Auth::user()->id){
+                return redirect('/User/'.$id.'/edit');
+            }
+        }
         $user = User::findOrFail($id);
         
         return view('Users.ShowUser',['user'=>$user]);

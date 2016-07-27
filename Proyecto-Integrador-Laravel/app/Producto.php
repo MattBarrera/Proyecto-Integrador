@@ -23,11 +23,7 @@ class Producto extends Model
     }
     public function categoria()
     {
-        return $this->hasOne('App\Categoria', 'categoriaIdParent');
-    }
-    public function subCategoria()
-    {
-        return $this->hasOne('App\Categoria', 'categoriaId');
+        return $this->belongsTo('App\Categoria', 'categoriaId', 'categoriaId');
     }
     public function usuario()
     {

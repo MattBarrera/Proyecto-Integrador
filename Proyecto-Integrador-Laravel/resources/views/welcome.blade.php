@@ -76,11 +76,8 @@
                       <div class="caption">
                         <h3><a href="Productos/{{$producto->productoId}}" title="Details">{{$producto->productoNombre}}</a></h3>
                         <p>$ {{$producto->productoPrecio}}</p>
-                        @if($producto->users_id == Auth::user()->id)
-                            <p>Usuario: <a href="User/{{$producto->users_id}}/edit" title="">{{$producto->usuario->full_name}}</a></p>
-                        @else
-                            <p>Usuario: <a href="User/{{$producto->users_id}}" title="">{{$producto->usuario->full_name}}</a></p>
-                        @endif
+                        <p>{{$producto->categoria->categoriaNombre}}</p>
+                        <p>Usuario: <a href="User/{{$producto->users_id}}" title="">{{$producto->usuario->full_name}}</a></p>
                         <p><a href="" class="btn btn-primary" role="button">Buy</a> {{-- <a href="#" class="btn btn-default" role="button">View</a> --}}</p>
                       </div>
                     </div>

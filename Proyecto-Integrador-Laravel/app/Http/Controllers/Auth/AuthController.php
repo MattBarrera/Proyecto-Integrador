@@ -83,8 +83,14 @@ class AuthController extends Controller
         umask(0);
             Storage::makeDirectory($directory);
 
-        
         // dd($usuarioNuevo->id);
+        $directory = $directory . "/assets/".$id."/profile/";
+        umask(0);
+                
+                if (!is_dir($directory) ) {
+                    mkdir($directory,0777,true);
+                }
+        
         return $usuarioNuevo;
     }
 }

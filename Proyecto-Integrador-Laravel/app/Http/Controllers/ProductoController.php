@@ -13,6 +13,10 @@ use App\Http\Requests;
 
 class ProductoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['show']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -33,7 +37,7 @@ class ProductoController extends Controller
     public function create()
     {
         $generos = Genero::all();
-        $categorias = Categoria::all();
+        $categorias = Categoria::where('categoriaIdParent', "")->get();
         $subCategorias = Categoria::where('categoriaIdParent','!=',"")->get();
         // dd($subCategorias);
 
@@ -59,11 +63,10 @@ class ProductoController extends Controller
      */
     public function show($id)
     {
-        // dd($id);
+        
         $producto = Producto::findOrFail($id);
         $colores = ColorHasProducto::select('colorId')->where('productoId',$id)->get();
         $talles = TalleHasProducto::select('talleId')->where('productoId',$id)->get();
-        // dd($producto);
 
         return view('Productos.ShowProducto',['producto'=>$producto,'colores'=>$colores,'talles'=>$talles]);
     }
@@ -99,7 +102,7 @@ class ProductoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
     }
 
     /**
@@ -109,9 +112,76 @@ class ProductoController extends Controller
      */
     public function indexOwn()
     {
-        $productos = Producto::where('users_id', Auth::user()->id)->get();
+        $productos = Producto::where('users_id', Auth::user()->id)->where('productoEstado', 1)->get();
 
         return view('Productos.MyProducts', ['productos'=>$productos]);
+    }
+    /**
+     * Display a listing of the resource for user Id where are down.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function OwnDown()
+    {
+        $productos = Producto::where('users_id', Auth::user()->id)->where('productoEstado', 2)->get();
+
+        return view('Productos.MyHistoricProducts', ['productos'=>$productos]);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function baja($id)
+    {
+        $producto = Producto::findOrFail($id);
+        $producto->productoEstado = 2;
+        $producto->save();
+        return redirect('/MyProducts');
+    }
+    /**
+     * Reactivate the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function ReActivar($id)
+    {
+        $producto = Producto::findOrFail($id);
+        $producto->productoEstado = 1;
+        $producto->save();
+        return redirect('/MyHistoricProducts');
+    }
+    /**
+     * Search the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function Busqueda(Request $request)
+    {
+        $query = $request->get('q');
+        // dd($query);
+        $categorias = Categoria::select('categoriaId')->where('categoriaNombre','like','%'.$query.'%')->get();
+        $categorias->toArray();
+        // dd($categorias);
+        $productos = Producto::where('productoNombre','like','%'.$query.'%')->orWhereIn('categoriaId',$categorias)->get();
+        // dd($productos);
+        
+        return view('Busqueda.Busqueda', ['productos'=>$productos]);
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getSubCategorias($id)
+    {
+        $subCategorias = Categoria::where('categoriaIdParent',$id)->get();
+
+        echo json_encode($subCategorias);
     }
 
 }

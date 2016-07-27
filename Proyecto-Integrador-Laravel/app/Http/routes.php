@@ -16,13 +16,20 @@ Route::get('/', 'StoreController@indexHome');
 //     return view('welcome');
 // });
 Route::get('/Store', 'StoreController@index');
+Route::get('/Busqueda','ProductoController@Busqueda');
+	// Route::resource('Productos','ProductoController',['middleware'=>'guest','only' => ['show']]);
 Route::auth();
 
 Route::group(['middleware'=>'auth'], function(){
 
-	Route::resource('User','UserController');
 	Route::resource('Productos','ProductoController');
+	Route::resource('User','UserController');
+	Route::resource('Productos/{id}/Baja','ProductoController@Baja');
+	Route::resource('Productos/{id}/ReActivar','ProductoController@ReActivar');
 	Route::get('/MyProducts','ProductoController@indexOwn');
+	Route::get('/MyHistoricProducts','ProductoController@OwnDown');
 	Route::resource('Empresa','EmpresaController');
+
+	Route::get('/getSubCategorias/{id}','ProductoController@getSubCategorias');
 
 });

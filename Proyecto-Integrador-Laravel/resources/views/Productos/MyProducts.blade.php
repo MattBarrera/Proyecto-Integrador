@@ -49,7 +49,13 @@
                         @else
                             <p>Usuario: <a href="User/{{$producto->users_id}}" title="">{{$producto->usuario->full_name}}</a></p>
                         @endif
-                        <p><a href="" class="btn btn-primary" role="button">Buy</a> {{-- <a href="#" class="btn btn-default" role="button">View</a> --}}</p>
+                        <a href="Productos/{{$producto->productoId}}/edit" class="btn btn-success" role="button">edit</a> 
+                        <form action="/Productos/{{$producto->productoId}}/Baja" method="POST" class="form-delete">
+                          {{csrf_field()}}
+                          {{-- {{ method_field('delete') }} --}}
+                          <button type="submit" class="btn btn-danger">delete</button>
+                        </form>
+                        {{-- <a href="Productos/{{$producto->productoId}}/edit" class="btn btn-danger" role="button">delete</a> --}}
                       </div>
                     </div>
                   </div>
