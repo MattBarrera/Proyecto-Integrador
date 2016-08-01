@@ -7,13 +7,13 @@ miSelectCategorias.onchange = function(evento){
 		var indiceElegidoCategoriaIdParent = miSelectCategorias.selectedIndex;
 		var categoriaIdParent = opcionesCategoriaIdParent[indiceElegidoCategoriaIdParent].value;
 
-		// console.log(categoriaIdParent);
+		console.log(categoriaIdParent);
 		var xmlhttpSubcategoria  =  new  XMLHttpRequest (); 
 		xmlhttpSubcategoria.onreadystatechange  =  function () {
 			if  (xmlhttpSubcategoria.readyState  ==  4  && xmlhttpSubcategoria.status  ==  200 ) { 
 
 				var subCategoria = JSON.parse(xmlhttpSubcategoria.responseText);
-					
+					// console.log(subCategoria);
 					var thead = document.querySelector('#categoriaId');
 					thead.innerHTML = '';
 					thead.innerHTML = thead.innerHTML + '<option value=""> Seleccionar una Sub Categoria</option>';

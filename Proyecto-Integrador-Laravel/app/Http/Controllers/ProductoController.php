@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Producto;
-use App\Genero;
 use Auth;
+use App\Producto;
+use App\Color;
+use App\User;
+use App\Talle;
+use App\Genero;
 use App\Categoria;
-use App\talleHasProducto;
-use App\colorHasProducto;
+use App\Follower;
+use App\TalleHasProducto;
+use App\ColorHasProducto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use App\Http\Requests;
 
 class ProductoController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth', ['except' => ['show']]);
-    }
     /**
      * Display a listing of the resource.
      *
@@ -36,12 +37,14 @@ class ProductoController extends Controller
      */
     public function create()
     {
+        // dd("ogla");
         $generos = Genero::all();
+        $colores = Color::all();
+        $talles = Talle::all();
         $categorias = Categoria::where('categoriaIdParent', "")->get();
-        $subCategorias = Categoria::where('categoriaIdParent','!=',"")->get();
+        // $subCategorias = Categoria::where('categoriaIdParent','!=',"")->get();
         // dd($subCategorias);
-
-        return view('Productos.CreateProducto',['generos'=> $generos,'categorias'=> $categorias,'subCategorias'=> $subCategorias]);
+        return view('Productos.CreateProducto',['generos'=> $generos,'categorias'=> $categorias,'colores'=>$colores,'talles'=>$talles]);
     }
 
     /**
@@ -52,7 +55,34 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        // $fileName = '';
+        if ($request->input('productoFoto')) {
+            $destinationPath = '/public/assets/'.Auth::user()->id.'/products/';
+            $fileName = input::file('productoFoto')->getClientOriginalName();
+            input::file('productoFoto')->move(public_path().'/assets/'.Auth::user()->id.'/products/', $fileName);
+        }else{
+            $fileName = 'artsinfoto.gif';
+        }
+        if ($request->input('empresaId') !== "") {
+            $empresaId = $request->input('empresaId');
+        }else{
+            $empresaId = "";
+        }
+
+
+        $nuevoProducto = Producto::create([
+            'productoNombre'=> $request->input('productoNombre'),
+            'productoDescripcion'=> $request->input('productoDescripcion'),
+            'productoPrecio'=> $request->input('productoPrecio'),
+            'categoriaIdParent'=> $request->input('categoriaIdParent'),
+            'categoriaId'=> $request->input('categoriaId'),
+            'productoFoto'=> $fileName,
+            'productoEstado'=> 1,
+            'users_id'=> Auth::user()->id,
+            'empresaId'=> $empresaId,
+            'generoId'=>$request->input('generoId'),
+        ]);
     }
 
     /**
@@ -62,13 +92,13 @@ class ProductoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        
-        $producto = Producto::findOrFail($id);
-        $colores = ColorHasProducto::select('colorId')->where('productoId',$id)->get();
+    {   
+        $producto = Producto::where('productoId',$id)->with('usuario','categoria')->first();
+        // $colores = ColorHasProducto::select('colorId')->where('productoId',$id)->with('color')->get();
         $talles = TalleHasProducto::select('talleId')->where('productoId',$id)->get();
+        // dd($producto);
 
-        return view('Productos.ShowProducto',['producto'=>$producto,'colores'=>$colores,'talles'=>$talles]);
+        return view('Productos.ShowProducto',['producto'=>$producto,'talles'=>$talles]);//'colores'=>$colores,
     }
 
     /**
@@ -112,7 +142,7 @@ class ProductoController extends Controller
      */
     public function indexOwn()
     {
-        $productos = Producto::where('users_id', Auth::user()->id)->where('productoEstado', 1)->get();
+        $productos = Producto::where('users_id', Auth::user()->id)->where('productoEstado', 1)->with('usuario','categoria')->get();
 
         return view('Productos.MyProducts', ['productos'=>$productos]);
     }
@@ -123,10 +153,11 @@ class ProductoController extends Controller
      */
     public function OwnDown()
     {
-        $productos = Producto::where('users_id', Auth::user()->id)->where('productoEstado', 2)->get();
+        $productos = Producto::where('users_id', Auth::user()->id)->where('productoEstado', 2)->with('usuario','categoria')->get();
 
         return view('Productos.MyHistoricProducts', ['productos'=>$productos]);
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -181,7 +212,27 @@ class ProductoController extends Controller
     {
         $subCategorias = Categoria::where('categoriaIdParent',$id)->get();
 
-        echo json_encode($subCategorias);
+        echo json_encode($subCategorias);exit;
+    }
+
+    /**
+     * Display a listing of the resource for user Id where are down.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function followersProducts()
+    {
+        $followers = Follower::select('users_id1')->where('users_id',Auth::user()->id)->get();
+        // dd($followers);
+        $users = User::whereIn('id',$followers)->get();
+        // dd($users);
+        $users_id1 = User::select('id')->whereIn('id',$followers)->get();
+        // dd($users_id1);
+        $productos = Producto::whereIn('users_id', $users_id1)->with('usuario','categoria')->get();
+        // dd($productos);
+        // $follower = Follower::where('users_id1',$id)->where('users_id',Auth::user()->id)->first();
+
+        return view('Productos.MyPersonalProducts', ['users'=>$users,'productos'=>$productos]);
     }
 
 }

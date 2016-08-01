@@ -14,6 +14,8 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    {{-- Bootstrap Multiple Select --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
     
 
@@ -74,13 +76,20 @@
                         <li><a href="{{ url('/register') }}">Register</a></li>
                     @else
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle aAvatar" data-toggle="dropdown" role="button" aria-expanded="false"><img src="/img/avatar_2x.png" class="img-circle" width="40" alt="user_avatar">
+                            <a href="#" class="dropdown-toggle aAvatar" data-toggle="dropdown" role="button" aria-expanded="false">
+                            @if(Auth::user()->avatar == 'avatar_2x.png')
+                                <img src="/img/avatar_2x.png" class="img-circle" width="40" alt="user_avatar">
                                 {{ Auth::user()->name }} <span class="caret"></span>
+                            @else
+                                <img src="/assets/{{Auth::user()->id}}/profile/{{Auth::user()->avatar}}" class="img-circle" width="40" height="40" alt="user_avatar">
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            @endif
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="/MyProducts">My Products</a></li>
                                 <li><a href="/MyHistoricProducts">My Historic Products</a></li>
+                                <li><a href="/MyPersonalProducts">My Personal Products</a></li>
                                 <li><a href="">My Pages</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="/User/{{Auth::user()->id}}/edit">My Acount</a></li>
@@ -102,6 +111,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="/js/categorias.js" type="text/javascript"></script>
+    {{-- Bootstrap Multiple Selects JS --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+    
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 </body>
 </html>

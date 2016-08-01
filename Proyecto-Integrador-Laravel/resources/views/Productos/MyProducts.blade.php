@@ -32,36 +32,31 @@
                 @endforeach
             @endforeach
         </div> --}}
-        <div class="col-md-10 container">
+        <div class="container">
             <section id="productos">
-              <div class="productos">
-                {{-- <center> <h2>PRODUCTOS DESTACADOS</h2> </center> --}}
-                <div class="row">
-                @foreach($productos as $producto)
-                  <div class="col-md-4 col-sm-3" >
-                    <div class="thumbnail">
-                      <img src="/img/{{$producto->productoFoto}}" alt="..." class="productoFoto">
-                      <div class="caption">
-                        <h3><a href="Productos/{{$producto->productoId}}" title="Details">{{$producto->productoNombre}}</a></h3>
-                        <p>$ {{$producto->productoPrecio}}</p>
-                        @if($producto->users_id == Auth::user()->id)
-                            <p>Usuario: <a href="User/{{$producto->users_id}}/edit" title="">{{$producto->usuario->full_name}}</a></p>
-                        @else
-                            <p>Usuario: <a href="User/{{$producto->users_id}}" title="">{{$producto->usuario->full_name}}</a></p>
-                        @endif
-                        <a href="Productos/{{$producto->productoId}}/edit" class="btn btn-success" role="button">edit</a> 
+          <div class="productos">
+            
+            @foreach($productos as $producto)
+              <div class="col-xs-6 col-sm-3" >
+                <div class="thumbnail">
+                  <img src="/img/{{$producto->productoFoto}}" alt="..." class="productoFoto">
+                  <div class="caption">
+                    <h3><a href="Productos/{{$producto->productoId}}" title="Details">{{$producto->productoNombre}}</a></h3>
+                    <p>$ {{$producto->productoPrecio}}</p>
+                    <p>{{$producto->categoria->categoriaNombre}}</p>
+                    <p>Usuario: <a href="User/{{$producto->users_id}}" title="">{{$producto->usuario->full_name}}</a> </p>
+                    <a href="Productos/{{$producto->productoId}}/edit" class="btn btn-success" role="button">edit</a> 
                         <form action="/Productos/{{$producto->productoId}}/Baja" method="POST" class="form-delete">
                           {{csrf_field()}}
                           {{-- {{ method_field('delete') }} --}}
                           <button type="submit" class="btn btn-danger">delete</button>
                         </form>
-                        {{-- <a href="Productos/{{$producto->productoId}}/edit" class="btn btn-danger" role="button">delete</a> --}}
-                      </div>
-                    </div>
                   </div>
-                  @endforeach
+                </div>
               </div>
-            </section>
+            @endforeach
+          </div>
+        </section>
         </div>
     </div>
     </div>

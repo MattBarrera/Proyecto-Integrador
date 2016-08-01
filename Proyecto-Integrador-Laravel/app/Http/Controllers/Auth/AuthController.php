@@ -77,19 +77,28 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
             'status' => 1,
         ]);
-        //crear directorio de usuario
-        $directory = "/assets/$usuarioNuevo->id";
-        // dd($directory);
-        umask(0);
-            Storage::makeDirectory($directory);
+        // //crear directorio de usuario
+        // $directory = "/assets/$usuarioNuevo->id";
+        // // dd($directory);
+        // umask(0);
+        //     Storage::makeDirectory($directory);
 
-        // dd($usuarioNuevo->id);
-        $directory = $directory . "/assets/".$id."/profile/";
-        umask(0);
+        // // dd($usuarioNuevo->id);
+        // // $directory = $directory . "/assets/".$id."/profile/";
+        // umask(0);
                 
-                if (!is_dir($directory) ) {
-                    mkdir($directory,0777,true);
-                }
+        //         if (!is_dir($directory) ) {
+        //             // dd($directory);
+        //             File::makeDirectory($directory, $mode = 0777, true);
+        //         }
+
+
+                // $directory = "/assets/".$usuarioNuevo->id."/profile/";
+                // umask(0);
+                
+                // if (!is_dir($directory) ) {
+                //     File::makeDirectory($directory, $mode = 0777, true);
+                // }
         
         return $usuarioNuevo;
     }

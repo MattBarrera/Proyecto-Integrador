@@ -11,25 +11,29 @@
 |
 */
 
-Route::get('/', 'StoreController@indexHome');
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-Route::get('/Store', 'StoreController@index');
-Route::get('/Busqueda','ProductoController@Busqueda');
-	// Route::resource('Productos','ProductoController',['middleware'=>'guest','only' => ['show']]);
 Route::auth();
+Route::get('/', 'StoreController@indexHome');
+Route::get('/Store', 'StoreController@index');
+	Route::get('/Follow/{id}', 'UserController@follow');
+	Route::get('/Busqueda','ProductoController@Busqueda');
 
 Route::group(['middleware'=>'auth'], function(){
-
-	Route::resource('Productos','ProductoController');
-	Route::resource('User','UserController');
-	Route::resource('Productos/{id}/Baja','ProductoController@Baja');
-	Route::resource('Productos/{id}/ReActivar','ProductoController@ReActivar');
+	// Route::resource('Productos','ProductoController');
+	Route::post('/Productos','ProductoController@store');
+	Route::get('Productos/create','ProductoController@create');
+	Route::post('Productos/{id}','ProductoController@destroy');
+	Route::post('Productos/{id}','ProductoController@update');
+	Route::post('Productos/{id}/edit','ProductoController@edit');
+	Route::get('Productos/{id}/Baja','ProductoController@Baja');
+	Route::get('Productos/{id}/ReActivar','ProductoController@ReActivar');
 	Route::get('/MyProducts','ProductoController@indexOwn');
 	Route::get('/MyHistoricProducts','ProductoController@OwnDown');
-	Route::resource('Empresa','EmpresaController');
-
+	Route::get('/MyPersonalProducts','ProductoController@followersProducts');
 	Route::get('/getSubCategorias/{id}','ProductoController@getSubCategorias');
 
+	Route::resource('User','UserController');
+	Route::resource('Empresa','EmpresaController');
 });
+
+	Route::get('Productos/{id}','ProductoController@Show');
+

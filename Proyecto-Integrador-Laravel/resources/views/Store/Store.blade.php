@@ -14,46 +14,51 @@
       </section>
     <div class="row">
     <div class="container">
-        <div class="aside col-md-2" style="background: #f5f5f5">
-            <p>Generos</p>
+      <div class=" col-md-2" style="background: #f5f5f5">
+        <p>Generos</p>
+        <ul>
+          @foreach($generos as $genero)
+            <li><a href="">{{$genero->generoNombre}}</a></li>
+          @endforeach
+        </ul>
+        @foreach($categorias as $categoria)
+          <p><a href="">{{$categoria->categoriaNombre}}</a></p>
+          @foreach($categoria->subcategorias as $subCategoria)
             <ul>
-                @foreach($generos as $genero)
-                <li><a href="">{{$genero->generoNombre}}</a></li>
-                {{-- <li><a href="">Mujer</a></li> --}}
-                @endforeach
+              <li><a href="">{{$subCategoria->categoriaNombre}}</a></li>
             </ul>
-            @foreach($categorias as $categoria)
-            <p><a href="">{{$categoria->categoriaNombre}}</a></p>
-                @foreach($categoria->subcategorias as $subCategoria)
-                    <ul>
-                        <li><a href="">{{$subCategoria->categoriaNombre}}</a></li>
-                    </ul>
-                   {{--  @endif --}}
-                @endforeach
-            @endforeach
-        </div>
-        <div class="col-md-10 container">
-            <section id="productos">
-              <div class="productos">
-                {{-- <center> <h2>PRODUCTOS DESTACADOS</h2> </center> --}}
-                <div class="row">
-                @foreach($productos as $producto)
-                  <div class="col-xs-6 col-sm-3" >
-                    <div class="thumbnail">
-                      <img src="/img/{{$producto->productoFoto}}" alt="..." class="productoFoto">
-                      <div class="caption">
-                        <h3><a href="Productos/{{$producto->productoId}}" title="Details">{{$producto->productoNombre}}</a></h3>
-                        <p>$ {{$producto->productoPrecio}}</p>
-                        <p>{{$producto->categoria->categoriaNombre}}</p>
-                        <p>Usuario: <a href="User/{{$producto->users_id}}" title="">{{$producto->usuario->full_name}}</a></p>
-                        <p><a href="" class="btn btn-primary" role="button">Buy</a> {{-- <a href="#" class="btn btn-default" role="button">View</a> --}}</p>
-                      </div>
-                    </div>
+          @endforeach
+        @endforeach
+      </div>
+      <div class="col-md-10 container">
+        <section id="productos">
+          <div class="productos">
+            {{-- <center> <h2>PRODUCTOS DESTACADOS</h2> </center> --}}
+            <div class="row">
+            @foreach($productos as $producto)
+              <div class="col-xs-6 col-sm-3" >
+                <div class="thumbnail">
+                  @if($producto->productoFoto !== 'artsinfoto.gif')
+                    <img src="/assets/{{$producto->users_id}}/products/{{$producto->productoFoto}}" alt="" class="productoFoto">
+                  @else
+                    <img src="/assets/{{$producto->productoFoto}}" alt="" class="productoFoto">
+                  @endif
+                  <div class="caption">
+                    <h3><a href="Productos/{{$producto->productoId}}" title="Details">{{$producto->productoNombre}}</a></h3>
+                    <p>$ {{$producto->productoPrecio}}</p>
+            {{-- {{dd($producto)}} --}}
+                    <p>
+                      {{-- {{$producto->categoria->categoriaIdParent}} --}}
+                    </p>
+                    <p>Usuario: <a href="User/{{$producto->users_id}}" title="">{{$producto->usuario->full_name}}</a></p>
+                    <p><a href="" class="btn btn-primary" role="button">Buy</a></p>
                   </div>
-                  @endforeach
+                </div>
               </div>
-            </section>
-        </div>
+              @endforeach
+          </div>
+        </section>
+      </div>
     </div>
     </div>
 </div>

@@ -9,13 +9,31 @@ class Producto extends Model
     protected $table = 'producto';
     protected $primaryKey = "productoId";
 
-    public function talleHasProducto()
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'productoNombre',
+        'productoDescripcion',
+        'productoPrecio',
+        'categoriaIdParent',
+        'categoriaId',
+        'productoFoto',
+        'productoEstado',
+        'users_id',
+        'empresaId',
+        'generoId',
+    ];
+
+    // public function talle()
+    // {
+    //     return $this->hasManyThrough('App\Talle', 'talleHasProducto','talleId','productoId');
+    // }
+    public function color()
     {
-        return $this->belongsToMany('App\Talle', 'talleHasProducto','talleId','productoId');
-    }
-    public function colorHasProducto()
-    {
-        return $this->belongsToMany('App\Color', 'colorHasProducto','colorId','productoId');
+        return $this->belongsToMany('App\Color','colorHasProducto','productoId','colorId');
     }
     public function genero()
     {

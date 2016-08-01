@@ -44,7 +44,7 @@
                       <div class="caption">
                         <h3><a href="Productos/{{$producto->productoId}}" title="Details">{{$producto->productoNombre}}</a></h3>
                         <p>$ {{$producto->productoPrecio}}</p>
-                        <p>{{$producto->subCategoria->categoriaNombre}}</p>
+                        {{-- <p>{{$producto->subCategoria->categoriaNombre}}</p> --}}
                         @if($producto->users_id == Auth::user()->id)
                             <p>Usuario: <a href="User/{{$producto->users_id}}/edit" title="">{{$producto->usuario->full_name}}</a></p>
                         @else

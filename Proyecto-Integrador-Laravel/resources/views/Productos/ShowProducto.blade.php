@@ -20,16 +20,18 @@
                 <h3>Precio:</h3>
                 <p>$ {{$producto->productoPrecio}}</p>
                 {{-- {{dd(count($talles))>0}} --}}
-              @if(count($colores)>0) 
+              {{-- @if(count($colores)>0)  --}}
               <!--precio del producto con el titulo-->
                 <h3>Color:</h3>
-                @foreach($colores as $color)
+                {{-- {{dd($producto)}} --}}
+                {{-- @foreach($producto->colores as $color) --}}
+                {{-- {{dd($color)}} --}}
                   <div class="inline">
-                      <input type="radio" id="color1" name="color" value="{{$color->colorId}}">
-                      <label for="color1">{{$color->colorNombre}}</label>
+                      {{-- <input type="radio" id="color1" name="color" value="{{$color->colorId}}"> --}}
+                      {{-- <label for="color1">{{$color->color->colorNombre}}</label> --}}
                   </div>
-                @endforeach
-              @endif
+                {{-- @endforeach --}}
+              {{-- @endif --}}
 
               @if(count($talles)>0)
               <!--precio del producto con el titulo-->

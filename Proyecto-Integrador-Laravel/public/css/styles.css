@@ -10,3 +10,10 @@ a.aAvatar{
 .form-delete{
   display: inline-block;
 }
+.btn-follower{
+	margin-top: 25px;
+    margin-bottom: 10px;
+}
+.btn-follower a{
+	color: white;
+}
