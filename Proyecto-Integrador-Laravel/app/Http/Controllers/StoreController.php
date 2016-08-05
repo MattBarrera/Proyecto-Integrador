@@ -21,7 +21,7 @@ class StoreController extends Controller
         $categorias = Categoria::where('categoriaIdParent', "")->get();
         // $subCategorias = Categoria::where('categoriaIdParent', "!=", "")->get();
         // dd($subCategorias);
-        $productos = Producto::with('categoria')->get();
+        $productos = Producto::with('categoria','usuario')->get();
         // dd($productos);
 
         return view('Store.Store',['productos'=>$productos,'generos'=>$generos,'categorias'=>$categorias,]);//'subCategorias'=>$subCategorias

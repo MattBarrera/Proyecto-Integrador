@@ -96,6 +96,8 @@ class ProductoController extends Controller
     public function show($id)
     {   
         $producto = Producto::where('productoId',$id)->with('usuario','categoria','talle','color')->first();
+        $colores = Color::all();
+        $talles = Talle::all();
         //dd($producto);
 
         return view('Productos.ShowProducto',['producto'=>$producto]);//'colores'=>$colores,'talles'=>$talles
@@ -200,7 +202,7 @@ class ProductoController extends Controller
             $query = $request->get('q');
             // dd($query);
             $generos = Genero::all();
-            $categorias = Categoria::where('categoriaIdParent', )->get();
+            $categorias = Categoria::where('categoriaIdParent', "")->get();
             $categoriasQuery = Categoria::select('categoriaId')->where('categoriaNombre','like','%'.$query.'%')->get();
             // dd($categoriasQuery);
             $categoriasQuery->toArray();
@@ -217,6 +219,7 @@ class ProductoController extends Controller
             $generos = Genero::all();
             $categorias = Categoria::where('categoriaIdParent', "")->get();
             $productos = Producto::where('categoriaId',$query)->get();
+            // $categorias = [];
             return view('Busqueda.Busqueda', ['productos'=>$productos,'generos'=>$generos,'categorias'=>$categorias]);
         }elseif ($query = $request->get('gen')) {
             $query = $request->get('gen');
