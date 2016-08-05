@@ -17,8 +17,8 @@
     {{-- Bootstrap Multiple Select --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
-    
-    
+
+
     <style>
         body {
             font-family: 'Lato';
@@ -44,7 +44,9 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Clothes Shop
+                  <div class="logo">
+                    <img src="img/.png" alt=""> Clothes Shop
+                  </div>
                 </a>
             </div>
 
@@ -113,7 +115,7 @@
     <script src="/js/categorias.js" type="text/javascript"></script>
     {{-- Bootstrap Multiple Selects JS --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
-    
+
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 </body>
 </html>

@@ -12,7 +12,7 @@
           <li class="active">Data</li> --}}
         </ol>
       </section>
-    <div class="row">
+    <div class="row" style="margin-bottom:20px;">
     <div class="container">
       <div class=" col-md-2" style="background: #f5f5f5">
         <p>Generos</p>
