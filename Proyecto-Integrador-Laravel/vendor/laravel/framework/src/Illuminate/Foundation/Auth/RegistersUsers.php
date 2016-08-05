@@ -2,7 +2,6 @@
 
 namespace Illuminate\Foundation\Auth;
 
-use App\Genero;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,13 +26,11 @@ trait RegistersUsers
      */
     public function showRegistrationForm()
     {
-        $generos = Genero::all();
-
         if (property_exists($this, 'registerView')) {
             return view($this->registerView);
         }
 
-        return view('auth.register',['generos'=>$generos]);
+        return view('auth.register');
     }
 
     /**
