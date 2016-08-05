@@ -20,19 +20,13 @@
         <section id="productos">
           <div class="productos">
             @foreach($productos as $producto)
-            @if($producto->users_id == $user->id)
-              <div class="col-xs-6 col-sm-3" >
-                <div class="thumbnail">
-                  <img src="/img/{{$producto->productoFoto}}" alt="" class="productoFoto">
-                  <div class="caption">
-                    <h3><a href="Productos/{{$producto->productoId}}" title="Details">{{$producto->productoNombre}}</a></h3>
-                    <p>$ {{$producto->productoPrecio}}</p>
-                    <p>{{$producto->categoria->categoriaNombre}}</p>
-                    <p>Usuario: <a href="User/{{$producto->users_id}}" title="">{{$producto->usuario->full_name}}</a> </p>
+              @if($producto->users_id == $user->id)
+                <div class="col-xs-6 col-sm-3" >
+                  @include('Includes.producto', ['producto' => $producto])
                     <p><a href="" class="btn btn-primary" role="button">Buy</a></p>
-                  </div>
-                </div>
-              </div>
+                    </div> {{-- end caption inside the include--}}
+                  </div> {{-- end thumbnail inside the include--}}
+                </div> {{-- end col-xs-6 col-sm-3 --}}
               @endif
             @endforeach
           </div>

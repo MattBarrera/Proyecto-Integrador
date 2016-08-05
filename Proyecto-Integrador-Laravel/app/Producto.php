@@ -33,11 +33,15 @@ class Producto extends Model
     // }
     public function color()
     {
-        return $this->belongsToMany('App\Color','colorHasProducto','productoId','colorId');
+        return $this->hasMany('App\ColorHasProducto','colorId','productoId');
     }
     public function genero()
     {
         return $this->hasOne('App\Genero', 'generoId');
+    }
+    public function talle()
+    {
+        return $this->hasMany('App\TalleHasProducto','talleId', 'productoId');
     }
     public function categoria()
     {

@@ -17,3 +17,10 @@ a.aAvatar{
 .btn-follower a{
 	color: white;
 }
+.activeFilter{
+	text-decoration: underline;
+}
+.social{
+	width:30px;
+	height: 40px;
+}

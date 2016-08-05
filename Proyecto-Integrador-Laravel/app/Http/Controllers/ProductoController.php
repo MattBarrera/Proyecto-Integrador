@@ -83,6 +83,8 @@ class ProductoController extends Controller
             'empresaId'=> $empresaId,
             'generoId'=>$request->input('generoId'),
         ]);
+
+        return redirect('/MyProducts');
     }
 
     /**
@@ -93,12 +95,10 @@ class ProductoController extends Controller
      */
     public function show($id)
     {   
-        $producto = Producto::where('productoId',$id)->with('usuario','categoria')->first();
-        // $colores = ColorHasProducto::select('colorId')->where('productoId',$id)->with('color')->get();
-        $talles = TalleHasProducto::select('talleId')->where('productoId',$id)->get();
-        // dd($producto);
+        $producto = Producto::where('productoId',$id)->with('usuario','categoria','talle','color')->first();
+        //dd($producto);
 
-        return view('Productos.ShowProducto',['producto'=>$producto,'talles'=>$talles]);//'colores'=>$colores,
+        return view('Productos.ShowProducto',['producto'=>$producto]);//'colores'=>$colores,'talles'=>$talles
     }
 
     /**
@@ -193,15 +193,41 @@ class ProductoController extends Controller
      */
     public function Busqueda(Request $request)
     {
-        $query = $request->get('q');
-        // dd($query);
-        $categorias = Categoria::select('categoriaId')->where('categoriaNombre','like','%'.$query.'%')->get();
-        $categorias->toArray();
-        // dd($categorias);
-        $productos = Producto::where('productoNombre','like','%'.$query.'%')->orWhereIn('categoriaId',$categorias)->get();
-        // dd($productos);
-        
-        return view('Busqueda.Busqueda', ['productos'=>$productos]);
+        // dd(substr($request->getQueryString(),0,1));
+        // dd($request);
+       if (substr($request->getQueryString(),0,1) == 'q') {
+            // echo 'string';
+            $query = $request->get('q');
+            // dd($query);
+            $generos = Genero::all();
+            $categorias = Categoria::where('categoriaIdParent', )->get();
+            $categoriasQuery = Categoria::select('categoriaId')->where('categoriaNombre','like','%'.$query.'%')->get();
+            // dd($categoriasQuery);
+            $categoriasQuery->toArray();
+            $productos = Producto::where('productoNombre','like','%'.$query.'%')->orwhereIn('categoriaId',$categoriasQuery)->get();
+            // dd($productos);
+            $sugerencias = "";
+            if(count($productos) == ""){
+                $sugerencias = Producto::take(3)->get();
+            }
+            return view('Busqueda.Busqueda', ['productos'=>$productos,'generos'=>$generos,'categorias'=>$categorias,'sugerencias'=>$sugerencias]);
+        }elseif ($query = $request->get('cat')) {
+            $query = $request->get('cat');
+            // dd($query);
+            $generos = Genero::all();
+            $categorias = Categoria::where('categoriaIdParent', "")->get();
+            $productos = Producto::where('categoriaId',$query)->get();
+            return view('Busqueda.Busqueda', ['productos'=>$productos,'generos'=>$generos,'categorias'=>$categorias]);
+        }elseif ($query = $request->get('gen')) {
+            $query = $request->get('gen');
+            // dd($query);
+            $generos = Genero::all();
+            $categorias = Categoria::where('categoriaIdParent', "")->get();
+            $productos = Producto::where('generoId',$query)->get();
+            // dd($productos);
+            return view('Busqueda.Busqueda', ['productos'=>$productos,'generos'=>$generos,'categorias'=>$categorias]);
+        }
+
     }
     /**
      * Display a listing of the resource.

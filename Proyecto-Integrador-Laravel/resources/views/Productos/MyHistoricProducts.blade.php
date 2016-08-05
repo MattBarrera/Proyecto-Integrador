@@ -38,29 +38,19 @@
                 {{-- <center> <h2>PRODUCTOS DESTACADOS</h2> </center> --}}
                 <div class="row">
                 @foreach($productos as $producto)
-                  <div class="col-md-4 col-sm-3" >
-                    <div class="thumbnail">
-                      <img src="/img/{{$producto->productoFoto}}" alt="..." class="productoFoto">
-                      <div class="caption">
-                        <h3><a href="Productos/{{$producto->productoId}}" title="Details">{{$producto->productoNombre}}</a></h3>
-                        <p>$ {{$producto->productoPrecio}}</p>
-                        {{-- <p>{{$producto->subCategoria->categoriaNombre}}</p> --}}
-                        @if($producto->users_id == Auth::user()->id)
-                            <p>Usuario: <a href="User/{{$producto->users_id}}/edit" title="">{{$producto->usuario->full_name}}</a></p>
-                        @else
-                            <p>Usuario: <a href="User/{{$producto->users_id}}" title="">{{$producto->usuario->full_name}}</a></p>
-                        @endif
-                        <a href="Productos/{{$producto->productoId}}/edit" class="btn btn-primary" role="button">edit</a> 
-                        <form action="/Productos/{{$producto->productoId}}/ReActivar" method="POST" class="form-delete">
-                          {{csrf_field()}}
-                          {{-- {{ method_field('delete') }} --}}
-                          <button type="submit" class="btn btn-success">Re activar</button>
-                        </form>
-                        {{-- <a href="Productos/{{$producto->productoId}}/edit" class="btn btn-danger" role="button">delete</a> --}}
-                      </div>
-                    </div>
-                  </div>
-                  @endforeach
+                <div class="col-xs-6 col-sm-3" >
+                  @include('Includes.producto', ['producto' => $producto])
+                    <a href="Productos/{{$producto->productoId}}/edit" class="btn btn-primary" role="button">edit</a> 
+                    <form action="/Productos/{{$producto->productoId}}/ReActivar" method="POST" class="form-delete">
+                      {{csrf_field()}}
+                      {{-- {{ method_field('delete') }} --}}
+                      <button type="submit" class="btn btn-success">Re activar</button>
+                    </form>
+                    {{-- <a href="Productos/{{$producto->productoId}}/edit" class="btn btn-danger" role="button">delete</a> --}}
+                    </div> {{-- end caption --}}
+                  </div> {{-- end thumbnail --}}
+                </div> {{-- end col-xs-6 col-sm-3 --}}
+                @endforeach
               </div>
             </section>
         </div>

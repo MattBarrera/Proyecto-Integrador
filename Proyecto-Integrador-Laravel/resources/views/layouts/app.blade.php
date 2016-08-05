@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
     
-
+    
     <style>
         body {
             font-family: 'Lato';
@@ -78,7 +78,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle aAvatar" data-toggle="dropdown" role="button" aria-expanded="false">
                             @if(Auth::user()->avatar == 'avatar_2x.png')
-                                <img src="/img/avatar_2x.png" class="img-circle" width="40" alt="user_avatar">
+                                <img src="/assets/avatar_2x.png" class="img-circle" width="40" alt="user_avatar">
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             @else
                                 <img src="/assets/{{Auth::user()->id}}/profile/{{Auth::user()->avatar}}" class="img-circle" width="40" height="40" alt="user_avatar">
@@ -105,7 +105,7 @@
     </nav>
     @yield('content')
 
-    {{-- @include('Includes.footer') --}}
+    @include('Includes.footer')
 
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
