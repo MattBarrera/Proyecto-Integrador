@@ -1,3 +1,12 @@
+html{
+	position: relative;
+	height: 100%;
+}
+body{
+	position: relative;
+	padding-bottom: 200px;
+  	min-height: 100%;
+}
 .productoFoto{
 	max-height: 200px;
     max-width: 200px;
@@ -23,4 +32,11 @@ a.aAvatar{
 .social{
 	width:30px;
 	height: 40px;
+}
+.footer{
+	position: absolute;
+  	bottom: 0px;
+  	width: 100%;
+  	background-color: #e7e7e7;
+  	height: 200px;
 }

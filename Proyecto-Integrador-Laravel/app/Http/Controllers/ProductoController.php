@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Producto;
+use App\EmpresaHasUsers;
 use App\Color;
 use App\User;
 use App\Talle;
@@ -42,9 +43,10 @@ class ProductoController extends Controller
         $colores = Color::all();
         $talles = Talle::all();
         $categorias = Categoria::where('categoriaIdParent', "")->get();
+        $empresas = EmpresaHasUsers::where('users_id',Auth::user()->id);
         // $subCategorias = Categoria::where('categoriaIdParent','!=',"")->get();
         // dd($subCategorias);
-        return view('Productos.CreateProducto',['generos'=> $generos,'categorias'=> $categorias,'colores'=>$colores,'talles'=>$talles]);
+        return view('Productos.CreateProducto',['generos'=> $generos,'categorias'=> $categorias,'colores'=>$colores,'talles'=>$talles,'empresas'=>$empresas]);
     }
 
     /**

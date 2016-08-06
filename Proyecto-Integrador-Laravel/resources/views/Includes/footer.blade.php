@@ -1,4 +1,5 @@
-<footer style="background-color:lightgrey">
+
+<footer class="footer">
     <div class="container" >
 	    <div class="row">
 	    	<div class="col-md-4">

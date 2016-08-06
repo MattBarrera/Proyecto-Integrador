@@ -8,4 +8,8 @@ class Color extends Model
 {
     protected $table = 'color';
 	protected $primarykey = 'colorId';
+
+	protected $fillable = [
+		'colorNombre',
+	];
 }

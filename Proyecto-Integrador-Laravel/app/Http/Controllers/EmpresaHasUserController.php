@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 
-class TalleController extends Controller
+class EmpresaHasUserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +14,7 @@ class TalleController extends Controller
      */
     public function index()
     {
-        $talles = Talle::all();
-
-        return view('/Talle',['talles'=>$talles]);
+        //
     }
 
     /**
@@ -38,10 +35,7 @@ class TalleController extends Controller
      */
     public function store(Request $request)
     {
-        $nuevoTalle = Talle::create([
-            'talleNombre'=>$request->input('talleNombre'),
-        ]);
-        return redirect ('/Talle');
+        //
     }
 
     /**
@@ -63,8 +57,7 @@ class TalleController extends Controller
      */
     public function edit($id)
     {
-        $talle = Talle::findOrFail($id);
-        return view('Talle.EditTalle',['talle'=>$talle]);
+        //
     }
 
     /**
@@ -76,11 +69,7 @@ class TalleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $talle = Talle::findOrFail($id);
-        $talle->fill($request->only('talleNombre'));
-
-        $talle->save();
-        return redirect ('/Talle');
+        //
     }
 
     /**

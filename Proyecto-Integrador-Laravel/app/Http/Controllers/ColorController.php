@@ -15,7 +15,9 @@ class ColorController extends Controller
      */
     public function index()
     {
-        //
+        $colores = Color::all();
+
+        return view('/Color',['colores'=>$colores]);
     }
 
     /**
@@ -25,7 +27,7 @@ class ColorController extends Controller
      */
     public function create()
     {
-        //
+        return view('Color.CrearColor');
     }
 
     /**
@@ -36,7 +38,10 @@ class ColorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $nuevoColor = Color::create([
+            'colorNombre'=>$request->input('colorNombre'),
+        ]);
+        return redirect ('/Color');
     }
 
     /**
@@ -58,7 +63,8 @@ class ColorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $color = Color::findOrFail($id);
+        return view('Color.EditColor',['color'=>$color]);
     }
 
     /**
@@ -70,7 +76,11 @@ class ColorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $color = Color::findOrFail($id);
+        $color->fill($request->only('colorNombre'));
+
+        $color->save();
+        return redirect ('/Color');
     }
 
     /**

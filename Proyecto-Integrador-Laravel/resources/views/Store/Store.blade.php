@@ -36,7 +36,7 @@
             {{-- <center> <h2>PRODUCTOS DESTACADOS</h2> </center> --}}
             <div class="row">
             @foreach($productos as $producto)
-            {{-- {{dd($producto->categoria->categoriaNombre)}} --}}
+            {{-- {{dd($producto)}} --}}
             <div class="col-xs-6 col-sm-3" >
               @include('Includes.producto', ['producto' => $producto])
                   <p><a href="" class="btn btn-primary" role="button">Buy</a></p>

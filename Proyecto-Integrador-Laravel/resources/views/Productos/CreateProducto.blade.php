@@ -134,8 +134,9 @@
               <div class="col-md-6">
                 <select id="empresaId" name="empresaId" class="form-control">
                   <option value="">{{Auth::user()->full_name}}</option>
-                  <option value="">Empresa 1</option>
-                  <option>Empresa 2</option>
+                  @foreach($empresas as $empresa)
+                    <option value="{{$empresa->empresaId}}">{{$empresa->empresaNombre}}</option>
+                  @endforeach
                 </select>
                   @if ($errors->has('user'))
                     <span class="help-block">

@@ -12,4 +12,8 @@
     @else
       <p><a href="" title="">{{$producto->categoria->categoriaNombre}}</a></p>
     @endif
-    <p>Usuario: <a href="User/{{$producto->users_id}}" title="">{{$producto->usuario->full_name}}</a></p>
+    @if($producto->empresaId == 0)
+      <p>Usuario: <a href="User/{{$producto->users_id}}" title="">{{$producto->usuario->full_name}}</a></p>
+    @else
+      <p>Empresa: <a href="Empresa/{{$producto->empresaId}}" title="">{{$producto->empresa->empresaNombre}}</a></p>
+    @endif

@@ -1,7 +1,7 @@
-{{-- @extends('layouts.app') --}}
+@extends('layouts.app')
 
 @section('content')
-<main>
+<main >
   <section id="breadcrumb">
     <ol class="breadcrumb">
       <li><a href="#">Men</a></li>

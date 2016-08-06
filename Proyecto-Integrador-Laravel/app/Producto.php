@@ -51,5 +51,9 @@ class Producto extends Model
     {
         return $this->belongsTo('App\User', 'users_id');
     }
+    public function empresa()
+    {
+        return $this->belongsTo('App\Empresa','empresaId','empresaId');
+    }
     
 }

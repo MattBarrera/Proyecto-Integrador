@@ -8,4 +8,8 @@ class Talle extends Model
 {
     protected $table = 'talle';
 	protected $primarykey = 'talleId';
+
+	protected $fillable = [
+		'talleNombre',
+	];
 }
