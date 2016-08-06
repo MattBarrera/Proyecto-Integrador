@@ -17,6 +17,10 @@ Route::get('/Store', 'StoreController@index');
 	Route::get('/Follow/{id}', 'UserController@follow');
 	Route::get('/Busqueda','ProductoController@Busqueda');
 
+	Route::get('/empresas', function (){
+		return view("empresas");
+	});
+
 Route::group(['middleware'=>'auth'], function(){
 	// Route::resource('Productos','ProductoController');
 	Route::post('/Productos','ProductoController@store');
@@ -31,9 +35,10 @@ Route::group(['middleware'=>'auth'], function(){
 	Route::get('/MyPersonalProducts','ProductoController@followersProducts');
 	Route::get('/getSubCategorias/{id}','ProductoController@getSubCategorias');
 
+
+
 	Route::resource('User','UserController');
 	Route::resource('Empresa','EmpresaController');
 });
 
 	Route::get('Productos/{id}','ProductoController@Show');
-

@@ -16,11 +16,8 @@
   <section style="position:relative">
     <div id="social" style="position:absolute;top:15px">
       <div><a href="http://www.facebook.com"> <img src="{{ asset('img/facebook.svg') }}" class="social" /></a></div>
-      <div><a href="http://www.google.com"> <img src="{{ asset('img/google.svg') }}" class="social" /></a></div>
-      <div><a href="http://www.linkedin.com"> <img src="{{ asset('img/linkedin.svg') }}" class="social"  /></a></div>
       <div><a href="http://www.twitter.com"> <img src="{{ asset('img/twitter.svg') }}" class="social" /></a></div>
       <div><a href="mailto:biancapallaro@gmail.com"><img src="{{ asset('img/email.svg') }}" class="social" /></a></div>
-      <div><a href="http://www.youtube.com"><img src="{{ asset('img/youtube.svg') }}" class="social" /></a></div>
     </div>
   </section>
 
@@ -72,5 +69,3 @@
         </section>
 </main>
 @endsection
-
-
