@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Empresa;
 use App\EmpresaHasUsers;
+use App\Producto;
+use App\Follower;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
@@ -29,7 +32,7 @@ class EmpresaController extends Controller
      */
     public function create()
     {
-        return view('Empresa.CrearEmpresa');
+        return view('Empresas.CrearEmpresa');
     }
 
     /**
@@ -41,20 +44,26 @@ class EmpresaController extends Controller
     public function store(Request $request)
     {
         // dd($request);
+        if ($request->input('empresaFoto') !== "") {
+            $destinationPath = '/public/assets/'.Auth::user()->id.'/profile/';
+            $fileName = input::file('empresaFoto')->getClientOriginalName();
+            input::file('empresaFoto')->move(public_path().'/assets/'.Auth::user()->id.'/pages/', $fileName);
+        }
 
         $nuevaEmpresa = Empresa::create([
             'empresaNombre'=>$request->input('empresaNombre'),
-            'empresaMail'=>$request->input('empresaMail'),
+            'empresaEmail'=>$request->input('empresaEmail'),
             'empresaCUIT'=>$request->input('empresaCUIT'),
             'empresaTelefono'=>$request->input('empresaTelefono'),
             'empresaDireccion'=>$request->input('empresaDireccion'),
-            'empresaFoto'=>$request->input('empresaFoto'),
+            'empresaFoto'=>$fileName,
             'empresaEstado'=>1,
         ]);
         $empresaUser = EmpresaHasUsers::create([
             'empresaId'=>$nuevaEmpresa->empresaId,
             'users_id'=>Auth::user()->id,
             ]);
+
 
         return redirect ('/Empresa');
     }
@@ -72,7 +81,7 @@ class EmpresaController extends Controller
         $follower = Follower::where('empresaId',$id)->where('users_id',Auth::user()->id)->first();
         // dd($follower);
         
-        return view('Users.ShowUser',['empresa'=>$empresa,'productos'=>$productos,'follower'=>$follower]);
+        return view('Empresas.ShowEmpresa',['empresa'=>$empresa,'productos'=>$productos,'follower'=>$follower]);
     }
 
     /**
@@ -99,7 +108,7 @@ class EmpresaController extends Controller
     {
         $empresa = Empresa::findOrFail($id);
 
-        $empresa->fill($request->only('empresaNombre','empresaMail','empresaCUIT','empresaTelefono','empresaDireccion','empresaDireccion'));
+        $empresa->fill($request->only('empresaNombre','empresaEmail','empresaCUIT','empresaTelefono','empresaDireccion','empresaDireccion'));
         $empresa->save();
 
         return redirect ('/Empresa');
@@ -114,5 +123,21 @@ class EmpresaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function follow($id)
+    {
+        // $user = User::findOrFail($id);
+        if ($follower = Follower::where('users_id1',$id)->where('users_id',Auth::user()->id)->first()) {
+            //si existe el follow, lo elimino,
+            $follower = Follower::where('users_id1',$id)->where('users_id',Auth::user()->id)->delete();
+        }else{
+            //sino lo creo
+            Follower::create([
+                'users_id'=>Auth::user()->id,
+                'users_id1'=>$id,
+                ]);
+        }
+        return back();
     }
 }

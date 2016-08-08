@@ -21,19 +21,28 @@
         <div class="container">
             <section id="productos">
           <div class="productos">
-            
+            {{-- {{dd($productos)}} --}}
             @foreach($productos as $producto)
             <div class="col-xs-6 col-sm-3" >
               @include('Includes.producto', ['producto' => $producto])
+                      <p>Visitas: 
+                        @if(empty($producto->visita->visitaCant ))
+                          0
+                        @else
+                          {{$producto->visita->visitaCant}}
+                        @endif
+                        </p>
                 <a href="Productos/{{$producto->productoId}}/edit" class="btn btn-success" role="button">edit</a> 
                     <form action="/Productos/{{$producto->productoId}}/Baja" method="POST" class="form-delete">
                       {{csrf_field()}}
                       {{-- {{ method_field('delete') }} --}}
+                      {{-- {{dd($producto->visita->visitaCant)}} --}}
                       <button type="submit" class="btn btn-danger">delete</button>
                     </form>
                   </div> {{-- end caption inside the include--}}
                 </div> {{-- end thumbnail inside the include--}}
               </div> {{-- end col-xs-6 col-sm-3 --}}
+              {{-- @php(exit); --}}
             @endforeach
           </div>
         </section>

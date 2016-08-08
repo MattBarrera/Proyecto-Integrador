@@ -132,10 +132,13 @@
             <div class="form-group{{ $errors->has('user') ? ' has-error' : '' }}">
               <label for="empresaId" class="col-md-4 control-label">Subir Como:</label>
               <div class="col-md-6">
+                  {{-- {{dd($empresas)}} --}}
                 <select id="empresaId" name="empresaId" class="form-control">
                   <option value="">{{Auth::user()->full_name}}</option>
                   @foreach($empresas as $empresa)
-                    <option value="{{$empresa->empresaId}}">{{$empresa->empresaNombre}}</option>
+                    <optgroup label="Empresas">
+                      <option value="{{$empresa->empresaId}}">{{$empresa->empresa->empresaNombre}}</option>
+                    </optgroup>
                   @endforeach
                 </select>
                   @if ($errors->has('user'))
@@ -200,5 +203,5 @@
 
     </div>
 </div>
-
+<script src="/js/categorias.js" type="text/javascript"></script>
 @endsection

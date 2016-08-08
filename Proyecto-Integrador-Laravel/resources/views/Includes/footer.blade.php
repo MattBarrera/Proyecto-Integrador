@@ -1,11 +1,6 @@
-<<<<<<< HEAD
-
 <footer class="footer">
-    <div class="container" >
-=======
-<footer style="background-color:#EEEEEE">
     <div class="container" style="font-size:13px; padding:15px; " >
->>>>>>> origin/dev
+
 	    <div class="row">
 	    	<div class="col-md-4 text-center">
 	    		<center><h4>About Us</h4></center>
@@ -17,10 +12,10 @@
 	    	</div>
 	    	<div class="col-md-4 text-center">
 	    		<center><h4>Help</h4></center>
-	    		<ul class= "list-inline">
+	    		<ul class="list-inline">
 	    			<li>Comprar</li>
 	    			<li>Vender</li>
-	    		  <li>Buscar</li>
+	    		  	<li>Buscar</li>
 	    		</ul>
 	    	</div>
 	    	<div class="col-md-4 text-center">
@@ -33,7 +28,7 @@
 	    	</div>
 	    </div>
     </div>
-    <div class="rights" style="background-color:#337AB7; padding:10px; text-align:center; color: white;">
+    <div class="rights">
       <center> © Clothes Shop - All rights reserved </center>
     </div>
 </footer>

@@ -22,8 +22,9 @@ miSelectCategorias.onchange = function(evento){
 					// console.log(subcat.categoriaNombre);
 					var valueSubCategoria = subCategoria[propiedadSubCategoria];
 						// console.log(valueSubCategoria);
-					thead.innerHTML = thead.innerHTML + '<option value="' + propiedadSubCategoria + '">' + valueSubCategoria.categoriaNombre + '</option>'
+					thead.innerHTML = thead.innerHTML + '<option value="' + valueSubCategoria.categoriaId + '">' + valueSubCategoria.categoriaNombre + '</option>'
 				}
+				// console.log(subCategoria[categoriaId]);
 			}
 		};
 		xmlhttpSubcategoria.open ( "GET", "/getSubCategorias/" + categoriaIdParent ,true );

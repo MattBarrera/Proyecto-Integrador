@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use DB;
 use App\Producto;
 use App\EmpresaHasUsers;
+use App\Empresa;
 use App\Color;
 use App\User;
 use App\Talle;
 use App\Genero;
 use App\Categoria;
 use App\Follower;
+use App\Visita;
 use App\TalleHasProducto;
 use App\ColorHasProducto;
 use Illuminate\Http\Request;
@@ -43,7 +46,8 @@ class ProductoController extends Controller
         $colores = Color::all();
         $talles = Talle::all();
         $categorias = Categoria::where('categoriaIdParent', "")->get();
-        $empresas = EmpresaHasUsers::where('users_id',Auth::user()->id);
+        $empresas = EmpresaHasUsers::where('users_id',Auth::user()->id)->with('empresa')->get();
+        // dd($empresas);
         // $subCategorias = Categoria::where('categoriaIdParent','!=',"")->get();
         // dd($subCategorias);
         return view('Productos.CreateProducto',['generos'=> $generos,'categorias'=> $categorias,'colores'=>$colores,'talles'=>$talles,'empresas'=>$empresas]);
@@ -69,7 +73,14 @@ class ProductoController extends Controller
         if ($request->input('empresaId') !== "") {
             $empresaId = $request->input('empresaId');
         }else{
-            $empresaId = "";
+            $empresaId = 0;
+        }
+        if($request->input('categoriaId') == ""){
+            $categoriaId = $request->input('categoriaIdParent');
+            $categoriaIdParent = 0;
+        }else{
+            $categoriaId = $request->input('categoriaId');
+            $categoriaIdParent = $request->input('categoriaIdParent');
         }
 
 
@@ -77,8 +88,8 @@ class ProductoController extends Controller
             'productoNombre'=> $request->input('productoNombre'),
             'productoDescripcion'=> $request->input('productoDescripcion'),
             'productoPrecio'=> $request->input('productoPrecio'),
-            'categoriaIdParent'=> $request->input('categoriaIdParent'),
-            'categoriaId'=> $request->input('categoriaId'),
+            'categoriaId'=> $categoriaId,
+            'categoriaIdParent'=> $categoriaIdParent,
             'productoFoto'=> $fileName,
             'productoEstado'=> 1,
             'users_id'=> Auth::user()->id,
@@ -100,6 +111,15 @@ class ProductoController extends Controller
         $producto = Producto::where('productoId',$id)->with('usuario','categoria','talle','color')->first();
         $colores = Color::all();
         $talles = Talle::all();
+        if ($productoVisita = Visita::where('productoId',$id)->first()) {
+            $productoVisita->visitaCant += $producto->visitaCant+1;
+            $productoVisita->save(); 
+        }else{
+            $productoVisita = Visita::create([
+                'productoId'=>$id,
+                'visitaCant'=>1,
+            ]);
+        }
         //dd($producto);
 
         return view('Productos.ShowProducto',['producto'=>$producto]);//'colores'=>$colores,'talles'=>$talles
@@ -146,7 +166,7 @@ class ProductoController extends Controller
      */
     public function indexOwn()
     {
-        $productos = Producto::where('users_id', Auth::user()->id)->where('productoEstado', 1)->with('usuario','categoria')->get();
+        $productos = Producto::where('users_id', Auth::user()->id)->where('productoEstado', 1)->with('usuario','categoria','visita')->get();
 
         return view('Productos.MyProducts', ['productos'=>$productos]);
     }
@@ -200,37 +220,49 @@ class ProductoController extends Controller
         // dd(substr($request->getQueryString(),0,1));
         // dd($request);
        if (substr($request->getQueryString(),0,1) == 'q') {
-            // echo 'string';
+            //consulto la busqueda es por el fom, y que obtengo en el get...
             $query = $request->get('q');
             // dd($query);
             $generos = Genero::all();
             $categorias = Categoria::where('categoriaIdParent', "")->get();
+            //obtengo categorias que sean parecidas al query
             $categoriasQuery = Categoria::select('categoriaId')->where('categoriaNombre','like','%'.$query.'%')->get();
             // dd($categoriasQuery);
             $categoriasQuery->toArray();
+            //busco productos que en el nombre sean parecidas al query o que la categoria sea igual al id obtenido en el anterior query
             $productos = Producto::where('productoNombre','like','%'.$query.'%')->orwhereIn('categoriaId',$categoriasQuery)->get();
-            // dd($productos);
+            //si no obtengo ningun producto, le muestro 3 opciones de forma random
             $sugerencias = "";
             if(count($productos) == ""){
-                $sugerencias = Producto::take(3)->get();
+                $sugerencias = Producto::orderBy(DB::raw('RAND()'))->take(3)->get();
             }
             return view('Busqueda.Busqueda', ['productos'=>$productos,'generos'=>$generos,'categorias'=>$categorias,'sugerencias'=>$sugerencias]);
         }elseif ($query = $request->get('cat')) {
+            //consulto si la busqueda es por categorias.
             $query = $request->get('cat');
             // dd($query);
             $generos = Genero::all();
             $categorias = Categoria::where('categoriaIdParent', "")->get();
             $productos = Producto::where('categoriaId',$query)->get();
-            // $categorias = [];
-            return view('Busqueda.Busqueda', ['productos'=>$productos,'generos'=>$generos,'categorias'=>$categorias]);
+            //si no obtengo ningun producto, le muestro 3 opciones de forma random
+            $sugerencias = "";
+            if(count($productos) == ""){
+                $sugerencias = Producto::orderBy(DB::raw('RAND()'))->take(3)->get();
+            }
+            return view('Busqueda.Busqueda', ['productos'=>$productos,'generos'=>$generos,'categorias'=>$categorias,'sugerencias'=>$sugerencias]);
         }elseif ($query = $request->get('gen')) {
+            //consulto si la busqueda es por generos.
             $query = $request->get('gen');
             // dd($query);
             $generos = Genero::all();
             $categorias = Categoria::where('categoriaIdParent', "")->get();
             $productos = Producto::where('generoId',$query)->get();
-            // dd($productos);
-            return view('Busqueda.Busqueda', ['productos'=>$productos,'generos'=>$generos,'categorias'=>$categorias]);
+            //si no obtengo ningun producto, le muestro 3 opciones de forma random
+            $sugerencias = "";
+            if(count($productos) == ""){
+                $sugerencias = Producto::orderBy(DB::raw('RAND()'))->take(3)->get();
+            }
+            return view('Busqueda.Busqueda', ['productos'=>$productos,'generos'=>$generos,'categorias'=>$categorias,'sugerencias'=>$sugerencias]);
         }
 
     }
@@ -253,17 +285,26 @@ class ProductoController extends Controller
      */
     public function followersProducts()
     {
-        $followers = Follower::select('users_id1')->where('users_id',Auth::user()->id)->get();
-        // dd($followers);
-        $users = User::whereIn('id',$followers)->get();
+        //busco los followers
+        $usersFollowers = Follower::select('users_id1')->where('users_id',Auth::user()->id)->where('users_id1','!=', '')->get();
+        // dd($usersFollowers);
+        $users = User::whereIn('id',$usersFollowers)->get();
         // dd($users);
-        $users_id1 = User::select('id')->whereIn('id',$followers)->get();
+        $users_id1 = User::select('id')->whereIn('id',$usersFollowers)->get();
         // dd($users_id1);
-        $productos = Producto::whereIn('users_id', $users_id1)->with('usuario','categoria')->get();
+
+        $empresasFollowers = Follower::select('empresaId')->where('users_id',Auth::user()->id)->where('empresaId','!=', '')->get();
+        // dd($empresasFollowers);
+        $empresas = Empresa::whereIn('empresaId',$empresasFollowers)->get();
+        // dd($empresas);
+        $empresasIds = Empresa::select('empresaId')->whereIn('empresaId',$empresasFollowers)->get();
+        // dd($empresasIds);
+        // busco los productos
+        $productos = Producto::whereIn('users_id', $users_id1)->orwhereIn('empresaId',$empresasIds)->with('usuario','categoria','empresa')->get();
         // dd($productos);
         // $follower = Follower::where('users_id1',$id)->where('users_id',Auth::user()->id)->first();
 
-        return view('Productos.MyPersonalProducts', ['users'=>$users,'productos'=>$productos]);
+        return view('Productos.MyPersonalProducts', ['users'=>$users,'productos'=>$productos,'empresas'=>$empresas]);
     }
 
 }

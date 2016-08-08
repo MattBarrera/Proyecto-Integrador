@@ -10,6 +10,6 @@ class Follower extends Model
     // protected $primaryKey = 'users_id';
 
     protected $fillable = [
-        'users_id', 'users_id1',
+        'users_id', 'users_id1','empresaId',
     ];
 }

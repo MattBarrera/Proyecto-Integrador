@@ -45,7 +45,7 @@
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
                   <div class="logo">
-                    <img src="img/.png" alt=""> Clothes Shop
+                    {{-- <img src="img/.png" alt=""> --}} Clothes Shop
                   </div>
                 </a>
             </div>
@@ -92,7 +92,7 @@
                                 <li><a href="/MyProducts">My Products</a></li>
                                 <li><a href="/MyHistoricProducts">My Historic Products</a></li>
                                 <li><a href="/MyPersonalProducts">My Personal Products</a></li>
-                                <li><a href="">My Pages</a></li>
+                                <li><a href="/Empresa">My Pages</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="/User/{{Auth::user()->id}}/edit">My Acount</a></li>
                                 <li role="separator" class="divider"></li>
@@ -112,7 +112,7 @@
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <script src="/js/categorias.js" type="text/javascript"></script>
+    
     {{-- Bootstrap Multiple Selects JS --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
 

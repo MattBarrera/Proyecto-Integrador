@@ -12,4 +12,8 @@ class EmpresaHasUsers extends Model
     	'empresaId',
     	'users_id',
     ];
+
+    public function empresa(){
+    	return $this->belongsTo('App\Empresa','empresaId','empresaId');
+    }
 }

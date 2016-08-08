@@ -38,5 +38,11 @@ a.aAvatar{
   	bottom: 0px;
   	width: 100%;
   	background-color: #e7e7e7;
-  	height: 200px;
+  	height: auto;
+}
+.rights{
+	background-color:#337AB7; 
+	padding:10px; 
+	text-align:center; 
+	color: white;
 }

@@ -94,7 +94,7 @@
                     @endif
                 </div>
             </div>
-            <div class="form-group{{ $errors->has('password_anterior') ? ' has-error' : '' }}">
+            <div class="form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">
                 <label for="avatar" class="col-md-4 control-label">Avatar</label>
 
                 <div class="col-md-6">

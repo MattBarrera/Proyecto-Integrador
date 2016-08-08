@@ -14,12 +14,7 @@
 Route::auth();
 Route::get('/', 'StoreController@indexHome');
 Route::get('/Store', 'StoreController@index');
-	Route::get('/Follow/{id}', 'UserController@follow');
 	Route::get('/Busqueda','ProductoController@Busqueda');
-
-	Route::get('/empresas', function (){
-		return view("empresas");
-	});
 
 Route::group(['middleware'=>'auth'], function(){
 	// Route::resource('Productos','ProductoController');
@@ -34,6 +29,8 @@ Route::group(['middleware'=>'auth'], function(){
 	Route::get('/MyHistoricProducts','ProductoController@OwnDown');
 	Route::get('/MyPersonalProducts','ProductoController@followersProducts');
 	Route::get('/getSubCategorias/{id}','ProductoController@getSubCategorias');
+	Route::get('/Follow/User/{id}', 'FollowerController@followUser');
+	Route::get('/Follow/Empresa/{id}', 'FollowerController@followEmpresa');
 
 
 

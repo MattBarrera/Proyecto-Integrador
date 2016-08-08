@@ -145,18 +145,5 @@ class UserController extends Controller
         //
     }
 
-    public function follow($id)
-    {
-        // $user = User::findOrFail($id);
-        if ($follower = Follower::where('users_id1',$id)->where('users_id',Auth::user()->id)->first()) {
-            // dd($follower);
-            $follower = Follower::where('users_id1',$id)->where('users_id',Auth::user()->id)->delete();
-        }else{
-            Follower::create([
-                'users_id'=>Auth::user()->id,
-                'users_id1'=>$id,
-                ]);
-        }
-        return back();
-    }
+    
 }

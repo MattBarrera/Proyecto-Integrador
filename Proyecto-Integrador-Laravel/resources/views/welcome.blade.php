@@ -2,7 +2,7 @@
 
 @section('content')
 <main >
-  <section id="breadcrumb">
+  <section id="breadcrumb" class="container-fluid">
     <ol class="breadcrumb">
       <li><a href="#">Men</a></li>
       <li><a href="#">Women</a></li>

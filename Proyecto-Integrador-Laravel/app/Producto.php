@@ -27,10 +27,6 @@ class Producto extends Model
         'generoId',
     ];
 
-    // public function talle()
-    // {
-    //     return $this->hasManyThrough('App\Talle', 'talleHasProducto','talleId','productoId');
-    // }
     public function color()
     {
         return $this->hasMany('App\ColorHasProducto','colorId','productoId');
@@ -54,6 +50,10 @@ class Producto extends Model
     public function empresa()
     {
         return $this->belongsTo('App\Empresa','empresaId','empresaId');
+    }
+    public function visita()
+    {
+        return $this->belongsTo('App\Visita', 'productoId','productoId');
     }
     
 }

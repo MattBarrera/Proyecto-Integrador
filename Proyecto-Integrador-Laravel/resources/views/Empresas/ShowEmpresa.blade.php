@@ -4,12 +4,12 @@
 <!-- Begin page content -->
     <div class="container">
       <div class="page-header">
-        <h1 style="display: inline-block">{{$user->full_name}}</h1>
+        <h1 style="display: inline-block">{{$empresa->empresaNombre}}</h1>
         {{-- {{dd($follower)}} --}}
         @if(is_null($follower))
-            <a href="/Follow/User/{{$user->id}}" title=""><button type="submit" class="btn btn-primary pull-right btn-follower"><i class="fa fa-btn fa-user-plus"></i>Follow</button></a>
+            <a href="/Follow/Empresa/{{$empresa->empresaId}}" title=""><button type="submit" class="btn btn-primary pull-right btn-follower"><i class="fa fa-btn fa-user-plus"></i>Follow</button></a>
         @else
-            <a href="/Follow/User/{{$user->id}}" title=""><button type="submit" class="btn btn-primary pull-right btn-follower"><i class="fa fa-check"></i> Following</button></a>  
+            <a href="/Follow/Empresa/{{$empresa->empresaId}}" title=""><button type="submit" class="btn btn-primary pull-right btn-follower"><i class="fa fa-check"></i> Following</button></a>  
         @endif
       </div>
       
