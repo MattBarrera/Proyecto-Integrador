@@ -18,4 +18,10 @@ class Empresa extends Model
         'empresaFoto',
         'empresaEstado',
     ];
+
+    public function productos($empresaId){
+        $productos = Producto::where('empresaId',$empresaId)->get();
+        
+        return $productos->count();
+    }
 }

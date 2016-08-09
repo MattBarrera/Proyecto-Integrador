@@ -5,7 +5,7 @@
     <img src="/assets/{{$producto->productoFoto}}" alt="" class="productoFoto">
   @endif
   <div class="caption">
-    <h3><a href="Productos/{{$producto->productoId}}" title="Details">{{$producto->productoNombre}}</a></h3>
+    <h3><a href="/Productos/{{$producto->productoId}}" title="Details">{{$producto->productoNombre}}</a></h3>
     <p>$ {{$producto->productoPrecio}}</p>
     @if($producto->categoriaIdParent > "0")
       <p><a href="/Busqueda?cat={{$producto->categoria->categoriaPadre->categoriaId}}" title="">{{$producto->categoria->categoriaPadre->categoriaNombre}}</a> > <a href="/Busqueda?cat={{$producto->categoria->categoriaId}}" title="">{{$producto->categoria->categoriaNombre}}</a></p>

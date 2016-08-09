@@ -36,6 +36,10 @@ Route::group(['middleware'=>'auth'], function(){
 
 	Route::resource('User','UserController');
 	Route::resource('Empresa','EmpresaController');
+	Route::resource('Generos','GeneroController');
+	Route::resource('Colores','ColorController');
+	Route::resource('Talles','TalleController');
+	Route::resource('Categorias','CategoriaController');
 });
 
 	Route::get('Productos/{id}','ProductoController@Show');

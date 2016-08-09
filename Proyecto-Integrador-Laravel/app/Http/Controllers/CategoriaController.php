@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class GeneroController extends Controller
+class CategoriaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,7 +25,7 @@ class GeneroController extends Controller
      */
     public function create()
     {
-        return view('Genero.CrearGenero');
+        
     }
 
     /**

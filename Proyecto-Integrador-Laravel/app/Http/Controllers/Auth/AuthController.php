@@ -76,6 +76,7 @@ class AuthController extends Controller
             'birthdate' => $data['birthdate'],
             'password' => bcrypt($data['password']),
             'status' => 1,
+            'roleId'=>3,
         ]);
         // //crear directorio de usuario
         // $directory = "/assets/$usuarioNuevo->id";

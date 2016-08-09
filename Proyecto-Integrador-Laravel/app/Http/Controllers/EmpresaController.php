@@ -20,7 +20,10 @@ class EmpresaController extends Controller
      */
     public function index()
     {
-        $empresas = EmpresaHasUsers::where('users_id',Auth::user()->id);
+        $empresasIds = EmpresaHasUsers::select('empresaId')->where('users_id',Auth::user()->id)->get();
+        // $empresas->toArray;
+        $empresas = Empresa::whereIn('empresaId',$empresasIds)->get();
+        // dd($empresas);
 
         return view('Empresas.Empresas',['empresas'=>$empresas]);
     }
@@ -94,7 +97,7 @@ class EmpresaController extends Controller
     {
         $empresa = Empresa::findOrFail($id);
 
-        return view('Empresa.EditEmpresa',['empresa'=>$empresa]);
+        return view('Empresas.EditarEmpresa',['empresa'=>$empresa]);
     }
 
     /**
@@ -106,6 +109,7 @@ class EmpresaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request);
         $empresa = Empresa::findOrFail($id);
 
         $empresa->fill($request->only('empresaNombre','empresaEmail','empresaCUIT','empresaTelefono','empresaDireccion','empresaDireccion'));

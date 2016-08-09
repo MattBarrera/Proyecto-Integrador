@@ -93,7 +93,15 @@
                                 <li><a href="/MyHistoricProducts">My Historic Products</a></li>
                                 <li><a href="/MyPersonalProducts">My Personal Products</a></li>
                                 <li><a href="/Empresa">My Pages</a></li>
-                                <li role="separator" class="divider"></li>
+                                @if(Auth::user()->roleId < 3)
+                                    <li role="separator" class="divider"></li>
+                                    <li class="dropdown-header">Super Admin</li>
+                                    <li><a href="/Generos">Genders</a></li>
+                                    <li><a href="/Categorias">Categories</a></li>
+                                    <li><a href="/Colores">Colors</a></li>
+                                    <li><a href="/Talle">Sizes</a></li>
+                                @endif
+                                    <li role="separator" class="divider"></li>
                                 <li><a href="/User/{{Auth::user()->id}}/edit">My Acount</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
