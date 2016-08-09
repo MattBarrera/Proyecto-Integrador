@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Talle;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 
 class TalleController extends Controller
@@ -17,7 +17,7 @@ class TalleController extends Controller
     {
         $talles = Talle::all();
 
-        return view('/Talles',['talles'=>$talles]);
+        return view('Talles.Talles',['talles'=>$talles]);
     }
 
     /**
@@ -64,7 +64,7 @@ class TalleController extends Controller
     public function edit($id)
     {
         $talle = Talle::findOrFail($id);
-        return view('Talles.EditTalle',['talle'=>$talle]);
+        return view('Talles.EditarTalle',['talle'=>$talle]);
     }
 
     /**
@@ -91,6 +91,8 @@ class TalleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $talle = Talle::findOrFail($id);
+        $talle->delete();
+        return redirect('/Talles');
     }
 }

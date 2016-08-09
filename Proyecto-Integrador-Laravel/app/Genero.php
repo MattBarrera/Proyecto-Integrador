@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Genero extends Model
 {
     protected $table = 'genero';
-    protected $primaryKay = 'generoId';
+    protected $primaryKey = 'generoId';
     protected $fillable = ['generoNombre',];
     
 }

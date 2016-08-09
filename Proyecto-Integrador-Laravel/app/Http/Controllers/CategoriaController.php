@@ -15,7 +15,8 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        //
+        $categorias = Categoria::where('categoriaIdParent', "")->get();
+        return view('Categorias.Categorias',['categorias'=>$categorias]);
     }
 
     /**
@@ -25,8 +26,8 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        $categorias = Categoria::where('categoriaIdParent',"")->get();
-        return view('Categorias.CrearSubCategoria',['categorias'=>$categorias]);
+        
+        return view('Categorias.CrearCategoria');
     }
 
     /**
@@ -37,7 +38,10 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $categoria = Categoria::create([
+            'categoriaNombre'=>$request->input('categoriaNombre'),
+            ]);
+        return redirect('/Categorias');
     }
 
     /**
@@ -59,7 +63,8 @@ class CategoriaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categoria = Categoria::findOrFail($id);
+        return view('Categorias.EditarCategoria',['categoria'=>$categoria]);
     }
 
     /**
@@ -71,7 +76,10 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $categoria = Categoria::findOrFail($id);
+        $categoria->fill($request->only('categoriaNombre'));
+        $categoria->save();
+        return redirect('/Categorias');
     }
 
     /**
@@ -82,6 +90,10 @@ class CategoriaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $categoria = Categoria::findOrFail($id);
+        $categoria->delete();
+        return redirect('/Categorias');
     }
+
+
 }

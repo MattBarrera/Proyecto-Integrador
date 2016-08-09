@@ -33,24 +33,24 @@
       <center><h2>CLOTHING</h2></center>
       <img src="{{ asset('img/jeans.jpg') }}" alt="..." class="img-rounded" style="width:90%">
       <center>
-        <button type="button" class="btn btn-danger btn-follower" ><a href="/Store" title=""> Women</a></button>
-        <button type="button" class="btn btn-info btn-follower"><a href="" title="">Men</a></button>
+        <button type="button" class="btn btn-danger btn-follower" ><a href="/Busqueda?gen=2" title=""> Women</a></button>
+        <button type="button" class="btn btn-info btn-follower"><a href="/Busqueda?gen=1" title="">Men</a></button>
       </center>
     </div>
     <div class="col-md-4">
       <center><h2>SHOES</h2></center>
       <img src="{{ asset('img/shoesmen.jpg') }}" alt="..." class="img-rounded" style="width:90%">
       <center>
-        <button type="button" class="btn btn-danger btn-follower" ><a href="/Store" title=""> Women</a></button>
-        <button type="button" class="btn btn-info btn-follower"><a href="" title="">Men</a></button>
+        <button type="button" class="btn btn-danger btn-follower" ><a href="/Busqueda?gen=2" title=""> Women</a></button>
+        <button type="button" class="btn btn-info btn-follower"><a href="/Busqueda?gen=1" title="">Men</a></button>
       </center>
     </div>
     <div class="col-md-4">
       <center><h2>ACCESORIES</h2></center>
       <img src="{{ asset('img/hola3.jpg') }}" alt="..." class="img-rounded" style="width:90%">
       <center>
-        <button type="button" class="btn btn-danger btn-follower" ><a href="/Store" title=""> Women</a></button>
-        <button type="button" class="btn btn-info btn-follower"><a href="" title="">Men</a></button>
+        <button type="button" class="btn btn-danger btn-follower" ><a href="/Busqueda?gen=2" title=""> Women</a></button>
+        <button type="button" class="btn btn-info btn-follower"><a href="/Busqueda?gen=1" title="">Men</a></button>
       </center>
     </div>
   </section>

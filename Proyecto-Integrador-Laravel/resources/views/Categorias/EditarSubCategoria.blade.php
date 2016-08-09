@@ -6,17 +6,21 @@
   	<div class="page-header">
     	<h1>New Sub Category</h1>
   	</div>
-	<form class="form-horizontal" role="form" method="POST" action="/SubCategorias">
+	<form class="form-horizontal" role="form" method="POST" action="/SubCategorias/{{$categoria->categoriaId}}">
         {{ csrf_field() }}
+        <input name="_method" type="hidden" value="PUT">
         <div class="form-group{{ $errors->has('categoriaIdParent') ? ' has-error' : '' }}">
             <label for="categoriaIdParent" class="col-md-4 control-label">Categoria</label>
-
             <div class="col-md-6">
-            {{-- {{dd($generos)}} --}}
             <select name="categoriaIdParent" class="form-control" required>
                 <option value="">Seleccionar una Categoria</option>
-                @foreach($categorias as $categoria)
-                    <option value="{{$categoria->categoriaId}}">{{$categoria->categoriaNombre}}</option>
+                @foreach($categorias as $categoriaTotal)
+                    {{-- <option value="{{$categoria->categoriaId}}">{{$categoria->categoriaNombre}}</option> --}}
+                    @if($categoriaTotal->categoriaId == $categoria->categoriaIdParent)
+                        <option value="{{$categoriaTotal->categoriaId}}" selected>{{$categoriaTotal->categoriaNombre}}</option>}
+                      @else
+                        <option value="{{$categoriaTotal->categoriaId}}">{{$categoriaTotal->categoriaNombre}}</option>}
+                      @endif
                 @endforeach
             </select>
                 @if ($errors->has('categoriaIdParent'))
@@ -29,7 +33,7 @@
         <div class="form-group{{ $errors->has('categoriaNombre') ? ' has-error' : '' }}">
             <label for="categoriaNombre" class="col-md-4 control-label">Name:</label>
             <div class="col-md-6">
-                <input id="categoriaNombre" type="text" class="form-control" name="categoriaNombre" >
+                <input id="categoriaNombre" type="text" class="form-control" name="categoriaNombre" value="{{$categoria->categoriaNombre}}">
                 @if ($errors->has('categoriaNombre'))
                     <span class="help-block">
                         <strong>{{ $errors->first('categoriaNombre') }}</strong>

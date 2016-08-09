@@ -99,7 +99,7 @@
                                     <li><a href="/Generos">Genders</a></li>
                                     <li><a href="/Categorias">Categories</a></li>
                                     <li><a href="/Colores">Colors</a></li>
-                                    <li><a href="/Talle">Sizes</a></li>
+                                    <li><a href="/Talles">Sizes</a></li>
                                 @endif
                                     <li role="separator" class="divider"></li>
                                 <li><a href="/User/{{Auth::user()->id}}/edit">My Acount</a></li>

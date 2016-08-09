@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Genero;
+use App\Categoria;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
-class GeneroController extends Controller
+class SubCategoriaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,7 @@ class GeneroController extends Controller
      */
     public function index()
     {
-        $generos = Genero::all();
-        return view('Genero.Generos',['generos'=>$generos]);
+        //
     }
 
     /**
@@ -26,7 +25,8 @@ class GeneroController extends Controller
      */
     public function create()
     {
-        return view('Genero.CrearGenero');
+        $categorias = Categoria::where('categoriaIdParent',"")->get();
+        return view('Categorias.CrearSubCategoria',['categorias'=>$categorias]);
     }
 
     /**
@@ -37,10 +37,11 @@ class GeneroController extends Controller
      */
     public function store(Request $request)
     {
-        $genero = Genero::create([
-            'generoNombre'=>$request->input('generoNombre'),
+        $categoria = Categoria::create([
+            'categoriaNombre'=>$request->input('categoriaNombre'),
+            'categoriaIdParent'=>$request->input('categoriaIdParent'),
             ]);
-        return redirect('/Generos');
+        return redirect('/Categorias');
     }
 
     /**
@@ -62,8 +63,9 @@ class GeneroController extends Controller
      */
     public function edit($id)
     {
-        $genero = Genero::findOrFail($id);
-        return view('Genero.EditarGenero',['genero'=>$genero]);
+        $categoria = Categoria::findOrFail($id);
+        $categorias = Categoria::where('categoriaIdParent',"")->get();
+        return view('Categorias.EditarSubCategoria',['categoria'=>$categoria,'categorias'=>$categorias]);
     }
 
     /**
@@ -75,10 +77,14 @@ class GeneroController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $genero = Genero::findOrFail($id);
-        $genero->fill($request->only('generoNombre'));
-        $genero->save();
-        return redirect('/Generos');
+        // dd($request);
+        $categoria = Categoria::findOrFail($id);
+        $categoria->categoriaId=$id;
+        $categoria->categoriaIdParent=$request->input('categoriaIdParent');
+        $categoria->categoriaNombre=$request->input('categoriaNombre');
+        // dd($categoria);
+        $categoria->save();
+        return redirect('/Categorias');
     }
 
     /**
@@ -89,8 +95,8 @@ class GeneroController extends Controller
      */
     public function destroy($id)
     {
-        $genero = Genero::findOrFail($id);
-        $genero->delete();
-        return redirect('/Generos');
+        $categoria = Categoria::findOrFail($id);
+        $categoria->delete();
+        return redirect('/Categorias');
     }
 }
