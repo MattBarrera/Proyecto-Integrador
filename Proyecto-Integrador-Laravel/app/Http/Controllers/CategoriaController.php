@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Categoria;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 
 class CategoriaController extends Controller
@@ -25,7 +25,8 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        
+        $categorias = Categoria::where('categoriaIdParent',"")->get();
+        return view('Categorias.CrearSubCategoria',['categorias'=>$categorias]);
     }
 
     /**

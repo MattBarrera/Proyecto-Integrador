@@ -1,35 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
-<form>
-	<div class="form-group">
-	    <select>
-	    	<option value="default">Genero</option>
-	    	<option>Clothing</option>
-	    	<option>Shoes</option>
-	    	<option>Accesories</option>
-	    </select>
-	</div>
-  <div class="form-group">
-	    <label>Nuevo Sub Categoria</label>
-	    <input type="text" class="form-control" placeholder="Ingrese nuevo sub-genero">
-	</div>
-</form>
+
 <div class="container">
   	<div class="page-header">
-    	<h1>New Color</h1>
+    	<h1>New Sub Category</h1>
   	</div>
 	<form class="form-horizontal" role="form" method="POST" action="/Colores/">
         {{ csrf_field() }}
         <div class="form-group{{ $errors->has('categoriaIdParent') ? ' has-error' : '' }}">
-            <label for="categoriaIdParent" class="col-md-4 control-label">Genero</label>
+            <label for="categoriaIdParent" class="col-md-4 control-label">Categoria</label>
 
             <div class="col-md-6">
             {{-- {{dd($generos)}} --}}
             <select name="categoriaIdParent" class="form-control" required>
-                <option value="">Seleccionar un genero</option>
+                <option value="">Seleccionar una Categoria</option>
                 @foreach($categorias as $categoria)
-                    <option value="{{$genero->generoId}}">{{$genero->generoNombre}}</option>
+                    <option value="{{$categoria->categoriaId}}">{{$categoria->categoriaNombre}}</option>
                 @endforeach
             </select>
                 @if ($errors->has('categoriaIdParent'))
@@ -39,13 +26,13 @@
                 @endif
             </div>
         </div>
-        <div class="form-group{{ $errors->has('colorNombre') ? ' has-error' : '' }}">
-            <label for="colorNombre" class="col-md-4 control-label">Name:</label>
+        <div class="form-group{{ $errors->has('categoriaId') ? ' has-error' : '' }}">
+            <label for="categoriaId" class="col-md-4 control-label">Name:</label>
             <div class="col-md-6">
-                <input id="colorNombre" type="text" class="form-control" name="colorNombre" >
-                @if ($errors->has('colorNombre'))
+                <input id="categoriaId" type="text" class="form-control" name="categoriaId" >
+                @if ($errors->has('categoriaId'))
                     <span class="help-block">
-                        <strong>{{ $errors->first('colorNombre') }}</strong>
+                        <strong>{{ $errors->first('categoriaId') }}</strong>
                     </span>
                 @endif
             </div>

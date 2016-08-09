@@ -17,7 +17,7 @@ class TalleController extends Controller
     {
         $talles = Talle::all();
 
-        return view('/Talle',['talles'=>$talles]);
+        return view('/Talles',['talles'=>$talles]);
     }
 
     /**
@@ -27,7 +27,7 @@ class TalleController extends Controller
      */
     public function create()
     {
-        //
+        return view('Talles.CrearTalle');
     }
 
     /**
@@ -41,7 +41,7 @@ class TalleController extends Controller
         $nuevoTalle = Talle::create([
             'talleNombre'=>$request->input('talleNombre'),
         ]);
-        return redirect ('/Talle');
+        return redirect ('/Talles');
     }
 
     /**
@@ -64,7 +64,7 @@ class TalleController extends Controller
     public function edit($id)
     {
         $talle = Talle::findOrFail($id);
-        return view('Talle.EditTalle',['talle'=>$talle]);
+        return view('Talles.EditTalle',['talle'=>$talle]);
     }
 
     /**
@@ -80,7 +80,7 @@ class TalleController extends Controller
         $talle->fill($request->only('talleNombre'));
 
         $talle->save();
-        return redirect ('/Talle');
+        return redirect ('/Talles');
     }
 
     /**
