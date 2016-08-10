@@ -108,7 +108,8 @@
                             </ul>
                         </li>
                     @endif
-                            <li><a href=""><i class="fa fa-shopping-cart" aria-hidden="true"></i> Shop</a></li>
+                            <li><a href="/Shop"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart ({{Cart::instance('default')->count()}})</a></li>
+                            <li><a href="/Whishlist"><i class="fa fa-heart" aria-hidden="true"></i> ({{Cart::instance('wishlist')->count()}})</a></li>
                 </ul>
             </div>
         </div>

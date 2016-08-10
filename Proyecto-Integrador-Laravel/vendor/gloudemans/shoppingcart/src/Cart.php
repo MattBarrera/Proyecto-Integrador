@@ -289,8 +289,9 @@ class Cart
      */
     public function search(Closure $search)
     {
+        // dd($search);
         $content = $this->getContent();
-
+        // dd($content);
         return $content->filter($search);
     }
 

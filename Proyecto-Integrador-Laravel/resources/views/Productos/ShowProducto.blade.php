@@ -8,7 +8,7 @@
       </div>
       <div class="row">
         <section class="detalleProducto">
-          <form action="" method="POST">
+          <form action="/Shop/{{$producto->productoId}}" method="get">
             @if($producto->productoFoto !== 'artsinfoto.gif')
                     <img src="/assets/{{$producto->users_id}}/products/{{$producto->productoFoto}}" alt="" class="productoFoto">
                   @else
@@ -46,7 +46,7 @@
                   </div>
                 @endforeach
               @endif
-            <input type="submit" class="btn btn-success" value="Comprar"></input>
+            <input type="submit" class="btn btn-success" value="Buy"></input>
           </form>
         </section>
       </div>
