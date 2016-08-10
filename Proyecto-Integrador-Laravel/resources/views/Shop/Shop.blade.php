@@ -98,7 +98,7 @@
                 @endforeach
               @else
                 <tr>
-                  <td colspan="6" class="warning" ">no products in your Cart</td>
+                  <td colspan="7" class="warning" ">No products in your Cart</td>
                 </tr>
               @endif
             </tbody>
