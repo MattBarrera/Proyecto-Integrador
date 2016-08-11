@@ -30,7 +30,7 @@
                 
                 @foreach($producto->color as $color)
                   <div class="inline">
-                      <input type="radio" id="colorId" name="colorId" value="{{$color->colorId}}">
+                      <input type="radio" required id="colorId" name="colorId" value="{{$color->colorId}}">
                       <label for="colorId">{{$color->color->colorNombre}}</label>
                   </div>
                 @endforeach
@@ -41,7 +41,7 @@
                 <h3>Talle:</h3>
                 @foreach($producto->talle as $talle)
                   <div class="inline">
-                      <input type="radio" id="talleId" name="talleId" value="{{$talle->talleId}}">
+                      <input type="radio" required id="talleId" name="talleId" value="{{$talle->talleId}}">
                       <label for="talleId">{{$talle->talle->talleNombre}}</label>
                   </div>
                 @endforeach

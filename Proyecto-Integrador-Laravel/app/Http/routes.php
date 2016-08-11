@@ -36,6 +36,9 @@ Route::group(['middleware'=>'auth'], function(){
 
 	Route::resource('/User','UserController');
 	Route::resource('/Empresa','EmpresaController');
+	Route::get('/Empresa/{id}/addAdmin','EmpresaController@addAdmin');
+	Route::post('/Empresa/{id}','EmpresaController@storeAdmin');
+	Route::delete('/Empresa/{id}/destroyAdmin','EmpresaController@destroyAdmin');
 	Route::resource('/Generos','GeneroController');
 	Route::resource('/Colores','ColorController');
 	Route::resource('/Talles','TalleController');

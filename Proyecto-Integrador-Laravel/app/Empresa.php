@@ -21,7 +21,9 @@ class Empresa extends Model
 
     public function productos($empresaId){
         $productos = Producto::where('empresaId',$empresaId)->get();
-        
         return $productos->count();
+    }
+    public function usuarios(){
+        return $this->hasMany('App\EmpresaHasUsers','empresaId','empresaId');
     }
 }

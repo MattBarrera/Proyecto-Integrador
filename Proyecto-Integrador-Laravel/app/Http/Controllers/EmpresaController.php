@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Empresa;
+use App\User;
 use App\EmpresaHasUsers;
 use App\Producto;
 use App\Follower;
@@ -22,7 +23,11 @@ class EmpresaController extends Controller
     {
         $empresasIds = EmpresaHasUsers::select('empresaId')->where('users_id',Auth::user()->id)->get();
         // $empresas->toArray;
-        $empresas = Empresa::whereIn('empresaId',$empresasIds)->get();
+        $empresasUsers = EmpresaHasUsers::select('users_id')->whereIn('empresaId',$empresasIds)->get();
+        // dd($empresasUsers);
+        $empresas = Empresa::whereIn('empresaId',$empresasIds)->with('usuarios.usuario')->get();
+        // $usuarios = User::whereIn('id',$empresasUsers)->get();
+        // dd($usuarios);
         // dd($empresas);
 
         return view('Empresas.Empresas',['empresas'=>$empresas]);
@@ -47,7 +52,7 @@ class EmpresaController extends Controller
     public function store(Request $request)
     {
         // dd($request);
-        if ($request->input('empresaFoto') !== "") {
+        if ($request->has('empresaFoto')) {
             $destinationPath = '/public/assets/'.Auth::user()->id.'/profile/';
             $fileName = input::file('empresaFoto')->getClientOriginalName();
             input::file('empresaFoto')->move(public_path().'/assets/'.Auth::user()->id.'/pages/', $fileName);
@@ -65,6 +70,7 @@ class EmpresaController extends Controller
         $empresaUser = EmpresaHasUsers::create([
             'empresaId'=>$nuevaEmpresa->empresaId,
             'users_id'=>Auth::user()->id,
+            'empresaOwner'=>1,
             ]);
 
 
@@ -143,5 +149,62 @@ class EmpresaController extends Controller
                 ]);
         }
         return back();
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addAdmin($id)
+    {
+        $empresaId = $id;
+        $users = EmpresaHasUsers::where('empresaId',$id)->with('usuario')->get();
+        // dd($users);
+
+        return view('Empresas.AddAdmin',['users'=>$users,'empresaId'=>$empresaId]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function storeAdmin(Request $request, $id)
+    {
+        // $userMail = ;
+        $user = User::select('id')->where('email',$request->input('email'))->first();
+        // dd($user);
+        $algo = EmpresaHasUsers::where('empresaId',$id)->where('users_id',$user->id)->get();
+        // dd($algo);
+        if(!$algo->isEmpty()){
+            // echo 'ya existe';
+            return redirect()->back()->withErrors('The user is already an Admin!');
+            // return redirect()->back()->withErrors($validator)->withInput();
+        }else{
+            $newAdmin = EmpresaHasUsers::create([
+                'empresaId'=>$id,
+                'users_id'=>$user->id,
+                'empresaOwner'=>0,
+            ]);
+            // dd($newAdmin);
+        return redirect()->back();
+        }
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function destroyAdmin(Request $request, $id)
+    {
+        $user = User::findOrFail($request->input('inputHidden'));
+        // dd($user->id);
+        $algo = EmpresaHasUsers::where('users_id',$user->id)->where('empresaId',$id)->first()->delete();
+        // $algo->delete();
+        // dd($algo);
+
+        return redirect()->back();
     }
 }

@@ -43,6 +43,10 @@ class Producto extends Model
     {
         return $this->belongsTo('App\Categoria', 'categoriaId', 'categoriaId');
     }
+    public function categoriaPadre()
+    {
+        return $this->belongsTo('App\Categoria', 'categoriaIdParent', 'categoriaId');
+    }
     public function usuario()
     {
         return $this->belongsTo('App\User', 'users_id');

@@ -61,9 +61,9 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+        dd($request);
         // $fileName = '';
-        if ($request->input('productoFoto') !== "") {
+        if ($request->input('productoFoto') != "") {
             $destinationPath = '/public/assets/'.Auth::user()->id.'/products/';
             $fileName = input::file('productoFoto')->getClientOriginalName();
             input::file('productoFoto')->move(public_path().'/assets/'.Auth::user()->id.'/products/', $fileName);

@@ -18,17 +18,17 @@ class StoreController extends Controller
     public function index()
     {
         $generos = Genero::all();
-        $categorias = Categoria::where('categoriaIdParent', "")->get();
+        $categorias = Categoria::where('categoriaIdParent', "")->with('categoriaPadre','subcategorias')->get();
         // $subCategorias = Categoria::where('categoriaIdParent', "!=", "")->get();
         // dd($subCategorias);
-        $productos = Producto::with('categoria','usuario')->get();
+        $productos = Producto::with('categoria','usuario','empresa','categoriaPadre')->get();
         // dd($productos);
 
         return view('Store.Store',['productos'=>$productos,'generos'=>$generos,'categorias'=>$categorias,]);//'subCategorias'=>$subCategorias
     }
     public function indexHome()
     {
-        $productos = Producto::where('productoEstado',1)->with('usuario','categoria')->take(8)->get();
+        $productos = Producto::where('productoEstado',1)->with('usuario','categoria','empresa')->take(8)->get();
         // dd($productos);
         return view('welcome',['productos'=>$productos]);
     }

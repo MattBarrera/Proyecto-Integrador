@@ -83,7 +83,7 @@
                             <label for="empresaFoto" class="col-md-4 control-label">Avatar</label>
 
                             <div class="col-md-6">
-                                <input id="empresaFoto" type="file" class="form-control" name="empresaFoto">
+                                <input id="empresaFoto" type="file" required class="form-control" name="empresaFoto">
 
                                 @if ($errors->has('empresaFoto'))
                                     <span class="help-block">
