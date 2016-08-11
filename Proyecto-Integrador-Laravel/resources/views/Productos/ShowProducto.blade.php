@@ -9,12 +9,22 @@
       <div class="row">
         <section class="detalleProducto">
           <form action="/Shop/{{$producto->productoId}}" method="POST">
+<<<<<<< Updated upstream
           {{ csrf_field() }}
+=======
+          {{csrf_token()}}
+          <div id="detalleProductoFoto" style="float: left; margin-left: 11%;">
+>>>>>>> Stashed changes
             @if($producto->productoFoto !== 'artsinfoto.gif')
                     <img src="/assets/{{$producto->users_id}}/products/{{$producto->productoFoto}}" alt="" class="productoFoto">
                   @else
                     <img src="/assets/{{$producto->productoFoto}}" alt="" class="productoFoto">
                   @endif
+          </div>
+              
+                  <!-- Separo la foto de lo demas con otro div para hacer un float left -->
+                  <!-- hice el css inline para probarlo, no encuentro el css donde tocarlo -->
+              <div id="detalleProdutoDatos" style="float: right; margin-right: 26%;">
               <!--aca va el titulo del producto-->
                 <h2>{{$producto->productoNombre}}</h2>
 
@@ -48,10 +58,21 @@
                 @endforeach
               @endif
             <input type="submit" class="btn btn-success" value="Buy"></input>
+            </div>
           </form>
+          <br>
+          
         </section>
       </div>
-
+      <br>
+      <br>
+      <br>
+      <br>
+        <div style="text-align: center;">
+            <h2>Descripcion del Producto</h2>
+                    <!--descripcion completa del producto-->
+                <p>Descripcion: {{$producto->productoDescripcion}}</p>
+          </div>
     </div>
     
 @endsection
