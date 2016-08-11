@@ -4,7 +4,7 @@
 <!-- Begin page content -->
     <div class="container">
       <div class="page-header">
-        <h1>Producto</h1>
+        <h1>{{$producto->productoNombre}}</h1>
       </div>
       <div class="row">
         <section class="detalleProducto">
@@ -24,16 +24,16 @@
               
                   <!-- Separo la foto de lo demas con otro div para hacer un float left -->
                   <!-- hice el css inline para probarlo, no encuentro el css donde tocarlo -->
-              <div id="detalleProdutoDatos" style="float: right; margin-right: 26%;">
+              <div id="detalleProdutoDatos" style="float: right; margin-right: 31%;">
               <!--aca va el titulo del producto-->
-                <h2>{{$producto->productoNombre}}</h2>
+
 
               <!--descripcion completa del producto-->
-                <p>Descripcion: {{$producto->productoDescripcion}}</p>
+
 
               <!--precio del producto-->
-                <h3>Precio:</h3>
-                <p>$ {{$producto->productoPrecio}}</p>
+                
+                <h3><strong>$ {{$producto->productoPrecio}}<sup>00</sup></strong></h3>
                 {{-- {{dd(count($talles))>0}} --}}
               @if(count($producto->color)>0) 
               <!--precio del producto con el titulo-->
@@ -57,6 +57,7 @@
                   </div>
                 @endforeach
               @endif
+              <br>
             <input type="submit" class="btn btn-success" value="Buy"></input>
             </div>
           </form>
