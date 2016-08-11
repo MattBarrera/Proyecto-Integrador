@@ -39,18 +39,22 @@ Route::group(['middleware'=>'auth'], function(){
 	Route::get('/Empresa/{id}/addAdmin','EmpresaController@addAdmin');
 	Route::post('/Empresa/{id}','EmpresaController@storeAdmin');
 	Route::delete('/Empresa/{id}/destroyAdmin','EmpresaController@destroyAdmin');
+
 	Route::resource('/Generos','GeneroController');
 	Route::resource('/Colores','ColorController');
 	Route::resource('/Talles','TalleController');
 	Route::resource('/Categorias','CategoriaController');
 	Route::resource('/SubCategorias','SubCategoriaController');
 });
+	Route::get('/Productos/{id}','ProductoController@Show');
+
 	Route::get('/Shop','ShopController@index')->name('Shop.index');
+	Route::post('/Shop/{id}','ShopController@store')->name('Shop.store');
 	Route::delete('/Shop/{id}','ShopController@destroy')->name('Shop.destroy');
-	Route::get('/Shop/{id}','ShopController@store')->name('Shop.store');
-	Route::post('/Shop/{id}/update','ShopController@update')->name('Shop.update');
+	Route::patch('/Shop/{id}/update','ShopController@update')->name('Shop.update');
+
 	Route::get('/Whishlist','WhishlistController@index')->name('Whishlist.index');
 	Route::delete('/Whishlist/{id}','WhishlistController@destroy')->name('Whishlist.destroy');
 	Route::get('/Whishlist/{id}','WhishlistController@store')->name('Whishlist.store');
 	Route::post('/Whishlist/{id}/update','WhishlistController@update')->name('Whishlist.update');
-	Route::get('/Productos/{id}','ProductoController@Show');
+	

@@ -57,7 +57,7 @@
                 @foreach(Cart::content() as $producto)
                   <tr>
                     <td class="table-image">
-                      <img src="/assets/{{$producto->options->userId}}/products/{{$producto->options->productoFoto}}" alt="" width="60" height="60">{{-- {{$producto->rowId}} --}}
+                      <img src="/assets/{{$producto->options->userId}}/products/{{$producto->options->productoFoto}}" alt="" width="60" height="60" class="img-thumbnail">{{-- {{$producto->rowId}} --}}
                     </td>
                     <td><a href="/Productos/{{$producto->id}}" title="">{{$producto->name}}</a></td>
                     <td>
@@ -66,14 +66,14 @@
                         @if($producto->options->size != NULL)
                           @foreach($talles as $talle)
                             @if($talle->talleId == $producto->options->size)
-                              <li>Size:{{$talle->talleNombre}}</li>
+                              <li>Size: {{$talle->talleNombre}}</li>
                             @endif
                           @endforeach
                         @endif
                         @if($producto->options->color)
                           @foreach($colores as $color)
                             @if($color->colorId == $producto->options->color)
-                              <li>Color:{{$color->colorNombre}}</li>
+                              <li>Color: {{$color->colorNombre}}</li>
                             @endif
                           @endforeach
                         @endif
@@ -131,9 +131,11 @@
 
             $('.quantity').on('change', function() {
                 var id = $(this).attr('data-id')
+                // console.log(id);
+                // console.log(this.value);
                 $.ajax({
                   type: "PATCH",
-                  url: '/cart/' + id,
+                  url: '/Shop/' + id + '/update',
                   data: {
                     'quantity': this.value,
                   },

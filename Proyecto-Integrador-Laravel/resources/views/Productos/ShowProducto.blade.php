@@ -9,7 +9,7 @@
       <div class="row">
         <section class="detalleProducto">
           <form action="/Shop/{{$producto->productoId}}" method="POST">
-          {{csrf_token()}}
+          {{ csrf_field() }}
             @if($producto->productoFoto !== 'artsinfoto.gif')
                     <img src="/assets/{{$producto->users_id}}/products/{{$producto->productoFoto}}" alt="" class="productoFoto">
                   @else
