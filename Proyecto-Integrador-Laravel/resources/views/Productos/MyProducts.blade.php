@@ -32,7 +32,7 @@
                           {{$producto->visita->visitaCant}}
                         @endif
                         </p>
-                <a href="Productos/{{$producto->productoId}}/edit" class="btn btn-success" role="button">edit</a> 
+                <a href="/Productos/{{$producto->productoId}}/edit" class="btn btn-success" role="button">edit</a> 
                     <form action="/Productos/{{$producto->productoId}}/Baja" method="POST" class="form-delete">
                       {{csrf_field()}}
                       {{-- {{ method_field('delete') }} --}}

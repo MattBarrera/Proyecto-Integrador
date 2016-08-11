@@ -124,7 +124,8 @@
     
     {{-- Bootstrap Multiple Selects JS --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
-
+    @yield('extra-js')
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+    
 </body>
 </html>

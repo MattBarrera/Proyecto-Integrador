@@ -188,7 +188,8 @@ class EmpresaController extends Controller
                 'empresaOwner'=>0,
             ]);
             // dd($newAdmin);
-        return redirect()->back();
+        return back()->withSuccessMessage('The user was added successfully!');
+
         }
     }
 
@@ -201,10 +202,17 @@ class EmpresaController extends Controller
     {
         $user = User::findOrFail($request->input('inputHidden'));
         // dd($user->id);
-        $algo = EmpresaHasUsers::where('users_id',$user->id)->where('empresaId',$id)->first()->delete();
+        // $algo = EmpresaHasUsers::where('users_id',$user->id)->where('empresaId',$id)->first()->delete();
         // $algo->delete();
         // dd($algo);
 
-        return redirect()->back();
+
+
+        // $user = User::findOrFail($id);
+        if ($algo = EmpresaHasUsers::where('users_id',$user->id)->where('empresaId',$id)->first()) {
+            //si existe el follow, lo elimino,
+            $algo = EmpresaHasUsers::where('users_id',$user->id)->where('empresaId',$id)->delete();
+        }
+        return back();
     }
 }

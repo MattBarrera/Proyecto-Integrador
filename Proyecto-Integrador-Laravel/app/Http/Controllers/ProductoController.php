@@ -61,7 +61,7 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
         // $fileName = '';
         if ($request->input('productoFoto') != "") {
             $destinationPath = '/public/assets/'.Auth::user()->id.'/products/';
@@ -133,7 +133,15 @@ class ProductoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $producto = Producto::findOrFail($id);
+        $empresas = EmpresaHasUsers::where('users_id',Auth::user()->id)->with('empresa')->get();
+        $categorias = Categoria::where('categoriaIdParent', "")->with('subcategorias')->get();
+        // dd($categorias);
+        $generos = Genero::all();
+        $colores = Color::all();
+        $talles = Talle::all();
+        return view('Productos.EditProducto',['producto'=>$producto,'generos'=> $generos,'categorias'=> $categorias,'colores'=>$colores,'talles'=>$talles,'empresas'=>$empresas]);
+        // return view('Productos.EditProducto',['producto'=>$producto]);
     }
 
     /**

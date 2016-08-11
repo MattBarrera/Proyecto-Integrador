@@ -8,7 +8,8 @@
       </div>
       <div class="row">
         <section class="detalleProducto">
-          <form action="/Shop/{{$producto->productoId}}" method="get">
+          <form action="/Shop/{{$producto->productoId}}" method="POST">
+          {{csrf_token()}}
             @if($producto->productoFoto !== 'artsinfoto.gif')
                     <img src="/assets/{{$producto->users_id}}/products/{{$producto->productoFoto}}" alt="" class="productoFoto">
                   @else
@@ -52,4 +53,5 @@
       </div>
 
     </div>
+    
 @endsection

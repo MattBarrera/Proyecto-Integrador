@@ -39,10 +39,10 @@
                 <th colspan="4" style="text-align: right">Sub Total</th>
                 <th colspan="1">$ {{Cart::instance('wishlist')->subtotal()}}</th>
               </tr>
-              <tr>
+              {{-- <tr>
                 <td colspan="4" style="text-align: right">Tax</td>
                 <td colspan="1">$ {{Cart::instance('wishlist')->tax()}}</td>
-              </tr>
+              </tr> --}}
               <tr>
                 <th colspan="4" style="text-align: right">Total</th>
                 <th colspan="1">$ {{Cart::instance('wishlist')->total()}}</th>

@@ -6,7 +6,7 @@
       @foreach($users as $user)
         <div class="page-header">
           <h1 style="display: inline-block">{{$user->full_name}}</h1>
-          <a href="/Follow/{{$user->id}}" title="">
+          <a href="/Follow/User/{{$user->id}}" title="">
             <button type="submit" class="btn btn-primary pull-right btn-follower"><i class="fa fa-check"></i> Following</button>
           </a>  
         </div>  
@@ -30,7 +30,7 @@
       @foreach($empresas as $empresa)
         <div class="page-header">
           <h1 style="display: inline-block">{{$empresa->empresaNombre}}</h1>
-          <a href="/Follow/{{$empresa->id}}" title="">
+          <a href="/Follow/Empresa/{{$empresa->empresaId}}" title="">
             <button type="submit" class="btn btn-primary pull-right btn-follower"><i class="fa fa-check"></i> Following</button>
           </a>   
         </div>

@@ -26,7 +26,7 @@
                 <th>Edit</th>
               </tr> --}}
               <tr>
-                <th>Avatar</th>
+                <th class="table-image">Avatar</th>
                 <th>Name</th>
                 <th>Detalls</th>
                 <th>Price</th>
@@ -56,7 +56,7 @@
               @if(Cart::count() !== 0)
                 @foreach(Cart::content() as $producto)
                   <tr>
-                    <td>
+                    <td class="table-image">
                       <img src="/assets/{{$producto->options->userId}}/products/{{$producto->options->productoFoto}}" alt="" width="60" height="60">{{-- {{$producto->rowId}} --}}
                     </td>
                     <td><a href="/Productos/{{$producto->id}}" title="">{{$producto->name}}</a></td>
@@ -82,7 +82,16 @@
                     <td>$ {{$producto->price}}</td>
                    {{--  <form action="/Shop/{{$producto->rowId}}/update" method="POST" class="form-delete">
                         {{csrf_field()}} --}}
-                      <td><input class="form-control" type="number" value="{{$producto->qty}}" id="productoQty" name="productoQty" style="text-align: center"></td>
+                      <td>
+                        {{-- <input class="form-control" type="number" value="{{$producto->qty}}" id="productoQty" name="productoQty" style="text-align: center"> --}}
+                        <select class="quantity" data-id="{{ $producto->rowId }}">
+                                <option {{ $producto->qty == 1 ? 'selected' : '' }}>1</option>
+                                <option {{ $producto->qty == 2 ? 'selected' : '' }}>2</option>
+                                <option {{ $producto->qty == 3 ? 'selected' : '' }}>3</option>
+                                <option {{ $producto->qty == 4 ? 'selected' : '' }}>4</option>
+                                <option {{ $producto->qty == 5 ? 'selected' : '' }}>5</option>
+                            </select>
+                      </td>
                       <td>
                         {{-- <button type="submit" class="btn btn-success "><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button></a>
                        --}}
@@ -108,7 +117,35 @@
       </div>
     </div>
 </div>
+
+@endsection
+@section('extra-js')
+    <script>
+        (function(){
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $('.quantity').on('change', function() {
+                var id = $(this).attr('data-id')
+                $.ajax({
+                  type: "PATCH",
+                  url: '/cart/' + id,
+                  data: {
+                    'quantity': this.value,
+                  },
+                  success: function(data) {
+                    window.location.href = '/cart';
+                  }
+                });
+
+            });
+
+        })();
+
+    </script>
 <script src="/js/quantity.js" type="text/javascript"></script>
-
-
 @endsection

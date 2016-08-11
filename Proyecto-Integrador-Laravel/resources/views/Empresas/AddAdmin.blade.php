@@ -38,7 +38,7 @@
           </table>
       </div>
       @if (session()->has('errors'))
-            <div class="alert alert-danger alert-dismissible fade in">
+            <div class="alert alert-danger alert-dismissible fade in" id="closeAlert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
                 <center><p>{{ session()->get('errors')->first() }}</p></center>
             </div>
@@ -63,4 +63,5 @@
         </div>
         </form>
 </div>
+<script src="/js/closeAlert.js" type="text/javascript"></script>
 @endsection

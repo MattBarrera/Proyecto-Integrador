@@ -16,13 +16,17 @@ miSelectCategorias.onchange = function(evento){
 					// console.log(subCategoria);
 					var thead = document.querySelector('#categoriaId');
 					thead.innerHTML = '';
+				if (subCategoria.length == 0) {
+					thead.innerHTML = thead.innerHTML + '<option value=""> No Existen SubCategorias para esa categoria</option>';
+				}else{
 					thead.innerHTML = thead.innerHTML + '<option value=""> Seleccionar una Sub Categoria</option>';
-				for(var propiedadSubCategoria in subCategoria) {
-					// subcat = subCategoria[propiedadSubCategoria];
-					// console.log(subcat.categoriaNombre);
-					var valueSubCategoria = subCategoria[propiedadSubCategoria];
-						// console.log(valueSubCategoria);
-					thead.innerHTML = thead.innerHTML + '<option value="' + valueSubCategoria.categoriaId + '">' + valueSubCategoria.categoriaNombre + '</option>'
+					for(var propiedadSubCategoria in subCategoria) {
+						// subcat = subCategoria[propiedadSubCategoria];
+						// console.log(subcat.categoriaNombre);
+						var valueSubCategoria = subCategoria[propiedadSubCategoria];
+							// console.log(valueSubCategoria);
+						thead.innerHTML = thead.innerHTML + '<option value="' + valueSubCategoria.categoriaId + '">' + valueSubCategoria.categoriaNombre + '</option>'
+					}
 				}
 				// console.log(subCategoria[categoriaId]);
 			}

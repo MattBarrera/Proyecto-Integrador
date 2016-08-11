@@ -42,7 +42,7 @@
                     <ul>
                       @foreach($empresa->usuarios as $usuario)
                       {{-- {{dd()}} --}}
-                        <li style="list-style: none">{{$usuario->usuario->full_name}}{{$usuario->empresaOwner == 1 ?'(Owner)':''}}</li>
+                        <li style="list-style: none">{{$usuario->usuario->full_name}} {{$usuario->empresaOwner == 1 ?'(Owner)':''}}</li>
                         
                       @endforeach
                     </ul>
