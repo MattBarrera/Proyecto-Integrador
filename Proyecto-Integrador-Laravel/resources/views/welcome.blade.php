@@ -3,17 +3,16 @@
 @section('content')
 <main >
   <section id="breadcrumb" class="container-fluid">
-    <ol class="breadcrumb">
-      <li><a href="#">Men</a></li>
-      <li><a href="#">Women</a></li>
-      <li><a href="#">Clothes</a></li>
-      <li><a href="#">Shoes</a></li>
-      <li><a href="#">Accesories</a></li>
-      <li class="active">Data</li>
+    <ol class="breadcrumb" style="background-color:#337AB7;">
+      <li><a href="#" style="color:white;">Men</a></li>
+      <li><a href="#" style="color:white;">Women</a></li>
+      <li><a href="#" style="color:white;">Clothes</a></li>
+      <li><a href="#" style="color:white;">Shoes</a></li>
+      <li><a href="#" style="color:white;" >Accesories</a></li>
     </ol>
   </section>
 
-  <section style="position:relative">
+  <section style="position: fixed">
     <div id="social" style="position:absolute;top:15px">
       <div><a href="http://www.facebook.com"> <img src="{{ asset('img/facebook.svg') }}" class="social" /></a></div>
       <div><a href="http://www.twitter.com"> <img src="{{ asset('img/twitter.svg') }}" class="social" /></a></div>
@@ -21,13 +20,33 @@
     </div>
   </section>
 
-  <div class="jumbotron">
-    <center>
-      <h1>Welcome to your own Clothes Shop!</h1>
-      <p>Buy and sell products in just 50 seconds</p>
-      <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
-    </center>
+  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img src="{{ asset('img/galeria.jpg') }}" alt="First slide">
+    </div>
+    <div class="item">
+      <img src="{{ asset('img/galeria2.jpg') }}" alt="Second slide">
+    </div>
+    <div class="item">
+      <img src="{{ asset('img/galeria3.jpg') }}" alt="Third slide">
+    </div>
   </div>
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="icon-prev" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="icon-next" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
   <section class="container-fluid">
     <div class="col-md-4">
       <center><h2>CLOTHING</h2></center>
@@ -55,7 +74,7 @@
     </div>
   </section>
         <section id="productos">
-          <div class="container-fluid">
+          <div class="container-fluid" style="margin-top:35px; margin-bottom:-40px;">
             <center><h2>PRODUCTOS DESTACADOS</h2> </center>
             @foreach($productos as $producto)
               <div class="col-xs-6 col-sm-3">
