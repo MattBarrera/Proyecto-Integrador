@@ -9,12 +9,8 @@
       <div class="row">
         <section class="detalleProducto">
           <form action="/Shop/{{$producto->productoId}}" method="POST">
-<<<<<<< Updated upstream
           {{ csrf_field() }}
-=======
-          {{csrf_token()}}
           <div id="detalleProductoFoto" style="float: left; margin-left: 11%;">
->>>>>>> Stashed changes
             @if($producto->productoFoto !== 'artsinfoto.gif')
                     <img src="/assets/{{$producto->users_id}}/products/{{$producto->productoFoto}}" alt="" class="productoFoto">
                   @else
