@@ -17,6 +17,12 @@
           <button type="submit" class="btn btn-success pull-right btn-follower"> New Categoria</button>
         </a> --}}
       </div>
+      @if (session()->has('success_message'))
+            <div class="alert alert-success" id="closeAlert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                {{ session()->get('success_message') }}
+            </div>
+        @endif
       <div class="table-responsive">
           <table class="table table-bordered">
             <thead>
@@ -84,7 +90,9 @@
                         {{csrf_field()}} --}}
                       <td>
                         {{-- <input class="form-control" type="number" value="{{$producto->qty}}" id="productoQty" name="productoQty" style="text-align: center"> --}}
-                        <select class="quantity" data-id="{{ $producto->rowId }}">
+                          
+                        
+                        <select class="quantity form-control" data-id="{{ $producto->rowId }}" >
                                 <option {{ $producto->qty == 1 ? 'selected' : '' }}>1</option>
                                 <option {{ $producto->qty == 2 ? 'selected' : '' }}>2</option>
                                 <option {{ $producto->qty == 3 ? 'selected' : '' }}>3</option>
@@ -120,34 +128,7 @@
 
 @endsection
 @section('extra-js')
-    <script>
-        (function(){
-
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            $('.quantity').on('change', function() {
-                var id = $(this).attr('data-id')
-                // console.log(id);
-                // console.log(this.value);
-                $.ajax({
-                  type: "PATCH",
-                  url: '/Shop/' + id + '/update',
-                  data: {
-                    'quantity': this.value,
-                  },
-                  success: function(data) {
-                    window.location.href = '/cart';
-                  }
-                });
-
-            });
-
-        })();
-
-    </script>
+    
 <script src="/js/quantity.js" type="text/javascript"></script>
+<script src="/js/closeAlert.js" type="text/javascript"></script>
 @endsection

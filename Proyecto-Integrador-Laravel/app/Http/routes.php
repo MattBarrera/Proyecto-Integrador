@@ -23,8 +23,8 @@ Route::group(['middleware'=>'auth'], function(){
 	Route::post('/Productos/{id}','ProductoController@destroy');
 	Route::post('/Productos/{id}','ProductoController@update');
 	Route::post('/Productos/{id}/Baja','ProductoController@Baja');
-	Route::get('/Productos/{id}/edit','ProductoController@edit');
 	Route::get('/Productos/{id}/ReActivar','ProductoController@ReActivar');
+	Route::get('/Productos/{id}/edit','ProductoController@edit');
 	Route::get('/MyProducts','ProductoController@indexOwn');
 	Route::get('/MyHistoricProducts','ProductoController@OwnDown');
 	Route::get('/MyPersonalProducts','ProductoController@followersProducts');
@@ -47,11 +47,12 @@ Route::group(['middleware'=>'auth'], function(){
 	Route::resource('/SubCategorias','SubCategoriaController');
 });
 	Route::get('/Productos/{id}','ProductoController@Show');
+	// Route::resource('/Shop','ShopController');
 
+	Route::patch('/Shop/{id}','ShopController@update')->name('Shop.update');
 	Route::get('/Shop','ShopController@index')->name('Shop.index');
 	Route::post('/Shop/{id}','ShopController@store')->name('Shop.store');
 	Route::delete('/Shop/{id}','ShopController@destroy')->name('Shop.destroy');
-	Route::patch('/Shop/{id}/update','ShopController@update')->name('Shop.update');
 
 	Route::get('/Whishlist','WhishlistController@index')->name('Whishlist.index');
 	Route::delete('/Whishlist/{id}','WhishlistController@destroy')->name('Whishlist.destroy');

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Producto;
+use App\ColorHasProducto;
+use App\TalleHasProdcuto;
 use Cart;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -16,6 +18,15 @@ class WhishlistController extends Controller
      */
     public function index()
     {
+        $ids = [];
+        foreach (Cart::instance('wishlist')->content() as $value) {
+            // dd();
+            $ids [] = $value->id;
+        }
+        // dd($ids);
+        // dd(Cart::instance('wishlist')->content());
+        $colores = ColorHasProducto::whereIn('productoId',[1,4])->with('color')->get();
+        // dd($colores);
         return view('Whishlist.Whishlist');
     }
 
