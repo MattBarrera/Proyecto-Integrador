@@ -27,7 +27,7 @@ class WhishlistController extends Controller
         // dd(Cart::instance('wishlist')->content());
         $colores = ColorHasProducto::whereIn('productoId',[1,4])->with('color')->get();
         // dd($colores);
-        return view('Whishlist.Whishlist');
+        return view('Whishlist.Whishlist',['colores'=>$colores]);
     }
 
     /**

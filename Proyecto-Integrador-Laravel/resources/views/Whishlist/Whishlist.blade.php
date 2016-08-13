@@ -1,5 +1,7 @@
-{{-- @extends('layouts.app') --}}
-
+@extends('layouts.app')
+@section('title')
+  - Whishlist
+@endsection
 @section('content')
 <div class="container-fluid">
     <section id="breadcrumb">
@@ -62,27 +64,40 @@
                       {{-- <td><input class="form-control" type="number" value="{{$producto->qty}}" name="productoQty" style="text-align: center"></td> --}}
                       <td>
                         {{-- <button type="submit" class="btn btn-success "><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Add to cart</button></a> --}}
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addToCartModal" data-productId="{{$producto->id}}">
+                        {{-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addToCartModal" data-productId="{{$producto->id}}">
                           Add to cart
-                        </button>
-                        <!-- Modal -->
-                          <div class="modal fade" id="addToCartModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                            <div class="modal-dialog" role="document">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                  <h4 class="modal-title" id="myModalLabel">Select size and color before adding to cart</h4>
-                                </div>
-                                <div class="modal-body">
-                                  productoId{{$producto->id}}
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                  <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
+                        </button> --}}
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addToCartModal" data-whatever="{{$producto->id}}">Add to Cart </button>
+                        
+                          <div class="modal fade" id="addToCartModal" tabindex="-1" role="dialog" aria-labelledby="addToCartModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="addToCartModalLabel"></h4>
+                              </div>
+                              <div class="modal-body">
+                                <form>
+                                  <div class="form-group">
+                                    <label for="recipient-name" class="control-label" style="text-align: left">Recipient:</label>
+                                    <input type="text" class="form-control" id="recipient-name">
+                                  </div>
+                                  <div class="radio-inline">
+                                      {{-- @foreach($colores as $color) --}}
+                                    <label>
+                                      <input type="radio" name="optionsRadios" id="optionsRadios" value="option1" checked>
+                                      Color 1
+                                    </label>
+                                  </div>
+                                </form>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Send message</button>
                               </div>
                             </div>
                           </div>
+                        </div>
                       
                     </form>
                       <form action="/Whishlist/{{$producto->rowId}}" method="POST" class="form-delete">

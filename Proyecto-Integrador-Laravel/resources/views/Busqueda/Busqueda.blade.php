@@ -71,7 +71,7 @@
                   @foreach($sugerencias as $producto)
                   <div class="col-xs-6 col-sm-3" >
                     @include('Includes.producto', ['producto' => $producto])
-                    <p><a href="" class="btn btn-primary" role="button">Buy</a></p>
+                    <p><a href="/Productos/{{$producto->productoId}}" class="btn btn-primary" role="button">Buy</a></p>
                       </div> {{-- end caption inside the include--}}
                     </div> {{-- end thumbnail inside the include--}}
                   </div> {{-- end col-xs-6 col-sm-3 --}}
