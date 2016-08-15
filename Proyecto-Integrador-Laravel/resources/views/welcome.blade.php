@@ -28,7 +28,7 @@
   </ol>
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <img src="{{ asset('img/galeria.jpg') }}" alt="First slide">
+      <img src="{{ asset('img/silent.jpg') }}" alt="First slide">
     </div>
     <div class="item">
       <img src="{{ asset('img/galeria2.jpg') }}" alt="Second slide">
@@ -75,7 +75,7 @@
   </section>
         <section id="productos">
           <div class="container-fluid" style="margin-top:35px; margin-bottom:-40px;">
-            <center><h2>PRODUCTOS DESTACADOS</h2> </center>
+            <center><h2>FEATURED PRODUCTS</h2> </center>
             @foreach($productos as $producto)
               <div class="col-xs-6 col-sm-3">
                   @include('Includes.producto', ['producto' => $producto])
