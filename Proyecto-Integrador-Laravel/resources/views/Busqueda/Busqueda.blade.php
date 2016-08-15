@@ -60,14 +60,14 @@
                   </div> {{-- end col-xs-6 col-sm-3 --}}
                   @endforeach
                 @else
-                  <div class="alert alert-warning alert-dismissible fade in" role="alert">
+                  <div class="alert alert-warning alert-dismissible fade in" role="alert" id="closeAlert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                     <center><h4>No se encontraron productos con esa busqueda.</h4></center>
                     {{-- <button type="" class="btn btn-success"><a href="{{URL::previous()}}" title="">Volver</a></button> --}}
                   </div>
-                  <center><h2>Pero poray te pueden interesar estos productos!!</h2></center>
+                  <center><h2>Talvez te pueden interesar estos productos!!</h2></center>
                   @foreach($sugerencias as $producto)
                   <div class="col-xs-6 col-sm-3" >
                     @include('Includes.producto', ['producto' => $producto])
@@ -84,4 +84,7 @@
     </div>
 </div>
 
+@endsection
+@section('extra-js')
+<script src="/js/closeAlert.js" type="text/javascript"></script>
 @endsection
