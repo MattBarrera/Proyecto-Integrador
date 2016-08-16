@@ -55,3 +55,52 @@ table td, table th{
 .form-delete{
   display: inline-block;
 }
+.thumbnail{
+	height: 410px;
+}
+.thumbnail:hover{
+	z-index: 998;
+
+    /*border: 1px solid #eee;*/
+    -webkit-box-shadow: 0 3px 4px #ccc;
+    box-shadow: 0 3px 4px #ccc;
+    background: white;
+    min-height: 80px;
+    margin: 5px 0 15px -1px;
+    overflow: hidden;
+}
+.item-title{
+	/*font-size: 14px;*/
+    /*line-height: 18px;*/
+    /*margin: 0 0 10px;*/
+    color: #337ab7;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.thumbnail:hover .item-title{
+	text-overflow: initial;
+    white-space: normal;
+    margin-top: -2px
+}
+.detalleProductoFoto{
+	float: left; 
+	/*margin-left: 15%; */
+	margin-top: 3%;
+	width: 50%;
+	/*width: 300px;*/
+	height: 300px;
+	display: inline-block;
+}
+.detalleProdcutoFoto img{
+	text-align: center;
+}
+.detalleProdutoDatos{
+	float: right; 
+	width: 50%;
+	/*margin-right: 31%; */
+	margin-top: 3%;
+	border-left: 1px solid #eee;
+	padding-left: 2em;
+	display: inline-block;
+}

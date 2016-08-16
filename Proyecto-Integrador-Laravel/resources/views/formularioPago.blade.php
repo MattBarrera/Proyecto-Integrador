@@ -3,7 +3,7 @@
 @section('content')
 
 <form>
-	<h3>¿Qué tarjeta vas a usar?</h3>
+	<h3>Choose Credit Card</h3>
 	<select>
 		<option>Visa</option>
 		<option>Mastercard</option>
@@ -20,13 +20,13 @@
 		<option>Cordobesa</option>
 	</select>
 	<div class="form-group">
-		<label>Número de Tarjeta:<sup>*</sup></label>
+		<label>Credit Card Number:<sup>*</sup></label>
 		<input type="tel" maxlength="30" required title="Completa este dato." id="cardNumber">
 	</div>
 	<div class="form-group">
-		<label>Válida hasta:<sup>*</sup></label>
+		<label>Good Thru:<sup>*</sup></label>
 		<select>
-			<option value="">Mes</option>
+			<option value="">Month</option>
 			<option value="1">01</option>
 			<option value="2">02</option>
 			<option value="3">03</option>
@@ -42,7 +42,7 @@
 		</select>
 		<span>/</span>
 		<select>
-			<option value="">Año</option>
+			<option value="">Year</option>
 			<option value="2016">16</option>
 			<option value="2017">17</option>
 			<option value="2018">18</option>
@@ -87,19 +87,19 @@
 		</select>
 	</div>
 	<div class="form-group">
-		<label>Nombre y appelido impreso en la tarjeta:<sup>*</sup></label>
+		<label>Full name printed in credit card:<sup>*</sup></label>
 		<input type="text" size="40" maxlength="50" required title="Complete este dato" id="cardOwner">
 	</div>
 	<div class="form-group">
-		<label>Documento del titular de la tarjeta:<sup>*</sup></label>
+		<label>Document of card owner:<sup>*</sup></label>
 		<input type="tel" maxlength="25" size="15" required title="Complete este dato" id="dniTarjeta">
 	</div>
 	<div class="form-group">
-		<label>Codigo de seguridad:<sup>*</sup></label>
+		<label>Security code:<sup>*</sup></label>
 		<input type="tel" maxlength="4" required title="Complete este dato" id="securityCardCode">
 	</div>
 	<div class="form-group">
-		<label>Cuotas:<sup>*</sup></label>
+		<label>Dues:<sup>*</sup></label>
 		<ul>
 			<li>
 				<input type="radio" value="1">

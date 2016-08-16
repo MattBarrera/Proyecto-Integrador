@@ -9,7 +9,7 @@
 	<form class="form-horizontal" role="form" method="POST" action="/SubCategorias">
         {{ csrf_field() }}
         <div class="form-group{{ $errors->has('categoriaIdParent') ? ' has-error' : '' }}">
-            <label for="categoriaIdParent" class="col-md-4 control-label">Categoria</label>
+            <label for="categoriaIdParent" class="col-md-4 control-label">Category</label>
 
             <div class="col-md-6">
             {{-- {{dd($generos)}} --}}
@@ -39,7 +39,7 @@
         </div>
         <div class="form-group">
             <div class="col-md-6 col-md-offset-4">
-                <button type="submit" class="btn btn-success">Crear</button>
+                <button type="submit" class="btn btn-success">Create</button>
             </div>
         </div>
         </form>

@@ -12,7 +12,7 @@
             {{ csrf_field() }}
             <input name="_method" type="hidden" value="PUT">
             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                <label for="name" class="col-md-4 control-label">Nombre</label>
+                <label for="name" class="col-md-4 control-label">Name</label>
 
                 <div class="col-md-6">
                     <input id="name" type="text" class="form-control" name="name" value="{{ $user->name }}">
@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div class="form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
-                <label for="lastname" class="col-md-4 control-label">Apellido</label>
+                <label for="lastname" class="col-md-4 control-label">Last Name</label>
 
                 <div class="col-md-6">
                     <input id="lastname" type="text" class="form-control" name="lastname" value="{{ $user->lastname }}">
@@ -37,7 +37,7 @@
                 </div>
             </div>
             <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
-                <label for="phone" class="col-md-4 control-label">Telefono</label>
+                <label for="phone" class="col-md-4 control-label">Phone Number</label>
 
                 <div class="col-md-6">
                     <input id="phone" type="text" class="form-control" name="phone" value="{{ $user->phone }}">
@@ -62,7 +62,7 @@
                 </div>
             </div>
             <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
-                <label for="gender" class="col-md-4 control-label">Genero</label>
+                <label for="gender" class="col-md-4 control-label">Gender</label>
 
                 <div class="col-md-6">
                   <select id="gender" name="gender" class="form-control">
@@ -83,7 +83,7 @@
                 </div>
             </div>
             <div class="form-group{{ $errors->has('birthdate') ? ' has-error' : '' }}">
-                <label for="birthdate" class="col-md-4 control-label">Fecha de Nacimiento</label>
+                <label for="birthdate" class="col-md-4 control-label">Birthdate</label>
 
                 <div class="col-md-6">
                     <input id="birthdate" type="date" class="form-control" name="birthdate" value="{{ $user->birthdate }}">
@@ -108,7 +108,7 @@
                 </div>
             </div>
             <div class="form-group{{ $errors->has('password_anterior') ? ' has-error' : '' }}">
-                <label for="password_anterior" class="col-md-4 control-label">Password Anterior</label>
+                <label for="password_anterior" class="col-md-4 control-label">Current Password</label>
 
                 <div class="col-md-6">
                     <input id="password_anterior" type="password" class="form-control" name="password_anterior">
@@ -121,7 +121,7 @@
                 </div>
             </div>
             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                <label for="password" class="col-md-4 control-label">Password</label>
+                <label for="password" class="col-md-4 control-label">New Password</label>
 
                 <div class="col-md-6">
                     <input id="password" type="password" class="form-control" name="password">
@@ -134,7 +134,7 @@
                 </div>
             </div>
             <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+                <label for="password-confirm" class="col-md-4 control-label">Confirm New Password</label>
 
                 <div class="col-md-6">
                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
@@ -149,7 +149,7 @@
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
                     <button type="submit" class="btn btn-primary">
-                        {{-- <i class="fa fa-btn fa-user"></i> --}} Actualizar
+                        {{-- <i class="fa fa-btn fa-user"></i> --}} Update
                     </button>
                 </div>
             </div>

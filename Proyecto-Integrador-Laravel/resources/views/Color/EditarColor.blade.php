@@ -21,7 +21,7 @@
         </div>
         <div class="form-group">
             <div class="col-md-6 col-md-offset-4">
-                <button type="submit" class="btn btn-success">Crear</button>
+                <button type="submit" class="btn btn-success">Create</button>
             </div>
         </div>
         </form>

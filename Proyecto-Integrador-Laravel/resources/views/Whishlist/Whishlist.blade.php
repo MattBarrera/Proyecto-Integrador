@@ -13,10 +13,10 @@
       <div class="page-header">
         <h1 style="display: inline-block">Whishlist</h1>
         {{-- <a href="/SubCategorias/create" title="" >
-          <button type="submit" class="btn btn-success pull-right btn-follower" style="margin-left:10px"> New Sub Categoria</button>
+          <button type="submit" class="btn btn-success pull-right btn-follower" style="margin-left:10px"> New Sub Category</button>
         </a>
         <a href="/Categorias/create" title="">
-          <button type="submit" class="btn btn-success pull-right btn-follower"> New Categoria</button>
+          <button type="submit" class="btn btn-success pull-right btn-follower"> New Category</button>
         </a> --}}
       </div>
       <div class="table-responsive">
@@ -111,7 +111,7 @@
                 @endforeach
               @else
                 <tr>
-                  <td colspan="6" class="warning" ">No products in your Wishlist</td>
+                  <td colspan="6" class="warning">No products in your Wishlist</td>
                 </tr>
               @endif
             </tbody>

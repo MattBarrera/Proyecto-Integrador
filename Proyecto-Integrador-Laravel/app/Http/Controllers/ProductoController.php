@@ -120,9 +120,11 @@ class ProductoController extends Controller
                 'visitaCant'=>1,
             ]);
         }
-        //dd($producto);
+        // dd($producto->categoriaId);
+        $productosInteres = Producto::where('categoriaId',$producto->categoriaId)->where('productoId','!=',$producto->productoId)->take(4)->get();
+        // dd($productosInteres);
 
-        return view('Productos.ShowProducto',['producto'=>$producto]);//'colores'=>$colores,'talles'=>$talles
+        return view('Productos.ShowProducto',['producto'=>$producto,'productosInteres'=>$productosInteres]);//'colores'=>$colores,'talles'=>$talles
     }
 
     /**
