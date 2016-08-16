@@ -388,9 +388,9 @@ la Digital Millennium Copyright Act, 17 U.S.C. § 512 (c) (2), nombrado abajo:</
 
 <p class="MsoNormal" style="text-align:justify"><span lang="ES-MX" style="font-family:Arial">Agente de Derechos de Autor:</span></p>
 
-<p class="MsoNormal" style="text-align:justify"><span lang="ES-MX" style="font-family:Arial">Tom Schopper</span></p>
+<p class="MsoNormal" style="text-align:justify"><span lang="ES-MX" style="font-family:Arial">John Smith</span></p>
 
-<p class="MsoNormal" style="text-align:justify"><span lang="ES-MX" style="font-family:Arial">Time Inc.</span></p>
+<p class="MsoNormal" style="text-align:justify"><span lang="ES-MX" style="font-family:Arial">Smith Inc.</span></p>
 
 <p class="MsoNormal" style="text-align:justify"><span lang="ES-MX" style="font-family:Arial">Voz: 212-522-5865</span></p>
 
@@ -402,21 +402,6 @@ Arial">e-mail: </span><span lang="ES-MX" style="font-family:Arial"><a href="mail
 
 <p class="MsoNormal" style="text-align:justify"><span lang="FR" style="font-family:
 Arial">&nbsp;</span></p>
-
-<p class="MsoNormal" style="text-align:justify"><span lang="ES" style="font-family:
-Arial">Para <b>Servicio al Cliente</b> no se dirija al Agente de Derechos de
-Autor, por favor diríjase a:</span></p>
-
-<p class="MsoNormal" style="text-align:justify"><span style="font-family:Arial">Time
-Customer Service</span></p>
-
-<p class="MsoNormal" style="text-align:justify"><span style="font-family:Arial">3000
-  University Center Drive</span></p>
-
-<p class="MsoNormal" style="text-align:justify"><span style="font-family:Arial">Tampa</span><span style="font-family:Arial">, Florida 33612-6408</span></p>
-
-<p class="MsoNormal" style="text-align:justify"><span style="font-family:Arial">Tel:
-1-800-541-1000</span></p>
 
 <p class="MsoNormal" style="text-align:justify"><span style="font-family:Arial">&nbsp;</span></p>
 
@@ -620,9 +605,6 @@ descarga para uso personal, no comercial.</span></p>
 
 <p class="MsoNormal" style="text-align:justify"><span lang="ES" style="font-family:
 Arial">&nbsp;</span></p>
-
-<p class="MsoNormal" style="text-align:justify"><span lang="ES" style="font-family:
-Arial">Estos Términos y Condiciones fueron corregidos 02/04/2009.</span></p>
 
 <p class="MsoNormal" style="text-align:justify"><span lang="ES" style="font-family:
 Arial">&nbsp;</span></p>
