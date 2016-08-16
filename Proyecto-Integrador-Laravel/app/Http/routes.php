@@ -15,6 +15,10 @@ Route::auth();
 Route::get('/', 'StoreController@indexHome');
 Route::get('/Store', 'StoreController@index');
 	Route::get('/Busqueda','ProductoController@Busqueda');
+	Route::get('/Formulario',function(){
+		return view('formularioPago');
+	}
+	);
 
 Route::group(['middleware'=>'auth'], function(){
 	// Route::resource('Productos','ProductoController');
