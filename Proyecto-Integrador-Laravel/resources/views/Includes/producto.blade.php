@@ -1,11 +1,11 @@
 <div class="thumbnail">
   @if($producto->productoFoto !== 'artsinfoto.gif')
-    <img src="/assets/{{$producto->users_id}}/products/{{$producto->productoFoto}}" alt="" class="productoFoto">
+    <a href="/Productos/{{$producto->productoId}}" title="Details"><img src="/assets/{{$producto->users_id}}/products/{{$producto->productoFoto}}" alt="" class="productoFoto"></a>
   @else
-    <img src="/assets/{{$producto->productoFoto}}" alt="" class="productoFoto">
+   <a href="/Productos/{{$producto->productoId}}" title="Details"> <img src="/assets/{{$producto->productoFoto}}" alt="" class="productoFoto"></a>
   @endif
   <div class="caption">
-    <h3><a href="/Productos/{{$producto->productoId}}" title="Details">{{$producto->productoNombre}}</a></h3>
+    <h3 class="item-title"><a href="/Productos/{{$producto->productoId}}" title="Details">{{$producto->productoNombre}}</a></h3>
     <p>$ {{$producto->productoPrecio}}</p>
     @if($producto->categoriaIdParent > "0")
       <p><a href="/Busqueda?cat={{$producto->categoriaPadre->categoriaId}}" title="">{{$producto->categoriaPadre->categoriaNombre}}</a> > <a href="/Busqueda?cat={{$producto->categoria->categoriaId}}" title="">{{$producto->categoria->categoriaNombre}}</a></p>

@@ -4,14 +4,14 @@
 <div class="container-fluid">
     <section id="breadcrumb">
         <ol class="breadcrumb">
-          <li class="active"><a href="#">My Empresas</a></li>
+          <li class="active"><a href="#">My Business</a></li>
         </ol>
       </section>
     <div class="container">
       <div class="page-header">
-        <h1 style="display: inline-block">My empresas</h1>
+        <h1 style="display: inline-block">My Business</h1>
         <a href="/Empresa/create" title="">
-          <button type="submit" class="btn btn-success pull-right btn-follower"> New Empresa</button>
+          <button type="submit" class="btn btn-success pull-right btn-follower"> New Business</button>
         </a>  
       </div>
       <div class="table-responsive">

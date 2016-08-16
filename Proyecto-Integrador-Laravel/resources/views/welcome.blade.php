@@ -52,29 +52,33 @@
       <center><h2>CLOTHING</h2></center>
       <img src="{{ asset('img/jeans.jpg') }}" alt="..." class="img-rounded" style="width:90%">
       <center>
-        <button type="button" class="btn btn-danger btn-follower" ><a href="/Busqueda?gen=2" title=""> Women</a></button>
-        <button type="button" class="btn btn-info btn-follower"><a href="/Busqueda?gen=1" title="">Men</a></button>
+        <a href="/Busqueda?gen=2" title=""><button type="button" class="btn btn-danger btn-follower">Women</button></a>
+        <a href="/Busqueda?gen=2" title=""><button type="button" class="btn btn-info btn-follower">Men</button></a>
       </center>
     </div>
     <div class="col-md-4">
       <center><h2>SHOES</h2></center>
       <img src="{{ asset('img/shoesmen.jpg') }}" alt="..." class="img-rounded" style="width:90%">
       <center>
-        <button type="button" class="btn btn-danger btn-follower" ><a href="/Busqueda?gen=2" title=""> Women</a></button>
-        <button type="button" class="btn btn-info btn-follower"><a href="/Busqueda?gen=1" title="">Men</a></button>
+        <a href="/Busqueda?gen=2" title=""><button type="button" class="btn btn-danger btn-follower" >Women</button></a>
+        <a href="/Busqueda?gen=2" title=""><button type="button" class="btn btn-info btn-follower">Men</button></a>
       </center>
     </div>
     <div class="col-md-4">
       <center><h2>ACCESORIES</h2></center>
       <img src="{{ asset('img/hola3.jpg') }}" alt="..." class="img-rounded" style="width:90%">
       <center>
-        <button type="button" class="btn btn-danger btn-follower" ><a href="/Busqueda?gen=2" title=""> Women</a></button>
-        <button type="button" class="btn btn-info btn-follower"><a href="/Busqueda?gen=1" title="">Men</a></button>
+        <a href="/Busqueda?gen=2" title=""><button type="button" class="btn btn-danger btn-follower">Women</button></a>
+        <a href="/Busqueda?gen=1" title=""><button type="button" class="btn btn-info btn-follower">Men</button></a>
       </center>
     </div>
   </section>
         <section id="productos">
+<<<<<<< HEAD
           <div class="container-fluid" style="margin-top:35px; margin-bottom:-40px;">
+=======
+          <div class="container-fluid">
+>>>>>>> origin/dev
             <center><h2>FEATURED PRODUCTS</h2> </center>
             @foreach($productos as $producto)
               <div class="col-xs-6 col-sm-3">

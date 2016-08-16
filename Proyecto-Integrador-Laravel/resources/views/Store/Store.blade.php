@@ -34,21 +34,16 @@
       <div class="col-md-10 container">
         <section id="productos">
           <div class="productos">
-            {{-- <center> <h2>PRODUCTOS DESTACADOS</h2> </center> --}}
+            {{-- <center> <h2>FEATURED PRODUCTS</h2> </center> --}}
             <div class="row">
             @foreach($productos as $producto)
             {{-- {{dd($producto)}} --}}
-            <div class="col-xs-6 col-sm-3" >
+            <div class="col-xs-6 col-sm-3 item" >
               @include('Includes.producto', ['producto' => $producto])
-              {{-- {{dd($producto->productoId)}} --}}
-              {{-- {{ dd( Cart::search( ['id' => $producto->productoId] ) ) }} --}}
-                {{-- @if(Cart::search(['id' => $producto->productoId])) --}}
-                  <p>
-                    <a href="/Productos/{{$producto->productoId}}" class="btn btn-primary" role="button">Buy</a>
-                {{-- @else --}}
-                    <a href="/Whishlist/{{$producto->productoId}}" class="btn btn-primary" role="button"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                  </p>
-                {{-- @endif --}}
+                  {{-- <p> --}}
+                    {{-- <a href="/Productos/{{$producto->productoId}}" class="btn btn-primary" role="button">Buy</a> --}}
+                    {{-- <a href="/Whishlist/{{$producto->productoId}}" class="btn btn-primary" role="button"><i class="fa fa-heart-o" aria-hidden="true"></i></a> --}}
+                  {{-- </p> --}}
                 </div> {{-- end caption inside the include--}}
               </div> {{-- end thumbnail inside the include--}}
             </div> {{-- end col-xs-6 col-sm-3 --}}

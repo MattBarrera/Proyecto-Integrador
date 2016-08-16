@@ -6,16 +6,16 @@
 	    		<center><h4>About Us</h4></center>
 	    		<ul class= "list-inline">
 	    			<li>Clothes Shop</li>
-	    			<li>Mapa del Sito</li>
-	    			<li>Trabaja con nosotros</li>
+	    			<li>Site Map</li>
+	    			<li>Work with us</li>
 	    		</ul>
 	    	</div>
 	    	<div class="col-md-4 text-center">
 	    		<center><h4>Help</h4></center>
 	    		<ul class="list-inline">
-	    			<li>Comprar</li>
-	    			<li>Vender</li>
-	    		  	<li>Buscar</li>
+	    			<li>Buy</li>
+	    			<li>Sell</li>
+	    		  	<li>Search</li>
 	    		</ul>
 	    	</div>
 	    	<div class="col-md-4 text-center">
