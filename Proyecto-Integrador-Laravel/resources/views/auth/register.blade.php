@@ -11,7 +11,7 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Nombre</label>
+                            <label for="name" class="col-md-4 control-label">Name</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}">
@@ -24,7 +24,7 @@
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
-                            <label for="lastname" class="col-md-4 control-label">Apellido</label>
+                            <label for="lastname" class="col-md-4 control-label">Last Name</label>
 
                             <div class="col-md-6">
                                 <input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname') }}">
@@ -36,7 +36,7 @@
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
-                            <label for="phone" class="col-md-4 control-label">Telefono</label>
+                            <label for="phone" class="col-md-4 control-label">Phone Number</label>
 
                             <div class="col-md-6">
                                 <input id="phone" type="text" class="form-control" name="phone" value="{{ old('phone') }}">
@@ -62,12 +62,12 @@
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
-                            <label for="gender" class="col-md-4 control-label">Genero</label>
+                            <label for="gender" class="col-md-4 control-label">Gender</label>
 
                             <div class="col-md-6">
                             {{-- {{dd($generos)}} --}}
                             <select name="gender" class="form-control" required>
-                                <option value="">Seleccionar un genero</option>
+                                <option value="">Select a Gender</option>
                                 @foreach($generos as $genero)
                                     @if (old('gender') == $genero->generoId)
                                           <option value="{{$genero->generoId}}" selected>{{$genero->generoNombre}}</option>
@@ -84,7 +84,7 @@
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('birthdate') ? ' has-error' : '' }}">
-                            <label for="birthdate" class="col-md-4 control-label">Fecha de Nacimiento</label>
+                            <label for="birthdate" class="col-md-4 control-label">Birthdate</label>
 
                             <div class="col-md-6">
                                 <input id="birthdate" type="date" class="form-control" name="birthdate" value="{{ old('birthdate') }}">

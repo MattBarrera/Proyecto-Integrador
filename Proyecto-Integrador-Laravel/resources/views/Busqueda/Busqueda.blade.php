@@ -15,7 +15,7 @@
     <div class="row">
     <div class="container">
     	<div class=" col-md-2" style="background: #f5f5f5">
-	        <p>Generos</p>
+	        <p>Genders</p>
 	        <ul>
           {{-- {{dd(str_contains(Request::fullUrl(), 'http://proyecto-integrador:8004/Busqueda?gen'))}} --}}
 
@@ -48,7 +48,7 @@
         <div class="col-md-10 container">
             <section id="productos">
               {{-- <div class="productos"> --}}
-                {{-- <center> <h2>PRODUCTOS DESTACADOS</h2> </center> --}}
+                {{-- <center> <h2>FEATURED PRODUCTS</h2> </center> --}}
                 {{-- {{dd(count($productos))}} --}}
                 @if(count($productos) > 0)
                   @foreach($productos as $producto)
@@ -64,10 +64,10 @@
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
-                    <center><h4>No se encontraron productos con esa busqueda.</h4></center>
-                    {{-- <button type="" class="btn btn-success"><a href="{{URL::previous()}}" title="">Volver</a></button> --}}
+                    <center><h4>No serch results.</h4></center>
+                    {{-- <button type="" class="btn btn-success"><a href="{{URL::previous()}}" title="">Back</a></button> --}}
                   </div>
-                  <center><h2>Talvez te pueden interesar estos productos!!</h2></center>
+                  <center><h2>You may be interesd en this products!!</h2></center>
                   @foreach($sugerencias as $producto)
                   <div class="col-xs-6 col-sm-3" >
                     @include('Includes.producto', ['producto' => $producto])

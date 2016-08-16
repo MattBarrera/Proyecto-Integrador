@@ -34,7 +34,7 @@
       <div class="col-md-10 container">
         <section id="productos">
           <div class="productos">
-            {{-- <center> <h2>PRODUCTOS DESTACADOS</h2> </center> --}}
+            {{-- <center> <h2>FEATURED PRODUCTS</h2> </center> --}}
             <div class="row">
             @foreach($productos as $producto)
             {{-- {{dd($producto)}} --}}

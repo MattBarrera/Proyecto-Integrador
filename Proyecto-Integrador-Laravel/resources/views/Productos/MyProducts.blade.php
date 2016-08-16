@@ -32,12 +32,12 @@
                           {{$producto->visita->visitaCant}}
                         @endif
                         </p>
-                <a href="/Productos/{{$producto->productoId}}/edit" class="btn btn-success" role="button">edit</a> 
+                <a href="/Productos/{{$producto->productoId}}/edit" class="btn btn-success" role="button">Edit</a> 
                     <form action="/Productos/{{$producto->productoId}}/Baja" method="POST" class="form-delete">
                       {{csrf_field()}}
                       {{-- {{ method_field('delete') }} --}}
                       {{-- {{dd($producto->visita->visitaCant)}} --}}
-                      <button type="submit" class="btn btn-danger">delete</button>
+                      <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
                   </div> {{-- end caption inside the include--}}
                 </div> {{-- end thumbnail inside the include--}}

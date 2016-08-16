@@ -4,14 +4,14 @@
 <div class="container-fluid">
     <section id="breadcrumb">
         <ol class="breadcrumb">
-          <li class="active"><a href="#">Size</a></li>
+          <li class="active"><a href="#">Waist</a></li>
         </ol>
       </section>
     <div class="container">
       <div class="page-header">
-        <h1 style="display: inline-block">Sizes</h1>
+        <h1 style="display: inline-block">Waist</h1>
         <a href="/Talles/create" title="">
-          <button type="submit" class="btn btn-success pull-right btn-follower"> New Size</button>
+          <button type="submit" class="btn btn-success pull-right btn-follower"> New Waist</button>
         </a>  
       </div>
       <div class="table-responsive">

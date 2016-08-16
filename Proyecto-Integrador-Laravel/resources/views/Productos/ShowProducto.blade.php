@@ -66,7 +66,7 @@
       <br>
       <br>
         <div style="text-align: center;">
-            <h2>Descripcion del Producto</h2>
+            <h2>Description of Product</h2>
                     <!-- descripcion completa del producto -->
                 <p>{{$producto->productoDescripcion}}</p>
           </div>
