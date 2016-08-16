@@ -103,10 +103,10 @@
                 </div>
             </div>
             <div class="form-group{{ $errors->has('talleId') ? ' has-error' : '' }}">
-                <label for="talleId" class="col-md-4 control-label">Waist:</label>
+                <label for="talleId" class="col-md-4 control-label">Size:</label>
                 <div class="col-md-6">
                   <select id="talleId" required name="talleId[]" class="form-control selectpicker" multiple="multiple" title="Seleccionar un Talle">
-                    <option value="">Select a Waist</option>
+                    <option value="">Select a Size</option>
                     @foreach($talles as $talle)
                       <option value="{{$talle->talleId}}">{{$talle->talleNombre}}</option>
                     @endforeach
@@ -160,5 +160,7 @@
 
     </div>
 </div>
-<script src="/js/categorias.js" type="text/javascript"></script>
+@endsection
+@section('extra-js')   
+  <script src="/js/categorias.js" type="text/javascript"></script>
 @endsection

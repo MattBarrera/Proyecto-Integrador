@@ -24,6 +24,7 @@
             {{-- {{dd($productos)}} --}}
             @foreach($productos as $producto)
             <div class="col-xs-6 col-sm-3" >
+            <div class="thumbnail withButtons">
               @include('Includes.producto', ['producto' => $producto])
                       <p>Visitas: 
                         @if(empty($producto->visita->visitaCant ))

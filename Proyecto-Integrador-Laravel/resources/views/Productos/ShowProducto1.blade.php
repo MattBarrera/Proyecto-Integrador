@@ -22,25 +22,29 @@
             {{csrf_field()}}
             <!-- precio del producto -->
             <h3><strong>$ {{$producto->productoPrecio}}<sup>00</sup></strong></h3>
-            @if(count($producto->color)>0) 
-              <!-- precio del producto con el titulo -->
+              <!-- Color del producto con el titulo -->
               <h3>Color:</h3>
-              @foreach($producto->color as $color)
-                <div class="inline">
-                  <input type="radio" required id="colorId" name="colorId" value="{{$color->colorId}}">
-                  <label for="colorId">{{$color->color->colorNombre}}</label>
-                </div>
+            @if(count($producto->color)>0) 
+              {{-- {{dd($stock)}} --}}
+                <div id="colorId">
+              @foreach($stocks as $stock)
+
+                  <label for="{{$stock->color->colorId}}" class="radio-inline">
+                    <input  checked type="radio" id="{{$stock->color->colorId}}" name="colorId" value="{{$stock->color->colorId}}">{{$stock->color->colorNombre}}
+                  </label>
               @endforeach
+                </div>
             @endif 
-            @if(count($producto->talle)>0)
+
               <!-- precio del producto con el titulo -->
               <h3>Talle:</h3>
+            @if(count($producto->talle)>0)
+                <div id="talles">
               @foreach($producto->talle as $talle)
-                <div class="inline">
-                  <input type="radio" required id="talleId" name="talleId" value="{{$talle->talleId}}">
                   <label for="talleId">{{$talle->talle->talleNombre}}</label>
-                </div>
+                  <input type="radio"  id="talleId" name="talleId" value="{{$talle->talleId}}">
               @endforeach
+                </div>
             @endif
             {{-- <input type="submit" class="btn btn-success" value="Buy"></input> --}}
             {{-- <a type="submit" class="btn btn-primary" role="button">Buy</a> --}}
@@ -92,4 +96,7 @@
             @endforeach
     </div>
     
+@endsection
+@section('extra-js')   
+  <script src="/js/talles.js" type="text/javascript"></script>
 @endsection

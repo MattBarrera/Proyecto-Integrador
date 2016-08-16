@@ -82,6 +82,7 @@
             <center><h2>FEATURED PRODUCTS</h2> </center>
             @foreach($productos as $producto)
               <div class="col-xs-6 col-sm-3">
+              <div class="thumbnail">
                   @include('Includes.producto', ['producto' => $producto])
                     <p><a href="/Shop/{{$producto->productoId}}" class="btn btn-primary" role="button">Add to Cart</a></p>
                   </div> {{-- end caption inside the include--}}

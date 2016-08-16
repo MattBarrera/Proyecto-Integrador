@@ -13,6 +13,7 @@ use App\Talle;
 use App\Genero;
 use App\Categoria;
 use App\Follower;
+use App\Stock;
 use App\Visita;
 use App\TalleHasProducto;
 use App\ColorHasProducto;
@@ -108,23 +109,32 @@ class ProductoController extends Controller
      */
     public function show($id)
     {   
-        $producto = Producto::where('productoId',$id)->with('usuario','categoria','talle','color')->first();
-        $colores = Color::all();
-        $talles = Talle::all();
-        if ($productoVisita = Visita::where('productoId',$id)->first()) {
-            $productoVisita->visitaCant += $producto->visitaCant+1;
-            $productoVisita->save(); 
-        }else{
-            $productoVisita = Visita::create([
-                'productoId'=>$id,
-                'visitaCant'=>1,
-            ]);
-        }
-        // dd($producto->categoriaId);
-        $productosInteres = Producto::where('categoriaId',$producto->categoriaId)->where('productoId','!=',$producto->productoId)->take(4)->get();
-        // dd($productosInteres);
+        // $producto = Producto::where('productoId',$id)->with('usuario','categoria','talle','color')->first();
+            // $colores = Color::all();
+            // $talles = Talle::all();
+            // if ($productoVisita = Visita::where('productoId',$id)->first()) {
+            //     $productoVisita->visitaCant += $producto->visitaCant+1;
+            //     $productoVisita->save(); 
+            // }else{
+            //     $productoVisita = Visita::create([
+            //         'productoId'=>$id,
+            //         'visitaCant'=>1,
+            //     ]);
+            // }
+            // // dd($producto->categoriaId);
+            // $productosInteres = Producto::where('categoriaId',$producto->categoriaId)->where('productoId','!=',$producto->productoId)->take(4)->get();
+            // // dd($productosInteres);
 
-        return view('Productos.ShowProducto',['producto'=>$producto,'productosInteres'=>$productosInteres]);//'colores'=>$colores,'talles'=>$talles
+            // return view('Productos.ShowProducto',['producto'=>$producto,'productosInteres'=>$productosInteres]);
+            // // Hasta Aca Esto Funcion!!!
+
+        $producto = Producto::where('productoId',$id)->with('usuario','categoria')->first();
+
+        $stocks = Stock::select('colorId')->where('productoId',$id)->with('color')->distinct()->get();
+        // dd($stocks);
+        $productosInteres = Producto::where('categoriaId',$producto->categoriaId)->where('productoId','!=',$producto->productoId)->take(4)->get();
+
+        return view('Productos.ShowProducto1',['producto'=>$producto,'productosInteres'=>$productosInteres,'stocks'=>$stocks]);
     }
 
     /**
@@ -315,6 +325,13 @@ class ProductoController extends Controller
         // $follower = Follower::where('users_id1',$id)->where('users_id',Auth::user()->id)->first();
 
         return view('Productos.MyPersonalProducts', ['users'=>$users,'productos'=>$productos,'empresas'=>$empresas]);
+    }
+
+    public function getTalles($id)
+    {
+        $id = 1;
+        $talles = Stock::where('colorId',$id)->where('productoId',$id)->with('talle')->distinct()->get();
+        echo json_encode($talles);exit;
     }
 
 }

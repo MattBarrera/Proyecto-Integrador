@@ -1,4 +1,4 @@
-<div class="thumbnail">
+{{-- <div class="thumbnail"> --}}
   @if($producto->productoFoto !== 'artsinfoto.gif')
     <a href="/Productos/{{$producto->productoId}}" title="Details"><img src="/assets/{{$producto->users_id}}/products/{{$producto->productoFoto}}" alt="" class="productoFoto"></a>
   @else

@@ -15,6 +15,7 @@
                 <div class="row">
                 @foreach($productos as $producto)
                 <div class="col-xs-6 col-sm-3" >
+                <div class="thumbnail">
                   @include('Includes.producto', ['producto' => $producto])
                     <a href="Productos/{{$producto->productoId}}/edit" class="btn btn-primary" role="button">Edit</a> 
                     <a href="Productos/{{$producto->productoId}}/ReActivar" class="btn btn-success" role="button">Re Activate</a> 

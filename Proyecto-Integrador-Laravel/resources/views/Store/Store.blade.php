@@ -39,6 +39,7 @@
             @foreach($productos as $producto)
             {{-- {{dd($producto)}} --}}
             <div class="col-xs-6 col-sm-3 item" >
+            <div class="thumbnail">
               @include('Includes.producto', ['producto' => $producto])
                   {{-- <p> --}}
                     {{-- <a href="/Productos/{{$producto->productoId}}" class="btn btn-primary" role="button">Buy</a> --}}

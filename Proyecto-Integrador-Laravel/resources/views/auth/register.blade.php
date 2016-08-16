@@ -68,13 +68,15 @@
                             {{-- {{dd($generos)}} --}}
                             <select name="gender" class="form-control" required>
                                 <option value="">Select a Gender</option>
-                                @foreach($generos as $genero)
+                                <option value="1">Masculino</option>
+                                <option value="2">Femenino</option>
+                                {{-- @foreach($generos as $genero)
                                     @if (old('gender') == $genero->generoId)
                                           <option value="{{$genero->generoId}}" selected>{{$genero->generoNombre}}</option>
                                     @else
                                           <option value="{{$genero->generoId}}">{{$genero->generoNombre}}</option>
                                     @endif
-                                @endforeach
+                                @endforeach --}}
                             </select>
                                 @if ($errors->has('gender'))
                                     <span class="help-block">

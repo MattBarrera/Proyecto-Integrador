@@ -56,11 +56,10 @@ table td, table th{
   display: inline-block;
 }
 .thumbnail{
-	height: 410px;
+	height: 370px;
 }
 .thumbnail:hover{
-	z-index: 998;
-
+	z-index: 999;
     /*border: 1px solid #eee;*/
     -webkit-box-shadow: 0 3px 4px #ccc;
     box-shadow: 0 3px 4px #ccc;
@@ -68,6 +67,7 @@ table td, table th{
     min-height: 80px;
     margin: 5px 0 15px -1px;
     overflow: hidden;
+    /*height: 390px;*/
 }
 .item-title{
 	/*font-size: 14px;*/
@@ -81,7 +81,7 @@ table td, table th{
 .thumbnail:hover .item-title{
 	text-overflow: initial;
     white-space: normal;
-    margin-top: -2px
+    /*margin-top: -2px*/
 }
 .detalleProductoFoto{
 	float: left; 
@@ -104,3 +104,8 @@ table td, table th{
 	padding-left: 2em;
 	display: inline-block;
 }
+.withButtons{
+	height: 460px;
+}
+
+

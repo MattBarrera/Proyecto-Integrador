@@ -39,6 +39,8 @@ Route::group(['middleware'=>'auth'], function(){
 
 
 	Route::resource('/User','UserController');
+	Route::resource('/Stock','StockController');
+	Route::get('/getTalles/{id}','ProductoController@getTalles');
 	Route::resource('/Empresa','EmpresaController');
 	Route::get('/Empresa/{id}/addAdmin','EmpresaController@addAdmin');
 	Route::post('/Empresa/{id}','EmpresaController@storeAdmin');
