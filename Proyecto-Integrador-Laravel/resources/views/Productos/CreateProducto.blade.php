@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="page-header">
-        <h1>Agregar Producto</h1>
+        <h1>Add Product</h1>
       </div>
       <div class="row">
         <form class="form-horizontal" role="form" method="POST" action="/Productos" enctype="multipart/form-data">

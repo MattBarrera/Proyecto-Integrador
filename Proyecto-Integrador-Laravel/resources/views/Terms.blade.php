@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
       	<div class="page-header">
-        	<h1>Terminos y Condiciones</h1>
+        	<h1>Terms and Conditions</h1>
         </div>
     <!-- <style>
      /* Font Definitions */

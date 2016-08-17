@@ -6,9 +6,9 @@
     <ol class="breadcrumb" style="background-color:#337AB7;">
       <li><a href="/Busqueda?gen=1" style="color:white;">Men</a></li>
       <li><a href="/Busqueda?gen=2" style="color:white;">Women</a></li>
-      <li><a href="#" style="color:white;">Clothes</a></li>
-      <li><a href="#" style="color:white;">Shoes</a></li>
-      <li><a href="#" style="color:white;" >Accesories</a></li>
+      <li><a href="/Busqueda?cat=1" style="color:white;">Clothes</a></li>
+      <li><a href="/Busqueda?cat=2" style="color:white;">Shoes</a></li>
+      <li><a href="/Busqueda?cat=3" style="color:white;" >Accesories</a></li>
     </ol>
   </section>
 
