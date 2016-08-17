@@ -43,23 +43,30 @@ class ShopController extends Controller
     public function store(Request $request)
     {
         // dd($request->productoId);
-        $producto = Producto::findOrFail($request->productoId);
-        // dd($producto);
-        // if (Cart::search($producto->productoId)) {
-        //     return redirect()->back();
-        // }
-        // dd($request->productoId);
-        // $algo = Cart::search('id' => $request->productoId);
-        // dd($algo);
-        // if (Cart::search(array('id' => $request->productoId))) {
-        //     echo 'string';
-        //     // return redirect()->back()->withSuccessMessage('Item is already in your cart!');
-        // }
+        // $producto = Producto::findOrFail($request->productoId);
 
-        $productoCart = Cart::add($producto->productoId,$producto->productoNombre,1,$producto->productoPrecio, ['userId'=>$producto->users_id,'productoFoto' => $producto->productoFoto, 'size'=>$request->input('talleId'),'color'=>$request->input('colorId')]);
-
+        // $productoCart = Cart::add($producto->productoId,$producto->productoNombre,1,$producto->productoPrecio, ['userId'=>$producto->users_id,'productoFoto' => $producto->productoFoto, 'size'=>$request->input('talleId'),'color'=>$request->input('colorId')]);
             
-        return redirect()->back();
+        // return redirect()->back();
+        if (Cart::instance('default')->content()->isEmpty()) {
+            // dd("vacio");
+            $producto = Producto::findOrFail($request->productoId);
+                $productoCart = Cart::instance('default')->add($producto->productoId,$producto->productoNombre,1,$producto->productoPrecio, ['userId'=>$producto->users_id,'productoFoto' => $producto->productoFoto,'size'=>$request->input('talleId'),'color'=>$request->input('colorId')]);  
+                return redirect()->back();
+        }else{
+            foreach (Cart::instance('default')->content() as $item) {
+                // dd($item);
+                if ($item->id == $request->productoId) {
+                    // dd("if");
+                    return redirect()->back()->withSuccessMessage('Item is already in your shopping cart!');
+                }else{
+                    // dd("else");
+                    $producto = Producto::findOrFail($request->productoId);
+                    $productoCart = Cart::instance('default')->add($producto->productoId,$producto->productoNombre,1,$producto->productoPrecio, ['userId'=>$producto->users_id,'productoFoto' => $producto->productoFoto,'size'=>$request->input('talleId'),'color'=>$request->input('colorId')]);  
+                    return redirect()->back();  
+                }
+            }
+        }
 
     }
 
@@ -119,5 +126,14 @@ class ShopController extends Controller
         // dd($id);
         Cart::remove($id);
         return redirect()->back();
+    }
+    public function CheckOut()
+    {
+        return view('Shop.formularioPago');
+    }
+    public function CheckOutFinal()
+    {
+        Cart::instance('default')->destroy();
+        return redirect('/Store');
     }
 }

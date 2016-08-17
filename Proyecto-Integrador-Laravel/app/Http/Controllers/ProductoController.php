@@ -110,29 +110,33 @@ class ProductoController extends Controller
     public function show($id)
     {   
         // $producto = Producto::where('productoId',$id)->with('usuario','categoria','talle','color')->first();
-            // $colores = Color::all();
-            // $talles = Talle::all();
-            // if ($productoVisita = Visita::where('productoId',$id)->first()) {
-            //     $productoVisita->visitaCant += $producto->visitaCant+1;
-            //     $productoVisita->save(); 
-            // }else{
-            //     $productoVisita = Visita::create([
-            //         'productoId'=>$id,
-            //         'visitaCant'=>1,
-            //     ]);
-            // }
-            // // dd($producto->categoriaId);
+        //     $colores = Color::all();
+        //     $talles = Talle::all();
+            // dd($producto->categoriaId);
             // $productosInteres = Producto::where('categoriaId',$producto->categoriaId)->where('productoId','!=',$producto->productoId)->take(4)->get();
-            // // dd($productosInteres);
+            // dd($productosInteres);
 
             // return view('Productos.ShowProducto',['producto'=>$producto,'productosInteres'=>$productosInteres]);
-            // // Hasta Aca Esto Funcion!!!
+            // Hasta Aca Esto Funcion!!!
 
         $producto = Producto::where('productoId',$id)->with('usuario','categoria')->first();
+            if ($productoVisita = Visita::where('productoId',$id)->first()) {
+                $productoVisita->visitaCant += $producto->visitaCant+1;
+                $productoVisita->save(); 
+            }else{
+                $productoVisita = Visita::create([
+                    'productoId'=>$id,
+                    'visitaCant'=>1,
+                ]);
+            }
 
         $stocks = Stock::select('colorId')->where('productoId',$id)->with('color')->distinct()->get();
         // dd($stocks);
-        $productosInteres = Producto::where('categoriaId',$producto->categoriaId)->where('productoId','!=',$producto->productoId)->take(4)->get();
+        $productosInteres = Producto::where('categoriaId',$producto->categoriaId)->where('productoId','!=',$producto->productoId)->take(3)->get();
+        if ($productosInteres->isEmpty()) {
+            $productosInteres = Producto::where('categoriaIdParent',$producto->categoriaIdParent)->where('productoId','!=',$producto->productoId)->take(3)->get();
+        }
+        // dd($productosInteres);
 
         return view('Productos.ShowProducto1',['producto'=>$producto,'productosInteres'=>$productosInteres,'stocks'=>$stocks]);
     }

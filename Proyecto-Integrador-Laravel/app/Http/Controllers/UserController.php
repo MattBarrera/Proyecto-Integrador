@@ -94,39 +94,42 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         // dd($request);
-        // Validator::extend('password_anterior', function ($attribute, $value, $parameters, $validator) {
+        Validator::extend('password_anterior', function ($attribute, $value, $parameters, $validator) {
 
-        //     return Hash::check($value, current($parameters));
-        // });
+            return Hash::check($value, current($parameters));
+        });
 
         $user = User::findOrFail($id);
-        // dd($user->password);
-        // $validator = Validator::make($request->all(), [
-        //     'name' => 'required',
-        //     'lastname' => 'required',
-        //     // 'password_anterior'=>'password_anterior:' . $user->password,
-        //     // 'password'=>'confirmed',
-        // ]);
+        // dd($user->avatar);
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'lastname' => 'required',
+            // 'password_anterior'=>'password_anterior:' . $user->password,
+            'password'=>'confirmed',
+        ]);
 
-        // if ($request->input('password' !== "")) {
-        //     $validator = Validator::make($request->all(), [
-        //         'password_anterior'=>$user->password,
-        //         'password'=>'min:6|confirmed',
-        // ]); 
+        if ($request->input('password' !== "")) {
+            $validator = Validator::make($request->all(), [
+                'password_anterior'=>'password_anterior:' . $user->password,
+                'password'=>'min:6|confirmed',
+            ]);
+        }
         // if($validator->fails()){
         //     return redirect('/User/'.$user->id.'/edit')
         //                 ->withErrors($validator)
         //                 ->withInput();
         // };
 
-        // dd($request->input('avatar'));
-        $user->fill($request->only('name','lastname','phone','email','gender','birthdate','avatar'));
-        if ($request->input('avatar') !== "") {
+        // dd($request->files->has('avatar'));
+        $user->fill($request->only('name','lastname','phone','email','gender','birthdate'));
+        if ($request->files->has('avatar')) {
             $destinationPath = '/public/assets/'.$user->id.'/profile/';
             $fileName = input::file('avatar')->getClientOriginalName();
             input::file('avatar')->move(public_path().'/assets/'.$user->id.'/profile/', $fileName);
-
+            // dd($fileName);
             $user->avatar = $fileName;
+        }else{
+            $user->avatar;
         }
         // dd($user);
         $user->save();

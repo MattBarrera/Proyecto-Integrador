@@ -28,7 +28,7 @@ class StoreController extends Controller
     }
     public function indexHome()
     {
-        $productos = Producto::where('productoEstado',1)->with('usuario','categoria','empresa')->take(8)->get();
+        $productos = Producto::where('productoEstado',1)->with('usuario','categoria','empresa')->inRandomOrder()->take(8)->get();
         // dd($productos);
         return view('welcome',['productos'=>$productos]);
     }

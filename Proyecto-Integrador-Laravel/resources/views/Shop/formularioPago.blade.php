@@ -267,7 +267,7 @@
 	      </div>
 	    </div>
   	</div>
-	<a href="/CheckOut" title="" class="pull-right"><button type="button" class="btn btn-primary">Confirm Order</button></a>
+	<a href="/Shop/CheckOutFinal" title="" class="pull-right"><button type="button" class="btn btn-primary">Confirm Order</button></a>
     </div>
 </div>
 @endsection

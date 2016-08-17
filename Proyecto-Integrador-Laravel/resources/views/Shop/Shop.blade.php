@@ -121,7 +121,7 @@
             </tbody>
           </table>
           <a href="/Store" title="" class=""><button type="button" class="btn btn-primary">Continue Shopping</button></a>
-          <a href="/CheckOut" title="" class="pull-right"><button type="button" class="btn btn-primary">Check Out</button></a>
+          <a href="/Shop/CheckOut" title="" class="pull-right"><button type="button" class="btn btn-primary">Check Out</button></a>
       </div>
     </div>
 </div>

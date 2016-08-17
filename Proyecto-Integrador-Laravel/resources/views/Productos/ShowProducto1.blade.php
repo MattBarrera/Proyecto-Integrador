@@ -7,6 +7,12 @@
       <div class="page-header">
         <h1>{{$producto->productoNombre}}</h1>
       </div>
+      @if (session()->has('success_message'))
+            <div class="alert alert-success" id="closeAlert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                {{ session()->get('success_message') }}
+            </div>
+        @endif
       <div class="row" style="margin-bottom: 2em;">
         <!-- Separo la foto de lo demas con otro div para hacer un float left -->
         <div id="detalleProductoFoto" class="detalleProductoFoto">
@@ -101,4 +107,5 @@
 @endsection
 @section('extra-js')   
   <script src="/js/talles.js" type="text/javascript"></script>
+  <script src="/js/closeAlert.js" type="text/javascript"></script>
 @endsection

@@ -15,9 +15,7 @@ Route::auth();
 Route::get('/', 'StoreController@indexHome');
 Route::get('/Store', 'StoreController@index');
 	Route::get('/Busqueda','ProductoController@Busqueda');
-	Route::get('/CheckOut',function(){
-		return view('Shop.formularioPago');
-	});
+	
 	Route::get('/Terms',function(){
 		return view('Terms');
 	});
@@ -56,6 +54,9 @@ Route::group(['middleware'=>'auth'], function(){
 	Route::resource('/Talles','TalleController');
 	Route::resource('/Categorias','CategoriaController');
 	Route::resource('/SubCategorias','SubCategoriaController');
+	Route::get('/Shop','ShopController@index')->name('Shop.index');
+	Route::get('/Shop/CheckOut','ShopController@CheckOut')->name('Shop.CheckOut');
+	Route::get('/Shop/CheckOutFinal','ShopController@CheckOutFinal')->name('Shop.CheckOutFinal');
 });
 	Route::get('/Productos/{id}','ProductoController@Show');
 	// Route::resource('/Shop','ShopController');
@@ -69,5 +70,5 @@ Route::group(['middleware'=>'auth'], function(){
 	Route::post('/Whishlist','WhishlistController@store')->name('Whishlist.store');
 	Route::delete('/Whishlist/{id}','WhishlistController@destroy')->name('Whishlist.destroy');
 	Route::post('/Whishlist/{id}/update','WhishlistController@update')->name('Whishlist.update');
-	Route::post('/Whishlist/{id}/switchToCart','WhishlistController@switchToCart')->name('Whishlist.switchToCart');
+	Route::get('/Whishlist/{id}/switchToCart','WhishlistController@switchToCart')->name('Whishlist.switchToCart');
 	

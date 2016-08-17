@@ -13,6 +13,12 @@
     <div class="page-header">
       <h1 style="display: inline-block">Whishlist</h1>
     </div>
+  @if (session()->has('success_message'))
+            <div class="alert alert-success" id="closeAlert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                {{ session()->get('success_message') }}
+            </div>
+        @endif
   <div class="table-responsive">
     <table class="table table-bordered">
       <thead>
@@ -64,7 +70,7 @@
               </td>
               <td>$ {{$producto->price}}</td>
                 <td>
-                  <a href="/Whishlist/{{$producto->productoId}}/switchToCart" title=""><button type="button" class="btn btn-success" data-toggle="modal" data-target="#addToCartModal" data-whatever="{{$producto->id}}">Add to Cart </button></a>
+                  <a href="/Whishlist/{{$producto->rowId}}/switchToCart" title=""><button type="button" class="btn btn-success" data-toggle="modal" data-target="#addToCartModal" data-whatever="{{$producto->id}}">Add to Cart </button></a>
                   <form action="/Whishlist/{{$producto->rowId}}" method="POST" class="form-delete">
                     {{csrf_field()}}
                     {{ method_field('delete') }}
@@ -90,5 +96,5 @@
 @endsection
 
 @section('extra-js')
-  <script src="/js/modalAddToCart.js" type="text/javascript"></script>
+  <script src="/js/closeAlert.js" type="text/javascript"></script>
 @endsection
