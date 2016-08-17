@@ -6,7 +6,7 @@
         <h1>Agregar Producto</h1>
       </div>
       <div class="row">
-        <form class="form-horizontal" role="form" method="POST" action="/Productos" enctype="multipart/form-data">
+        <form class="form-horizontal" role="form" method="POST" action="/Productos/{{$producto->productoId}}" enctype="multipart/form-data">
             {{ csrf_field() }}
             <input name="_method" type="hidden" value="PUT">
             <div class="form-group{{ $errors->has('productoNombre') ? ' has-error' : '' }}">
@@ -161,7 +161,7 @@
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
                     <button type="submit" class="btn btn-success">
-                        {{-- <i class="fa fa-btn fa-user"></i> --}} Add Product
+                        {{-- <i class="fa fa-btn fa-user"></i> --}} Edit
                     </button>
                 </div>
             </div>

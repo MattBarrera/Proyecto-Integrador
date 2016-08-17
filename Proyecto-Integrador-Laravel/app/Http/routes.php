@@ -28,7 +28,7 @@ Route::group(['middleware'=>'auth'], function(){
 	Route::post('/Productos','ProductoController@store');
 	Route::get('/Productos/create','ProductoController@create');
 	Route::post('/Productos/{id}','ProductoController@destroy');
-	Route::post('/Productos/{id}','ProductoController@update');
+	Route::put('/Productos/{id}','ProductoController@update');
 	Route::post('/Productos/{id}/Baja','ProductoController@Baja');
 	Route::get('/Productos/{id}/ReActivar','ProductoController@ReActivar');
 	Route::get('/Productos/{id}/edit','ProductoController@edit');

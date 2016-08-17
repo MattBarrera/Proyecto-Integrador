@@ -169,7 +169,42 @@ class ProductoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        // dd($request);
+        $producto = Producto::findOrFail($id);
+        // dd($producto->productoEstado);
+        $producto->fill($request->only('productoNombre','productoDescripcion','productoPrecio','categoriaIdParent','categoriaId','productoEstado','empresaId','generoId'));
+
+        if ($request->files->has('productoFoto')) {
+            $destinationPath = '/public/assets/'.Auth::user()->id.'/products/';
+            $fileName = input::file('productoFoto')->getClientOriginalName();
+            input::file('productoFoto')->move(public_path().'/assets/'.Auth::user()->id.'/products/', $fileName);
+        }else{
+            $fileName = $producto->productoFoto;
+        }
+
+        if ($request->input('empresaId') !== "") {
+            $producto->empresaId = $request->input('empresaId');
+        }else{
+            $producto->empresaId = 0;
+        }
+
+        if($request->input('categoriaId') == ""){
+            $producto->categoriaId = $request->input('categoriaIdParent');
+            $producto->categoriaIdParent = 0;
+        }else{
+            $producto->categoriaId = $request->input('categoriaId');
+            $producto->categoriaIdParent = $request->input('categoriaIdParent');
+        }
+
+        $producto->productoFoto = $fileName;
+        $producto->users_id;
+        $producto->productoEstado = 1;
+        // dd($producto);
+        $producto->save();
+        return redirect('/MyProducts');
+
+
+
     }
 
     /**
