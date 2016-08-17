@@ -64,7 +64,7 @@ class ProductoController extends Controller
     {
         // dd($request);
         // $fileName = '';
-        if ($request->files->has('avatar')) {
+        if ($request->files->has('productoFoto')) {
             $destinationPath = '/public/assets/'.Auth::user()->id.'/products/';
             $fileName = input::file('productoFoto')->getClientOriginalName();
             input::file('productoFoto')->move(public_path().'/assets/'.Auth::user()->id.'/products/', $fileName);
@@ -169,7 +169,7 @@ class ProductoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
