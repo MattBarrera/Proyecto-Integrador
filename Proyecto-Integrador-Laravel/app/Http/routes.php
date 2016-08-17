@@ -15,10 +15,12 @@ Route::auth();
 Route::get('/', 'StoreController@indexHome');
 Route::get('/Store', 'StoreController@index');
 	Route::get('/Busqueda','ProductoController@Busqueda');
-	Route::get('/Formulario',function(){
-		return view('formularioPago');
-	}
-	);
+	Route::get('/CheckOut',function(){
+		return view('Shop.formularioPago');
+	});
+	Route::get('/Terms',function(){
+		return view('Terms');
+	});
 
 Route::group(['middleware'=>'auth'], function(){
 	// Route::resource('Productos','ProductoController');
@@ -40,7 +42,7 @@ Route::group(['middleware'=>'auth'], function(){
 
 	Route::resource('/User','UserController');
 	Route::resource('/Stock','StockController');
-	Route::get('/getTalles/{id}','ProductoController@getTalles');
+	Route::get('/getTalles/{id}/{productoId}','ProductoController@getTalles');
 	Route::resource('/Empresa','EmpresaController');
 	Route::get('/Empresa/{id}/addAdmin','EmpresaController@addAdmin');
 	Route::post('/Empresa/{id}','EmpresaController@storeAdmin');
@@ -55,13 +57,14 @@ Route::group(['middleware'=>'auth'], function(){
 	Route::get('/Productos/{id}','ProductoController@Show');
 	// Route::resource('/Shop','ShopController');
 
-	Route::patch('/Shop/{id}','ShopController@update')->name('Shop.update');
 	Route::get('/Shop','ShopController@index')->name('Shop.index');
-	Route::post('/Shop/{id}','ShopController@store')->name('Shop.store');
+	Route::post('/Shop','ShopController@store')->name('Shop.store');
+	Route::patch('/Shop/{id}','ShopController@update')->name('Shop.update');
 	Route::delete('/Shop/{id}','ShopController@destroy')->name('Shop.destroy');
 
 	Route::get('/Whishlist','WhishlistController@index')->name('Whishlist.index');
+	Route::post('/Whishlist','WhishlistController@store')->name('Whishlist.store');
 	Route::delete('/Whishlist/{id}','WhishlistController@destroy')->name('Whishlist.destroy');
-	Route::get('/Whishlist/{id}','WhishlistController@store')->name('Whishlist.store');
 	Route::post('/Whishlist/{id}/update','WhishlistController@update')->name('Whishlist.update');
+	Route::post('/Whishlist/{id}/switchToCart','WhishlistController@switchToCart')->name('Whishlist.switchToCart');
 	

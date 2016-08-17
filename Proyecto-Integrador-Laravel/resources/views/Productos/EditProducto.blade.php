@@ -112,23 +112,7 @@
                     @endif
                 </div>
             </div> --}}
-            <div class="form-group{{ $errors->has('talleId') ? ' has-error' : '' }}">
-                <label for="talleId" class="col-md-4 control-label">Size:</label>
-                <div class="col-md-6">
-                  <select id="talleId" required name="talleId[]" class="form-control selectpicker" multiple="multiple" title="Seleccionar un Talle">
-                    <option value="">Select a Size</option>
-                    @foreach($talles as $talle)
-                      {{-- @if($producto->talleId) --}}
-                      <option value="{{$talle->talleId}}">{{$talle->talleNombre}}</option>
-                    @endforeach
-                  </select>
-                    @if ($errors->has('talleId'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('talleId') }}</strong>
-                        </span>
-                    @endif
-                </div>
-            </div>
+  
             <div class="form-group{{ $errors->has('productoFoto') ? ' has-error' : '' }}">
                 <label for="productoFoto" class="col-md-4 control-label">Product Picture:</label>
                 <div class="col-md-6">

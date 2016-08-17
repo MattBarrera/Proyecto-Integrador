@@ -18,7 +18,7 @@ class StockController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -65,7 +65,13 @@ class StockController extends Controller
      */
     public function show($id)
     {
-        //
+        // dd($id);
+        $stocks = Stock::where('productoId',$id)->get();
+        $producto = Producto::findOrFail($id);
+        $colores = Color::all();
+        $talles = Talle::all();
+        // dd($stocks);
+        return view('Productos.ShowStock',['stocks'=>$stocks,'producto'=>$producto,'colores'=>$colores,'talles'=>$talles]);
     }
 
     /**
@@ -76,7 +82,7 @@ class StockController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -88,7 +94,32 @@ class StockController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request);
+
+            $stock = Stock::where('productoId',$request->input('productoId'))->delete();
+            // dd($stock);
+            // $stock->delete();
+        for ($i = 0; $i < count($request->talleId); $i++) {
+            
+            $stock = Stock::where('productoId',$request->input('productoId'))->where('colorId',$request->colorId[$i])->where('talleId',$request->talleId[$i])->first();
+            $stock = Stock::create([
+                'productoId'=>$request->input('productoId'),
+                'colorId'=> $request->colorId[$i],
+                'talleId'=> $request->talleId[$i],
+                'stockCantidad'=> $request->stockCantidad[$i],
+            ]);
+            // $stock->colorId = $request->colorId[$i]
+            // $stock->talleId = $request->talleId[$i]
+            // $stock->stockCantidad = $request->stockCantidad[$i]
+            // $stock->save();
+
+            //     'productoId'=>$request->input('productoId'),
+            //     'colorId'=> $request->colorId[$i],
+            //     'talleId'=> $request->talleId[$i],
+            //     'stockCantidad'=> $request->stockCantidad[$i],
+            // ]);
+        }
+        return redirect()->back();
     }
 
     /**

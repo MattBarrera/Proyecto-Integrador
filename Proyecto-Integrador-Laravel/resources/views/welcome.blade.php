@@ -12,13 +12,13 @@
     </ol>
   </section>
 
-  <section style="position: fixed">
+  {{-- <section style="position: fixed">
     <div id="social" style="position:absolute;top:15px">
       <div><a href="http://www.facebook.com"> <img src="{{ asset('img/facebook.svg') }}" class="social" /></a></div>
       <div><a href="http://www.twitter.com"> <img src="{{ asset('img/twitter.svg') }}" class="social" /></a></div>
       <div><a href="mailto:biancapallaro@gmail.com"><img src="{{ asset('img/email.svg') }}" class="social" /></a></div>
     </div>
-  </section>
+  </section> --}}
 
   <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
@@ -74,17 +74,14 @@
     </div>
   </section>
         <section id="productos">
-<<<<<<< HEAD
-          <div class="container-fluid" style="margin-top:35px; margin-bottom:-40px;">
-=======
+          {{-- <div class="container-fluid" style="margin-top:35px; margin-bottom:-40px;"> --}}
           <div class="container-fluid">
->>>>>>> origin/dev
             <center><h2>FEATURED PRODUCTS</h2> </center>
             @foreach($productos as $producto)
               <div class="col-xs-6 col-sm-3">
               <div class="thumbnail">
                   @include('Includes.producto', ['producto' => $producto])
-                    <p><a href="/Shop/{{$producto->productoId}}" class="btn btn-primary" role="button">Add to Cart</a></p>
+                    {{-- <p><a href="/Shop/{{$producto->productoId}}" class="btn btn-primary" role="button">Add to Cart</a></p> --}}
                   </div> {{-- end caption inside the include--}}
                 </div> {{-- end thumbnail inside the include--}}
               </div> {{-- end col-xs-6 col-sm-3 --}}

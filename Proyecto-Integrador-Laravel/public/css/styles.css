@@ -56,7 +56,7 @@ table td, table th{
   display: inline-block;
 }
 .thumbnail{
-	height: 370px;
+	height: 390px;
 }
 .thumbnail:hover{
 	z-index: 999;
@@ -81,7 +81,7 @@ table td, table th{
 .thumbnail:hover .item-title{
 	text-overflow: initial;
     white-space: normal;
-    /*margin-top: -2px*/
+    margin-top: -2px
 }
 .detalleProductoFoto{
 	float: left; 
@@ -105,7 +105,12 @@ table td, table th{
 	display: inline-block;
 }
 .withButtons{
-	height: 460px;
+	height: 480px;
+}
+.sinStock{
+	color: red;
+	font-style: italic;
+	font-size:1.3em;
 }
 
 

@@ -2,6 +2,7 @@
 
 namespace Gloudemans\Shoppingcart;
 
+use App\Stock;
 use Closure;
 use Illuminate\Support\Collection;
 use Illuminate\Session\SessionManager;
@@ -505,5 +506,12 @@ class Cart
     private function getTableName()
     {
         return config('cart.database.table', 'shoppingcart');
+    }
+
+    public function stock($productoId,$colorId,$talleId)
+    {
+        $stock = Stock::select('stockCantidad')->where('productoId',$productoId)->where('colorId',$colorId)->where('talleId',$talleId)->first();
+        // dd($stock->stockCantidad);
+        return $stock->stockCantidad;
     }
 }

@@ -1,5 +1,5 @@
--- CREATE DATABASE  IF NOT EXISTS `ecommerce` /*!40100 DEFAULT CHARACTER SET latin1 */;
--- USE `ecommerce`;
+CREATE DATABASE  IF NOT EXISTS `ecommerce` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `ecommerce`;
 -- MySQL dump 10.13  Distrib 5.7.9, for osx10.9 (x86_64)
 --
 -- Host: localhost    Database: ecommerce
@@ -161,7 +161,7 @@ CREATE TABLE `empresaHasUsers` (
 
 LOCK TABLES `empresaHasUsers` WRITE;
 /*!40000 ALTER TABLE `empresaHasUsers` DISABLE KEYS */;
-INSERT INTO `empresaHasUsers` VALUES (1,1,1,NULL,NULL),(1,2,0,NULL,NULL),(1,3,0,NULL,NULL),(2,1,1,'2016-08-09 02:11:23','2016-08-09 02:11:23'),(2,2,0,'2016-08-11 16:46:11','2016-08-11 16:46:11'),(2,3,0,'2016-08-11 16:42:55','2016-08-11 16:42:55'),(3,1,0,'2016-08-11 03:47:47','2016-08-11 03:47:47'),(3,3,0,NULL,NULL);
+INSERT INTO `empresaHasUsers` VALUES (1,1,1,NULL,NULL),(1,3,0,NULL,NULL),(2,1,1,'2016-08-09 02:11:23','2016-08-09 02:11:23'),(2,2,0,'2016-08-11 16:46:11','2016-08-11 16:46:11'),(2,3,0,'2016-08-11 16:42:55','2016-08-11 16:42:55'),(3,1,0,'2016-08-11 03:47:47','2016-08-11 03:47:47'),(3,3,0,NULL,NULL);
 /*!40000 ALTER TABLE `empresaHasUsers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -191,7 +191,7 @@ CREATE TABLE `followers` (
 
 LOCK TABLES `followers` WRITE;
 /*!40000 ALTER TABLE `followers` DISABLE KEYS */;
-INSERT INTO `followers` VALUES (1,0,3,'2016-08-11 16:33:19','2016-08-11 16:33:19'),(1,3,0,'2016-08-11 16:39:13','2016-08-11 16:39:13');
+INSERT INTO `followers` VALUES (1,0,1,'2016-08-12 03:31:05','2016-08-12 03:31:05'),(1,0,3,'2016-08-11 16:33:19','2016-08-11 16:33:19'),(1,3,0,'2016-08-16 18:46:27','2016-08-16 18:46:27');
 /*!40000 ALTER TABLE `followers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -310,7 +310,7 @@ CREATE TABLE `producto` (
 
 LOCK TABLES `producto` WRITE;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
-INSERT INTO `producto` VALUES (1,'Camisa','Camisa Cuadrille',100,'sweter.jpg','1',0,1,1,7,1,NULL,NULL),(2,'Coni\'s sweter','Coni\'s sweter',2000,'sweter.jpg','2',0,1,1,1,0,'2016-07-25 21:59:00','2016-08-09 03:21:42'),(3,'Camila\'s shoes','Camila\'s shoes',1500,'zapato2.jpg','1',0,1,1,2,0,'2016-07-25 21:59:00','2016-07-29 03:19:48'),(4,'Bianca\'s Trench','Bianca\'s Trench',1800,'tapado.jpg','1',0,1,1,1,0,'2016-07-25 21:59:00','2016-07-27 01:42:07'),(5,'Daro\'s Shoes','Daro\'s Shoes',1700,'zapas.jpg','1',0,1,1,2,0,'2016-07-25 21:59:00','2016-07-27 01:42:07'),(6,'Daro\'s Shoes','Daro\'s Shoes',3500,'tapado.jpg','1',0,1,2,4,1,'2016-07-25 21:59:00','2016-07-25 21:59:00'),(7,'Prueba','Prueba',10000,'zapas.jpg','1',0,1,3,1,0,NULL,NULL),(8,'Prueba1','Prueba',10000,'zapas.jpg','1',0,1,3,1,0,NULL,NULL),(9,'Daro\'s Shoes','Daro\'s Shoes',1700,'zapas.jpg','1',0,1,1,2,0,'2016-07-25 21:59:00','2016-07-27 01:42:07'),(10,'Remera de Marca','remera maria cher',3000,'artsinfoto.gif','1',1,2,1,2,0,'2016-08-08 01:23:32','2016-08-08 01:23:32'),(11,'prubea cat padre','askda',20342,'artsinfoto.gif','1',0,1,1,4,1,'2016-08-08 08:06:12','2016-08-08 08:06:12'),(12,'prubea foto','askdma',123901,'artsinfoto.gif','1',1,2,1,4,1,'2016-08-10 15:40:28','2016-08-10 15:40:28'),(13,'peurba','ksmdkamdk',1023,'artsinfoto.gif','1',1,1,1,4,1,'2016-08-10 15:44:05','2016-08-10 15:44:05'),(14,'lsa,dla','asda',1231,'artsinfoto.gif','1',0,2,1,11,3,'2016-08-10 23:37:13','2016-08-10 23:37:13'),(15,'empresa 2','',123,'artsinfoto.gif','1',3,1,1,10,3,'2016-08-11 16:33:11','2016-08-11 16:33:11');
+INSERT INTO `producto` VALUES (1,'Camisa','Camisa Cuadrille',100,'sweter.jpg','1',0,1,1,7,1,NULL,NULL),(2,'Coni\'s sweter','Coni\'s sweter',2000,'sweter.jpg','1',0,1,1,1,0,'2016-07-25 21:59:00','2016-08-12 03:42:50'),(3,'Camila\'s shoes','Camila\'s shoes',1500,'zapato2.jpg','1',0,1,1,2,0,'2016-07-25 21:59:00','2016-07-29 03:19:48'),(4,'Bianca\'s Trench','Bianca\'s Trench',1800,'tapado.jpg','1',0,1,1,1,0,'2016-07-25 21:59:00','2016-07-27 01:42:07'),(5,'Daro\'s Shoes','Daro\'s Shoes',1700,'zapas.jpg','1',0,1,1,2,0,'2016-07-25 21:59:00','2016-07-27 01:42:07'),(6,'Daro\'s Shoes','Daro\'s Shoes',3500,'tapado.jpg','1',0,1,2,4,1,'2016-07-25 21:59:00','2016-07-25 21:59:00'),(7,'Prueba','Prueba',10000,'zapas.jpg','1',0,1,3,1,0,NULL,NULL),(8,'Prueba1','Prueba',10000,'zapas.jpg','1',0,1,3,1,0,NULL,NULL),(9,'Daro\'s Shoes','Daro\'s Shoes',1700,'zapas.jpg','1',0,1,1,2,0,'2016-07-25 21:59:00','2016-07-27 01:42:07'),(10,'Remera de Marca','remera maria cher',3000,'artsinfoto.gif','1',1,2,1,2,0,'2016-08-08 01:23:32','2016-08-12 03:42:59'),(11,'prubea cat padre','askda',20342,'artsinfoto.gif','1',0,1,1,4,1,'2016-08-08 08:06:12','2016-08-08 08:06:12'),(12,'prubea foto','askdma',123901,'artsinfoto.gif','1',1,2,1,4,1,'2016-08-10 15:40:28','2016-08-10 15:40:28'),(13,'peurba','ksmdkamdk',1023,'artsinfoto.gif','1',1,1,1,4,1,'2016-08-10 15:44:05','2016-08-10 15:44:05'),(14,'lsa,dla','asda',1231,'artsinfoto.gif','1',0,2,1,11,3,'2016-08-10 23:37:13','2016-08-10 23:37:13'),(15,'empresa 2','',123,'artsinfoto.gif','1',3,1,1,10,3,'2016-08-11 16:33:11','2016-08-11 16:33:11');
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -339,30 +339,38 @@ INSERT INTO `roles` VALUES (1,'SuperAdmin'),(2,'Admin'),(3,'Common User');
 UNLOCK TABLES;
 
 --
--- Table structure for table `stocks`
+-- Table structure for table `stock`
 --
 
-DROP TABLE IF EXISTS `stocks`;
+DROP TABLE IF EXISTS `stock`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `stocks` (
+CREATE TABLE `stock` (
+  `stockId` int(11) NOT NULL AUTO_INCREMENT,
   `productoId` int(11) NOT NULL,
-  `stockCantidad` int(11) NOT NULL,
+  `colorId` int(11) NOT NULL,
+  `talleId` int(11) NOT NULL,
+  `stockCantidad` int(11) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`productoId`,`stockCantidad`),
-  KEY `fk_stocks_producto1_idx` (`productoId`),
-  CONSTRAINT `fk_stocks_producto1` FOREIGN KEY (`productoId`) REFERENCES `producto` (`productoId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`stockId`,`productoId`,`colorId`,`talleId`),
+  KEY `fk_stock_color1_idx` (`colorId`),
+  KEY `fk_stock_producto1_idx` (`productoId`),
+  KEY `fk_stock_talle1_idx` (`talleId`),
+  CONSTRAINT `fk_stock_color1` FOREIGN KEY (`colorId`) REFERENCES `color` (`colorId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_stock_producto1` FOREIGN KEY (`productoId`) REFERENCES `producto` (`productoId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_stock_talle1` FOREIGN KEY (`talleId`) REFERENCES `talle` (`talleId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `stocks`
+-- Dumping data for table `stock`
 --
 
-LOCK TABLES `stocks` WRITE;
-/*!40000 ALTER TABLE `stocks` DISABLE KEYS */;
-/*!40000 ALTER TABLE `stocks` ENABLE KEYS */;
+LOCK TABLES `stock` WRITE;
+/*!40000 ALTER TABLE `stock` DISABLE KEYS */;
+INSERT INTO `stock` VALUES (25,1,1,1,57,'2016-08-17 16:08:02','2016-08-17 16:08:02'),(26,1,2,2,10,'2016-08-17 16:08:02','2016-08-17 16:08:02'),(27,1,4,3,37,'2016-08-17 16:08:02','2016-08-17 16:08:02'),(28,1,3,4,324,'2016-08-17 16:08:02','2016-08-17 16:08:02'),(49,2,1,1,10,'2016-08-17 16:23:54','2016-08-17 16:23:54'),(50,2,2,1,45,'2016-08-17 16:23:54','2016-08-17 16:23:54'),(51,2,1,2,123,'2016-08-17 16:23:54','2016-08-17 16:23:54');
+/*!40000 ALTER TABLE `stock` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -458,7 +466,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Manuel','Vilche',47440109,'manuelvilche@gmail.com',1,'fotoPerfil.jpg','1991-10-19','$2y$10$/fh.cBdG8iff4q3XsrJWY.Fy6lOB6V3SUwBr6I./ddQ1utmPUO/ru','1','VPPJYfTObglezhSYuob8LzNqQSmbx9uCeqqnPpXy5CDiuZUx9Craj28sMeAs','2016-07-19 21:18:28','2016-08-11 06:53:27',1),(2,'Bianca','Pallaro',12345678,'biancapallaro@gmail.com',2,'avatar_2x.png','1990-12-10','$2y$10$vPsjFebLX3ca4.ZezLBCZOn/VW00wa3Z0kWPf7uvPFlx76zsFnpLq','1','kPaGrWLM6XM7nZh4vmSDW8kU24hOmJyMX8ZCLsi722ozcVRw5Ni88LRdI2fK','2016-07-26 05:08:31','2016-08-11 06:52:30',1),(3,'Matias','Barrera',12345678,'mb_herfarth@hotmail.com',1,'avatar_2x.png','1990-12-10','$2y$10$94Q2cfNvx0lR.lavz9.UgeLhS6fFIePsmXjYxUpqcf3tDpLjxvnra','1','9PA7hqx2Aa1FMpynrX32neNcw2tfHgpVp0bM21EeBpxfVWKPstGie8BP6FWL','2016-07-26 05:10:44','2016-08-11 07:11:52',1),(13,'Pedro','Vilche',47440109,'manuelvilche+4@gmail.com',1,'avatar_2x.png','1991-11-19','$2y$10$OpTMVyk6DDkOtBDYnO.IyeHAzFg0Quxj.LxcN2ecZNL4OO8EkMnmy','1',NULL,'2016-08-01 00:15:46','2016-08-01 00:15:46',3);
+INSERT INTO `users` VALUES (1,'Manuel','Vilche',47440109,'manuelvilche@gmail.com',1,'fotoPerfil.jpg','1991-10-19','$2y$10$/fh.cBdG8iff4q3XsrJWY.Fy6lOB6V3SUwBr6I./ddQ1utmPUO/ru','1','0GCV9KiIWgxxjcntTBCIZKaetpV6nP3vxUXYRkOd5nf0CJpuEbL7RwYeXXWW','2016-07-19 21:18:28','2016-08-16 18:50:26',1),(2,'Bianca','Pallaro',12345678,'biancapallaro@gmail.com',2,'avatar_2x.png','1990-12-10','$2y$10$vPsjFebLX3ca4.ZezLBCZOn/VW00wa3Z0kWPf7uvPFlx76zsFnpLq','1','kPaGrWLM6XM7nZh4vmSDW8kU24hOmJyMX8ZCLsi722ozcVRw5Ni88LRdI2fK','2016-07-26 05:08:31','2016-08-11 06:52:30',1),(3,'Matias','Barrera',12345678,'mb_herfarth@hotmail.com',1,'avatar_2x.png','1990-12-10','$2y$10$94Q2cfNvx0lR.lavz9.UgeLhS6fFIePsmXjYxUpqcf3tDpLjxvnra','1','9PA7hqx2Aa1FMpynrX32neNcw2tfHgpVp0bM21EeBpxfVWKPstGie8BP6FWL','2016-07-26 05:10:44','2016-08-11 07:11:52',1),(13,'Pedro','Vilche',47440109,'manuelvilche+4@gmail.com',1,'avatar_2x.png','1991-11-19','$2y$10$OpTMVyk6DDkOtBDYnO.IyeHAzFg0Quxj.LxcN2ecZNL4OO8EkMnmy','1',NULL,'2016-08-01 00:15:46','2016-08-01 00:15:46',3);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -478,7 +486,7 @@ CREATE TABLE `visitas` (
   PRIMARY KEY (`visitaId`,`productoId`),
   KEY `fk_visitas_producto1_idx` (`productoId`),
   CONSTRAINT `fk_visitas_producto1` FOREIGN KEY (`productoId`) REFERENCES `producto` (`productoId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -487,7 +495,7 @@ CREATE TABLE `visitas` (
 
 LOCK TABLES `visitas` WRITE;
 /*!40000 ALTER TABLE `visitas` DISABLE KEYS */;
-INSERT INTO `visitas` VALUES (1,15,2,'2016-08-08 07:15:53','2016-08-10 21:10:03'),(2,13,1,'2016-08-08 07:28:19','2016-08-10 23:31:08'),(3,10,3,'2016-08-08 07:47:35','2016-08-11 20:26:15'),(4,3,10,'2016-08-09 02:02:20','2016-08-09 02:02:57'),(5,9,7,'2016-08-10 02:08:49','2016-08-10 22:15:28'),(6,1,6,'2016-08-10 20:20:13','2016-08-10 20:20:13'),(7,2,4,'2016-08-10 23:30:52','2016-08-10 23:30:54'),(8,1,5,'2016-08-10 23:30:59','2016-08-10 23:30:59');
+INSERT INTO `visitas` VALUES (1,44,2,'2016-08-08 07:15:53','2016-08-16 21:19:55'),(2,29,1,'2016-08-08 07:28:19','2016-08-16 18:28:32'),(3,47,3,'2016-08-08 07:47:35','2016-08-16 18:29:25'),(4,3,10,'2016-08-09 02:02:20','2016-08-09 02:02:57'),(5,12,7,'2016-08-10 02:08:49','2016-08-12 18:24:20'),(6,4,6,'2016-08-10 20:20:13','2016-08-16 18:26:55'),(7,6,4,'2016-08-10 23:30:52','2016-08-12 19:18:59'),(8,2,5,'2016-08-10 23:30:59','2016-08-16 18:07:22'),(9,1,8,'2016-08-12 18:24:16','2016-08-12 18:24:16'),(10,32,9,'2016-08-16 17:41:17','2016-08-16 18:07:12');
 /*!40000 ALTER TABLE `visitas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -500,4 +508,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-08-11 14:58:21
+-- Dump completed on 2016-08-17 10:57:39

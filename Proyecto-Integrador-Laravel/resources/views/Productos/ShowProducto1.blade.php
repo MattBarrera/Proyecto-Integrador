@@ -18,38 +18,40 @@
         </div>             
         <!-- hice el css inline para probarlo, no encuentro el css donde tocarlo -->
         <div id="detalleProdutoDatos" class="detalleProdutoDatos">
-          <form action="/Shop/{{$producto->productoId}}" method="POST">
-            {{csrf_field()}}
+          <form action="/Shop" method="POST" id="fromProducto">
+            {{ csrf_field() }}
+            <input type="hidden" name="productoId" id="productoId" value="{{$producto->productoId}}">
             <!-- precio del producto -->
             <h3><strong>$ {{$producto->productoPrecio}}<sup>00</sup></strong></h3>
               <!-- Color del producto con el titulo -->
               <h3>Color:</h3>
-            @if(count($producto->color)>0) 
-              {{-- {{dd($stock)}} --}}
+            {{-- @if(count($producto->color)>0)  --}}
                 <div id="colorId">
               @foreach($stocks as $stock)
-
-                  <label for="{{$stock->color->colorId}}" class="radio-inline">
-                    <input  checked type="radio" id="{{$stock->color->colorId}}" name="colorId" value="{{$stock->color->colorId}}">{{$stock->color->colorNombre}}
-                  </label>
+                <label for="{{$stock->color->colorId}}" class="radio-inline">
+                  <input type="radio" id="{{$stock->color->colorId}}" name="colorId" value="{{$stock->color->colorId}}">{{$stock->color->colorNombre}}
+                </label>
               @endforeach
                 </div>
-            @endif 
-
+            {{-- @endif  --}}
               <!-- precio del producto con el titulo -->
-              <h3>Talle:</h3>
-            @if(count($producto->talle)>0)
-                <div id="talles">
-              @foreach($producto->talle as $talle)
-                  <label for="talleId">{{$talle->talle->talleNombre}}</label>
-                  <input type="radio"  id="talleId" name="talleId" value="{{$talle->talleId}}">
-              @endforeach
+              <h3>Size:</h3>
+            {{-- @if(count($producto->talle)>0) --}}
+                <div id="talles" style="margin-bottom: 2em;" required>
                 </div>
-            @endif
+            {{-- @endif --}}
             {{-- <input type="submit" class="btn btn-success" value="Buy"></input> --}}
             {{-- <a type="submit" class="btn btn-primary" role="button">Buy</a> --}}
-            <a href="/Shop/{{$producto->productoId}}" class="btn btn-success" role="button">Buy</a>
-            <a href="/Whishlist/{{$producto->productoId}}" class="btn btn-primary" role="button"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+            {{-- <a href="/Shop/{{$producto->productoId}}" class="btn btn-success" role="button">Buy</a> --}}
+            @if($producto->getStokTotalAttribute() == 0)
+              <p class="sinStock">Sin Stock</p>
+              <button type="button" class="btn btn-success" disabled="disabled">Buy</button>
+            @else
+              <button type="submit" class="btn btn-success" formaction="/Shop" >Buy</button>
+            @endif
+            <button type="submit" class="btn btn-primary" formaction="/Whishlist" ><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+            {{-- <a href="/Whishlist/{{$producto->productoId}}" class="btn btn-primary" role="button"><i class="fa fa-heart-o" aria-hidden="true"></i></a> --}}
+            {{-- <button type="submit" class="btn btn-primary" formaction="/Whishlist/{{$producto->productoId}}"><i class="fa fa-heart-o" aria-hidden="true"></i></button> --}}
           </form>
         </div>
       </div>

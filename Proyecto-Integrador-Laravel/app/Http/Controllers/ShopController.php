@@ -40,29 +40,27 @@ class ShopController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
-        // dd($id);
-        $producto = Producto::findOrFail($id);
+        // dd($request->productoId);
+        $producto = Producto::findOrFail($request->productoId);
         // dd($producto);
         // if (Cart::search($producto->productoId)) {
         //     return redirect()->back();
         // }
-        // if (Cart::search(['id' => $request->id])) {
-        //     return redirect()->back()->withSuccessMessage('Item is already in your cart!');
+        // dd($request->productoId);
+        // $algo = Cart::search('id' => $request->productoId);
+        // dd($algo);
+        // if (Cart::search(array('id' => $request->productoId))) {
+        //     echo 'string';
+        //     // return redirect()->back()->withSuccessMessage('Item is already in your cart!');
         // }
 
-        $productoCart = Cart::add($producto->productoId,$producto->productoNombre,1,$producto->productoPrecio, ['userId'=>$producto->users_id,'productoFoto' => $producto->productoFoto, 'size'=>$request->input('talleId'),'color'=>$request->input('colorId')]);//$request->('talleId') ? 'size'=>$request->('talleId') : '';
+        $productoCart = Cart::add($producto->productoId,$producto->productoNombre,1,$producto->productoPrecio, ['userId'=>$producto->users_id,'productoFoto' => $producto->productoFoto, 'size'=>$request->input('talleId'),'color'=>$request->input('colorId')]);
 
-        // if ($request->has('talleId'))'size'=$request->input('talleId'):;
-        // dd($productoCart);
-        // Cart::destroy();
-        // dd(URL::previous());
-        // if (URL::previous()) {
             
         return redirect()->back();
-        // }
-        // }
+
     }
 
     /**
@@ -97,7 +95,7 @@ class ShopController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'quantity' => 'required|numeric|between:1,5'
+            'quantity' => 'required|numeric'
         ]);
 
          if ($validator->fails()) {

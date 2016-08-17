@@ -87,7 +87,7 @@
                   @endif
               </div>
             </div>
-            <div class="form-group{{ $errors->has('colorId') ? ' has-error' : '' }}">
+            {{-- <div class="form-group{{ $errors->has('colorId') ? ' has-error' : '' }}">
                 <label for="colorId" class="col-md-4 control-label">Color:</label>
                 <div class="col-md-6">
                   <select id="colorId" required name="colorId[]" class="form-control selectpicker" multiple="multiple" title="Seleccionar un Color">
@@ -117,7 +117,7 @@
                         </span>
                     @endif
                 </div>
-            </div>
+            </div> --}}
             <div class="form-group{{ $errors->has('productoFoto') ? ' has-error' : '' }}">
                 <label for="productoFoto" class="col-md-4 control-label">Product Picture:</label>
                 <div class="col-md-6">

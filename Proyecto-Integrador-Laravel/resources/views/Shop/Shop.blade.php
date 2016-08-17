@@ -61,6 +61,8 @@
             <tbody>
               @if(Cart::count() !== 0)
                 @foreach(Cart::content() as $producto)
+                  {{-- {{dd($producto->options->color)}} --}}
+                  
                   <tr>
                     <td class="table-image">
                       <img src="/assets/{{$producto->options->userId}}/products/{{$producto->options->productoFoto}}" alt="" width="60" height="60" class="img-thumbnail">{{-- {{$producto->rowId}} --}}
@@ -69,20 +71,20 @@
                     <td>
                       <ul style="list-style: none">
                         <li>Description:{{$producto->price}}</li>
-                        @if($producto->options->size != NULL)
+                        {{-- @if($producto->options->size != NULL) --}}
                           @foreach($talles as $talle)
                             @if($talle->talleId == $producto->options->size)
                               <li>Size: {{$talle->talleNombre}}</li>
                             @endif
                           @endforeach
-                        @endif
-                        @if($producto->options->color)
+                        {{-- @endif --}}
+                        {{-- @if($producto->options->color) --}}
                           @foreach($colores as $color)
                             @if($color->colorId == $producto->options->color)
                               <li>Color: {{$color->colorNombre}}</li>
                             @endif
                           @endforeach
-                        @endif
+                        {{-- @endif --}}
                       </ul>
                     </td>
                     <td>$ {{$producto->price}}</td>
@@ -90,19 +92,17 @@
                         {{csrf_field()}} --}}
                       <td>
                         {{-- <input class="form-control" type="number" value="{{$producto->qty}}" id="productoQty" name="productoQty" style="text-align: center"> --}}
-                          
-                        
                         <select class="quantity form-control" data-id="{{ $producto->rowId }}" >
-                                <option {{ $producto->qty == 1 ? 'selected' : '' }}>1</option>
-                                <option {{ $producto->qty == 2 ? 'selected' : '' }}>2</option>
-                                <option {{ $producto->qty == 3 ? 'selected' : '' }}>3</option>
-                                <option {{ $producto->qty == 4 ? 'selected' : '' }}>4</option>
-                                <option {{ $producto->qty == 5 ? 'selected' : '' }}>5</option>
-                            </select>
+                          @if(Cart::stock($producto->id,$producto->options->color,$producto->options->size) == 0)
+                            <option value="1">Sin Stock</option>
+                          @else
+                            @for ($i = 1; $i <= Cart::stock($producto->id,$producto->options->color,$producto->options->size); $i++)
+                              <option value="{{$i}}" {{ $producto->qty == $i ? 'selected' : '' }} >{{$i}}</option>
+                            @endfor
+                          @endif
+                        </select>
                       </td>
                       <td>
-                        {{-- <button type="submit" class="btn btn-success "><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button></a>
-                       --}}
                     </form>
                       <form action="/Shop/{{$producto->rowId}}" method="POST" class="form-delete">
                         {{csrf_field()}}
@@ -121,7 +121,7 @@
             </tbody>
           </table>
           <a href="/Store" title="" class=""><button type="button" class="btn btn-primary">Continue Shopping</button></a>
-          <a href="" title="" class="pull-right"><button type="button" class="btn btn-primary">Check Out</button></a>
+          <a href="/CheckOut" title="" class="pull-right"><button type="button" class="btn btn-primary">Check Out</button></a>
       </div>
     </div>
 </div>

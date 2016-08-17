@@ -17,3 +17,7 @@
     @else
       <p>Empresa: <a href="Empresa/{{$producto->empresaId}}" title="">{{$producto->empresa->empresaNombre}}</a></p>
     @endif
+    {{-- {{dd($producto->getStokTotalAttribute())}} --}}
+    @if($producto->getStokTotalAttribute() == 0)
+      <p class="sinStock" ">Sin Stock</p>
+    @endif

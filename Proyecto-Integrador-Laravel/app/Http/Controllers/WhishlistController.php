@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Producto;
-use App\ColorHasProducto;
-use App\TalleHasProdcuto;
+use App\Talle;
+use App\Color;
 use Cart;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -18,16 +18,17 @@ class WhishlistController extends Controller
      */
     public function index()
     {
-        $ids = [];
-        foreach (Cart::instance('wishlist')->content() as $value) {
-            // dd();
-            $ids [] = $value->id;
-        }
+        // $ids = [];
+        // foreach (Cart::instance('wishlist')->content() as $value) {
+        //     // dd();
+        //     $ids [] = $value->id;
+        // }
         // dd($ids);
         // dd(Cart::instance('wishlist')->content());
-        $colores = ColorHasProducto::whereIn('productoId',[1,4])->with('color')->get();
+        $talles = Talle::all();
+        $colores = Color::all();
         // dd($colores);
-        return view('Whishlist.Whishlist',['colores'=>$colores]);
+        return view('Whishlist.Whishlist',['colores'=>$colores,'talles'=>$talles]);
     }
 
     /**
@@ -46,18 +47,18 @@ class WhishlistController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
-        // dd($id);
-        $producto = Producto::findOrFail($id);
-        // dd($producto);
-        // if (Cart::search($producto->productoId)) {
-        //     return redirect()->back();
-        // }else{
-        // if (Cart::search(['id' => $request->id])) {
-        //     return redirect()->back()->withSuccessMessage('Item is already in your cart!');
-        // }
-        $productoCart = Cart::instance('wishlist')->add($producto->productoId,$producto->productoNombre,1,$producto->productoPrecio, ['userId'=>$producto->users_id,'productoFoto' => $producto->productoFoto]);
+        // dd($request);
+        $producto = Producto::findOrFail($request->productoId);
+        dd($producto);
+        if (Cart::search($producto->productoId)) {
+            return redirect()->back();
+        }
+        if (Cart::search(['id' => $request->productoId])) {
+            return redirect()->back()->withSuccessMessage('Item is already in your cart!');
+        }
+        $productoCart = Cart::instance('wishlist')->add($producto->productoId,$producto->productoNombre,1,$producto->productoPrecio, ['userId'=>$producto->users_id,'productoFoto' => $producto->productoFoto,'size'=>$request->input('talleId'),'color'=>$request->input('colorId')]);
         // dd($productoCart);
         // Cart::destroy();
         // dd(URL::previous());
@@ -115,5 +116,22 @@ class WhishlistController extends Controller
         // dd($id);
         Cart::instance('wishlist')->remove($id);
         return redirect()->back();
+    }
+
+    public function switchToCart($id)
+    {
+        dd($id);
+        $item = Cart::instance('wishlist')->get($id);
+
+
+        if (Cart::instance('main')->search(['id' => $item->id])) {
+            return redirect('wishlist')->withSuccessMessage('Item is already in your shopping cart!');
+        }
+
+        Cart::instance('main')->associate('Product','App')->add($item->id, $item->name, 1, $item->price);
+        
+        Cart::instance('wishlist')->remove($id);
+
+        return redirect('wishlist')->withSuccessMessage('Item has been moved to your shopping cart!');
     }
 }

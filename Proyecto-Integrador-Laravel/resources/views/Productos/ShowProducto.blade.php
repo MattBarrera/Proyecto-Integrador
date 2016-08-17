@@ -45,7 +45,9 @@
             {{-- <input type="submit" class="btn btn-success" value="Buy"></input> --}}
             {{-- <a type="submit" class="btn btn-primary" role="button">Buy</a> --}}
             <a href="/Shop/{{$producto->productoId}}" class="btn btn-success" role="button">Buy</a>
+            <button type="submit" class="btn btn-success">Buy</button>
             <a href="/Whishlist/{{$producto->productoId}}" class="btn btn-primary" role="button"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+            <button type="submit" class="btn btn-primary"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
           </form>
         </div>
       </div>

@@ -327,10 +327,10 @@ class ProductoController extends Controller
         return view('Productos.MyPersonalProducts', ['users'=>$users,'productos'=>$productos,'empresas'=>$empresas]);
     }
 
-    public function getTalles($id)
+    public function getTalles($id, $productoId)
     {
-        $id = 1;
-        $talles = Stock::where('colorId',$id)->where('productoId',$id)->with('talle')->distinct()->get();
+        
+        $talles = Stock::where('colorId',$id)->where('productoId',$productoId)->with('talle')->get();
         echo json_encode($talles);exit;
     }
 

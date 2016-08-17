@@ -59,5 +59,16 @@ class Producto extends Model
     {
         return $this->belongsTo('App\Visita', 'productoId','productoId');
     }
+    public function stock()
+    {
+        return $this->hasMany('App\Stock','productoId');
+    }
+    public function getStokTotalAttribute()
+    {
+        return $this->stock->reduce(function($acumulado, Stock $stock){
+            return $acumulado + $stock->stockCantidad;
+        }, 0);
+        dd($acumulado);
+    }
     
 }

@@ -65,5 +65,5 @@
 </div>
 @endsection
 @section('extra-js')
-<script src="/js/closeAlert.js" type="text/javascript"></script>
+  <script src="/js/closeAlert.js" type="text/javascript"></script>
 @endsection
