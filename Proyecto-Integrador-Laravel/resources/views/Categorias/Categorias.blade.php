@@ -38,7 +38,7 @@
                   <td rowspan="{{count($categoria->subcategorias)+1}}"><a href="/Categorias/{{$categoria->categoriaId}}" title="">{{$categoria->categoriaNombre}}</a></td>
                   <td rowspan="{{count($categoria->subcategorias)+1}}">
                     <a href="/Categorias/{{$categoria->categoriaId}}/edit" title="" class="form-delete">
-                      <button type="submit" class="btn btn-success btn-follower">
+                      <button type="submit" class="btn btn-success btn-follower sinMargen">
                         <i class="glyphicon glyphicon-edit"></i>                 
                       </button>
                     </a>
@@ -56,7 +56,7 @@
                         </td>
                         <td>
                           <a href="/SubCategorias/{{$subCategoria->categoriaId}}/edit" title="" class="form-delete">
-                            <button type="submit" class="btn btn-success btn-follower">
+                            <button type="submit" class="btn btn-success btn-follower sinMargen">
                               <i class="glyphicon glyphicon-edit"></i>                 
                             </button>
                           </a>

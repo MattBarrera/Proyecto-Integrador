@@ -28,7 +28,7 @@
                   <td><a href="/Talles/{{$talle->talleId}}" title="">{{$talle->talleNombre}}</a></td>
                   <td>
                     <a href="/Talles/{{$talle->talleId}}/edit" title="" class="form-delete">
-                      <button type="submit" class="btn btn-success btn-follower">
+                      <button type="submit" class="btn btn-success btn-follower sinMargen">
                         <i class="glyphicon glyphicon-edit"></i>                 
                       </button>
                     </a>

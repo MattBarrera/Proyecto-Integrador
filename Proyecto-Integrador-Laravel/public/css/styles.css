@@ -112,6 +112,9 @@ table td, table th{
 	font-style: italic;
 	font-size:1.3em;
 }
+.sinMargen{
+	margin-top: 0;
+}
 @media screen and (max-width: 991px){
 	
 	.container{
