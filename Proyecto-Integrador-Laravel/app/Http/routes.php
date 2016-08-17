@@ -42,22 +42,23 @@ Route::group(['middleware'=>'auth'], function(){
 
 
 	Route::resource('/User','UserController');
+	Route::resource('/Transacciones','TransaccionController');
 	Route::resource('/Stock','StockController');
-	Route::get('/getTalles/{id}/{productoId}','ProductoController@getTalles');
 	Route::resource('/Empresa','EmpresaController');
 	Route::get('/Empresa/{id}/addAdmin','EmpresaController@addAdmin');
 	Route::post('/Empresa/{id}','EmpresaController@storeAdmin');
 	Route::delete('/Empresa/{id}/destroyAdmin','EmpresaController@destroyAdmin');
-
+	// Super Admin
 	Route::resource('/Generos','GeneroController');
 	Route::resource('/Colores','ColorController');
 	Route::resource('/Talles','TalleController');
 	Route::resource('/Categorias','CategoriaController');
 	Route::resource('/SubCategorias','SubCategoriaController');
-	Route::get('/Shop','ShopController@index')->name('Shop.index');
+	// Route::get('/Shop','ShopController@index')->name('Shop.index');
 	Route::get('/Shop/CheckOut','ShopController@CheckOut')->name('Shop.CheckOut');
 	Route::get('/Shop/CheckOutFinal','ShopController@CheckOutFinal')->name('Shop.CheckOutFinal');
 });
+	Route::get('/getTalles/{id}/{productoId}','ProductoController@getTalles');
 	Route::get('/Productos/{id}','ProductoController@Show');
 	// Route::resource('/Shop','ShopController');
 

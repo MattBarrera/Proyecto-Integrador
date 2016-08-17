@@ -112,5 +112,11 @@ table td, table th{
 	font-style: italic;
 	font-size:1.3em;
 }
+@media screen and (max-width: 991px){
+	
+	.container{
+		padding-bottom: 45px!important;
+	}
+}
 
 

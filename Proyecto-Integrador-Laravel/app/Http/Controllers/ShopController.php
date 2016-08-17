@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Producto;
 use App\Talle;
 use App\Color;
+use App\Transaccion;
 use Cart;
+use Auth;
 use Validator;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -129,10 +131,24 @@ class ShopController extends Controller
     }
     public function CheckOut()
     {
+
         return view('Shop.formularioPago');
     }
     public function CheckOutFinal()
     {
+        $items = Cart::instance('default')->content();
+        foreach ($items as $item) {
+            // dd($item->id);
+            $order = Transaccion::create([
+                'productoId'=>$item->id,
+                'transaccionQty'=>$item->qty,
+                'transaccionPrice'=>$item->price,
+                'transaccionName'=>$item->name,
+                'transaccionSize'=>$item->options->size,
+                'transaccionColor'=>$item->options->color,
+                'userId'=>Auth::user()->id,
+            ]);
+        }
         Cart::instance('default')->destroy();
         return redirect('/Store');
     }

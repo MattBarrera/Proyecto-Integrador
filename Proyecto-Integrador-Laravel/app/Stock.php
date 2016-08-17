@@ -21,4 +21,12 @@ class Stock extends Model
     public function talle(){
     	return $this->hasOne('App\Talle','talleId','talleId');
     }
+
+    // public function getStokTotalAttribute()
+    // {
+    //     return $this->reduce(function($acumulado, $this){
+    //         return $acumulado + $this->stockCantidad;
+    //     }, 0);
+    //     // dd($acumulado);
+    // }
 }

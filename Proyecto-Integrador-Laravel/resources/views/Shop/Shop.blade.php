@@ -10,12 +10,6 @@
     <div class="container">
       <div class="page-header">
         <h1 style="display: inline-block">Cart</h1>
-        {{-- <a href="/SubCategorias/create" title="" >
-          <button type="submit" class="btn btn-success pull-right btn-follower" style="margin-left:10px"> New Sub Category</button>
-        </a>
-        <a href="/Categorias/create" title="">
-          <button type="submit" class="btn btn-success pull-right btn-follower"> New Category</button>
-        </a> --}}
       </div>
       @if (session()->has('success_message'))
             <div class="alert alert-success" id="closeAlert">

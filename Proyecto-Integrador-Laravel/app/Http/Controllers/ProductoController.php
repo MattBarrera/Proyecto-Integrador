@@ -64,7 +64,7 @@ class ProductoController extends Controller
     {
         // dd($request);
         // $fileName = '';
-        if ($request->input('productoFoto') != "") {
+        if ($request->->files->has('avatar')) {
             $destinationPath = '/public/assets/'.Auth::user()->id.'/products/';
             $fileName = input::file('productoFoto')->getClientOriginalName();
             input::file('productoFoto')->move(public_path().'/assets/'.Auth::user()->id.'/products/', $fileName);
@@ -334,7 +334,7 @@ class ProductoController extends Controller
     public function getTalles($id, $productoId)
     {
         
-        $talles = Stock::where('colorId',$id)->where('productoId',$productoId)->with('talle')->get();
+        $talles = Stock::where('colorId',$id)->where('productoId',$productoId)->with('talle')->get();`
         echo json_encode($talles);exit;
     }
 

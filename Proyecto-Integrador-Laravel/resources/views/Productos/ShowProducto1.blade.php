@@ -49,13 +49,18 @@
             {{-- <input type="submit" class="btn btn-success" value="Buy"></input> --}}
             {{-- <a type="submit" class="btn btn-primary" role="button">Buy</a> --}}
             {{-- <a href="/Shop/{{$producto->productoId}}" class="btn btn-success" role="button">Buy</a> --}}
-            @if($producto->getStokTotalAttribute() == 0)
-              <p class="sinStock">Sin Stock</p>
-              <button type="button" class="btn btn-success" disabled="disabled">Buy</button>
-            @else
-              <button type="submit" class="btn btn-success" formaction="/Shop" >Buy</button>
-            @endif
-            <button type="submit" class="btn btn-primary" formaction="/Whishlist" ><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+            {{-- @if($producto->getStokTotalAttribute() == 0) --}}
+              {{-- <p class="sinStock">Sin Stock</p> --}}
+              {{-- <button type="button" class="btn btn-success" id="buy" disabled="disabled">Buy</button> --}}
+            {{-- @else --}}
+              <button type="submit" class="btn btn-success" id="buy" formaction="/Shop" >Buy</button>
+            {{-- @endif --}}
+              {{-- <div id="buttons" >style="display: inline-block;
+                
+              </div> --}}
+                <button type="submit" class="btn btn-primary" formaction="/Whishlist" >
+                  <i class="fa fa-heart-o" aria-hidden="true"></i>
+                  </button>
             {{-- <a href="/Whishlist/{{$producto->productoId}}" class="btn btn-primary" role="button"><i class="fa fa-heart-o" aria-hidden="true"></i></a> --}}
             {{-- <button type="submit" class="btn btn-primary" formaction="/Whishlist/{{$producto->productoId}}"><i class="fa fa-heart-o" aria-hidden="true"></i></button> --}}
           </form>

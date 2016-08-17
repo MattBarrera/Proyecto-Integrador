@@ -101,6 +101,7 @@
                                 <li><a href="/MyHistoricProducts">My Historic Products</a></li>
                                 <li><a href="/MyPersonalProducts">My Personal Products</a></li>
                                 <li><a href="/Empresa">My Pages</a></li>
+                                <li><a href="/Transacciones">My Transactions</a></li>
                                 @if(Auth::user()->roleId < 3)
                                     <li role="separator" class="divider"></li>
                                     <li class="dropdown-header">Super Admin</li>
