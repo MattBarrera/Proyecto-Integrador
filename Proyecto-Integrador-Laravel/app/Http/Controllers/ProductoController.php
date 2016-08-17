@@ -64,7 +64,7 @@ class ProductoController extends Controller
     {
         // dd($request);
         // $fileName = '';
-        if ($request->->files->has('avatar')) {
+        if ($request->files->has('avatar')) {
             $destinationPath = '/public/assets/'.Auth::user()->id.'/products/';
             $fileName = input::file('productoFoto')->getClientOriginalName();
             input::file('productoFoto')->move(public_path().'/assets/'.Auth::user()->id.'/products/', $fileName);
