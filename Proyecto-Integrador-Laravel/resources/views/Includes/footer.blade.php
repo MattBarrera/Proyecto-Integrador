@@ -8,7 +8,7 @@
 	    			<li>Clothes Shop</li>
 	    			<li>Site Map</li>
 	    			<li>Work with us</li>
-	    			<li><a href="/Terms" title="">terms and Conditions</a></li>
+	    			<li><a href="/Terms" title="">Terms and Conditions</a></li>
 	    		</ul>
 	    	</div>
 	    	<div class="col-md-4 text-center">

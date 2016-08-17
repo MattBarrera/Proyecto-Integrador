@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
       <div class="page-header">
-        <h1>My Empresa</h1>
+        <h1>My Business</h1>
       </div>
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/Empresa') }}" enctype="multipart/form-data">
                         {{ csrf_field() }}

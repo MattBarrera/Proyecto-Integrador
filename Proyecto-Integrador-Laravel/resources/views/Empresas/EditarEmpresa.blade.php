@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="page-header">
-        <h1>Editar Empresa</h1>
+        <h1>Edit Business</h1>
     </div>
     <form class="form-horizontal" role="form" method="POST" action="/Empresa/{{$empresa->empresaId}}" enctype="multipart/form-data">
         {{ csrf_field() }}

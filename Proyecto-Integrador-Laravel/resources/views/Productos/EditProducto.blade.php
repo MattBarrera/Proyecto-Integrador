@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="page-header">
-        <h1>Agregar Producto</h1>
+        <h1>Edit Product</h1>
       </div>
       <div class="row">
         <form class="form-horizontal" role="form" method="POST" action="/Productos/{{$producto->productoId}}" enctype="multipart/form-data">
@@ -121,7 +121,7 @@
                   @else
                     <img src="/assets/{{$producto->users_id}}/products/{{$producto->productoFoto}}" alt="" width="200" height= class="img-thum""200" class="img-thum">
                   @endif
-                    <input id="productoFoto" type="file" class="form-control" name="productoFoto">
+                    <input id="productoFoto" type="file" class="form-control" name="productoFoto" >
                     @if ($errors->has('productoFoto'))
                       <span class="help-block">
                         <strong>{{ $errors->first('productoFoto') }}</strong>
@@ -161,7 +161,11 @@
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
                     <button type="submit" class="btn btn-success">
+<<<<<<< Updated upstream
                         {{-- <i class="fa fa-btn fa-user"></i> --}} Edit
+=======
+                        {{-- <i class="fa fa-btn fa-user"></i> --}} Edit Product
+>>>>>>> Stashed changes
                     </button>
                 </div>
             </div>

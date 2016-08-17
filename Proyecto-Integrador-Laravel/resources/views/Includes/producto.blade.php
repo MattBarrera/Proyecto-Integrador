@@ -19,5 +19,5 @@
     @endif
     {{-- {{dd($producto->getStokTotalAttribute())}} --}}
     @if($producto->getStokTotalAttribute() == 0)
-      <p class="sinStock" ">Sin Stock</p>
+      <p class="sinStock" ">Out of Stock</p>
     @endif
