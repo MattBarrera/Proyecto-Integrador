@@ -28,7 +28,7 @@
                   <td><a href="/Generos/{{$genero->generoId}}" title="">{{$genero->generoNombre}}</a></td>
                   <td>
                     <a href="/Generos/{{$genero->generoId}}/edit" title="" class="form-delete">
-                      <button type="submit" class="btn btn-success btn-follower">
+                      <button type="submit" class="btn btn-success btn-follower sinMargen">
                         <i class="glyphicon glyphicon-edit"></i>                 
                       </button>
                     </a>
