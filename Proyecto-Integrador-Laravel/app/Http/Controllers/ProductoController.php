@@ -334,7 +334,7 @@ class ProductoController extends Controller
     public function getTalles($id, $productoId)
     {
         
-        $talles = Stock::where('colorId',$id)->where('productoId',$productoId)->with('talle')->get();`
+        $talles = Stock::where('colorId',$id)->where('productoId',$productoId)->with('talle')->get();
         echo json_encode($talles);exit;
     }
 
