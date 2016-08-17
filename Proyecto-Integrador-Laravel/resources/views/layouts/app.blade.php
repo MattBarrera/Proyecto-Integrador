@@ -51,10 +51,10 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                  <div class="logo">
-                    {{-- <img src="img/.png" alt=""> --}} Clothes Shop
-                  </div>
+                <a class="logo navbar-brand" href="{{ url('/') }}">
+
+                    <img src="img/logo.png" width="100px" alt="">
+                  
                 </a>
             </div>
 

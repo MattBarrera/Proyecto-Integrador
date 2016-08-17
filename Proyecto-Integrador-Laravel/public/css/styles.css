@@ -7,6 +7,10 @@ body{
 	padding-bottom: 200px;
   	min-height: 100%;
 }
+
+.logo {
+	padding: 0 !important
+	}
 .productoFoto{
 	width: 200px;
 	height: 200px;
@@ -43,14 +47,14 @@ a.aAvatar{
   	height: auto;
 }
 .rights{
-	background-color:#337AB7; 
-	padding:10px; 
-	text-align:center; 
+	background-color:#337AB7;
+	padding:10px;
+	text-align:center;
 	color: white;
 }
 table td, table th{
    text-align: center;
-   vertical-align: middle !important;  
+   vertical-align: middle !important;
 }
 .form-delete{
   display: inline-block;
@@ -84,7 +88,7 @@ table td, table th{
     margin-top: -2px
 }
 .detalleProductoFoto{
-	float: left; 
+	float: left;
 	/*margin-left: 15%; */
 	margin-top: 3%;
 	width: 50%;
@@ -96,7 +100,7 @@ table td, table th{
 	text-align: center;
 }
 .detalleProdutoDatos{
-	float: right; 
+	float: right;
 	width: 50%;
 	/*margin-right: 31%; */
 	margin-top: 3%;
@@ -116,10 +120,8 @@ table td, table th{
 	margin-top: 0;
 }
 @media screen and (max-width: 991px){
-	
+
 	.container{
 		padding-bottom: 45px!important;
 	}
 }
-
-
