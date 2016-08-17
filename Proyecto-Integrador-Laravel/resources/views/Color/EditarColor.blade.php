@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
   	<div class="page-header">
-    	<h1>New Color</h1>
+    	<h1>Edit Color</h1>
   	</div>
 	<form class="form-horizontal" role="form" method="POST" action="/Colores/{{$color->colorId}}">
         {{ csrf_field() }}
@@ -21,7 +21,7 @@
         </div>
         <div class="form-group">
             <div class="col-md-6 col-md-offset-4">
-                <button type="submit" class="btn btn-success">Create</button>
+                <button type="submit" class="btn btn-success">Edit</button>
             </div>
         </div>
         </form>
