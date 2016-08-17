@@ -4,8 +4,8 @@
 <main >
   <section id="breadcrumb" class="container-fluid">
     <ol class="breadcrumb" style="background-color:#337AB7;">
-      <li><a href="#" style="color:white;">Men</a></li>
-      <li><a href="#" style="color:white;">Women</a></li>
+      <li><a href="/Busqueda?gen=1" style="color:white;">Men</a></li>
+      <li><a href="/Busqueda?gen=2" style="color:white;">Women</a></li>
       <li><a href="#" style="color:white;">Clothes</a></li>
       <li><a href="#" style="color:white;">Shoes</a></li>
       <li><a href="#" style="color:white;" >Accesories</a></li>
@@ -53,7 +53,7 @@
       <img src="{{ asset('img/jeans.jpg') }}" alt="..." class="img-rounded" style="width:90%">
       <center>
         <a href="/Busqueda?gen=2" title=""><button type="button" class="btn btn-danger btn-follower">Women</button></a>
-        <a href="/Busqueda?gen=2" title=""><button type="button" class="btn btn-info btn-follower">Men</button></a>
+        <a href="/Busqueda?gen=1" title=""><button type="button" class="btn btn-info btn-follower">Men</button></a>
       </center>
     </div>
     <div class="col-md-4">
@@ -61,7 +61,7 @@
       <img src="{{ asset('img/shoesmen.jpg') }}" alt="..." class="img-rounded" style="width:90%">
       <center>
         <a href="/Busqueda?gen=2" title=""><button type="button" class="btn btn-danger btn-follower" >Women</button></a>
-        <a href="/Busqueda?gen=2" title=""><button type="button" class="btn btn-info btn-follower">Men</button></a>
+        <a href="/Busqueda?gen=1" title=""><button type="button" class="btn btn-info btn-follower">Men</button></a>
       </center>
     </div>
     <div class="col-md-4">

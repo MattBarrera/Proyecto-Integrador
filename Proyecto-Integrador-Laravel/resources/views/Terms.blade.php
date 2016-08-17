@@ -399,7 +399,7 @@
     Arial">Fax: 212-467-3320</span></p>
 
     <p class="MsoNormal" style="text-align:justify"><span lang="FR" style="font-family:
-    Arial">e-mail: </span><span lang="ES-MX" style="font-family:Arial"><a href="mailto:="FR">copyrightdmca@timeinc.com</span></a></span></p>
+    Arial">e-mail: </span><span lang="ES-MX" style="font-family:Arial"><a href="mailto:="FR">copyright@clothesshop.com</span></a></span></p>
 
     <p class="MsoNormal" style="text-align:justify"><span lang="FR" style="font-family:
     Arial">&nbsp;</span></p>

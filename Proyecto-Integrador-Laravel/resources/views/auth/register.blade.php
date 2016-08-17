@@ -128,6 +128,9 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
+                                <input type="checkbox" name="terminosYCondiciones" required title="Debes aceptar términos y condiciones">
+                                <label>  Acepto Términos y Condiciones</label><br>
+                                <a href="/Terms">Términos y Condiciones</a><br><br>
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-btn fa-user"></i> Register
                                 </button>

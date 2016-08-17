@@ -13,9 +13,9 @@
       <p><a href="" title="">{{$producto->categoria->categoriaNombre}}</a></p>
     @endif
     @if($producto->empresaId == 0)
-      <p>Usuario: <a href="User/{{$producto->users_id}}" title="">{{$producto->usuario->full_name}}</a></p>
+      <p>User: <a href="User/{{$producto->users_id}}" title="">{{$producto->usuario->full_name}}</a></p>
     @else
-      <p>Empresa: <a href="Empresa/{{$producto->empresaId}}" title="">{{$producto->empresa->empresaNombre}}</a></p>
+      <p>Business: <a href="Empresa/{{$producto->empresaId}}" title="">{{$producto->empresa->empresaNombre}}</a></p>
     @endif
     {{-- {{dd($producto->getStokTotalAttribute())}} --}}
     @if($producto->getStokTotalAttribute() == 0)

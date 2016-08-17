@@ -21,6 +21,9 @@ Route::get('/Store', 'StoreController@index');
 	Route::get('/Terms',function(){
 		return view('Terms');
 	});
+	// Route::get('/terminosYCondiciones', function(){
+	// 	return view('terminosYCondiciones')
+	// });
 
 Route::group(['middleware'=>'auth'], function(){
 	// Route::resource('Productos','ProductoController');
