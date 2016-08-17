@@ -68,7 +68,7 @@
                     <center><h4>No serch results.</h4></center>
                     {{-- <button type="" class="btn btn-success"><a href="{{URL::previous()}}" title="">Back</a></button> --}}
                   </div>
-                  <center><h2>You may be interesd en this products!!</h2></center>
+                  <center><h2>Other products you may be interested in!!!</h2></center>
                   @foreach($sugerencias as $producto)
                   <div class="col-xs-6 col-sm-3" >
                   <div class="thumbnail">

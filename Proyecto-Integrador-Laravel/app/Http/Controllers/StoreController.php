@@ -21,14 +21,14 @@ class StoreController extends Controller
         $categorias = Categoria::where('categoriaIdParent', "")->with('categoriaPadre','subcategorias')->get();
         // $subCategorias = Categoria::where('categoriaIdParent', "!=", "")->get();
         // dd($subCategorias);
-        $productos = Producto::with('categoria','usuario','empresa','categoriaPadre')->get();
+        $productos = Producto::with('categoria','usuario','empresa','categoriaPadre')->where('productoEstado',1)->get();
         // dd($productos);
 
         return view('Store.Store',['productos'=>$productos,'generos'=>$generos,'categorias'=>$categorias,]);//'subCategorias'=>$subCategorias
     }
     public function indexHome()
     {
-        $productos = Producto::where('productoEstado',1)->with('usuario','categoria','empresa')->inRandomOrder()->take(8)->get();
+        $productos = Producto::where('productoEstado',1)->with('usuario','categoria','empresa')->where('productoEstado',1)->inRandomOrder()->take(8)->get();
         // dd($productos);
         return view('welcome',['productos'=>$productos]);
     }

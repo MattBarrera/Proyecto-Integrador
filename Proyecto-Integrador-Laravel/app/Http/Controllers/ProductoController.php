@@ -30,7 +30,7 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        $productos = Producto::all();
+        $productos = Producto::where('productoEstado',1)->get();
 
         return view('Store.Productos', ['productos'=>$productos]);
     }
@@ -289,7 +289,7 @@ class ProductoController extends Controller
             // dd($categoriasQuery);
             $categoriasQuery->toArray();
             //busco productos que en el nombre sean parecidas al query o que la categoria sea igual al id obtenido en el anterior query
-            $productos = Producto::where('productoNombre','like','%'.$query.'%')->orwhereIn('categoriaId',$categoriasQuery)->get();
+            $productos = Producto::where('productoNombre','like','%'.$query.'%')->orwhereIn('categoriaId',$categoriasQuery)->where('productoEstado',1)->get();
             //si no obtengo ningun producto, le muestro 3 opciones de forma random
             $sugerencias = "";
             if(count($productos) == ""){
@@ -302,11 +302,11 @@ class ProductoController extends Controller
             // dd($query);
             $generos = Genero::all();
             $categorias = Categoria::where('categoriaIdParent', "")->get();
-            $productos = Producto::where('categoriaId',$query)->get();
+            $productos = Producto::where('categoriaId',$query)->where('productoEstado',1)->get();
             //si no obtengo ningun producto, le muestro 3 opciones de forma random
             $sugerencias = "";
             if(count($productos) == ""){
-                $sugerencias = Producto::orderBy(DB::raw('RAND()'))->take(3)->get();
+                $sugerencias = Producto::orderBy(DB::raw('RAND()'))->where('productoEstado',1)->take(3)->get();
             }
             return view('Busqueda.Busqueda', ['productos'=>$productos,'generos'=>$generos,'categorias'=>$categorias,'sugerencias'=>$sugerencias]);
         }elseif ($query = $request->get('gen')) {
@@ -315,11 +315,11 @@ class ProductoController extends Controller
             // dd($query);
             $generos = Genero::all();
             $categorias = Categoria::where('categoriaIdParent', "")->get();
-            $productos = Producto::where('generoId',$query)->get();
+            $productos = Producto::where('generoId',$query)->where('productoEstado',1)->get();
             //si no obtengo ningun producto, le muestro 3 opciones de forma random
             $sugerencias = "";
             if(count($productos) == ""){
-                $sugerencias = Producto::orderBy(DB::raw('RAND()'))->take(3)->get();
+                $sugerencias = Producto::orderBy(DB::raw('RAND()'))->where('productoEstado',1)->take(3)->get();
             }
             return view('Busqueda.Busqueda', ['productos'=>$productos,'generos'=>$generos,'categorias'=>$categorias,'sugerencias'=>$sugerencias]);
         }
@@ -359,7 +359,7 @@ class ProductoController extends Controller
         $empresasIds = Empresa::select('empresaId')->whereIn('empresaId',$empresasFollowers)->get();
         // dd($empresasIds);
         // busco los productos
-        $productos = Producto::whereIn('users_id', $users_id1)->orwhereIn('empresaId',$empresasIds)->with('usuario','categoria','empresa')->get();
+        $productos = Producto::whereIn('users_id', $users_id1)->orwhereIn('empresaId',$empresasIds)->with('usuario','categoria','empresa')->where('productoEstado',1)->get();
         // dd($productos);
         // $follower = Follower::where('users_id1',$id)->where('users_id',Auth::user()->id)->first();
 

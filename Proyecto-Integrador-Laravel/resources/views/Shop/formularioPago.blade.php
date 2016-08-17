@@ -10,7 +10,7 @@
       </div>
 
 	<div class="panel-group" id="accordion">
-	    <div class="panel panel-default">
+	    {{-- <div class="panel panel-default">
 	      <div class="panel-heading">
 	        <h4 class="panel-title">
 	          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Delivery Details</a>
@@ -21,7 +21,7 @@
 		        
 	        </div>
 	      </div>
-	    </div>
+	    </div> --}}
 	    <div class="panel panel-default">
 	      <div class="panel-heading">
 	        <h4 class="panel-title">

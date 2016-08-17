@@ -8,15 +8,13 @@
 	    			<li>Clothes Shop</li>
 	    			<li>Site Map</li>
 	    			<li>Work with us</li>
-	    			<li><a href="/Terms" title="">Terms and Conditions</a></li>
+	    			
 	    		</ul>
 	    	</div>
 	    	<div class="col-md-4 text-center">
 	    		<center><h4>Help</h4></center>
 	    		<ul class="list-inline">
-	    			<li>Buy</li>
-	    			<li>Sell</li>
-	    		  	<li>Search</li>
+	    			<li><a href="/Terms" title="">Terms and Conditions</a></li>
 	    		</ul>
 	    	</div>
 	    	<div class="col-md-4 text-center">

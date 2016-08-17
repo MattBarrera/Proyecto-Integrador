@@ -13,7 +13,7 @@
                 {{ session()->get('success_message') }}
             </div>
         @endif
-      <div class="row" style="margin-bottom: 2em;">
+      <div class="row" style="padding-bottom: 4em;border-bottom: 1px solid #eee;">
         <!-- Separo la foto de lo demas con otro div para hacer un float left -->
         <div id="detalleProductoFoto" class="detalleProductoFoto">
           @if($producto->productoFoto !== 'artsinfoto.gif')
@@ -29,6 +29,11 @@
             <input type="hidden" name="productoId" id="productoId" value="{{$producto->productoId}}">
             <!-- precio del producto -->
             <h3><strong>$ {{$producto->productoPrecio}}<sup>00</sup></strong></h3>
+            <div style="">
+              <h3>Product description:</h3>
+              <!-- descripcion completa del producto -->
+              <p>{{$producto->productoDescripcion}}</p>
+            </div>
               <!-- Color del producto con el titulo -->
               <h3>Color:</h3>
             {{-- @if(count($producto->color)>0)  --}}
@@ -67,32 +72,10 @@
         </div>
       </div>
 
-      <!-- Modal -->
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-            </div>
-            <div class="modal-body">
-              ...
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <div class="clear"></div>
       <!-- descripcion completa del producto -->
-      <div style="text-align: center; margin-top: 2em;border-top: 1px solid #eee;">
-        <h2>Description of Product</h2>
-        <!-- descripcion completa del producto -->
-        <p>{{$producto->productoDescripcion}}</p>
-      </div>
+      <center><h2 style="margin-top:2em;margin-bottom:1em;">Other products you may be interested in!!!</h2></center>
 
       @foreach($productosInteres as $producto)
             {{-- {{dd($producto)}} --}}
